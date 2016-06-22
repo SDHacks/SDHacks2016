@@ -50,7 +50,7 @@
     // all environments
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
-    app.use(favicon(path.join(__dirname, 'static/assets/favicon.ico')));
+    app.use(favicon(path.join(__dirname, 'static/assets/img/favicon.png')));
     app.use(logger('dev'));
     app.use(cookieParser());
     app.use(bodyParser.json());
