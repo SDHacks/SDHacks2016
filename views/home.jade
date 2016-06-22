@@ -4,7 +4,11 @@ extends layout
 
 block content
     h1 Hello <span class="mean">{{guest.name}}</span>
-    p This is a boilerplate app and you're @ <b>Homepage</b>
+    p This is a boilerplate app and you're @ <b>Homepage</b> 
+      if current_user == 'guest'
+        a(href="/login") Login
+      else
+        a(href="#") #{current_user}
     .input-group.input-group-sm#demoinput
       input.form-control(type='text', placeholder='Your Name...', id="texti", ng-model="guest.name", ng-init="guest.name='SDHacks2016 Developer'")
     hr

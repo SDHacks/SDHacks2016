@@ -5,12 +5,9 @@
         .module('sdhacks')
         .controller('fooCtrl', fooCtrl);
 
-    fooCtrl.$inject =['$log','$location','apiService','apiFactoryFoo', 'fooData'];
+    fooCtrl.$inject =[];
 
-    function fooCtrl($log, $location, apiService, apiFactoryFoo, fooData){
-        var foo = this;
-        foo.global = apiService;
-        foo.name = "AngularJS";
-        foo.data = fooData;
+    function fooCtrl(){
+        
     }
 })();
