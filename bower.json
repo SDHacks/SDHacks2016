@@ -1,0 +1,30 @@
+{
+  "name": "sdhacks2016",
+  "version": "1.0.0",
+  "homepage": "https://github.com/SDHacks/SDHacks2016",
+  "authors": [
+    "Nicholas Thomson <https://rdbk.tv/>"
+  ],
+  "description": "Website for SDHacks 2016",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "html5shiv": "*",
+    "respond": "*",
+    "jquery": "*",
+    "bootstrap": "*",
+    "bootswatch": "*",
+    "bootbox": "*",
+    "angular": "*",
+    "angular-route": "*",
+    "angular-resource": "*",
+    "angular-animate": "*",
+    "angular-animate-css": "*",
+    "font-awesome": "*"
+  }
+}

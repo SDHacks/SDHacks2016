@@ -1,0 +1,10 @@
+div.col-xs-12.col-md-9.col-md-offset-1.mean-div
+    img(src='/assets/img/expressjs.png', alt='Logo', id="logo")
+    h1 Hello from <span class="mean">{{foo.name}}</span>
+    p This is a boilerplate app and you're @ <b>spa#index</b>
+    .input-group.input-group-sm#demoinput
+        input.form-control(type='text', placeholder='Your Name...', id="texti", ng-model="foo.name")
+    br 
+    p Using a service, <b>/api/v1/foo</b> returns:
+    ul(ng-repeat='x in foo.data track by $index')
+        li {{x.name}}

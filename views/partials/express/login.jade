@@ -1,0 +1,10 @@
+//- Login Form
+
+form(action='/login', method='post')
+    label Username:
+    input.form-control(type='text', name='username')
+    br
+    label Password:
+    input.form-control(type='password', name='password')
+    br
+    input.btn.btn-md.btn-primary.form-control(type='submit', value='Log in')

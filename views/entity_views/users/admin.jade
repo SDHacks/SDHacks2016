@@ -1,0 +1,10 @@
+//- Restricted zone (Manage Users)
+
+extends ../../layout
+
+block content
+  img(src='/assets/img/expressjs.png', alt='Logo', id="logo")
+  h1 Hello <span class="mean">{{guest.name}}</span>
+  p This is a <b>restricted zone</b> of the app, you're @ <b>users#admin</b>
+  .input-group.input-group-sm#demoinput
+    input.form-control(type='text', placeholder='Your Name...', id="texti", ng-model="guest.name", ng-init="guest.name='Admin'")

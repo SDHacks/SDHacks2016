@@ -1,0 +1,36 @@
+//- Main Layout of our project
+
+doctype
+html(ng-app="sdhacks", lang='en-US')
+head
+    meta(charset='UTF-8')
+    base(href='/')
+    title SDHacks 2016
+    meta(name='description', content='Official Website of SDHacks 2016')
+    meta(name='keywords', content='SDHacks, 2016, SDHacks 2016, hackathon, UCSD, UC, University of California San Diego, San Diego')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    //if lt IE 9
+      script(src='/assets/bower/bower_components/html5shiv/dist/html5shiv.min.js')
+      script(src='/assets/bower/bower_components/respond/dest/respond.min.js')
+    link(rel='shortcut icon', href='/favicon.ico')
+    link(rel='stylesheet', href='/assets/bower/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/assets/bower/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/assets/css/overrides.min.css')
+    script(src='/assets/bower/bower_components/jquery/dist/jquery.min.js')
+
+  body
+    div.container
+        div.row
+            ng-view
+
+    script(src='/assets/bower/bower_components/angular/angular.min.js')
+    script(src='/assets/bower/bower_components/angular-route/angular-route.min.js')
+    script(src='/assets/bower/bower_components/angular-resource/angular-resource.min.js')
+    script(src='/assets/bower/bower_components/angular-animate/angular-animate.min.js')
+    script(src='/assets/js/dist/angular-app.min.js') 
+    script(src='/assets/js/dist/custom.min.js')
+    script(src='/assets/bower/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/assets/bower/bower_components/bootbox/bootbox.js')
+    link(rel='stylesheet', href='/assets/bower/bower_components/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/assets/bower/bower_components/angular-animate-css/build/nga.min.css')

@@ -1,0 +1,17 @@
+# Ignore images on the root (Logos & stuff)
+/*.jpg
+/*.jpeg
+/*.png
+
+#Ignore NPM's debug log
+npm-debug.log
+
+# Commonly ignored folders
+node_modules
+static/assets/bower/bower_components
+
+sdhacks2016.sublime-project
+sdhacks2016.sublime-workspace
+.env
+static/assets/js/dist/
+*.min.css
