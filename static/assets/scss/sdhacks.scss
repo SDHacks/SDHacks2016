@@ -1,0 +1,32 @@
+// SaSS Style code goes here
+
+// Base styles for the boilerplate, here
+// you can modify or remove things as you like...
+
+// Template-wide styles
+$background: #E9E9E9;
+$primary: #19A3C5;
+$highlight: #646464;
+$white:  #F3F3F3;
+
+@import 'bem.scss';
+
+body {
+  background-color: $background;
+  color: $highlight;
+  font-family: Sans-Serif;
+  font-size: 1.5em;
+  overflow: hidden;
+}
+
+#texti {
+  background-color: $white;
+  color: $primary;
+}
+
+// Home view styles
+.tips {
+  font-size: 16px;
+  margin-left: -15px;
+  li { font-size: 18px; margin-bottom: 2px;}
+}

@@ -3,43 +3,45 @@
 extends layout
 
 block content
-    h1 Hello <span class="mean">{{guest.name}}</span>
-    p This is a boilerplate app and you're @ <b>Homepage</b> 
-      if user === null
-        a(href="/login") Login
-      else
-        a(href="/profile") #{user.name}
-    .input-group.input-group-sm#demoinput
-      input.form-control(type='text', placeholder='Your Name...', id="texti", ng-model="guest.name", ng-init="guest.name='SDHacks2016 Developer'")
-    hr
-    h3 Project structure
-    ol.tips
-      li /
-      | Root of the project. Contains <b>server.js</b>, <b>package.json</b> and <b>bower.json</b> among other important configuration files
+  .hero
+    svg.js-background-mesh.hero__background-mesh(height="150px")
+      defs
+        pattern(id="logo", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
+          image(xlink:href="/assets/img/logo.png", width="100", height="100", preserveAspectRatio="xMidYMid")
+  div.container.home-container
+    div.row
+      h1 Hello <span class="mean">{{guest.name}}</span>
+      p  
+        if user === null
+          a(href="/login") Login
+        else
+          a(href="/profile") #{user.name}
       hr
-      li /config
-      | Contains <b>app.yaml</b>, scripts for the <b>scaffold generator</b> and the <b>admin creator</b>
-      hr
-      li /entities
-      | Inside here, the scaffold generator creates a folder for each <b>entity</b> in your project. This entity folder contains the files <b>model.coffee</b> and <b>controller.coffee</b> for such entity
-      hr
-      li /extras
-      | Miscelaneous <b>configuration files</b>, <b>middleware</b> and/or <b>custom modules</b> (passport, oatuh, etc.)
-      hr
-      li /log
-      | All logs go here. No more explanations needed
-      hr
-      li /static
-      | Your <b>assets</b> and <b>Angular SPA</b> code reside here
-      hr
-      li /routes
-      | Your project's <b>routes</b> are declared here
-      hr
-      li /scaffolds
-      | Where the <b>base templates</b> for the <b>scaffold generator</b> are taken from
-      hr
-      li /scripts
-      | Folder for <b>random scripts</b> you might need to include (<b>DevOps tasks</b> for example)
-      hr
-      li /views
-      | The <b>views</b> for your entities and your project overall... This folder includes <b>layouts</b> and <b>partials</b>
+      h3 Project structure
+      ol.tips
+        li /
+        | Root of the project. Contains <b>server.js</b>, <b>package.json</b> and <b>bower.json</b> among other important configuration files
+        hr
+        li /entities
+        | Inside here, the scaffold generator creates a folder for each <b>entity</b> in your project. This entity folder contains the files <b>model.coffee</b> and <b>controller.coffee</b> for such entity
+        hr
+        li /extras
+        | Miscelaneous <b>configuration files</b>, <b>middleware</b> and/or <b>custom modules</b> (passport, oatuh, etc.)
+        hr
+        li /log
+        | All logs go here. No more explanations needed
+        hr
+        li /static
+        | Your <b>assets</b> and <b>Angular SPA</b> code reside here
+        hr
+        li /routes
+        | Your project's <b>routes</b> are declared here
+        hr
+        li /scripts
+        | Folder for <b>random scripts</b> you might need to include (<b>DevOps tasks</b> for example)
+        hr
+        li /views
+        | The <b>views</b> for your entities and your project overall... This folder includes <b>layouts</b> and <b>partials</b>
+
+block scripts
+  script(src='/assets/js/hexagons.js')

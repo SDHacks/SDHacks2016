@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon -e js,coffee server.js",
     "createadmin": "cd config && coffee createadmin.coffee",
     "scaffold": "cd config && coffee scaffold.coffee"
   },

@@ -73,7 +73,6 @@
     require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
     var appRoutes = require('./routes/index')(app, passport);
-    // var apiRoutes = require('./routes/api')(app);
     app.get('/ng-partials/:name', function (req, res) {
       var name = req.params.name;
       res.render('partials/angular/' + name);
@@ -83,20 +82,20 @@
     });
 
 
-    // Error Handling (Uncomment in production!)
-    // 404
-    // app.use(function(req, res) {
-    //  res.status(404).send("404: Not Found");
-    // });
-
-    // 500
-    // app.use(function(err, req, res, next) {
-    //  res.status(500).send(err, "500: Server Error");
-    // });
-
+    // Error Handling
     // Development only
     if ('development' == app.get('env')) {
       app.use(errorHandler());
+    } else {
+      // 404
+      app.use(function(req, res) {
+       res.status(404).send("404: Not Found");
+      });
+
+      // 500
+      app.use(function(err, req, res, next) {
+       res.status(500).send(err, "500: Server Error");
+      });
     }
 
     http.createServer(app).listen(app.get(port), function(){

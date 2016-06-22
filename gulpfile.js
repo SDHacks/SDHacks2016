@@ -21,7 +21,7 @@ function handleError(err) {
 
 // SaSS Builder
 gulp.task('sass', function () {
-  gulp.src('static/assets/scss/*.scss')
+  gulp.src('static/assets/scss/sdhacks.scss')
     .pipe(sass({outputStyle: 'compressed'})).on('error', handleError)
     .pipe(rename({ suffix: '.min' })).on('error', handleError)
     .pipe(gulp.dest('static/assets/css'));

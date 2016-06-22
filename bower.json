@@ -14,17 +14,19 @@
     "tests"
   ],
   "dependencies": {
-    "html5shiv": "*",
-    "respond": "*",
-    "jquery": "*",
-    "bootstrap": "*",
-    "bootswatch": "*",
-    "bootbox": "*",
     "angular": "*",
-    "angular-route": "*",
-    "angular-resource": "*",
     "angular-animate": "*",
     "angular-animate-css": "*",
-    "font-awesome": "*"
+    "angular-resource": "*",
+    "angular-route": "*",
+    "bootbox": "*",
+    "bootstrap": "*",
+    "bootswatch": "*",
+    "d3": "~3.5.17",
+    "font-awesome": "*",
+    "html5shiv": "*",
+    "jquery": "*",
+    "respond": "*",
+    "topojson": "^1.6.26"
   }
 }

@@ -1,0 +1,49 @@
+.hero {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+
+  &__background-mesh {
+    position: absolute;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+  }
+
+  &__hexagon {
+    fill: $white;
+    pointer-events: all;
+
+    path {
+      -webkit-transition: fill 250ms linear;
+      transition: fill 250ms linear;
+
+      &:hover {
+        fill: lighten($primary, 30%);
+      }
+    }
+
+    &--featured {
+      fill: url(#logo);
+    }
+
+    &--filled {
+      fill: $primary;
+    }
+  }
+
+  &__mesh {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .2;
+    pointer-events: none;
+  }
+
+  &__border {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2px;
+    pointer-events: none;
+  }
+}
