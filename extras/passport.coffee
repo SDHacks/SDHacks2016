@@ -16,7 +16,7 @@ module.exports = (passport, OAuth2Strategy, User, settings) ->
       callbackURL: settings.MLH_CALLBACK
     }, (accessToken, refreshToken, profile, cb) ->
       # Make an API call to get user data
-      request = require('request')
+      request = require 'request'
       request 'https://my.mlh.io/api/v1/user?access_token=' + accessToken, (err, res, body) ->
         mlhUser = JSON.parse body
         mlhUser = mlhUser.data
@@ -24,11 +24,8 @@ module.exports = (passport, OAuth2Strategy, User, settings) ->
         newUser = {
           id: mlhUser.id,
           email: mlhUser.email,
-          name: mlhUser.first_name + " " + mlhUser.last_name
+          name: mlhUser.first_name + " " + mlhUser.last_name,
+          accessToken: accessToken
         }
-        User.findOrCreate(newUser, (err, user, created) ->
-          if created
-            console.log 'New User: ' + user.name
-          cb err, user
-        )
+        User.findOneAndUpdate {id: newUser.id}, newUser, {upsert: true}, cb
   )

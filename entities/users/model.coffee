@@ -9,7 +9,8 @@ db = mongoose.createConnection(process.env.MONGODB_URI)
 UsersSchema = new Schema({
   id: Number,
   email: String,
-  name: String
+  name: String,
+  accessToken: String
 })
 
 UsersSchema.plugin(findOrCreate)
