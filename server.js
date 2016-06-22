@@ -73,7 +73,7 @@
     require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
     var appRoutes = require('./routes/index')(app, passport);
-    var apiRoutes = require('./routes/api')(app);
+    // var apiRoutes = require('./routes/api')(app);
     app.get('/ng-partials/:name', function (req, res) {
       var name = req.params.name;
       res.render('partials/angular/' + name);
