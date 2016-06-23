@@ -1,7 +1,8 @@
 var radius = 150;
 var fillChance = 0.35;
+var initialHeight = parseInt(d3.select('.hero').style('height'));
 
-var border, path, topology, projection, mousing = 0, height = 0;
+var border, path, topology, projection, mousing = 0;
 resize();
 
 function hexClass(d) {
@@ -55,7 +56,7 @@ function redraw_bottom(border) {
 
 function hexTopology(radius, width, height) {
     var dx = radius * 2 * Math.sin(Math.PI / 3),
-        dy = radius * 1.5,
+        dy = radius * 1.5
         m = Math.ceil((height + radius) / dy) + 1,
         n = Math.ceil(width / dx) + 1,
         geometries = [],
@@ -106,12 +107,19 @@ function hexProjection(radius) {
     };
 }
 
+function getHexPerHeight(height, radius) {
+    return Math.floor(height / (1.5 * radius) + 1);
+}
+
+function getHeightForHex(hexCount, radius) {
+    return (1.5 * radius) * hexCount;
+}
+
 function resize() {
     var svg = d3.select(".js-background-mesh")
         .attr("width", "100%");
 
     var newWidth = parseInt(svg.style('width'));
-    var newHeight = parseInt(svg.style('height'));
     var newRadius = radius;
 
     if(newWidth <= 1024) {
@@ -120,13 +128,16 @@ function resize() {
 
     //Find how many hexagons we have
     var dxR = Math.ceil(newWidth / (2 * newRadius * Math.sin(Math.PI / 3)));
-    var dyR = Math.ceil(newHeight / (1.5 * newRadius));
-
     //Make it a multiple of the radius and give it one for padding
     newWidth = (dxR + 1) * (2 * newRadius * Math.sin(Math.PI / 3));
+
     //If there wasn't already a height
-    if(height == 0)
-        height = (dyR + 2) * (1.5 * newRadius);
+    var height = initialHeight;
+
+    //Remove last row for effect
+    var dyR = getHexPerHeight(height, newRadius) - 1;
+    height = getHeightForHex(dyR, newRadius);
+    console.log(dyR);
 
     svg
         .attr('width', newWidth)

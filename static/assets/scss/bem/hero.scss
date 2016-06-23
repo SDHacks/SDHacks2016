@@ -1,5 +1,8 @@
+$hero-size: 675px;
+
 .hero {
   width: 100%;
+  height: $hero-size;
   position: absolute;
   top: 0;
   z-index: -1;
@@ -19,7 +22,7 @@
       -webkit-transition: fill 250ms linear;
       transition: fill 250ms linear;
 
-      &:hover {
+      &:hover:not(&--featured) {
         fill: lighten($primary, 15);
       }
     }
