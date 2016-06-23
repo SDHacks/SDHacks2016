@@ -9,9 +9,12 @@ var gulp   = require('gulp'),
     coffee = require('gulp-coffee'), 
     sass = require('gulp-sass'),
     imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'); 
+    pngquant = require('imagemin-pngquant'),
+    nodemon = require('gulp-nodemon'); 
     
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'nodemon']);
+gulp.task('test', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
+gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng', 'run']);
 
 // Handle Errors
 function handleError(err) {
@@ -81,4 +84,21 @@ gulp.task('watch', function() {
   gulp.watch(['static/app/**/*.js', 'static/assets/js/*.js'], ['jshint']);
   gulp.watch('static/assets/js/*.js', ['build-js']);
   gulp.watch('static/app/**/*.js', ['build-ng']);
+});
+
+// Nodemon
+gulp.task('nodemon', function() {
+  nodemon({
+    script: 'server.js',
+    ext: 'js coffee',
+    env: { 'NODE_ENV': 'development' }
+  });
+});
+
+gulp.task('run', function() {
+  nodemon({
+    script: 'server.js',
+    ext: 'js coffee',
+    env: { 'NODE_ENV': 'production' }
+  });
 });

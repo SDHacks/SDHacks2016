@@ -1,59 +1,18 @@
 var radius = 150;
-var svg = d3.select(".js-background-mesh")
-    .attr("width", "100%");
+var fillChance = 0.35;
 
-var width = parseInt(svg.style('width'));
-var height = parseInt(svg.style('height'));
-
-if(width <= 1024) {
-  radius = 50;
-}
-
-//Find how many hexagons we have
-var dxR = Math.ceil(width / (2 * radius * Math.sin(Math.PI / 3)));
-var dyR = Math.ceil(height / (1.5 * radius));
-
-//Make it a multiple of the radius and give it one for padding
-width = (dxR + 1) * (2 * radius * Math.sin(Math.PI / 3));
-height = (dyR + 2) * (1.5 * radius);
-
-svg
-    .attr('width', width)
-    .attr('height', height);
-
-var topology = hexTopology(radius, width, height);
-var projection = hexProjection(radius);
-
-var path = d3.geo.path()
-    .projection(projection);
-
-svg.append("g")
-    .attr("class", "hero__hexagon")
-    .selectAll("path")
-    .data(topology.objects.hexagons.geometries)
-    .enter().append("path")
-    .attr("d", function(d) { return path(topojson.feature(topology, d)); })
-    .attr("fill", function(d) { return d.feature ? "url(#logo)" : ""; })
-    .attr("class", hexClass)
-    .on("mousedown", mousedown)
-    .on("mousemove", mousemove)
-    .on("mouseup", mouseup);
-
-svg.append("path")
-    .datum(topojson.mesh(topology, topology.objects.hexagons))
-    .attr("class", "hero__mesh")
-    .attr("d", path);
-
-var border = svg.append("path")
-    .attr("class", "hero__border")
-    .call(redraw);
-
-var mousing = 0;
+var border, path, topology, projection, mousing = 0, height = 0;
+resize();
 
 function hexClass(d) {
-    if(d.feature) return "";
-    if(d.fill) return "hero__hexagon--filled";
-    return "";
+    var classes = [];
+    if(d.feature) {
+        classes.push("hero__hexagon--featured");
+        classes.push("hero__hexagon--featured-filled");
+        return classes.join(" ");
+    }
+    if(d.fill) classes.push("hero__hexagon--filled");
+    return classes.join(" ");
 }
 
 function mousedown(d) {
@@ -63,7 +22,11 @@ function mousedown(d) {
 
 function mousemove(d) {
     if (mousing) {
-        d3.select(this).classed("hero__hexagon--filled", d.fill = mousing > 0);
+        var featured = $(this).hasClass("hero__hexagon--featured");
+        if(featured)
+            d3.select(this).classed("hero__hexagon--featured-filled", d.fill = mousing > 0);
+        else
+            d3.select(this).classed("hero__hexagon--filled", d.fill = mousing > 0);
         border.call(redraw);
     }
 }
@@ -77,6 +40,19 @@ function redraw(border) {
     border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.fill ^ b.fill; })));
 }
 
+function redraw_bottom(border) {
+    //Ignore the first vertex of every hex
+    var seen = [];
+    border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, 
+        function(a, b) { 
+            if(seen.indexOf(a) !== -1)
+                return a.bottom && b.bottom;
+            seen.push(a);
+            return false;
+        }
+    )));
+}
+
 function hexTopology(radius, width, height) {
     var dx = radius * 2 * Math.sin(Math.PI / 3),
         dy = radius * 1.5,
@@ -84,6 +60,7 @@ function hexTopology(radius, width, height) {
         n = Math.ceil(width / dx) + 1,
         geometries = [],
         arcs = [];
+
 
     for (var j = -1; j < m; ++j) {
         for (var i = -1; i <= n; ++i) {
@@ -100,12 +77,12 @@ function hexTopology(radius, width, height) {
             geometries.push({
                 type: "Polygon",
                 arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (j & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (j & 1)) * 3 + 2)]],
-                fill: isMid,
-                feature: isMid
+                fill: (isMid || Math.random() < fillChance),
+                feature: isMid,
+                bottom: (j == m - 2)
             });
         }
     }
-
     return {
         transform: {translate: [0, 0], scale: [1, 1]},
         objects: {hexagons: {type: "GeometryCollection", geometries: geometries}},
@@ -128,3 +105,65 @@ function hexProjection(radius) {
         }
     };
 }
+
+function resize() {
+    var svg = d3.select(".js-background-mesh")
+        .attr("width", "100%");
+
+    var newWidth = parseInt(svg.style('width'));
+    var newHeight = parseInt(svg.style('height'));
+    var newRadius = radius;
+
+    if(newWidth <= 1024) {
+      newRadius = 50;
+    }
+
+    //Find how many hexagons we have
+    var dxR = Math.ceil(newWidth / (2 * newRadius * Math.sin(Math.PI / 3)));
+    var dyR = Math.ceil(newHeight / (1.5 * newRadius));
+
+    //Make it a multiple of the radius and give it one for padding
+    newWidth = (dxR + 1) * (2 * newRadius * Math.sin(Math.PI / 3));
+    //If there wasn't already a height
+    if(height == 0)
+        height = (dyR + 2) * (1.5 * newRadius);
+
+    svg
+        .attr('width', newWidth)
+        .attr('height', height);
+
+    topology = hexTopology(newRadius, newWidth, height);
+    projection = hexProjection(newRadius);
+
+    path = d3.geo.path()
+        .projection(projection);
+
+    svg.selectAll("*").remove();
+
+    svg.append("g")
+        .attr("class", "hero__hexagon")
+        .selectAll("path")
+        .data(topology.objects.hexagons.geometries)
+        .enter()
+        .append("path")
+        .attr("d", function(d) { return path(topojson.feature(topology, d)); })
+        .attr("class", hexClass)
+        .on("mousedown", mousedown)
+        .on("mousemove", mousemove)
+        .on("mouseup", mouseup);
+
+    svg.append("path")
+        .datum(topojson.mesh(topology, topology.objects.hexagons))
+        .attr("class", "hero__mesh")
+        .attr("d", path);
+
+    border = svg.append("path")
+        .attr("class", "hero__border")
+        .call(redraw);
+
+    bottom_border = svg.append("path")
+        .attr("class", "hero__border--bottom")
+        .call(redraw_bottom);
+}
+
+$(window).resize($.debounce(250, resize));

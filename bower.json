@@ -27,6 +27,7 @@
     "html5shiv": "*",
     "jquery": "*",
     "respond": "*",
-    "topojson": "^1.6.26"
+    "topojson": "^1.6.26",
+    "jquery-throttle-debounce": "*"
   }
 }

@@ -4,24 +4,27 @@
 // you can modify or remove things as you like...
 
 // Template-wide styles
-$background: #E9E9E9;
+$background: #515151;
+
 $primary: #19A3C5;
+$secondary: #00B4CC;
+$tertiary: #008C9E;
+
 $highlight: #646464;
-$white:  #F3F3F3;
+$white:  #EEEEEE;
 
 @import 'bem.scss';
 
 body {
   background-color: $background;
-  color: $highlight;
+  color: $white;
   font-family: Sans-Serif;
   font-size: 1.5em;
   overflow: hidden;
-}
 
-#texti {
-  background-color: $white;
-  color: $primary;
+  h1 {
+    color: $secondary;
+  }
 }
 
 // Home view styles

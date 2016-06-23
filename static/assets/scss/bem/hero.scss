@@ -12,7 +12,7 @@
   }
 
   &__hexagon {
-    fill: $white;
+    fill: $background;
     pointer-events: all;
 
     path {
@@ -20,12 +20,24 @@
       transition: fill 250ms linear;
 
       &:hover {
-        fill: lighten($primary, 30%);
+        fill: lighten($primary, 15);
       }
     }
 
+    &--bg {
+      fill: $background;
+
+      &-filled {
+        fill: $primary;
+      }
+    }   
+
     &--featured {
       fill: url(#logo);
+
+      &-filled {
+        fill: url(#logo-filled);
+      }
     }
 
     &--filled {
@@ -35,15 +47,23 @@
 
   &__mesh {
     fill: none;
-    stroke: #000;
-    stroke-opacity: .2;
+    stroke: $white;
+    stroke-width: 2px;
+    stroke-opacity: .3;
     pointer-events: none;
   }
 
   &__border {
     fill: none;
-    stroke: #000;
-    stroke-width: 2px;
+    stroke: $white;
+    stroke-width: 3px;
     pointer-events: none;
+
+    &--bottom {
+      fill: none;
+      stroke: $white;
+      stroke-width: 3px;
+      pointer-events: none;
+    }
   }
 }
