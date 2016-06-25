@@ -24,7 +24,6 @@ Assuming you already have the needed **MEAN Stack** pieces installed on your com
     4. npm install -g gulp gulp-cli
     5. npm install
     6. bower install
-
-    gulp
+    7. gulp
 
 From inside your app's folder and then open **http://localhost:3000** in your browser.
