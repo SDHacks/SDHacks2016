@@ -37,7 +37,7 @@
   } else {
 
     var app = express();
-    var port = 3000;
+    var port = process.env.PORT || 3000;
     var server = app.listen(port);
 
     // Extras

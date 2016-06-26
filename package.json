@@ -2,6 +2,9 @@
   "name": "SDHacks2016",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "4.4.5"
+  },
   "scripts": {
     "start": "nodemon -e js,coffee server.js",
     "createadmin": "cd config && coffee createadmin.coffee",
