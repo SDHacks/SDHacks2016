@@ -7,8 +7,7 @@
   },
   "scripts": {
     "start": "nodemon -e js,coffee server.js",
-    "createadmin": "cd config && coffee createadmin.coffee",
-    "scaffold": "cd config && coffee scaffold.coffee"
+    "postinstall": "bower install"
   },
   "dependencies": {
     "body-parser": "1.15.2",
@@ -40,7 +39,6 @@
 	"gulp": "3.9.1",
     "gulp-coffee": "2.3.2",
     "gulp-concat": "2.6.0",
-    "gulp-imagemin": "3.0.1",
     "gulp-jshint": "2.0.1",
     "gulp-nodemon": "^2.1.0",
     "gulp-rename": "1.2.2",
@@ -53,7 +51,6 @@
   "devDependencies": {
     "fs": "0.0.2",
     "fs-extra": "0.30.0",
-    "imagemin-pngquant": "5.0.0",
     "jshint": "2.9.2",
     "jshint-stylish": "2.2.0",
     "replace": "0.3.0"

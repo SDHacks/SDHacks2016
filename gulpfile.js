@@ -5,11 +5,8 @@ var gulp   = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     gutil = require('gulp-util'),
-    imagemin = require('gulp-rename'),
     coffee = require('gulp-coffee'), 
     sass = require('gulp-sass'),
-    imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),
     nodemon = require('gulp-nodemon'); 
     
 gulp.task('default', ['watch', 'nodemon']);
@@ -67,15 +64,6 @@ gulp.task('build-ng', function() {
     .pipe(sourcemaps.write()).on('error', handleError)
     .pipe(gulp.dest('static/assets/js/dist')).on('error', handleError);
 });
-
-// Image Optimizer
-gulp.task('img-optimizer', function() {
-gulp.src('static/assets/img/*')
-  .pipe(imagemin({progressive: true, svgoPlugins: [{removeViewBox: false}], use: [pngquant()]})).on('error', handleError)
-  .pipe(gulp.dest('static/assets/img')).on('error', handleError);
-});
-
-
 
 // Watcher
 gulp.task('watch', function() {
