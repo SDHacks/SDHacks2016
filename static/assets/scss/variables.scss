@@ -1,0 +1,13 @@
+$screen-sm-min: 840px;
+$screen-lg-min: 1300px;
+
+$desktop: "(min-width: $screen-sm-min)";
+$screen-large: "(min-width: $screen-lg-min)";
+$mobile: "(max-width: $screen-sm-min)";
+
+$container-tablet: 1350px;
+$container-sm: $container-tablet;
+$container-desktop: $container-tablet;
+$container-md: $container-tablet;
+$container-large-desktop: $container-tablet;
+$container-lg: $container-tablet;

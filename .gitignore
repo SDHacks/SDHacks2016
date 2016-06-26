@@ -14,4 +14,4 @@ sdhacks2016.sublime-project
 sdhacks2016.sublime-workspace
 .env
 static/assets/js/dist/
-*.min.css
+sdhacks.min.css

@@ -1,11 +1,18 @@
-$hero-size: 675px;
+$hero-size: 495px;
+$hero-size-mobile: 300px;
+
+$empty-hex-colour: lighten($background, 10);
 
 .hero {
   width: 100%;
-  height: $hero-size;
+  height: $hero-size-mobile;
   position: absolute;
   top: 0;
   z-index: -1;
+
+  @media #{$desktop} {
+    height: $hero-size;
+  }
 
   &__background-mesh {
     position: absolute;
@@ -21,10 +28,6 @@ $hero-size: 675px;
     path {
       -webkit-transition: fill 250ms linear;
       transition: fill 250ms linear;
-
-      &:hover:not(&--featured) {
-        fill: lighten($primary, 15);
-      }
     }
 
     &--bg {
@@ -36,15 +39,27 @@ $hero-size: 675px;
     }   
 
     &--featured {
-      fill: url(#logo);
+      fill: url(#logo) !important;
+    }
 
-      &-filled {
-        fill: url(#logo-filled);
+    &--empty {
+      fill: url(#empty);
+
+      &-colour {
+        fill: $empty-hex-colour;
+
+        &:hover {
+          stroke: 1px solid black;
+        }
       }
     }
 
     &--filled {
-      fill: $primary;
+      fill: url(#filled);
+
+      &-colour {
+        fill: $primary;
+      }
     }
   }
 

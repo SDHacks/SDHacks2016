@@ -1,18 +1,5 @@
-// SaSS Style code goes here
-
-// Base styles for the boilerplate, here
-// you can modify or remove things as you like...
-
-// Template-wide styles
-$background: #515151;
-
-$primary: #19A3C5;
-$secondary: #00B4CC;
-$tertiary: #008C9E;
-
-$highlight: #646464;
-$white:  #EEEEEE;
-
+@import 'colours.scss';
+@import 'variables.scss';
 @import 'bem.scss';
 
 body {
@@ -24,6 +11,20 @@ body {
 
   h1 {
     color: $secondary;
+  }
+}
+
+.btn {
+  border-radius: 0;
+  color: $white;
+}
+
+.button-primary {
+  background: $primary;
+
+  &:hover, &:active, &:focus {
+    background: darken($primary, 10);
+    color: $white;
   }
 }
 

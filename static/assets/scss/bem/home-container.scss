@@ -1,3 +1,7 @@
 .home-container {
-  margin-top: $hero-size;
+  margin-top: $hero-size-mobile;
+
+  @media #{$desktop} {
+    margin-top: $hero-size;
+  }
 }

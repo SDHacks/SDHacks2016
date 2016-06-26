@@ -1,4 +1,5 @@
-var radius = 150;
+var radius = 110,
+    smallRadius = 50;
 var fillChance = 0.35;
 var initialHeight = parseInt(d3.select('.hero').style('height'));
 
@@ -6,7 +7,7 @@ var border, path, topology, projection, mousing = 0;
 resize();
 
 function hexClass(d) {
-    var classes = [];
+    var classes = ["hero__hexagon--empty"];
     if(d.feature) {
         classes.push("hero__hexagon--featured");
         classes.push("hero__hexagon--featured-filled");
@@ -28,7 +29,7 @@ function mousemove(d) {
             d3.select(this).classed("hero__hexagon--featured-filled", d.fill = mousing > 0);
         else
             d3.select(this).classed("hero__hexagon--filled", d.fill = mousing > 0);
-        border.call(redraw);
+        //border.call(redraw);
     }
 }
 
@@ -123,7 +124,7 @@ function resize() {
     var newRadius = radius;
 
     if(newWidth <= 1024) {
-      newRadius = 50;
+      newRadius = smallRadius;
     }
 
     //Find how many hexagons we have
@@ -163,18 +164,18 @@ function resize() {
         .on("mousemove", mousemove)
         .on("mouseup", mouseup);
 
-    svg.append("path")
+    /*svg.append("path")
         .datum(topojson.mesh(topology, topology.objects.hexagons))
         .attr("class", "hero__mesh")
-        .attr("d", path);
+        .attr("d", path);*/
 
-    border = svg.append("path")
+    /* border = svg.append("path")
         .attr("class", "hero__border")
         .call(redraw);
 
     bottom_border = svg.append("path")
         .attr("class", "hero__border--bottom")
-        .call(redraw_bottom);
+        .call(redraw_bottom);*/
 }
 
 $(window).resize($.debounce(250, resize));
