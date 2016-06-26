@@ -10,7 +10,6 @@ function hexClass(d) {
     var classes = ["hero__hexagon--empty"];
     if(d.feature) {
         classes.push("hero__hexagon--featured");
-        classes.push("hero__hexagon--featured-filled");
         return classes.join(" ");
     }
     if(d.fill) classes.push("hero__hexagon--filled");
@@ -24,12 +23,8 @@ function mousedown(d) {
 
 function mousemove(d) {
     if (mousing) {
-        var featured = $(this).hasClass("hero__hexagon--featured");
-        if(featured)
-            d3.select(this).classed("hero__hexagon--featured-filled", d.fill = mousing > 0);
-        else
+        if(!$(this).hasClass("hero__hexagon--featured"))
             d3.select(this).classed("hero__hexagon--filled", d.fill = mousing > 0);
-        //border.call(redraw);
     }
 }
 
@@ -38,26 +33,9 @@ function mouseup() {
     mousing = 0;
 }
 
-function redraw(border) {
-    border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.fill ^ b.fill; })));
-}
-
-function redraw_bottom(border) {
-    //Ignore the first vertex of every hex
-    var seen = [];
-    border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, 
-        function(a, b) { 
-            if(seen.indexOf(a) !== -1)
-                return a.bottom && b.bottom;
-            seen.push(a);
-            return false;
-        }
-    )));
-}
-
 function hexTopology(radius, width, height) {
     var dx = radius * 2 * Math.sin(Math.PI / 3),
-        dy = radius * 1.5
+        dy = radius * 1.5,
         m = Math.ceil((height + radius) / dy) + 1,
         n = Math.ceil(width / dx) + 1,
         geometries = [],
@@ -73,15 +51,15 @@ function hexTopology(radius, width, height) {
 
     var midM = Math.floor(m / 2);
     var midN = Math.floor(n / 2) - 1;
-    for (var j = 0, q = 3; j < m - 1; ++j, q += 6) {
-        for (var i = 0; i < n; ++i, q += 3) {
-            var isMid = (j == midM && i == midN);
+    for (var k = 0, q = 3; k < m - 1; ++k, q += 6) {
+        for (var l = 0; l < n; ++l, q += 3) {
+            var isMid = (k == midM && l == midN);
             geometries.push({
                 type: "Polygon",
-                arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (j & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (j & 1)) * 3 + 2)]],
+                arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (k & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (k & 1)) * 3 + 2)]],
                 fill: (isMid || Math.random() < fillChance),
                 feature: isMid,
-                bottom: (j == m - 2)
+                bottom: (k == m - 2)
             });
         }
     }
@@ -120,9 +98,12 @@ function resize() {
     var svg = d3.select(".js-background-mesh")
         .attr("width", "100%");
 
+    var initialHeight = parseInt(d3.select('.hero').style('height'));
+
     var newWidth = parseInt(svg.style('width'));
     var newRadius = radius;
 
+    //TODO: Make this dynamic
     if(newWidth <= 1024) {
       newRadius = smallRadius;
     }
@@ -138,7 +119,6 @@ function resize() {
     //Remove last row for effect
     var dyR = getHexPerHeight(height, newRadius) - 1;
     height = getHeightForHex(dyR, newRadius);
-    console.log(dyR);
 
     svg
         .attr('width', newWidth)
@@ -163,19 +143,6 @@ function resize() {
         .on("mousedown", mousedown)
         .on("mousemove", mousemove)
         .on("mouseup", mouseup);
-
-    /*svg.append("path")
-        .datum(topojson.mesh(topology, topology.objects.hexagons))
-        .attr("class", "hero__mesh")
-        .attr("d", path);*/
-
-    /* border = svg.append("path")
-        .attr("class", "hero__border")
-        .call(redraw);
-
-    bottom_border = svg.append("path")
-        .attr("class", "hero__border--bottom")
-        .call(redraw_bottom);*/
 }
 
 $(window).resize($.debounce(250, resize));

@@ -1,0 +1,26 @@
+mixin hero
+  .hero
+    svg
+      defs
+        pattern(id="logo", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
+          circle(cx="50%", cy="50%", r="100%", class="hero__hexagon--bg")
+          image(xlink:href="/assets/img/logo.png", width="100", height="100", preserveAspectRatio="xMidYMid")
+        pattern(id="logo-filled", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
+          circle(cx="50%", cy="50%", r="100%", class="hero__hexagon--bg-filled")
+          image(xlink:href="/assets/img/logo.png", width="100", height="100", preserveAspectRatio="xMidYMid")
+        pattern(id="filled", width="1", height="1", viewBox="0 0 320.62 348.45", preserveAspectRatio="xMidYMid meet")
+          path(class="hero__hexagon--filled-colour", d="M132.988,329.639l-100.42-59c0,0-15.086-15-20.086-34.667v-124c0,0,4.419-16.666,13.419-26.5 \
+            c0,0,3.204-7.5,60.624-38.5l52.107-30.667c0,0,14.333-3.826,21.839-3.826c12.652-1.688,27.677,6.333,27.677,6.333l100.334,59 \
+            c0,0,15.667,15,20,34.667v124c0,0-4.334,16.666-13.334,26.5c0,0-3.16,7.5-60.58,38.5l-52.086,30.667 \
+            c0,0-14.322,3.826-21.828,3.826C160.654,335.972,150.161,337.132,132.988,329.639z")
+        pattern(id="empty", width="1", height="1", viewBox="0 0 320.62 348.45", preserveAspectRatio="xMidYMid meet")
+          path(class="hero__hexagon--empty-colour", d="M132.988,329.639l-100.42-59c0,0-15.086-15-20.086-34.667v-124c0,0,4.419-16.666,13.419-26.5 \
+            c0,0,3.204-7.5,60.624-38.5l52.107-30.667c0,0,14.333-3.826,21.839-3.826c12.652-1.688,27.677,6.333,27.677,6.333l100.334,59 \
+            c0,0,15.667,15,20,34.667v124c0,0-4.334,16.666-13.334,26.5c0,0-3.16,7.5-60.58,38.5l-52.086,30.667 \
+            c0,0-14.322,3.826-21.828,3.826C160.654,335.972,150.161,337.132,132.988,329.639z")
+        pattern(id="hover", width="1", height="1", viewBox="0 0 320.62 348.45", preserveAspectRatio="xMidYMid meet")
+          path(class="hero__hexagon--hover-colour", d="M132.988,329.639l-100.42-59c0,0-15.086-15-20.086-34.667v-124c0,0,4.419-16.666,13.419-26.5 \
+            c0,0,3.204-7.5,60.624-38.5l52.107-30.667c0,0,14.333-3.826,21.839-3.826c12.652-1.688,27.677,6.333,27.677,6.333l100.334,59 \
+            c0,0,15.667,15,20,34.667v124c0,0-4.334,16.666-13.334,26.5c0,0-3.16,7.5-60.58,38.5l-52.086,30.667 \
+            c0,0-14.322,3.826-21.828,3.826C160.654,335.972,150.161,337.132,132.988,329.639z")
+    svg.js-background-mesh.hero__background-mesh(height="150px")

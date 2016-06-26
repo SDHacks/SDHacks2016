@@ -14,16 +14,16 @@ html(ng-app="sdhacks", lang='en-US')
           script(src='/assets/bower/bower_components/html5shiv/dist/html5shiv.min.js')
           script(src='/assets/bower/bower_components/respond/dest/respond.min.js')
         link(rel='shortcut icon', href='/assets/img/favicon.png')
-        link(rel='stylesheet', href='/assets/css/foundation.min.css')
         link(rel='stylesheet', href='/assets/css/sdhacks.min.css')
         script(src='/assets/bower/bower_components/jquery/dist/jquery.min.js')
 
     body
         block content
 
-    script(src='/assets/js/dist/angular-app.min.js')
     script(src='/assets/bower/bower_components/d3/d3.min.js')
     script(src='/assets/bower/bower_components/topojson/topojson.min.js')
+    script(src='/assets/bower/bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js')
+    script(src='/assets/js/hexagons.js')
     block scripts
     script(src='/assets/js/dist/custom.min.js')
     link(rel='stylesheet', href='/assets/bower/bower_components/font-awesome/css/font-awesome.min.css')

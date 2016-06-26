@@ -10,7 +10,7 @@ $empty-hex-colour: lighten($background, 10);
   top: 0;
   z-index: -1;
 
-  @media #{$desktop} {
+  @media #{$medium-up} {
     height: $hero-size;
   }
 
@@ -47,11 +47,15 @@ $empty-hex-colour: lighten($background, 10);
 
       &-colour {
         fill: $empty-hex-colour;
-
-        &:hover {
-          stroke: 1px solid black;
-        }
       }
+    }
+
+    &--empty:hover:not(&--filled) {
+      fill: url(#hover);
+    }
+
+    &--hover-colour {
+      fill: lighten($background, 30);
     }
 
     &--filled {
