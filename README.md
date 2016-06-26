@@ -14,12 +14,6 @@
 
 - **img-optimizer:** Lossless compression for all the images used in your project
 
-### Available NPM Tasks:
-
-- **start:** Starts the project via **nodemon**
-- **createadmin:** Task for creating a project-wide **superuser**
-- **scaffold:** Magical scaffold generator
-
 ### Usage
 
 Assuming you already have the needed **MEAN Stack** pieces installed on your computer/server (**MongoDB**, **NodeJS** & **ExpressJS**) plus **Git** & **Bower** Just run:
@@ -30,7 +24,6 @@ Assuming you already have the needed **MEAN Stack** pieces installed on your com
     4. npm install -g gulp gulp-cli
     5. npm install
     6. bower install
-
-    gulp
+    7. gulp
 
 From inside your app's folder and then open **http://localhost:3000** in your browser.
