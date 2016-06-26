@@ -1,20 +1,8 @@
+//Include fonts
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px|Titillium+Web';
+
+//Include Foundation
 @import 'foundation-sites/foundation.scss';
+@include foundation-everything(true);
 
-@import 'colours.scss';
 @import 'bem.scss';
-
-body {
-  background-color: $background;
-  color: $white;
-  font-family: Sans-Serif;
-  font-size: 1.5em;
-  overflow: hidden;
-
-  h1 {
-    color: $secondary;
-  }
-}
-
-a {
-  text-decoration: none;
-}

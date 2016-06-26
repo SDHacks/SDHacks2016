@@ -23,8 +23,8 @@ $global-lineheight: 1.5 !default;
 /// Colors used for buttons, callouts, links, etc. There must always be a color called `primary`.
 /// @type Map
 $foundation-palette: (
-  primary: #2199e8,
-  secondary: #777,
+  primary: #19A3C5,
+  secondary: #00B4CC,
   success: #3adb76,
   warning: #ffae00,
   alert: #ec5840,
@@ -48,11 +48,11 @@ $black: #0a0a0a !default;
 
 /// Color used for white ui items.
 /// @type Color
-$white: #fefefe !default;
+$white: #EEEEEE !default;
 
 /// Background color of the body.
 /// @type Color
-$body-background: $white !default;
+$body-background: #313131 !default;
 
 /// Text color of the body.
 /// @type Color
@@ -60,7 +60,7 @@ $body-font-color: $black !default;
 
 /// Font stack of the body.
 /// @type List
-$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif !default;
+$body-font-family: 'Opens Sans', Helvetica, Roboto, Arial, sans-serif !default;
 
 /// Set to `true` to enable antialiased type, using the `-webkit-font-smoothing` and `-moz-osx-font-smoothing` CSS properties.
 /// @type Boolean

@@ -17,6 +17,9 @@ function hexClass(d) {
 }
 
 function mousedown(d) {
+    //Prevent mouse dragging effect
+    d3.event.preventDefault();
+    
     mousing = d.fill ? -1 : +1;
     mousemove.apply(this, arguments);
 }
@@ -104,7 +107,7 @@ function resize() {
     var newRadius = radius;
 
     //TODO: Make this dynamic
-    if(newWidth <= 1024) {
+    if(newWidth <= 640) {
       newRadius = smallRadius;
     }
 

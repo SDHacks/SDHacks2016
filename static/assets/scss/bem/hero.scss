@@ -1,9 +1,10 @@
 $hero-size: 495px;
 $hero-size-mobile: 300px;
 
-$empty-hex-colour: lighten($background, 10);
+$empty-hex-colour: lighten($body-background, 10);
 
 .hero {
+  overflow: hidden;
   width: 100%;
   height: $hero-size-mobile;
   position: absolute;
@@ -22,7 +23,7 @@ $empty-hex-colour: lighten($background, 10);
   }
 
   &__hexagon {
-    fill: $background;
+    fill: $body-background;
     pointer-events: all;
 
     path {
@@ -31,10 +32,10 @@ $empty-hex-colour: lighten($background, 10);
     }
 
     &--bg {
-      fill: $background;
+      fill: $body-background;
 
       &-filled {
-        fill: $primary;
+        fill: $primary-color;
       }
     }   
 
@@ -55,14 +56,14 @@ $empty-hex-colour: lighten($background, 10);
     }
 
     &--hover-colour {
-      fill: lighten($background, 30);
+      fill: lighten($body-background, 30);
     }
 
     &--filled {
       fill: url(#filled);
 
       &-colour {
-        fill: $primary;
+        fill: $primary-color;
       }
     }
   }
