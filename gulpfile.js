@@ -5,13 +5,13 @@ var gulp   = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     gutil = require('gulp-util'),
-    coffee = require('gulp-coffee'), 
+    coffee = require('gulp-coffee'),
     sass = require('gulp-sass'),
-    nodemon = require('gulp-nodemon'); 
+    nodemon = require('gulp-nodemon');
     
 gulp.task('default', ['watch', 'nodemon']);
 gulp.task('test', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
-gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng', 'run']);
+gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
 
 // Handle Errors
 function handleError(err) {
@@ -80,13 +80,5 @@ gulp.task('nodemon', function() {
     script: 'server.js',
     ext: 'js coffee',
     env: { 'NODE_ENV': 'development' }
-  });
-});
-
-gulp.task('run', function() {
-  nodemon({
-    script: 'server.js',
-    ext: 'js coffee',
-    env: { 'NODE_ENV': 'production' }
   });
 });

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon -e js,coffee server.js",
-    "postinstall": "bower install"
+    "postinstall": "bower install && gulp"
   },
   "dependencies": {
     "body-parser": "1.15.2",
