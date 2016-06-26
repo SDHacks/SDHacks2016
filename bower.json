@@ -14,14 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "*",
-    "angular-animate": "*",
-    "angular-animate-css": "*",
-    "angular-resource": "*",
-    "angular-route": "*",
-    "bootbox": "*",
-    "bootstrap": "*",
-    "bootswatch": "*",
     "d3": "~3.5.17",
     "font-awesome": "*",
     "html5shiv": "*",
