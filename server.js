@@ -22,6 +22,8 @@
   var flash = require('connect-flash');
   var device = require('express-device');
 
+  require('dotenv').config({silent: process.env.NODE_ENV !== 'development'});
+
   // The application
   var cpuCount, cpuNum, i = void 0;
   if (cluster.isMaster) {
@@ -36,11 +38,6 @@
     var app = express();
     var port = process.env.PORT || 3000;
     var server = app.listen(port);
-
-    // env Loading
-    if (process.env.NODE_ENV === 'development') {
-      require('dotenv').config();
-    }
 
     // Extras
     // Passport Logic
