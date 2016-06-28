@@ -25,7 +25,7 @@ module.exports = (app, passport) ->
 
   app.get '/auth/callback/', passport.authenticate('oauth2', {
     successRedirect: '/profile',
-    failureRedirect: '/home'
+    failureRedirect: '/'
   }), (req, res) ->
     res.redirect '/'
 

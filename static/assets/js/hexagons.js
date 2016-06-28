@@ -3,6 +3,9 @@ var radius = 110,
 var fillChance = 0.35;
 var initialHeight = parseInt(d3.select('.hero').style('height'));
 
+var borderSVGWidth = 457,
+    borderSVGHeight = 250;
+
 var border, path, topology, projection, mousing = 0;
 resize();
 
@@ -44,7 +47,6 @@ function hexTopology(radius, width, height) {
         geometries = [],
         arcs = [];
 
-
     for (var j = -1; j < m; ++j) {
         for (var i = -1; i <= n; ++i) {
             var y = j * 2, x = (i + (j & 1) / 2) * 2;
@@ -61,8 +63,7 @@ function hexTopology(radius, width, height) {
                 type: "Polygon",
                 arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (k & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (k & 1)) * 3 + 2)]],
                 fill: (isMid || Math.random() < fillChance),
-                feature: isMid,
-                bottom: (k == m - 2)
+                feature: isMid
             });
         }
     }
@@ -98,6 +99,7 @@ function getHeightForHex(hexCount, radius) {
 }
 
 function resize() {
+    var mobile = false;
     var svg = d3.select(".js-background-mesh")
         .attr("width", "100%");
 
@@ -106,9 +108,10 @@ function resize() {
     var newWidth = parseInt(svg.style('width'));
     var newRadius = radius;
 
-    //TODO: Make this dynamic
+    //TODO: Make this a dynamic value
     if(newWidth <= 640) {
-      newRadius = smallRadius;
+        mobile = true;
+        newRadius = smallRadius;
     }
 
     //Find how many hexagons we have
@@ -133,7 +136,7 @@ function resize() {
     path = d3.geo.path()
         .projection(projection);
 
-    svg.selectAll("*").remove();
+    svg.selectAll("g").remove();
 
     svg.append("g")
         .attr("class", "hero__hexagon")
@@ -146,6 +149,26 @@ function resize() {
         .on("mousedown", mousedown)
         .on("mousemove", mousemove)
         .on("mouseup", mouseup);
+
+    //Move the bottom border
+    var borderWidth = newRadius * 2 * Math.sin(Math.PI / 3);
+    var borderHeight = (borderWidth / borderSVGWidth) * borderSVGHeight; //Use the same ratio
+
+    //Set these border values on the pattern
+    d3.select("#border")
+        .attr('width', borderWidth)
+        .attr('height', Math.ceil(borderHeight));
+
+    //Find the correct translation
+    var lastHex = dyR * getHeightForHex(1, newRadius);
+    var offset = 0.9 * getHeightForHex(1, newRadius);
+
+    var transform = 'translateY(' + (lastHex - offset) + 'px)';
+    if(mobile) transform += ' translateX(' + (newRadius * Math.sin(Math.PI / 3)) + 'px)';
+
+    d3.select(".hero__hexagon--border")
+        .attr('height', borderHeight)
+        .style('transform', transform);
 }
 
 $(window).resize($.debounce(250, resize));

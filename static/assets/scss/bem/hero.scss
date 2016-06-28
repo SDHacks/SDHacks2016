@@ -1,7 +1,8 @@
 $hero-size: 495px;
 $hero-size-mobile: 300px;
 
-$empty-hex-colour: lighten($body-background, 10);
+$hero-background: #313131;
+$empty-hex-colour: lighten($hero-background, 10);
 
 .hero {
   overflow: hidden;
@@ -29,6 +30,13 @@ $empty-hex-colour: lighten($body-background, 10);
     path {
       -webkit-transition: fill 250ms linear;
       transition: fill 250ms linear;
+      stroke: $hero-background;
+
+      &:after {
+        background-color: #444;
+        content: "";
+        width: 100%;
+      }
     }
 
     &--bg {
@@ -40,11 +48,11 @@ $empty-hex-colour: lighten($body-background, 10);
     }   
 
     &--featured {
-      fill: url(#logo) !important;
+      fill: url(/#logo) !important;
     }
 
     &--empty {
-      fill: url(#empty);
+      fill: url(/#empty);
 
       &-colour {
         fill: $empty-hex-colour;
@@ -52,18 +60,30 @@ $empty-hex-colour: lighten($body-background, 10);
     }
 
     &--empty:hover:not(&--filled) {
-      fill: url(#hover);
+      fill: url(/#hover);
     }
 
     &--hover-colour {
-      fill: lighten($body-background, 30);
+      fill: lighten($hero-background, 30);
     }
 
     &--filled {
-      fill: url(#filled);
+      fill: url(/#filled);
 
       &-colour {
         fill: $primary-color;
+      }
+    }
+
+    &--stroke {
+      fill: $hero-background;
+    }
+
+    &--border {
+      fill: url(/#border);
+
+      &-colour {
+        fill: $hero-background;
       }
     }
   }

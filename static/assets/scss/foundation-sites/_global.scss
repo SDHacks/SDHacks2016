@@ -52,7 +52,7 @@ $white: #EEEEEE !default;
 
 /// Background color of the body.
 /// @type Color
-$body-background: #313131 !default;
+$body-background: $white !default;
 
 /// Text color of the body.
 /// @type Color
