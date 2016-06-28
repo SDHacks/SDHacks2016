@@ -1,5 +1,11 @@
-$hero-size: 495px;
-$hero-size-mobile: 300px;
+$hero-hex-radius: 110px;
+$hero-mobile-hex-radius: 50px;
+
+$hero-hex-count: 4;
+$hero-mobile-hex-count: 4;
+
+$hero-size: 1.5 * $hero-hex-count * $hero-hex-radius;
+$hero-size-mobile: 1.5 * $hero-mobile-hex-count * $hero-mobile-hex-radius;
 
 $hero-background: #313131;
 $empty-hex-colour: lighten($hero-background, 10);

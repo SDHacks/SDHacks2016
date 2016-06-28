@@ -99,7 +99,6 @@ function getHeightForHex(hexCount, radius) {
 }
 
 function resize() {
-    var mobile = false;
     var svg = d3.select(".js-background-mesh")
         .attr("width", "100%");
 
@@ -110,7 +109,6 @@ function resize() {
 
     //TODO: Make this a dynamic value
     if(newWidth <= 640) {
-        mobile = true;
         newRadius = smallRadius;
     }
 
@@ -164,7 +162,7 @@ function resize() {
     var offset = 0.9 * getHeightForHex(1, newRadius);
 
     var transform = 'translateY(' + (lastHex - offset) + 'px)';
-    if(mobile) transform += ' translateX(' + (newRadius * Math.sin(Math.PI / 3)) + 'px)';
+    if(dyR % 2 == 0) transform += ' translateX(' + (newRadius * Math.sin(Math.PI / 3)) + 'px)';
 
     d3.select(".hero__hexagon--border")
         .attr('height', borderHeight)
