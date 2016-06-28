@@ -157,6 +157,10 @@ function resize() {
         .attr('width', borderWidth)
         .attr('height', Math.ceil(borderHeight));
 
+    //Set these values on the page patterns
+    d3.selectAll(".js-bordered")
+        .style("border-width", borderHeight + "px 0px");
+
     //Find the correct translation
     var lastHex = dyR * getHeightForHex(1, newRadius);
     var offset = 0.9 * getHeightForHex(1, newRadius);

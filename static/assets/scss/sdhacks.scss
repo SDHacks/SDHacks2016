@@ -6,3 +6,93 @@
 @include foundation-everything(true);
 
 @import 'bem.scss';
+
+h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  color: $primary-color;
+}
+
+p {
+  font-size: 15pt;
+}
+
+footer {
+  border-image: url(/assets/img/hexagon_border-dark.svg) 250 0 215 repeat;
+  border-style: solid;
+  border-bottom-width: 0px !important;
+  background-clip: padding-box;
+  background-color: #106F87;
+  text-align: center;
+  color: $white;
+  bottom: 0;
+
+  @media #{$large-up} {
+    height: 225px;
+  }
+
+  @media #{$medium-up} {
+    img {
+      padding-top: 25px;
+    }
+
+    p {
+      line-height: 72px;
+    }
+  }
+}
+
+.about {
+  font-size: 18pt;
+}
+
+.last-year {
+  text-align: center;
+
+  .stat {
+    font-size: 36pt;
+
+    @media #{$medium-up} {
+      font-size: 63pt;
+    }
+
+    &--blue {
+      color: darken($primary-color, 10);
+    }
+
+    &--yellow {
+      color: $warning-color;
+    }
+  }
+}
+
+.bordered {
+  border-image: url(/assets/img/hexagon_border.svg) 250 0 215 repeat;
+  border-style: solid;
+  background-color: #75C8DC;
+  background-clip: padding-box;
+  color: $white;
+  padding-top: 50px;
+  margin: 50px 0 75px;
+
+  h2 {
+    color: $white;
+    margin-bottom: 35px;
+  }
+
+  h3 {
+    color: darken($primary-color, 10);
+  }
+}
+
+.social-media {
+  font-size: 18pt;
+  @media #{$medium-up} {
+    font-size: 36pt;
+  }
+
+  i:not(:last-child) {
+    margin-right: 15px;
+  }
+}

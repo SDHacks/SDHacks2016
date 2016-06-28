@@ -99,7 +99,7 @@ $empty-hex-colour: lighten($hero-background, 10);
     width: 100%;
     text-align: center;
     bottom: 0;
-    height: 150px;
+    height: 175px;
     pointer-events: none;
 
     @media #{$medium-up} {
@@ -118,11 +118,14 @@ $empty-hex-colour: lighten($hero-background, 10);
 
     a {
       pointer-events: auto;
-      width: 200px;
       line-height: 10px;
       text-transform: uppercase;
       font-weight: bold;
       border: 3px $white solid;
+
+      @media #{$medium-up} {
+        width: 200px;
+      }
 
       &:first-of-type {
         margin-right: 15px;
