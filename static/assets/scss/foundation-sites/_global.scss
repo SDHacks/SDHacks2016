@@ -26,7 +26,7 @@ $foundation-palette: (
   primary: #19A3C5,
   secondary: #00B4CC,
   success: #3adb76,
-  warning: #ffae00,
+  warning: #F8C773,
   alert: #ec5840,
 ) !default;
 
@@ -84,7 +84,7 @@ $global-weight-bold: bold !default;
 
 /// Global value used for all elements that have a border radius.
 /// @type Number
-$global-radius: 0 !default;
+$global-radius: 8px !default;
 
 /// Sets the text direction of the CSS. Can be either `ltr` or `rtl`.
 /// @type Keyword
