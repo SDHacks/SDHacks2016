@@ -31,6 +31,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       -webkit-transition: fill 250ms linear;
       transition: fill 250ms linear;
       stroke: $hero-background;
+      stroke-width: 2px;
 
       &:after {
         background-color: #444;
