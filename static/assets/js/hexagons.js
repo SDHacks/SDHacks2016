@@ -54,8 +54,8 @@ function hexTopology(radius, width, height) {
         }
     }
 
-    var midM = Math.floor(m / 2) - (n % 2 == 0);
-    var midN = Math.floor(n / 2) - (n % 2 == 0);
+    var midM = Math.floor(m / 2) - (m % 2 == 0);
+    var midN = Math.floor(n / 2) - (m % 2 == 0);
     for (var k = 0, q = 3; k < m - 1; ++k, q += 6) {
         for (var l = 0; l < n; ++l, q += 3) {
             var isMid = (k == midM && l == midN);
