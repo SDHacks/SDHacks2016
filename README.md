@@ -20,10 +20,11 @@ Assuming you already have the needed **MEAN Stack** pieces installed on your com
 
     1. git clone
     2. cd SDHacks2016
-    3. git init
-    4. npm install -g gulp gulp-cli
-    5. npm install
-    6. bower install
-    7. gulp
+    3. cp .env.example .env
+    4. npm install
+    5. bower install
+    6. gulp
+    
+Edit any options in the new .env file to match your needs
 
 From inside your app's folder and then open **http://localhost:3000** in your browser.
