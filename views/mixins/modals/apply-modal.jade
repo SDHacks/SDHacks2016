@@ -5,10 +5,10 @@ mixin apply-modal
     form.row#applyForm
       .large-6.small-12.columns
         label First Name
-        input(type="text", form="applyForm", placeholder="First Name", required="", name="firstname")
+        input(type="text", form="applyForm", placeholder="First Name", required="", name="firstName")
       .large-6.small-12.columns
         label Last Name
-        input(type="text", form="applyForm", placeholder="Last Name", required="", name="lastname")
+        input(type="text", form="applyForm", placeholder="Last Name", required="", name="lastName")
 
       .large-6.small-12.columns
         label Gender
@@ -18,7 +18,7 @@ mixin apply-modal
           option(value="Other") Other
       .large-6.small-12.columns
         label Birthdate
-        input(type="date", form="applyForm", data-date-format="MM dd yyyy", data-date="", required="", name="birthday")
+        input(type="date", form="applyForm", data-date-format="MM dd yyyy", data-date="", required="", name="birthdate")
 
       .large-6.small-12.columns
         label Email
@@ -27,7 +27,7 @@ mixin apply-modal
         label Phone Number
         .input-group
           span.input-group-label +1
-          input.input-group-field(type="text", form="applyForm", placeholder="", required="", name="phonenumber")
+          input.input-group-field(type="text", form="applyForm", placeholder="", required="", name="phone")
 
       .small-12.columns
         label University
@@ -38,7 +38,7 @@ mixin apply-modal
         input(type="text", form="applyForm", placeholder="Major", class="js-applyForm__majors", required="", name="major")
       .large-6.small-12.columns
         label Year in School
-        input(type="number", form="applyForm", placeholder="Year in School", min="1", max="10", value="1", name="schoolyear")
+        input(type="number", form="applyForm", placeholder="Year in School", min="1", max="10", value="1", name="year")
 
       .large-12.columns
         input(type="submit", form="applyForm", class="success button", value="Next")

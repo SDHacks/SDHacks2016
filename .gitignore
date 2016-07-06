@@ -17,3 +17,4 @@ sdhacks2016.sublime-workspace
 entities/.DS_Store
 static/assets/js/dist/
 sdhacks.min.css
+build/config.gypi

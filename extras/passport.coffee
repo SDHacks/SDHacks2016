@@ -1,9 +1,10 @@
 # PassportJS
 
-module.exports = (passport, User, settings) ->
-  passport.serializeUser (user, done) ->
-    done null, user._id
-
-  passport.deserializeUser (id, done) ->
-    User.findById id, (err, user) ->
-      done err, user
+module.exports = (passport, LocalStrategy, User, settings) ->
+  passport.use new LocalStrategy({usernameField: '_id'}, 
+    (username, password, done) -> 
+      User.findOne {_id: username}, (err, user) ->
+        return done(err) if err;
+        return done(null, false, {message: 'User not found'}) if !user
+        done(null, user)
+  )

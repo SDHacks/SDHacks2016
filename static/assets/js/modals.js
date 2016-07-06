@@ -18,10 +18,15 @@ $(document).ready(function() {
     } else {
       $.ajax({
         type: "POST",
-        url: "/register",
+        url: "/api/register",
         data: $("#applyForm").serialize(),
         success: function(data) {
-            alert(data);
+          //JWT Token
+          var token = data.token;
+        },
+        error: function(data) {
+          //Incorrect form data
+          alert('error');
         }
       });
     }

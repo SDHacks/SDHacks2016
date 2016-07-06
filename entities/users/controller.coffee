@@ -1,31 +1,20 @@
 module.exports = (app) ->
 
-  # Model & YAML Loading
+  # Model and Config
   User = require('./model')
-  URLSafeBase64 = require('urlsafe-base64');
   # Index
 
 
   # Show
-  app.get '/profile/:secret', (req, res) ->
-    db = req.db;
-    User.find({"id": req.params["secret"]},{}, (e, docs) ->
-      res.json(docs);
-    );
-
+  app.get '/users/:id', (req, res) ->
+    User.findById(req.params.id, (e, user) ->
+      res.json(user);
+    )
   # New
 
 
   # Create
-  app.post '/register', (req, res) ->
-    db = req.db;
-    newUser = new User({
-      id: URLSafeBase64.encode(req.body.email.toString() + req.body.firstname.toString() + Math.random().toString(36)),
-      email: req.body.email,
-      name: req.body.firstname,
-    });
-    newUser.save();
-    res.send(newUser.id)
+
 
   # Edit
 
