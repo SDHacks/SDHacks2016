@@ -41,10 +41,9 @@
 
     // Extras
     // Passport Logic
-    var passport = require('passport'), 
-        OAuth2Strategy = require('passport-oauth2').Strategy;
+    var passport = require('passport');
     var User = require('./entities/users/model');
-    require('./extras/passport')(passport, OAuth2Strategy, User, process.env);
+    require('./extras/passport')(passport, User, process.env);
 
     // all environments
     app.set('views', path.join(__dirname, 'views'));
