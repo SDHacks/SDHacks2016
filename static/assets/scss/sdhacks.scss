@@ -1,5 +1,6 @@
 //Include fonts
-@import 'https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px|Titillium+Web';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px|Titillium+Web|Source';
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300,200';
 
 //Include Foundation
 @import 'foundation-sites/foundation.scss';
@@ -7,6 +8,9 @@
 
 @import 'bem.scss';
 
+h1, h2, h3, h4, h5, h6, p, a {
+  font-family: 'Source Sans Pro';
+}
 h2 {
   text-transform: uppercase;
   font-weight: bold;
@@ -15,7 +19,7 @@ h2 {
 }
 
 p {
-  font-size: 15pt;
+  font-size: 16pt;
 }
 
 footer {
@@ -52,6 +56,7 @@ footer {
 
   .stat {
     font-size: 36pt;
+    font-weight: 200;
 
     @media #{$medium-up} {
       font-size: 63pt;
@@ -84,6 +89,10 @@ footer {
   h3 {
     color: darken($primary-color, 10);
   }
+}
+
+.sponsor-interest {
+  text-align: center;
 }
 
 .social-media {
