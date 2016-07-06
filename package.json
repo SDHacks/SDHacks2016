@@ -4,14 +4,14 @@
   "private": true,
   "engines": {
     "node": "4.4.5",
-	"npm": "2.15.5"
+    "npm": "2.15.5"
   },
   "scripts": {
     "start": "nodemon -e js,coffee server.js",
     "postinstall": "bower install && gulp prod"
   },
   "dependencies": {
-    "body-parser": "1.15.2",
+    "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "cluster": "0.7.7",
     "coffee-script": "1.10.0",
@@ -51,6 +51,7 @@
     "request": "^2.72.0",
     "serve-favicon": "2.3.0",
     "serve-static": "1.11.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "urlsafe-base64": "^1.0.0"
   }
 }

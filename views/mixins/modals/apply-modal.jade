@@ -5,40 +5,40 @@ mixin apply-modal
     form.row#applyForm
       .large-6.small-12.columns
         label First Name
-        input(type="text", form="applyForm", placeholder="First Name", required="")
+        input(type="text", form="applyForm", placeholder="First Name", required="", name="firstname")
       .large-6.small-12.columns
         label Last Name
-        input(type="text", form="applyForm", placeholder="Last Name", required="")
+        input(type="text", form="applyForm", placeholder="Last Name", required="", name="lastname")
 
       .large-6.small-12.columns
         label Gender
-        select(placeholder="Gender", form="applyForm", required="")
+        select(placeholder="Gender", form="applyForm", required="", name="gender")
           option(value="Male") Male
           option(value="Female") Female
           option(value="Other") Other
       .large-6.small-12.columns
         label Birthdate
-        input(type="date", form="applyForm", data-date-format="MM dd yyyy", data-date="", required="")
+        input(type="date", form="applyForm", data-date-format="MM dd yyyy", data-date="", required="", name="birthday")
 
       .large-6.small-12.columns
         label Email
-        input(type="text", form="applyForm", placeholder="Email", required="")
+        input(type="text", form="applyForm", placeholder="Email", required="", name="email")
       .large-6.small-12.columns
         label Phone Number
         .input-group
           span.input-group-label +1
-          input.input-group-field(type="text", form="applyForm", placeholder="", required="")
+          input.input-group-field(type="text", form="applyForm", placeholder="", required="", name="phonenumber")
 
       .small-12.columns
         label University
-        input(type="text", placeholder="University", class="js-applyForm__universities", form="applyForm", required="", data-dropdown-menu="")
+        input(type="text", placeholder="University", class="js-applyForm__universities", form="applyForm", required="", data-dropdown-menu="", name="university")
 
       .large-6.small-12.columns
         label Major
-        input(type="text", form="applyForm", placeholder="Major", class="js-applyForm__majors", required="")
+        input(type="text", form="applyForm", placeholder="Major", class="js-applyForm__majors", required="", name="major")
       .large-6.small-12.columns
         label Year in School
-        input(type="number", form="applyForm", placeholder="Year in School", min="1", max="10", value="1")
+        input(type="number", form="applyForm", placeholder="Year in School", min="1", max="10", value="1", name="schoolyear")
 
       .large-12.columns
         input(type="submit", form="applyForm", class="success button", value="Next")

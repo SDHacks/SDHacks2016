@@ -16,7 +16,14 @@ $(document).ready(function() {
     if(!finalSubmit) {
       $("#applyNextModal").foundation('open');
     } else {
-      //Actually submit
+      $.ajax({
+        type: "POST",
+        url: "/register",
+        data: $("#applyForm").serialize(),
+        success: function(data) {
+            alert(data);
+        }
+      });
     }
   });
 });

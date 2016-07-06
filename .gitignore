@@ -13,5 +13,7 @@ static/assets/bower/bower_components
 sdhacks2016.sublime-project
 sdhacks2016.sublime-workspace
 .env
+.DS_Store
+entities/.DS_Store
 static/assets/js/dist/
 sdhacks.min.css

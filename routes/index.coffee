@@ -12,7 +12,7 @@ module.exports = (app, passport) ->
     res.render("home.jade")
 
   # User Profile and Settings
-  app.get '/profile', isAuthenticated, (req, res) ->
+  app.get '/profile', (req, res) ->
     res.render("profile.jade")
 
   # Passport Auth
