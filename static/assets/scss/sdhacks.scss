@@ -8,9 +8,10 @@
 
 @import 'bem.scss';
 
-h1, h2, h3, h4, h5, h6, p, a {
+h1, h2, h3, h4, h5, h6, p, a, span {
   font-family: 'Source Sans Pro';
 }
+
 h2 {
   text-transform: uppercase;
   font-weight: bold;
@@ -56,10 +57,10 @@ footer {
 
   .stat {
     font-size: 36pt;
-    font-weight: 200;
+    font-weight: 300;
 
     @media #{$medium-up} {
-      font-size: 63pt;
+      font-size: 72pt;
     }
 
     &--blue {
@@ -89,6 +90,13 @@ footer {
   h3 {
     color: darken($primary-color, 10);
   }
+
+  .faq-left {
+    padding-right: 20px;
+  }
+  .faq-right {
+    padding-left: 20px;
+  }
 }
 
 .sponsor-interest {
@@ -101,7 +109,15 @@ footer {
     font-size: 36pt;
   }
 
-  i:not(:last-child) {
+  a:not(:last-child) {
     margin-right: 15px;
+  }
+
+  a i {
+    color: white;
+
+    &:hover {
+      color: #19A3C5;
+    }
   }
 }
