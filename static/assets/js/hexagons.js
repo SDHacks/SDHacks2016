@@ -54,8 +54,8 @@ function hexTopology(radius, width, height) {
         }
     }
 
-    var midM = Math.floor(m / 2) - (m % 2 == 0);
-    var midN = Math.floor(n / 2) - (m % 2 == 0);
+    var midM = Math.floor(m / 2) - (m % 2 === 0);
+    var midN = Math.floor(n / 2) - (m % 2 === 0);
     for (var k = 0, q = 3; k < m - 1; ++k, q += 6) {
         for (var l = 0; l < n; ++l, q += 3) {
             var isMid = (k == midM && l == midN);
@@ -166,7 +166,7 @@ function resize() {
     var offset = 0.9 * getHeightForHex(1, newRadius);
 
     var transform = 'translateY(' + (lastHex - offset) + 'px)';
-    if(dyR % 2 == 0) transform += ' translateX(' + (newRadius * Math.sin(Math.PI / 3)) + 'px)';
+    if(dyR % 2 === 0) transform += ' translateX(' + (newRadius * Math.sin(Math.PI / 3)) + 'px)';
 
     d3.select(".hero__hexagon--border")
         .attr('height', borderHeight)

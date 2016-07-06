@@ -2,43 +2,46 @@ mixin apply-modal
   .reveal.medium.apply-modal(id="applyModal", data-reveal="")
     h2 Apply for SD Hacks 2016
     h3 About You
-    form.row
+    form.row#applyForm
       .large-6.small-12.columns
         label First Name
-        input(type="text", placeholder="First Name")
+        input(type="text", form="applyForm", placeholder="First Name", required="")
       .large-6.small-12.columns
         label Last Name
-        input(type="text", placeholder="Last Name")
+        input(type="text", form="applyForm", placeholder="Last Name", required="")
 
       .large-6.small-12.columns
         label Gender
-        input(type="text", placeholder="Gender")
+        select(placeholder="Gender", form="applyForm", required="")
+          option(value="Male") Male
+          option(value="Female") Female
+          option(value="Other") Other
       .large-6.small-12.columns
         label Birthdate
-        input(type="date", data-date-format="MM dd yyyy", data-date="")
+        input(type="date", form="applyForm", data-date-format="MM dd yyyy", data-date="", required="")
 
       .large-6.small-12.columns
         label Email
-        input(type="text", placeholder="Email")
+        input(type="text", form="applyForm", placeholder="Email", required="")
       .large-6.small-12.columns
         label Phone Number
         .input-group
           span.input-group-label +1
-          input.input-group-field(type="text", placeholder="")
+          input.input-group-field(type="text", form="applyForm", placeholder="", required="")
 
       .small-12.columns
         label University
-        input(type="text", placeholder="University")
+        input(type="text", placeholder="University", class="js-applyForm__universities", form="applyForm", required="", data-dropdown-menu="")
 
       .large-6.small-12.columns
         label Major
-        input(type="text", placeholder="Major")        
+        input(type="text", form="applyForm", placeholder="Major", class="js-applyForm__majors", required="")
       .large-6.small-12.columns
         label Year in School
-        input(type="number", placeholder="Year in School", min="1", max="10")
+        input(type="number", form="applyForm", placeholder="Year in School", min="1", max="10", value="1")
 
       .large-12.columns
-        a(href="#", data-open="applyNextModal", class="button") Next
+        input(type="submit", form="applyForm", class="success button", value="Next")
     button.close-button(data-close="", aria-label="Close modal", type="button")
       span(aria-hidden="true") &times;
 
@@ -48,6 +51,6 @@ mixin apply-next-modal
     h3 For SD Hacks
     form.row
       .large-12.columns
-        a(href="#", data-open="applyNextModal", class="button") Next
+        input.js-final(type="submit", form="applyForm", class="success button", value="Apply!")
     button.close-button(data-close="", aria-label="Close modal", type="button")
       span(aria-hidden="true") &times;
