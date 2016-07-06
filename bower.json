@@ -21,6 +21,8 @@
     "respond": "*",
     "topojson": "^1.6.26",
     "jquery-throttle-debounce": "*",
-    "foundation-sites": "^6.2.3"
+    "foundation-sites": "^6.2.3",
+    "jquery-validation": "^1.15.0",
+    "jquery-ui": "^1.11.4"
   }
 }
