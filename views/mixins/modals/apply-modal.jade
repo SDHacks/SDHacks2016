@@ -1,0 +1,53 @@
+mixin apply-modal
+  .reveal.medium.apply-modal(id="applyModal", data-reveal="")
+    h2 Apply for SD Hacks 2016
+    h3 About You
+    form.row
+      .large-6.small-12.columns
+        label First Name
+        input(type="text", placeholder="First Name")
+      .large-6.small-12.columns
+        label Last Name
+        input(type="text", placeholder="Last Name")
+
+      .large-6.small-12.columns
+        label Gender
+        input(type="text", placeholder="Gender")
+      .large-6.small-12.columns
+        label Birthdate
+        input(type="date", data-date-format="MM dd yyyy", data-date="")
+
+      .large-6.small-12.columns
+        label Email
+        input(type="text", placeholder="Email")
+      .large-6.small-12.columns
+        label Phone Number
+        .input-group
+          span.input-group-label +1
+          input.input-group-field(type="text", placeholder="")
+
+      .small-12.columns
+        label University
+        input(type="text", placeholder="University")
+
+      .large-6.small-12.columns
+        label Major
+        input(type="text", placeholder="Major")        
+      .large-6.small-12.columns
+        label Year in School
+        input(type="number", placeholder="Year in School", min="1")
+
+      .large-12.columns
+        a(href="#", data-open="applyNextModal", class="button") Next
+    button.close-button(data-close="", aria-label="Close modal", type="button")
+      span(aria-hidden="true") &times;
+
+mixin apply-next-modal
+  .reveal.medium.apply-next-modal(id="applyNextModal", data-reveal="")
+    h2 Apply for SD Hacks 2016
+    h3 For SD Hacks
+    form.row
+      .large-12.columns
+        a(href="#", data-open="applyNextModal", class="button") Next
+    button.close-button(data-close="", aria-label="Close modal", type="button")
+      span(aria-hidden="true") &times;

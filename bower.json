@@ -20,6 +20,7 @@
     "jquery": "*",
     "respond": "*",
     "topojson": "^1.6.26",
-    "jquery-throttle-debounce": "*"
+    "jquery-throttle-debounce": "*",
+    "foundation-sites": "^6.2.3"
   }
 }

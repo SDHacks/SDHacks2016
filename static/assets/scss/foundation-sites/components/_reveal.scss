@@ -66,6 +66,10 @@ $reveal-overlay-background: rgba($black, 0.45) !default;
     min-height: 0;
   }
 
+  &:focus {
+    outline: 0;
+  }
+
   // Make sure rows don't have a min-width on them
   .column,
   .columns {
