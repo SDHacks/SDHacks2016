@@ -7,7 +7,7 @@ var borderSVGWidth = 457,
     borderSVGHeight = 250;
 
 var border, path, topology, projection, mousing = 0;
-resize();
+$(document).ready(resize);
 
 function hexClass(d) {
     var classes = ["hero__hexagon--empty"];
