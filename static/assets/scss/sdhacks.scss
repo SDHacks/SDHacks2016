@@ -1,5 +1,6 @@
 //Include fonts
-@import 'https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px|Titillium+Web';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px|Titillium+Web|Source';
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300,200';
 
 //Include Foundation
 @import 'foundation-sites/foundation.scss';
@@ -15,7 +16,7 @@ h2 {
 }
 
 p {
-  font-size: 15pt;
+  font-size: 16pt;
 }
 
 footer {
@@ -52,9 +53,10 @@ footer {
 
   .stat {
     font-size: 36pt;
+    font-weight: 300;
 
     @media #{$medium-up} {
-      font-size: 63pt;
+      font-size: 72pt;
     }
 
     &--blue {
@@ -84,6 +86,17 @@ footer {
   h3 {
     color: darken($primary-color, 10);
   }
+
+  .faq-left {
+    padding-right: 20px;
+  }
+  .faq-right {
+    padding-left: 20px;
+  }
+}
+
+.sponsor-interest {
+  text-align: center;
 }
 
 .social-media {
@@ -92,9 +105,18 @@ footer {
     font-size: 36pt;
   }
 
-  i:not(:last-child) {
+  a:not(:last-child) {
     margin-right: 15px;
+  }
+
+  a i {
+    color: white;
+
+    &:hover {
+      color: #19A3C5;
+    }
   }
 }
 
 .ui-helper-hidden-accessible{display:none}
+
