@@ -28,6 +28,7 @@ footer {
   color: $white;
   padding-bottom: 20px;
   bottom: 0;
+  position: relative;
 
   @media #{$large-up} {
     height: 190px;
@@ -72,6 +73,7 @@ footer {
   color: $white;
   padding-top: 50px;
   margin: 50px 0 75px;
+  position: relative;
 
   h2 {
     color: $white;
@@ -80,6 +82,28 @@ footer {
 
   h3 {
     color: lighten($black, 25);
+  }
+
+  // To get rid of a white line between wave and content
+  
+  &--bg {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #75C8DC;
+    z-index: -5;
+
+    &.bg-top {
+      top: -15px;
+
+      &.footer-bg {
+        background-color: #106F87;
+      }
+    }
+
+    &.bg-bottom {
+      bottom: -15px;
+    }
   }
 
   @media #{$medium-up} {
