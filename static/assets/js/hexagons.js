@@ -1,7 +1,7 @@
 var radius = 110,
     smallRadius = 110;
 var logoRow = 2,
-    smallLogoRow = 4;
+    smallLogoRow = 2;
 var fillChance = 0.35;
 var initialHeight = parseInt(d3.select('.hero').style('height'));
 
