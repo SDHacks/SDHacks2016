@@ -15,7 +15,7 @@ h2 {
 }
 
 p {
-  font-size: 14pt;
+  font-size: 1.1em;
 }
 
 footer {
@@ -41,10 +41,6 @@ footer {
       line-height: 50px;
     }
   }
-}
-
-.about {
-  font-size: 18pt;
 }
 
 .last-year {
@@ -98,6 +94,7 @@ footer {
 
 .sponsor-interest {
   text-align: center;
+  font-size: 1.1em;
 }
 
 .sponsors {
@@ -112,6 +109,7 @@ footer {
     max-width: 100%;
   }
 }
+
 .social-media {
   font-size: 18pt;
   @media #{$medium-up} {
@@ -130,5 +128,18 @@ footer {
     }
   }
 }
+
+// Emergency fix (add good practice later)
+@media screen and (max-width: 420px) {
+  .hero__content h1 {
+    font-size: 28px !important;
+  }
+  .hero__content h2 {
+    font-size: 24px !important;
+    padding-bottom: 5%;
+  }
+
+}
+
 
 .ui-helper-hidden-accessible{display:none}
