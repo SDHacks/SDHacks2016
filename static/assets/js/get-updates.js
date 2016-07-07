@@ -5,10 +5,10 @@ button_status = false;
 $(document).ready(function() {
 
   // Safari 
-  if (navigator.userAgent.indexOf('Safari') != -1 && 
-    navigator.userAgent.indexOf('Chrome') == -1) {
-    $("#sdhx-subscribe").css('right', '-2px');
-  }
+  // if (navigator.userAgent.indexOf('Safari') != -1 && 
+  //   navigator.userAgent.indexOf('Chrome') == -1) {
+  //   $("#sdhx-subscribe").css('right', '-2px');
+  // }
 
   $("#sdhx-subscribe, #sdhx-email").click(function(event) {
     console.log("wow");

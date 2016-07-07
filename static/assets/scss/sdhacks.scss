@@ -81,7 +81,16 @@ footer {
   }
 
   h3 {
+    // color: lighten($black, 25);
+    color: $white
+  }
+
+  p {
     color: lighten($black, 25);
+  }
+
+  a {
+    color: #106F87;
   }
 
   // To get rid of a white line between wave and content
@@ -214,6 +223,9 @@ input:focus {
   transform: translateY(1px);
 }
 @media only screen and (max-width: 480px)  {
+  #update_signup {
+    transform: translateX(-2px);
+  }
   .btn, #sponsor {
     width: 80%;
   }
