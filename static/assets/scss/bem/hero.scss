@@ -2,7 +2,7 @@ $hero-hex-radius: 110px;
 $hero-mobile-hex-radius: 110px;
 
 $hero-hex-count: 4;
-$hero-mobile-hex-count: 5;
+$hero-mobile-hex-count: 6;
 
 $hero-size: 1.5 * $hero-hex-count * $hero-hex-radius;
 $hero-size-mobile: 1.5 * $hero-mobile-hex-count * $hero-mobile-hex-radius;
@@ -99,7 +99,8 @@ $empty-hex-colour: lighten($hero-background, 10);
     width: 100%;
     text-align: center;
     bottom: 0;
-    height: 175px;
+    // height: 175px;
+    padding-bottom: 50px;
     pointer-events: none;
 
     @media #{$medium-up} {
