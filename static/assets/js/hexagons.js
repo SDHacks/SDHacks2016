@@ -1,5 +1,7 @@
 var radius = 110,
     smallRadius = 110;
+var logoRow = 2,
+    smallLogoRow = 4;
 var fillChance = 0.35;
 var initialHeight = parseInt(d3.select('.hero').style('height'));
 
@@ -39,7 +41,7 @@ function mouseup() {
     mousing = 0;
 }
 
-function hexTopology(radius, width, height) {
+function hexTopology(radius, width, height, logoRow) {
     var dx = radius * 2 * Math.sin(Math.PI / 3),
         dy = radius * 1.5,
         m = Math.ceil((height + radius) / dy) + 1,
@@ -54,16 +56,16 @@ function hexTopology(radius, width, height) {
         }
     }
 
-    var midM = Math.floor(m / 2) - (m % 2 === 0);
-    var midN = Math.floor(n / 2) - (m % 2 === 0);
+    var logoM = logoRow;
+    var logoN = Math.floor(n / 2) - (m % 2 === 0);
     for (var k = 0, q = 3; k < m - 1; ++k, q += 6) {
         for (var l = 0; l < n; ++l, q += 3) {
-            var isMid = (k == midM && l == midN);
+            var isLogo = (k == logoM && l == logoN);
             geometries.push({
                 type: "Polygon",
                 arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (k & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (k & 1)) * 3 + 2)]],
-                fill: (isMid || Math.random() < fillChance),
-                feature: isMid
+                fill: (isLogo || Math.random() < fillChance),
+                feature: isLogo
             });
         }
     }
@@ -106,14 +108,18 @@ function resize() {
 
     var newWidth = parseInt(svg.style('width'));
     var newRadius = radius;
+    var newLogoRow = logoRow;
 
     //TODO: Make this a dynamic value
     if(newWidth <= 640) {
         newRadius = smallRadius;
+        newLogoRow = smallLogoRow;
     }
 
     //Find how many hexagons we have
     var dxR = Math.ceil(newWidth / (2 * newRadius * Math.sin(Math.PI / 3)));
+    //Make sure it's even
+    if (dxR % 2 === 1) dxR ++;
     //Make it a multiple of the radius and give it one for padding
     newWidth = (dxR + 1) * (2 * newRadius * Math.sin(Math.PI / 3));
 
@@ -128,7 +134,7 @@ function resize() {
         .attr('width', newWidth)
         .attr('height', height);
 
-    topology = hexTopology(newRadius, newWidth, height);
+    topology = hexTopology(newRadius, newWidth, height, newLogoRow);
     projection = hexProjection(newRadius);
 
     path = d3.geo.path()
