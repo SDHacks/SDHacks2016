@@ -84,7 +84,7 @@ footer {
   }
 
   h3 {
-    color: darken($primary-color, 10);
+    color: lighten($black, 25);
   }
 
   @media #{$medium-up} {
