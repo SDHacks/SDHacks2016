@@ -1,5 +1,5 @@
 var radius = 110,
-    smallRadius = 50;
+    smallRadius = 110;
 var fillChance = 0.35;
 var initialHeight = parseInt(d3.select('.hero').style('height'));
 
