@@ -22,6 +22,7 @@
   var timeout = require('connect-timeout');
   var flash = require('connect-flash');
   var device = require('express-device');
+  var sslRedirect = require('heroku-ssl-redirect');
 
   require('dotenv').config({silent: process.env.NODE_ENV !== 'development'});
 
@@ -37,6 +38,8 @@
     var app = express();
     var port = process.env.PORT || 3000;
     var server = app.listen(port);
+
+    app.use(sslRedirect());
 
     // Extras
     // Passport Logic
