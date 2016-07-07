@@ -129,4 +129,17 @@ footer {
   }
 }
 
+// Emergency fix (add good practice later)
+@media screen and (max-width: 420px) {
+  .hero__content h1 {
+    font-size: 28px !important;
+  }
+  .hero__content h2 {
+    font-size: 24px !important;
+    padding-bottom: 5%;
+  }
+
+}
+
+
 .ui-helper-hidden-accessible{display:none}
