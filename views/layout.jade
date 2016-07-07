@@ -1,7 +1,4 @@
 //- Main Layout of our project
-
-include mixins/modals/apply-modal
-
 doctype
 html(lang='en-US')
     head
@@ -18,16 +15,10 @@ html(lang='en-US')
         link(rel='shortcut icon', href='/assets/img/favicon.png')
         link(rel='stylesheet', href='/assets/css/sdhacks.min.css')
         script(src='/assets/bower/bower_components/jquery/dist/jquery.min.js')
-        script(src='/assets/bower/bower_components/jquery-validation/dist/jquery.validate.min.js')
+        script(src='/assets/bower/bower_components/foundation-sites/dist/foundation.min.js')
 
     body
         block content
-        +apply-modal
-        +apply-next-modal
 
     block scripts
-    script(src='/assets/bower/bower_components/jquery-ui/jquery-ui.min.js')
-    script(src='/assets/bower/bower_components/foundation-sites/dist/foundation.min.js')
-    script(src='/assets/js/dist/apply-info.min.js')
-    script(src='/assets/js/dist/modals.min.js')
     link(rel='stylesheet', href='/assets/bower/bower_components/font-awesome/css/font-awesome.min.css')

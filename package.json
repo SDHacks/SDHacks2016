@@ -4,14 +4,14 @@
   "private": true,
   "engines": {
     "node": "4.4.5",
-	"npm": "2.15.5"
+    "npm": "2.15.5"
   },
   "scripts": {
     "start": "nodemon -e js,coffee server.js",
     "postinstall": "bower install && gulp prod"
   },
   "dependencies": {
-    "body-parser": "1.15.2",
+    "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "cluster": "0.7.7",
     "coffee-script": "1.10.0",
@@ -23,6 +23,7 @@
     "errorhandler": "1.4.3",
     "express": "4.14.0",
     "express-device": "0.4.2",
+    "express-jwt": "^3.4.0",
     "express-session": "1.13.0",
     "fs": "0.0.2",
     "fs-extra": "0.30.0",
@@ -39,6 +40,7 @@
     "jade": "1.11.0",
     "jshint": "2.9.2",
     "jshint-stylish": "2.2.0",
+    "jsonwebtoken": "^7.0.1",
     "kerberos": "0.0.21",
     "method-override": "2.3.6",
     "mongoose": "4.5.1",
@@ -47,6 +49,7 @@
     "morgan": "1.7.0",
     "nodemon": "1.9.2",
     "passport": "0.3.2",
+    "passport-local": "^1.0.0",
     "replace": "0.3.0",
     "request": "^2.72.0",
     "serve-favicon": "2.3.0",

@@ -16,7 +16,19 @@ $(document).ready(function() {
     if(!finalSubmit) {
       $("#applyNextModal").foundation('open');
     } else {
-      //Actually submit
+      $.ajax({
+        type: "POST",
+        url: "/api/register",
+        data: $("#applyForm").serialize(),
+        success: function(data) {
+          //JWT Token
+          var token = data.token;
+        },
+        error: function(data) {
+          //Incorrect form data
+          alert('error');
+        }
+      });
     }
   });
 });

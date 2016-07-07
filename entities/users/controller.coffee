@@ -1,14 +1,15 @@
 module.exports = (app) ->
 
-  # Model & YAML Loading
+  # Model and Config
   User = require('./model')
-
   # Index
 
 
   # Show
-
-
+  app.get '/users/:id', (req, res) ->
+    User.findById(req.params.id, (e, user) ->
+      res.json(user);
+    )
   # New
 
 

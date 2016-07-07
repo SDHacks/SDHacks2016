@@ -1,5 +1,6 @@
 //- Homepage
 include mixins/hero/hero
+include mixins/modals/apply-modal
 
 extends layout
 
@@ -95,3 +96,13 @@ block content
               i.fa.fa-envelope
             a(href="https://twitter.com/sdhacks")
               i.fa.fa-twitter
+
+  +apply-modal
+  +apply-next-modal
+
+block scripts
+  script(src='/assets/bower/bower_components/jquery-ui/jquery-ui.min.js')
+  script(src='/assets/bower/bower_components/jquery-validation/dist/jquery.validate.min.js')
+  script(src='/assets/js/dist/apply-info.min.js')
+  script(src='/assets/js/dist/modals.min.js')
+>>>>>>> master

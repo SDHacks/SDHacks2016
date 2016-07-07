@@ -17,6 +17,8 @@
   var cookieParser = require('cookie-parser');
   var session = require('express-session');
   var MongoStore = require('connect-mongo')(session);
+  var LocalStrategy = require('passport-local').Strategy;
+  var jwt = require('express-jwt');
   var timeout = require('connect-timeout');
   var flash = require('connect-flash');
   var device = require('express-device');
@@ -42,7 +44,7 @@
     // Passport Logic
     var passport = require('passport');
     var User = require('./entities/users/model');
-    require('./extras/passport')(passport, User, process.env);
+    require('./extras/passport')(passport, LocalStrategy, User, process.env);
 
     // all environments
     app.set('views', path.join(__dirname, 'views'));
@@ -69,7 +71,8 @@
     app.use(methodOverride('X-HTTP-Method-Override'));
     require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
-    var appRoutes = require('./routes/index')(app, passport);
+    var appRoutes = require('./routes/index')(app, passport, process.env);
+    var apiRoutes = require('./routes/api')(app, passport, User);
     app.get('*', function(req, res){
       res.render('layout');
     });
