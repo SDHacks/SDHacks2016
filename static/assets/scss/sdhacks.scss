@@ -27,6 +27,7 @@ footer {
   background-color: #106F87;
   text-align: center;
   color: $white;
+  padding-bottom: 20px;
   bottom: 0;
 
   @media #{$large-up} {
@@ -35,7 +36,6 @@ footer {
 
   @media #{$medium-up} {
     img {
-      padding-top: 25px;
     }
 
     p {
@@ -87,11 +87,13 @@ footer {
     color: darken($primary-color, 10);
   }
 
-  .faq-left {
-    padding-right: 20px;
-  }
-  .faq-right {
-    padding-left: 20px;
+  @media #{$medium-up} {
+    .faq-left {
+      padding-right: 20px;
+    }
+    .faq-right {
+      padding-left: 20px;
+    }
   }
 }
 
@@ -99,10 +101,22 @@ footer {
   text-align: center;
 }
 
+.sponsors {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+
+  img {
+    margin: 20px;
+    display: inline-block;
+    max-height: 80px;
+    max-width: 100%;
+  }
+}
 .social-media {
   font-size: 18pt;
   @media #{$medium-up} {
-    font-size: 36pt;
+    font-size: 28pt;
   }
 
   a:not(:last-child) {
