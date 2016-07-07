@@ -1,5 +1,7 @@
-var radius = 110,
-    smallRadius = 110;
+//These changes also need to be reflected in hero.scss
+var radius = 95,
+    smallRadius = 95;
+
 var logoRow = 2,
     smallLogoRow = 2;
 var fillChance = 0.35;
