@@ -1,5 +1,4 @@
 //Include fonts
-@import 'https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px|Titillium+Web|Source';
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300,200';
 
 //Include Foundation
@@ -31,7 +30,7 @@ footer {
   bottom: 0;
 
   @media #{$large-up} {
-    height: 225px;
+    height: 190px;
   }
 
   @media #{$medium-up} {
@@ -39,7 +38,7 @@ footer {
     }
 
     p {
-      line-height: 72px;
+      line-height: 50px;
     }
   }
 }
@@ -64,7 +63,7 @@ footer {
     }
 
     &--yellow {
-      color: $warning-color;
+      color: darken($warning-color, 10);
     }
   }
 }
@@ -84,7 +83,7 @@ footer {
   }
 
   h3 {
-    color: darken($primary-color, 10);
+    color: lighten($black, 25);
   }
 
   @media #{$medium-up} {
@@ -133,4 +132,3 @@ footer {
 }
 
 .ui-helper-hidden-accessible{display:none}
-
