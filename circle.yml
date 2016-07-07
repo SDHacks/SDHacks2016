@@ -17,3 +17,7 @@ deployment:
     branch: master
     heroku:
       appname: sdhacks2016
+  production:
+    branch: release
+	heroku:
+	  appname: sdhacks2016-prod
