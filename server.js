@@ -13,7 +13,7 @@
   var methodOverride = require('method-override');
   var static_dir = require('serve-static');
   var errorHandler = require('errorhandler');
-  var cluster = require('cluster');
+  var throng = require('throng');
   var cookieParser = require('cookie-parser');
   var session = require('express-session');
   var MongoStore = require('connect-mongo')(session);
@@ -25,17 +25,15 @@
 
   require('dotenv').config({silent: process.env.NODE_ENV !== 'development'});
 
-  // The application
-  var cpuCount, cpuNum, i = void 0;
-  if (cluster.isMaster) {
-    cpuCount = require("os").cpus().length;
-    i = 0;
-    while (i < cpuCount) {
-      cluster.fork();
-      i += 1;
-    }
-  } else {
+  var WORKERS = process.env.WEB_CONCURRENCY || 1;
+  //Create workers on all the threads
+  throng({
+    workers: WORKERS,
+    lifetime: Infinity
+  }, start);
 
+  // The application
+  function start() {
     var app = express();
     var port = process.env.PORT || 3000;
     var server = app.listen(port);
@@ -95,16 +93,7 @@
     }
 
     http.createServer(app).listen(app.get(port), function(){
-      cpuNum = parseInt(cluster.worker.id);
-      cpuNum = cpuNum.toString();
-      console.log('Express server listening on port ' + port + ', cpu:worker:' + cpuNum);
+      console.log('Express server listening on port ' + port + ' on ' + WORKERS + ' worker(s)');
     });
   }
-
-  cluster.on('exit', function (worker) {
-      cpuNum = parseInt(worker.id);
-      cpuNum = cpuNum.toString();
-      console.log('cpu:worker:' + cpuNum + ' died unexpectedly, respawning...');
-      cluster.fork();
-  });
 }).call(this);
