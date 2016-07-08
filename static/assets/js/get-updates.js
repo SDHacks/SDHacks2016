@@ -14,7 +14,7 @@ $(document).ready(function() {
     console.log("wow");
     event.stopPropagation();
     // Block submission and open textbox
-    if (button_status == false) {
+    if (button_status === false) {
       event.preventDefault();
       button_status = true;
       $("#sdhx-subscribe").css('min-width', '30%');
