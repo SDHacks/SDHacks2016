@@ -28,6 +28,7 @@ footer {
   color: $white;
   padding-bottom: 20px;
   bottom: 0;
+  position: relative;
 
   @media #{$large-up} {
     height: 190px;
@@ -72,6 +73,7 @@ footer {
   color: $white;
   padding-top: 50px;
   margin: 50px 0 75px;
+  position: relative;
 
   h2 {
     color: $white;
@@ -79,7 +81,38 @@ footer {
   }
 
   h3 {
+    // color: lighten($black, 25);
+    color: $white
+  }
+
+  p {
     color: lighten($black, 25);
+  }
+
+  a {
+    color: #106F87;
+  }
+
+  // To get rid of a white line between wave and content
+  
+  &--bg {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #75C8DC;
+    z-index: -5;
+
+    &.bg-top {
+      top: -15px;
+
+      &.footer-bg {
+        background-color: #106F87;
+      }
+    }
+
+    &.bg-bottom {
+      bottom: -15px;
+    }
   }
 
   @media #{$medium-up} {
@@ -110,6 +143,10 @@ footer {
   }
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
 .social-media {
   font-size: 18pt;
   @media #{$medium-up} {
@@ -129,4 +166,134 @@ footer {
   }
 }
 
+// Emergency fix (add good practice later)
+@media screen and (max-width: 420px) {
+  .hero__content h1 {
+    font-size: 28px !important;
+  }
+  .hero__content h2 {
+    font-size: 24px !important;
+    padding-bottom: 5%;
+  }
+
+}
+
+
 .ui-helper-hidden-accessible{display:none}
+
+// Buttons
+
+input {
+  border-radius: 0;
+}
+
+input {
+  -webkit-appearance: none;
+}
+input:focus {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.buttons {
+  padding: 0px 20px 0px 20px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 10px 0px 10px 0px;
+  font-size: 20px; 
+  border: 3px solid #FFFFFF; 
+  border-radius: 5px; 
+  letter-spacing: .03em; 
+  background-color: #646464; 
+  color: #FFFFFF; 
+  box-sizing: border-box; 
+  height: 40px; 
+  padding: 20px;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+}
+#sponsor {
+  width: 250px;
+  transform: translateY(1px);
+}
+@media only screen and (max-width: 480px)  {
+  #update_signup {
+    transform: translateX(-2px);
+  }
+  .btn, #sponsor {
+    width: 80%;
+  }
+}
+
+#sponsor:hover {
+  background-color: #868686; 
+  color: #FFFFFF;
+}
+
+.validate {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#update_signup {
+  position: relative;
+}
+
+.email-input {
+  outline: none;
+  border: 0;
+  width: 100%;
+  background: transparent; 
+  font-size: 14px;
+  line-height: 24px;
+  padding: 8px 31% 8px 8px;
+  font-size: 18px;
+  color: #646464;
+}
+.subscribe-button, .btn.sponsor {
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+}
+.email-input, .btn.sponsor {
+  margin: 10px;
+}
+.email-input {
+  margin-left: -10px;
+}
+.email-input::-webkit-input-placeholder {
+  color: #646464; }
+.email-input::-moz-placeholder {
+  color: #646464; }
+.email-input:-ms-input-placeholder {
+  color: #646464; }
+.email-input:-moz-placeholder {
+  color: #646464; }
+.subscribe-button {
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  position: absolute;
+  right: 0;
+  min-width: 100%;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  background-color: #00a3c7;
+  height: 100%; 
+  padding: 0 15px 0 15px;
+  line-height: 40px;
+  transform: translateY(-50%);
+  border-radius: 5px;
+}
+
+
+.subscribe-button:hover {
+  background-color: #22B9CE;
+}
+
