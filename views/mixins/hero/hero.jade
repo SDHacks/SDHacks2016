@@ -9,7 +9,7 @@ mixin hero
       defs
         pattern(id="logo", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
           +stroke
-          image(xlink:href="/assets/img/logo.png", width="100", height="100", preserveAspectRatio="xMidYMid")
+          image(xlink:href="/assets/img/logo.svg", width="100", height="100", preserveAspectRatio="xMidYMid")
         pattern(id="filled", width="1", height="1", viewBox="0 0 457 500", preserveAspectRatio="xMidYMid meet")
           +stroke
           +fill('hero__hexagon--filled-colour')
@@ -29,7 +29,7 @@ mixin hero
       h1 SEPT 30 - OCT 2, 2016
       h2 Rimac Arena, UC San Diego
       //- a(href="http://eepurl.com/b81LuP", target="_tab", class="button large") Get Updates!
-      div.buttons
+      .buttons
         form#update_signup.btn.validate(action="//sdhacks.us9.list-manage.com/subscribe/post?u=2b76757d9b200f72632d7330a&amp;id=c99e3caa24" method="post" target="_blank" novalidate)
           div(style="position: absolute; left: -5000px;" aria-hidden="true")
             input(type="text" name="b_2b76757d9b200f72632d7330a_c99e3caa24" tabindex="-1" value="")
