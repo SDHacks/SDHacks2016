@@ -1,8 +1,9 @@
 #Api Routes
+multer = require('multer')
+upload = multer({dest: 'public/uploads/', limits: {fileSize: 5 * 1024 * 1024}}) #5MB file size
 
-module.exports = (app, passport, User) ->
-  app.post '/api/register', (req, res) ->
-    console.log req.body
+module.exports = (app, User) ->
+  app.post '/api/register', upload.single('resume'), (req, res) ->
     user = new User
 
     #TODO
@@ -19,7 +20,6 @@ module.exports = (app, passport, User) ->
     user.year = req.body.year
     user.github = req.body.github
     user.website = req.body.website
-    #TODO: Resume
     user.diet = req.body.diet
     user.shirtSize = req.body.shirtSize
     user.travel = req.body.travel
@@ -27,7 +27,12 @@ module.exports = (app, passport, User) ->
     user.outcomeStmt = req.body.outcomeStmt
     user.referred = req.body.referred
 
-    user.save (err) ->
-      token = user.generateJwt()
-      res.status 200
-      res.json {'token': token}
+    user.attach 'resume', {path: req.file.path}, (error) =>
+        if error
+            #Throw an error
+            console.error 'Failed to upload resume: ' + error
+        
+        user.save (err) ->
+            token = user.generateJwt()
+            res.status 200
+            res.json {'token': token}

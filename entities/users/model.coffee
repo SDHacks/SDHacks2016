@@ -1,6 +1,8 @@
 mongoose = require('mongoose')
 findOrCreate = require('mongoose-findorcreate')
 timestamps = require('mongoose-timestamp')
+crate = require('mongoose-crate')
+S3 = require('mongoose-crate-s3')
 jwt = require('jsonwebtoken')
 
 require('dotenv').config();
@@ -19,7 +21,6 @@ UsersSchema = new Schema({
   year: Number,
   github: String,
   website: String,
-  #TODO: Resume
   diet: String,
   shirtSize: String,
   travel: {
@@ -33,6 +34,20 @@ UsersSchema = new Schema({
 
 UsersSchema.plugin(findOrCreate)
 UsersSchema.plugin(timestamps)
+UsersSchema.plugin(crate, {
+  storage: new S3({
+    key: process.env.S3_KEY,
+    secret: process.env.S3_SECRET,
+    bucket: process.env.S3_BUCKET,
+    acl: 'public-read',
+    region: 'us-west-1',
+    path: (attachment) ->
+      '/' + attachment.name
+  }),
+  fields: {
+    resume: {}
+  }
+})
 
 UsersSchema.methods.generateJwt = () ->
   expiry = new Date();
@@ -51,7 +66,6 @@ UsersSchema.methods.generateJwt = () ->
     year: this.year,
     github: this.github,
     website: this.website,
-    #TODO: Resume
     diet: this.diet,
     shirtSize: this.shirtSize,
     travel: this.travel,

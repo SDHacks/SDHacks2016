@@ -15,8 +15,6 @@
   var errorHandler = require('errorhandler');
   var throng = require('throng');
   var cookieParser = require('cookie-parser');
-  var session = require('express-session');
-  var MongoStore = require('connect-mongo')(session);
   var LocalStrategy = require('passport-local').Strategy;
   var jwt = require('express-jwt');
   var timeout = require('connect-timeout');
@@ -58,22 +56,13 @@
     app.use(device.capture());
     app.use(bodyParser.urlencoded({extended: true}));
 
-    app.use(session({
-        secret: process.env.SESSION_SECRET,
-        cookie: { maxAge: 24 * 60 * 60, expires: null },
-        saveUninitialized: true,
-        resave: true,
-        store: new MongoStore({url: process.env.MONGODB_URI})
-      }));
-
     app.use(passport.initialize());
-    app.use(passport.session());
     app.use(flash());
     app.use(methodOverride('X-HTTP-Method-Override'));
     require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
-    var appRoutes = require('./routes/index')(app, passport, process.env);
-    var apiRoutes = require('./routes/api')(app, passport, User);
+    var appRoutes = require('./routes/index')(app, process.env);
+    var apiRoutes = require('./routes/api')(app, User);
     app.get('*', function(req, res){
       res.render('layout');
     });

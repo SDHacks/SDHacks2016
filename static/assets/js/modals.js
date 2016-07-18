@@ -15,19 +15,22 @@ $(document).ready(function() {
     if(!finalSubmit) {
       $("#applyNextModal").foundation('open');
     } else {
+      var formData = new FormData($(this)[0]);
+
       $.ajax({
-        type: "POST",
-        url: "/api/register",
-        data: $("#applyForm").serialize(),
-        success: function(data) {
+        url: '/api/register',
+        type: 'POST',
+        data: formData,
+        async: false,
+        success: function (data) {
           //JWT Token
           var token = data.token;
           ga('send', 'event', 'Registration', 'registered');
+          $("#applyNextModal").foundation('close');
         },
-        error: function(data) {
-          //Incorrect form data
-          alert('error');
-        }
+        cache: false,
+        contentType: false,
+        processData: false
       });
     }
   });
