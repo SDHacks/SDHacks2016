@@ -2,11 +2,10 @@ $(document).ready(function() {
   new Foundation.Reveal($("#applyModal"), {});
   new Foundation.Reveal($("#applyNextModal"), {});
 
-  $("#applyModal").validate({
-    onsubmit: false,
-    onfocusout: true,
-    focusInvalid: true,
-    onkeyup: true
+  $(window).on('open.zf.reveal', function(e) {
+    if($("#applyModal").is(e.target)) {
+      ga('send', 'event', 'Registration', 'apply');
+    }
   });
 
   $("#applyForm").submit(function(e) {
@@ -23,6 +22,7 @@ $(document).ready(function() {
         success: function(data) {
           //JWT Token
           var token = data.token;
+          ga('send', 'event', 'Registration', 'registered');
         },
         error: function(data) {
           //Incorrect form data

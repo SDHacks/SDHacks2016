@@ -266,15 +266,12 @@ input:focus {
 }
 .email-input {
   margin-left: -10px;
+
+  &::-webkit-input-placeholder, &::-moz-placeholder, &::-ms-input-placeholder, &::-webkit-input-placeholder {
+    color: #646464;
+  }
 }
-.email-input::-webkit-input-placeholder {
-  color: #646464; }
-.email-input::-moz-placeholder {
-  color: #646464; }
-.email-input:-ms-input-placeholder {
-  color: #646464; }
-.email-input:-moz-placeholder {
-  color: #646464; }
+
 .subscribe-button {
   cursor: pointer;
   border: 0;
@@ -296,4 +293,3 @@ input:focus {
 .subscribe-button:hover {
   background-color: #22B9CE;
 }
-

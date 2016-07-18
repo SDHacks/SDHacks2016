@@ -1,5 +1,3 @@
-console.log("Wow");
-
 button_status = false;
 
 $(document).ready(function() {
@@ -11,7 +9,6 @@ $(document).ready(function() {
   // }
 
   $("#sdhx-subscribe, #sdhx-email").click(function(event) {
-    console.log("wow");
     event.stopPropagation();
     // Block submission and open textbox
     if (button_status === false) {
