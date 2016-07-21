@@ -58,3 +58,10 @@ mixin apply-next-modal
         input.js-final(type="submit", form="applyForm", class="success button", value="Apply!")
     button.close-button(data-close="", aria-label="Close modal", type="button")
       span(aria-hidden="true") &times;
+
+mixin apply-done-modal
+  .reveal.medium.apply-done-modal(id="applyDoneModal", data-reveal="")
+    h2 Successfully Applied!
+    h3 Check your email for a confirmation link
+    button.close-button(data-close="", aria-label="Close modal", type="button")
+      span(aria-hidden="true") &times;

@@ -1,6 +1,7 @@
 $(document).ready(function() {
   new Foundation.Reveal($("#applyModal"), {});
   new Foundation.Reveal($("#applyNextModal"), {});
+  new Foundation.Reveal($("#applyDoneModal"), {});
 
   $(window).on('open.zf.reveal', function(e) {
     if($("#applyModal").is(e.target)) {
@@ -21,12 +22,13 @@ $(document).ready(function() {
         url: '/api/register',
         type: 'POST',
         data: formData,
-        async: false,
+        async: true,
         success: function (data) {
           //JWT Token
           var token = data.token;
           ga('send', 'event', 'Registration', 'registered');
           $("#applyNextModal").foundation('close');
+          $("#applyDoneModal").foundation('open');
         },
         cache: false,
         contentType: false,
