@@ -80,7 +80,7 @@
     app.use(methodOverride('X-HTTP-Method-Override'));
     require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
-    var appRoutes = require('./routes/index')(app, process.env);
+    var appRoutes = require('./routes/index')(app, process.env, User);
     var apiRoutes = require('./routes/api')(app, User, confirmSender);
     app.get('*', function(req, res){
       res.render('layout');

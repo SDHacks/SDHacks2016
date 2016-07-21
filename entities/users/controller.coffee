@@ -10,6 +10,7 @@ module.exports = (app) ->
     User.findById(req.params.id, (e, user) ->
       res.json(user);
     )
+
   # New
 
 
