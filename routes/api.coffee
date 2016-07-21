@@ -2,8 +2,8 @@
 multer = require('multer')
 upload = multer({dest: 'public/uploads/', limits: {fileSize: 5 * 1024 * 1024}}) #5MB file size
 
-module.exports = (app, User) ->
-  app.post '/api/register', upload.single('resume'), (req, res) ->
+module.exports = (app, User, sendConfirm) ->
+  app.post '/api/register', upload.single('resume'), (req, res) =>
     user = new User
 
     #TODO
@@ -27,12 +27,32 @@ module.exports = (app, User) ->
     user.outcomeStmt = req.body.outcomeStmt
     user.referred = req.body.referred
 
-    user.attach 'resume', {path: req.file.path}, (error) =>
-        if error
-            #Throw an error
-            console.error 'Failed to upload resume: ' + error
-        
-        user.save (err) ->
-            token = user.generateJwt()
-            res.status 200
-            res.json {'token': token}
+    userError = () =>
+      res.status 500
+      res.json {'error': true}
+
+    saveUser = (error) =>
+      if error
+        #Throw an error
+        console.error 'Failed to upload resume: ' + error
+        return userError()
+      
+      user.save (err) ->
+        if err
+          return userError()
+
+        sendConfirm {
+          to: user.email,
+          subject: 'SD Hacks 2016'
+        }, {'user': user}, 
+        (err, info) ->
+          if err
+            return userError()
+
+          res.status 200
+          res.json {'token': user.generateJwt()}
+
+    if req.file
+      user.attach 'resume', {path: req.file.path}, saveUser
+    else
+      saveUser null

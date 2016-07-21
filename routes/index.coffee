@@ -1,5 +1,4 @@
 # App Routes
-
 module.exports = (app, config) ->
   auth = require('express-jwt') {secret: config.USER_SECRET, userProperty: 'payload'}
 

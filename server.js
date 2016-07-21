@@ -20,6 +20,8 @@
   var timeout = require('connect-timeout');
   var flash = require('connect-flash');
   var device = require('express-device');
+  var mailer = require('nodemailer');
+  var EmailTemplate = require('email-templates').EmailTemplate;
   var sslRedirect = require('heroku-ssl-redirect');
 
   require('dotenv').config({silent: process.env.NODE_ENV !== 'development'});
@@ -45,6 +47,23 @@
     var User = require('./entities/users/model');
     require('./extras/passport')(passport, LocalStrategy, User, process.env);
 
+    // Node mailer
+    var transporter = mailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PORT,
+      secure: true,
+      auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
+      }
+    });
+    var confirmSender = transporter.templateSender(new EmailTemplate('./views/emails/confirmation'), {
+      from: {
+        name: 'SD Hacks 2016',
+        address: process.env.MAIL_USER
+      }
+    });
+
     // all environments
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
@@ -62,7 +81,7 @@
     require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
     var appRoutes = require('./routes/index')(app, process.env);
-    var apiRoutes = require('./routes/api')(app, User);
+    var apiRoutes = require('./routes/api')(app, User, confirmSender);
     app.get('*', function(req, res){
       res.render('layout');
     });
