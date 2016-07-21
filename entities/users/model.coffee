@@ -19,17 +19,18 @@ UsersSchema = new Schema({
   university: String,
   major: String,
   year: Number,
-  github: String,
+  github: String, #The username of their github profile
   website: String,
-  diet: String,
+  diet: String, #Any dietary requirements
   shirtSize: String,
   travel: {
     outOfState: Boolean,
     county: String
   },
-  hackathons: [String],
-  outcomeStmt: String,
-  referred: [String]
+  firstHackathon: Boolean,
+  outcomeStmt: String, #What they hope their outcome of the hackathon will be
+  referred: [String], #The emails of the people they referred
+  confirmed: {type: Boolean, default: false}
 })
 
 UsersSchema.plugin(findOrCreate)
