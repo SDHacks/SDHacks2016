@@ -207,7 +207,7 @@ input:focus {
   width: 250px;
   margin: 10px 0px 10px 0px;
   font-size: 20px; 
-  border: 3px solid #FFFFFF; 
+  /*border: 3px solid #FFFFFF; */
   border-radius: 5px; 
   letter-spacing: .03em; 
   background-color: #646464; 
@@ -216,7 +216,8 @@ input:focus {
   height: 40px; 
   padding: 20px;
   cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
+  transition: color 0.2s,background-color 0.2s;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 }
 #sponsor {
   width: 250px;

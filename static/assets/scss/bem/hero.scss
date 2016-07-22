@@ -66,19 +66,11 @@ $empty-hex-colour: lighten($hero-background, 10);
       }
     }
 
-    &--empty:hover:not(&--filled) {
-      fill: url(/#hover);
-    }
-
-    &--hover-colour {
-      fill: lighten($hero-background, 30);
-    }
-
     &--filled {
       fill: url(/#filled);
 
       &-colour {
-        fill: $primary-color;
+        fill: scale-color($primary-color, $lightness: -50%);
       }
     }
 
@@ -112,10 +104,16 @@ $empty-hex-colour: lighten($hero-background, 10);
       color: $white;
       font-weight: bold;
       text-transform: uppercase;
+      text-shadow: 
+        0 -1px 5px rgba(0, 0, 0, 0.7);
+        0 5px 10px rgba(0, 0, 0, 0.5);
     }
 
     h2 {
       color: $warning-color;
+      text-shadow: 
+        0 -1px 3px rgba(0, 0, 0, 0.7);
+        0 2px 7px rgba(0, 0, 0, 0.5);
     }
 
     form {
@@ -127,7 +125,6 @@ $empty-hex-colour: lighten($hero-background, 10);
       line-height: 10px;
       text-transform: uppercase;
       font-weight: bold;
-      border: 3px $white solid;
 
       @media #{$medium-up} {
         width: 200px;

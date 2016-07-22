@@ -20,7 +20,7 @@
     "cookie-parser": "1.4.3",
     "dotenv": "^2.0.0",
     "errorhandler": "1.4.3",
-    "express": "4.14.0",
+    "express": "^4.14.0",
     "express-device": "0.4.2",
     "express-jwt": "^3.4.0",
     "express-session": "1.13.0",
