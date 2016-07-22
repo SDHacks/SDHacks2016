@@ -1,39 +1,21 @@
 include fill
 include stroke
 
+mixin hero-image(id)
+  pattern(id="pool#{id}", width="100%", height="100%", preserveAspectRatio="xMidYMid" viewBox="0 0 186 124")
+    +stroke
+    image(xlink:href="/assets/img/hero/#{id}.jpg", width="320", height="213", preserveAspectRatio="xMidYMid meet", y="-44")
+
 mixin hero
   a#mlh-trust-badge(style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000" href="https://mlh.io/seasons/na-2017/events?utm_source=na-2017&utm_medium=TrustBadge&utm_campaign=na-2017&utm_content=white" target="_blank")
     img(src="https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.png" alt="Major League Hacking 2017 Hackathon Season" style="width:100%")
   .hero
     svg
       defs
-
-        pattern(id="pool1", width="100", height="100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/bNQyo8X.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")
-        pattern(id="pool2", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/YGknt0Z.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")          
-        pattern(id="pool3", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/InD5kg5.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")
-        pattern(id="pool4", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/z9NMglT.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")          
-        pattern(id="pool5", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/5elkKM7.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")
-        pattern(id="pool6", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/8rr7h3n.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")          
-        pattern(id="pool7", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/4vYe1IL.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")
-        pattern(id="pool8", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
-          +stroke
-          image(xlink:href="http://i.imgur.com/xTurHfg.jpg", width="100", height="100", preserveAspectRatio="xMidYMid")   
-
-
+        - var n = 1
+        while n <= 8 
+          +hero-image(n)
+          +fill-image(n++)
         pattern(id="logo", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
           +stroke
           image(xlink:href="/assets/img/logo.svg", width="100", height="100", preserveAspectRatio="xMidYMid")

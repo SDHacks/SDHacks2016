@@ -1,17 +1,16 @@
 var imageCounter = 0;
 var images = [
-	'#pool1',
-	'#pool2',
-	'#pool3',
-	'#pool4',
-	'#pool5',
-	'#pool6',
-	'#pool7',
-	'#pool8'
+	'#image-pool1',
+	'#image-pool2',
+	'#image-pool3',
+	'#image-pool4',
+	'#image-pool5',
+	'#image-pool6',
+	'#image-pool7',
+	'#image-pool8'
 ];
 
 function pickRandHexagon(hexagonSelector) {
-	// forgive me for this shit picking alg
 	var rand = Math.floor(Math.random()*hexagonSelector.length);
 	var randHexagon = $(hexagonSelector[rand]);
 
@@ -22,7 +21,7 @@ function pickRandHexagon(hexagonSelector) {
 	}
 
 	if (!success) {
-		return pickRandHexagon(hexagonSelector); // omg lol
+		return pickRandHexagon(hexagonSelector);
 	}
 
 	randHexagon.data('wasSelected', true);
@@ -30,7 +29,6 @@ function pickRandHexagon(hexagonSelector) {
 }
 
 function pickImage() {
-	// lol hacks
 	imageCounter++;
 	return images[imageCounter%images.length];
 }
@@ -42,7 +40,7 @@ function highlightHexagon() {
 		.clone()
 		.css({
 			fillOpacity: 0,
-			fill: 'url(' + pickImage() + ')'
+			fill: 'url(/' + pickImage() + ')'
 		});
 
 	randHexagon.parent().append(clone);
@@ -65,7 +63,6 @@ function highlightHexagon() {
 }
 
 function mainLoop() {
-	console.log('iteration');
 	var times = 3 + Math.floor(Math.random()*4);
 	for (var counter = 0; counter < times; counter++) {
 		highlightHexagon();
@@ -73,4 +70,4 @@ function mainLoop() {
 	window.setTimeout(mainLoop, 1500);
 }
 
-;$(mainLoop);
+$(mainLoop);
