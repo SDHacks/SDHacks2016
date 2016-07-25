@@ -1,3 +1,17 @@
+.js {
+  &-apply-modal__error {
+    display: none;
+  }
+}
+
 .apply-modal {
-  
+  &__required {
+    &::after {
+      content: "*";
+      color: $alert-color;
+      font-weight: bold;
+      font-size: 1.4em;
+      line-height: 1.0em;
+    }
+  }
 }

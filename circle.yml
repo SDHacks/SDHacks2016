@@ -10,7 +10,7 @@ machine:
 
 test:
   override:
-    - gulp test
+    - gulp test --production
 
 deployment:
   staging:

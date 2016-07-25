@@ -15,13 +15,13 @@
   var errorHandler = require('errorhandler');
   var throng = require('throng');
   var cookieParser = require('cookie-parser');
-  var session = require('express-session');
-  var MongoStore = require('connect-mongo')(session);
   var LocalStrategy = require('passport-local').Strategy;
   var jwt = require('express-jwt');
   var timeout = require('connect-timeout');
   var flash = require('connect-flash');
   var device = require('express-device');
+  var mailer = require('nodemailer');
+  var EmailTemplate = require('email-templates').EmailTemplate;
   var sslRedirect = require('heroku-ssl-redirect');
 
   require('dotenv').config({silent: process.env.NODE_ENV !== 'development'});
@@ -47,6 +47,23 @@
     var User = require('./entities/users/model');
     require('./extras/passport')(passport, LocalStrategy, User, process.env);
 
+    // Node mailer
+    var transporter = mailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PORT,
+      secure: true,
+      auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
+      }
+    });
+    var confirmSender = transporter.templateSender(new EmailTemplate('./views/emails/confirmation'), {
+      from: {
+        name: 'SD Hacks 2016',
+        address: process.env.MAIL_USER
+      }
+    });
+
     // all environments
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
@@ -58,22 +75,13 @@
     app.use(device.capture());
     app.use(bodyParser.urlencoded({extended: true}));
 
-    app.use(session({
-        secret: process.env.SESSION_SECRET,
-        cookie: { maxAge: 24 * 60 * 60, expires: null },
-        saveUninitialized: true,
-        resave: true,
-        store: new MongoStore({url: process.env.MONGODB_URI})
-      }));
-
     app.use(passport.initialize());
-    app.use(passport.session());
     app.use(flash());
     app.use(methodOverride('X-HTTP-Method-Override'));
     require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
-    var appRoutes = require('./routes/index')(app, passport, process.env);
-    var apiRoutes = require('./routes/api')(app, passport, User);
+    var appRoutes = require('./routes/index')(app, process.env, User);
+    var apiRoutes = require('./routes/api')(app, User, confirmSender);
     app.get('*', function(req, res){
       res.render('layout');
     });
