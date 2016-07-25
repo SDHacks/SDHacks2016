@@ -7,6 +7,9 @@
 
 @import 'bem.scss';
 
+$faq_bgcolor: #026F88;
+$faq_color: lighten(#F8C773, 18);
+
 h2 {
   text-transform: uppercase;
   font-weight: bold;
@@ -66,9 +69,9 @@ footer {
 }
 
 .bordered {
-  border-image: url(/assets/img/hexagon_border.svg) 250 0 215 repeat;
+  border-image: url(/assets/img/hexagon_border-dark.svg) 250 0 215 repeat;
   border-style: solid;
-  background-color: #75C8DC;
+  background-color: $faq_bgcolor;
   background-clip: padding-box;
   color: $white;
   padding-top: 50px;
@@ -76,28 +79,27 @@ footer {
   position: relative;
 
   h2 {
-    color: $white;
     margin-bottom: 35px;
   }
 
   h3 {
     // color: lighten($black, 25);
-    color: $white
+    color: $faq_color;
   }
 
   p {
-    color: lighten($black, 25);
+    color: $white;
   }
 
   a {
-    color: #106F87;
+    color: lighten($primary-color, 15);
   }
   
   &--bg {
     position: absolute;
     width: 100%;
     height: 30px;
-    background-color: #75C8DC;
+    background-color: #026F88;
     z-index: -5;
 
     &.bg-top {
@@ -121,6 +123,10 @@ footer {
       padding-left: 20px;
     }
   }
+}
+
+.faq {
+  color: $faq_color;
 }
 
 .sponsor-interest {
