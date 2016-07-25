@@ -13,5 +13,4 @@ Assuming you already have the needed **MEAN Stack** pieces installed on your com
     6. gulp
     
 Edit any options in the new .env file to match your needs
-
-From inside your app's folder and then open **http://localhost:3000** in your browser.
+To preview the website, open **http://localhost:3000** in your browser.
