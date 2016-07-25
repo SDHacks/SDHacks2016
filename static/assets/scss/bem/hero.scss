@@ -113,7 +113,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       font-weight: bold;
       text-transform: uppercase;
       text-shadow: 
-        0 -1px 5px rgba(0, 0, 0, 0.7), 
+        0 -1px 5px rgba(0, 0, 0, 0.7),
         0 5px 10px rgba(0, 0, 0, 0.5);
     }
 
@@ -129,6 +129,8 @@ $empty-hex-colour: lighten($hero-background, 10);
       line-height: 10px;
       text-transform: uppercase;
       font-weight: bold;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+
 
       @media #{$medium-up} {
         width: 200px;
@@ -139,10 +141,10 @@ $empty-hex-colour: lighten($hero-background, 10);
       }
 
       &:nth-of-type(2) {
-        background-color: transparent;
+        background-color: #646464;
 
         &:hover {
-          background-color: scale-color($button-background, $lightness: -15%);
+          background-color: scale-color(#646464, $lightness: -15%);
         }
       }
     }
