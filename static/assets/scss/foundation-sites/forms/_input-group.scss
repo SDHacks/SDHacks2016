@@ -86,7 +86,7 @@ $input-prefix-padding: 1rem !default;
 
   .input-group-field {
     @extend %input-group-child;
-    border-radius: 0;
+    border-radius: 0px $global-radius $global-radius 0px;
 
     // scss-lint:disable ZeroUnit
     @if $global-flexbox {

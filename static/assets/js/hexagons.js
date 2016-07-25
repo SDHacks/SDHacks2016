@@ -23,11 +23,24 @@ function hexClass(d) {
     return classes.join(" ");
 }
 
+function mousedown(d) {
+    //Prevent mouse dragging effect
+    d3.event.preventDefault();
+    
+    mousing = d.fill ? -1 : +1;
+    mousemove.apply(this, arguments);
+}
+
 function mousemove(d) {
     if (mousing) {
         if(!$(this).hasClass("hero__hexagon--featured"))
             d3.select(this).classed("hero__hexagon--filled", d.fill = mousing > 0);
     }
+}
+
+function mouseup() {
+    mousemove.apply(this, arguments);
+    mousing = 0;
 }
 
 function hexTopology(radius, width, height, logoRow) {
@@ -139,7 +152,9 @@ function resize() {
         .append("path")
         .attr("d", function(d) { return path(topojson.feature(topology, d)); })
         .attr("class", hexClass)
-        .on("mousemove", mousemove);
+        .on("mousedown", mousedown)
+        .on("mousemove", mousemove)
+        .on("mouseup", mouseup);
 
     //Move the bottom border
     var borderWidth = newRadius * 2 * Math.sin(Math.PI / 3);
