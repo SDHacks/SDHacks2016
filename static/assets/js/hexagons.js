@@ -179,6 +179,12 @@ function resize() {
     d3.select(".hero__hexagon--border")
         .attr('height', borderHeight)
         .style('transform', transform);
+
+    var hexagons = $(".hero__hexagon--empty");
+    hexagons.each(function() {
+        var selector = $(this);
+        selector.data('fill', selector.css('fill'));
+    });
 }
 
 $(window).resize($.debounce(250, resize));

@@ -78,7 +78,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       fill: url(/#filled);
 
       &-colour {
-        fill: $primary-color;
+        fill: darken($primary-color, 20%);
       }
     }
 
@@ -108,18 +108,20 @@ $empty-hex-colour: lighten($hero-background, 10);
       height: 325px;  
     }
 
-    h1 {
+    &--date {
       color: $white;
       font-weight: bold;
       text-transform: uppercase;
+      text-shadow: 
+        0 -1px 5px rgba(0, 0, 0, 0.7), 
+        0 5px 10px rgba(0, 0, 0, 0.5);
     }
 
-    h2 {
+    &--place {
       color: $warning-color;
-    }
-
-    form {
-      pointer-events: auto;
+      text-shadow: 
+        0 -1px 3px rgba(0, 0, 0, 0.7), 
+        0 2px 7px rgba(0, 0, 0, 0.5);
     }
 
     a {
@@ -127,7 +129,6 @@ $empty-hex-colour: lighten($hero-background, 10);
       line-height: 10px;
       text-transform: uppercase;
       font-weight: bold;
-      border: 3px $white solid;
 
       @media #{$medium-up} {
         width: 200px;
