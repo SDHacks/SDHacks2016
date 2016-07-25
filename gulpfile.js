@@ -17,8 +17,10 @@ gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
 // Handle Errors
 function handleError(err) {
   gutil.log(err);
-  console.error('Fatal error');
   this.emit('end');
+  if(gutil.env.production) {
+    process.exit(1);
+  }
 }
 
 var plumberOptions = {
