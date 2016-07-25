@@ -7,6 +7,8 @@
 
 @import 'bem.scss';
 
+$faq_bgcolor: #026F88;
+
 h2 {
   text-transform: uppercase;
   font-weight: bold;
@@ -68,7 +70,7 @@ footer {
 .bordered {
   border-image: url(/assets/img/hexagon_border.svg) 250 0 215 repeat;
   border-style: solid;
-  background-color: #75C8DC;
+  background-color: $faq_bgcolor;
   background-clip: padding-box;
   color: $white;
   padding-top: 50px;
@@ -99,7 +101,7 @@ footer {
     position: absolute;
     width: 100%;
     height: 30px;
-    background-color: #75C8DC;
+    background-color: #026F88;
     z-index: -5;
 
     &.bg-top {
