@@ -8,6 +8,13 @@ module.exports = (app, User, sendConfirm) ->
 
     #TODO
     #Form validation
+    console.log req.body.referred.length
+    if req.body.referred.length != 0
+      req.body.referred = req.body.referred.replace(/\s*,\s*/g, ',').split(","); # Removes spaces after comma and seperates
+    else
+      req.body.referred = null
+
+    #Refer emails
 
     user.firstName = req.body.firstName
     user.lastName = req.body.lastName
@@ -22,9 +29,12 @@ module.exports = (app, User, sendConfirm) ->
     user.website = req.body.website
     user.shareResume = req.body.shareResume
     user.diet = req.body.diet
-    user.shirtSize = req.body.shirtSize
-    user.travel = req.body.travel
-    user.hackathons = req.body.hackathons
+    user.shirtSize = req.body.shirtFit + req.body.shirtSize
+    user.travel = {
+      outOfState: req.body.outOfState,
+      county: req.body.county
+    }
+    user.firstHackathon = req.body.firstHackathon
     user.outcomeStmt = req.body.outcomeStmt
     user.referred = req.body.referred
 

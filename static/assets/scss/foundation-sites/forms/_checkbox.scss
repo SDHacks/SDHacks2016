@@ -18,7 +18,7 @@
   [type='radio'] + label {
     display: inline-block;
     margin-#{$global-left}: $form-spacing * 0.5;
-    margin-#{$global-right}: $form-spacing;
+    margin-#{$global-right}: $form-spacing * 0.5;
     margin-bottom: 0;
     vertical-align: baseline;
 

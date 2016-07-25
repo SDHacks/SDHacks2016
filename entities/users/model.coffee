@@ -63,7 +63,7 @@ UsersSchema = new Schema({
   },
   shirtSize: {
     type: String,
-    required: [true, "You must have a first name"]
+    required: [true, "You must have a shirt size"]
   },
   travel: {
     outOfState: {
@@ -114,6 +114,7 @@ UsersSchema.methods.generateJwt = () ->
     year: this.year,
     github: this.github,
     website: this.website,
+    shareResume: this.shareResume,
     diet: this.diet,
     shirtSize: this.shirtSize,
     travel: this.travel,

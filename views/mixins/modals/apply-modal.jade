@@ -12,7 +12,7 @@ mixin apply-modal
 
       .large-6.small-12.columns
         label.apply-modal__required Gender
-        select(placeholder="Gender", form="applyForm", required="", name="gender")
+        select(placeholder="Gender", form="applyForm", required="", name="gender", value="Male")
           option(value="Male") Male
           option(value="Female") Female
           option(value="Other") Other
@@ -52,17 +52,65 @@ mixin apply-next-modal
     .row
       .large-6.small-12.columns
         label Github Username
-        input(type="text", form="applyForm", placeholder="Github Username", name="github")
+        .input-group
+          span.input-group-label @
+          input.input-group-field(type="text", form="applyForm", placeholder="Github Username", name="github")
       .large-6.small-12.columns
         label Personal Website
         input(type="text", form="applyForm", placeholder="Personal Website", name="website")
 
-      .large-6.small-12.columns
+      .small-12.columns
         label Resume
-        input(type="upload", form="applyForm", placeholder="Resume", name="resume")
+        input(type="file", form="applyForm", placeholder="Resume", name="resume")
+
+      .small-12.columns
+        label
+          input(type="checkbox", form="applyForm", name="shareResume") 
+          | Would like us to share your resume and personal information so that companies may contact you about job opportunities?
+
+      .small-12.columns
+        label Dietary Restrictions
+        textarea(form="applyForm", placeholder="Dietary Restrictions", name="diet")
+
+      .small-12.columns
+        label.apply-modal__required Will you be travelling from outside San Diego county?
+        input(id="outOfStateY", type="radio", form="applyForm", value="Y", name="outOfState")
+        label(for="outOfStateY") Yes
+        input(id="outOfStateN", type="radio", form="applyForm", value="N", name="outOfState", checked="")
+        label(for="outOfStateN") No
+
+      .small-12.columns
+        label If yes, from where?
+        input(type="text", form="applyForm", placeholder="Which county?", name="county")
+
+
       .large-6.small-12.columns
-        label Personal Website
-        input(type="text", form="applyForm", placeholder="Personal Website", name="website")
+        label.apply-modal__required T-Shirt Fit
+        input(id="shirtFitM", type="radio", form="applyForm", value="M", name="shirtFit", checked="")
+        label(for="shirtFitM") Men's
+        input(id="shirtFitW", type="radio", form="applyForm", value="W", name="shirtFit")
+        label(for="shirtFitW") Women's
+
+      .large-6.small-12.columns
+        label.apply-modal__required T-Shirt Size
+        each val, ind in ["XS", "S", "M", "L", "XL", "XXL"]
+          input(id="shirtSize#{val}", type="radio", form="applyForm", value=val, checked=ind === 2, name="shirtSize")
+          label(for="shirtSize#{val}")= val
+
+      .large-6.small-12.columns
+        label.apply-modal__required Will this be your first hackathon?
+        input(id="firstHackathonY", type="radio", form="applyForm", value="true", name="firstHackathon", checked="")
+        label(for="firstHackathonY") Yes
+        input(id="firstHackathonN", type="radio", form="applyForm", value="false", name="firstHackathon")
+        label(for="firstHackathonN") No
+
+      .small-12.columns
+        label.apply-modal__required What do you hope to get out of attending the hackathon?
+        textarea(form="applyForm", placeholder="Your outcome", name="outcomeStmt")
+
+      .small-12.columns
+        label.apply-modal__required Do you have any friends that might be interested in SD Hacks?
+        textarea(form="applyForm", placeholder="friend@email.com, friend2@email.com", name="referred")
 
       .large-12.columns
         input.js-final(type="submit", form="applyForm", class="success button", value="Apply!")
