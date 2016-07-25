@@ -10,22 +10,69 @@ Schema = mongoose.Schema
 db = mongoose.createConnection(process.env.MONGODB_URI)
 
 UsersSchema = new Schema({
-  firstName: String,
-  lastName: String,
-  birthdate: Date,
-  gender: String,
-  email: String,
-  phone: Number,
-  university: String,
-  major: String,
-  year: Number,
-  github: String, #The username of their github profile
-  website: String,
-  diet: String, #Any dietary requirements
-  shirtSize: String,
+  firstName: {
+    type: String,
+    required: [true, "You must have a first name"]
+  },
+  lastName: {
+    type: String,
+    required: [true, "You must have a last name"]
+  },
+  birthdate: {
+    type: Date,
+    required: [true, "You must have a birthdate"]
+  },
+  gender: {
+    type: String,
+    required: [true, "You must have a gender"]
+  },
+  email: {
+    type: String,
+    required: [true, "You must have an email"]
+  },
+  phone: {
+    type: Number,
+    required: [true, "You must have a phone number"]
+  },
+  university: {
+    type: String,
+    required: [true, "You must have a university"]
+  },
+  major: {
+    type: String,
+    required: [true, "You must have a major"]
+  },
+  year: {
+    type: Number,
+    required: [true, "You must have a school year"]
+  },
+  github: {
+    type: String,
+    required: false,
+  },
+  website: {
+    type: String,
+    required: false,
+  },
+  shareResume: {
+    type: Boolean,
+    default: false
+  },
+  diet: {
+    type: String,
+  },
+  shirtSize: {
+    type: String,
+    required: [true, "You must have a first name"]
+  },
   travel: {
-    outOfState: Boolean,
-    county: String
+    outOfState: {
+      type: Boolean,
+      default: false
+    },
+    county: {
+      type: String
+    }
   },
   firstHackathon: Boolean,
   outcomeStmt: String, #What they hope their outcome of the hackathon will be

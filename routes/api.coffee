@@ -20,6 +20,7 @@ module.exports = (app, User, sendConfirm) ->
     user.year = req.body.year
     user.github = req.body.github
     user.website = req.body.website
+    user.shareResume = req.body.shareResume
     user.diet = req.body.diet
     user.shirtSize = req.body.shirtSize
     user.travel = req.body.travel

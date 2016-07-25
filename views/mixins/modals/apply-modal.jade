@@ -4,40 +4,40 @@ mixin apply-modal
     h3 About You
     form.row#applyForm(enctype="multipart/form-data", method="POST", action="/api/register")
       .large-6.small-12.columns
-        label First Name
+        label.apply-modal__required First Name
         input(type="text", form="applyForm", placeholder="First Name", required="", name="firstName")
       .large-6.small-12.columns
-        label Last Name
+        label.apply-modal__required Last Name
         input(type="text", form="applyForm", placeholder="Last Name", required="", name="lastName")
 
       .large-6.small-12.columns
-        label Gender
+        label.apply-modal__required Gender
         select(placeholder="Gender", form="applyForm", required="", name="gender")
           option(value="Male") Male
           option(value="Female") Female
           option(value="Other") Other
       .large-6.small-12.columns
-        label Birthdate
+        label.apply-modal__required Birthdate
         input(type="date", form="applyForm", data-date-format="MM dd yyyy", data-date="", required="", name="birthdate")
 
       .large-6.small-12.columns
-        label Email
+        label.apply-modal__required Email
         input(type="text", form="applyForm", placeholder="Email", required="", name="email")
       .large-6.small-12.columns
-        label Phone Number
+        label.apply-modal__required Phone Number
         .input-group
           span.input-group-label +1
           input.input-group-field(type="text", form="applyForm", placeholder="", required="", name="phone")
 
       .small-12.columns
-        label University
+        label.apply-modal__required University
         input(type="text", placeholder="University", class="js-applyForm__universities", form="applyForm", required="", data-dropdown-menu="", name="university")
 
       .large-6.small-12.columns
-        label Major
+        label.apply-modal__required Major
         input(type="text", form="applyForm", placeholder="Major", class="js-applyForm__majors", required="", name="major")
       .large-6.small-12.columns
-        label Year in School
+        label.apply-modal__required Year in School
         input(type="number", form="applyForm", placeholder="Year in School", min="1", max="10", value="1", name="year")
 
       .large-12.columns
@@ -51,8 +51,18 @@ mixin apply-next-modal
     h3 For SD Hacks
     .row
       .large-6.small-12.columns
+        label Github Username
+        input(type="text", form="applyForm", placeholder="Github Username", name="github")
+      .large-6.small-12.columns
+        label Personal Website
+        input(type="text", form="applyForm", placeholder="Personal Website", name="website")
+
+      .large-6.small-12.columns
         label Resume
-        input(type="file", form="applyForm", name="resume")
+        input(type="upload", form="applyForm", placeholder="Resume", name="resume")
+      .large-6.small-12.columns
+        label Personal Website
+        input(type="text", form="applyForm", placeholder="Personal Website", name="website")
 
       .large-12.columns
         input.js-final(type="submit", form="applyForm", class="success button", value="Apply!")
