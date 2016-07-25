@@ -7,7 +7,8 @@ var gulp   = require('gulp'),
     gutil = require('gulp-util'),
     coffee = require('gulp-coffee'),
     sass = require('gulp-sass'),
-    nodemon = require('gulp-nodemon');
+    nodemon = require('gulp-nodemon'),
+    plumber = require('gulp-plumber');
     
 gulp.task('default', ['watch', 'nodemon']);
 gulp.task('test', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
@@ -16,53 +17,63 @@ gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
 // Handle Errors
 function handleError(err) {
   gutil.log(err);
+  console.error('Fatal error');
   this.emit('end');
+}
+
+var plumberOptions = {
+  errorHandler: handleError
 }
 
 // SaSS Builder
 gulp.task('sass', function () {
   gulp.src('static/assets/scss/sdhacks.scss')
-    .pipe(sass({outputStyle: 'compressed'})).on('error', handleError)
-    .pipe(rename({ suffix: '.min' })).on('error', handleError)
+    .pipe(plumber(plumberOptions))
+    .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('static/assets/css'));
 });
 
 // Coffee Compiler
 gulp.task('jscoffee', function() {
   gulp.src('static/assets/coffee/*.coffee')
-    .pipe(sourcemaps.init()).on('error', handleError)
-      .pipe(coffee()).on('error', handleError)
-      .pipe(uglify()).on('error', handleError)
-      .pipe(rename({ suffix: '.min' })).on('error', handleError)
-    .pipe(sourcemaps.write()).on('error', handleError)
-    .pipe(gulp.dest('static/assets/js/dist')).on('error', handleError);
+    .pipe(plumber(plumberOptions))
+    .pipe(sourcemaps.init())
+      .pipe(coffee())
+      .pipe(uglify())
+      .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('static/assets/js/dist'))
 });
 
 // JS Linter
 gulp.task('jshint', function() {
   gulp.src(['static/app/**/*.js', 'static/assets/js/*.js'])
-    .pipe(jshint()).on('error', handleError)
-    .pipe(jshint.reporter('jshint-stylish')).on('error', handleError);
+    .pipe(plumber(plumberOptions))
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 // JS Builder
 gulp.task('build-js', function() {
   gulp.src('static/assets/js/*.js')
-    .pipe(sourcemaps.init()).on('error', handleError)
-      .pipe(uglify()).on('error', handleError)
-      .pipe(rename({ suffix: '.min' })).on('error', handleError)
-    .pipe(sourcemaps.write()).on('error', handleError)
-    .pipe(gulp.dest('static/assets/js/dist')).on('error', handleError);
+    .pipe(plumber(plumberOptions))
+    .pipe(sourcemaps.init())
+      .pipe(uglify())
+      .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('static/assets/js/dist'));
 });
 
 // NG Builder
 gulp.task('build-ng', function() {
   gulp.src('static/app/**/*.js')
-    .pipe(sourcemaps.init()).on('error', handleError)
-      .pipe(concat('angular-app.min.js')).on('error', handleError)
-      .pipe(uglify()).on('error', handleError)
-    .pipe(sourcemaps.write()).on('error', handleError)
-    .pipe(gulp.dest('static/assets/js/dist')).on('error', handleError);
+    .pipe(plumber(plumberOptions))
+    .pipe(sourcemaps.init())
+      .pipe(concat('angular-app.min.js'))
+      .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('static/assets/js/dist'));
 });
 
 // Watcher
