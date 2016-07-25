@@ -8,6 +8,7 @@
 @import 'bem.scss';
 
 $faq_bgcolor: #026F88;
+$faq_color: lighten(#F8C773, 18);
 
 h2 {
   text-transform: uppercase;
@@ -68,7 +69,7 @@ footer {
 }
 
 .bordered {
-  border-image: url(/assets/img/hexagon_border.svg) 250 0 215 repeat;
+  border-image: url(/assets/img/hexagon_border-dark.svg) 250 0 215 repeat;
   border-style: solid;
   background-color: $faq_bgcolor;
   background-clip: padding-box;
@@ -78,21 +79,20 @@ footer {
   position: relative;
 
   h2 {
-    color: $white;
     margin-bottom: 35px;
   }
 
   h3 {
     // color: lighten($black, 25);
-    color: $white
+    color: $faq_color;
   }
 
   p {
-    color: lighten($black, 25);
+    color: $white;
   }
 
   a {
-    color: #106F87;
+    color: lighten($primary-color, 15);
   }
 
   // To get rid of a white line between wave and content
@@ -125,6 +125,10 @@ footer {
       padding-left: 20px;
     }
   }
+}
+
+.faq {
+  color: $faq_color;
 }
 
 .sponsor-interest {
