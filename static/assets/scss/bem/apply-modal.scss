@@ -1,3 +1,9 @@
+.js {
+  &-apply-modal__error {
+    display: none;
+  }
+}
+
 .apply-modal {
   &__required {
     &::after {

@@ -40,7 +40,7 @@ mixin apply-modal
         label.apply-modal__required Year in School
         input(type="number", form="applyForm", placeholder="Year in School", min="1", max="10", value="1", name="year")
 
-      .large-12.columns
+      .small-12.columns
         input(type="submit", form="applyForm", class="success button", value="Next")
     button.close-button(data-close="", aria-label="Close modal", type="button")
       span(aria-hidden="true") &times;
@@ -112,8 +112,16 @@ mixin apply-next-modal
         label.apply-modal__required Do you have any friends that might be interested in SD Hacks?
         textarea(form="applyForm", placeholder="friend@email.com, friend2@email.com", name="referred")
 
-      .large-12.columns
-        input.js-final(type="submit", form="applyForm", class="success button", value="Apply!")
+      .small-12.columns
+        .button-group
+          input.js-apply-modal__button--final(type="submit", form="applyForm", class="success button", value="Apply!")
+          input.js-apply-modal__button--back(type="submit", form="applyForm", class="button", value="Back")
+
+      .small-12.columns.js-apply-modal__error
+        .callout.alert
+          h5 Error!
+          p.js-apply-modal__error--message 
+
     button.close-button(data-close="", aria-label="Close modal", type="button")
       span(aria-hidden="true") &times;
 

@@ -12,10 +12,12 @@ db = mongoose.createConnection(process.env.MONGODB_URI)
 UsersSchema = new Schema({
   firstName: {
     type: String,
+    trim: true,
     required: [true, "You must have a first name"]
   },
   lastName: {
     type: String,
+    trim: true,
     required: [true, "You must have a last name"]
   },
   birthdate: {
@@ -28,7 +30,10 @@ UsersSchema = new Schema({
   },
   email: {
     type: String,
-    required: [true, "You must have an email"]
+    required: [true, "You must have an email"],
+    trim: true,
+    unique: true,
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "You must use a valid email"]
   },
   phone: {
     type: Number,
@@ -36,22 +41,28 @@ UsersSchema = new Schema({
   },
   university: {
     type: String,
+    trim: true,
     required: [true, "You must have a university"]
   },
   major: {
     type: String,
+    trim: true,
     required: [true, "You must have a major"]
   },
   year: {
     type: Number,
-    required: [true, "You must have a school year"]
+    required: [true, "You must have a school year"],
+    min: [1, "You must be at least a first year"],
+    max: [10, "You cannot be that old"]
   },
   github: {
     type: String,
+    trim: true,
     required: false,
   },
   website: {
     type: String,
+    trim: true,
     required: false,
   },
   shareResume: {
@@ -60,6 +71,7 @@ UsersSchema = new Schema({
   },
   diet: {
     type: String,
+    trim: true,
   },
   shirtSize: {
     type: String,
