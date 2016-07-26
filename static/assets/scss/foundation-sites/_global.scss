@@ -27,7 +27,7 @@ $foundation-palette: (
   secondary: #00B4CC,
   success: #3adb76,
   warning: #F7B733,
-  alert: #ec5840,
+  alert: #d34a32,
 ) !default;
 
 /// Color used for light gray UI items.
@@ -513,7 +513,7 @@ $-zf-flex-classes-imported: false;
 
   button[disabled],
   html input[disabled] {
-    cursor: not-allowed;
+    cursor: default;
   }
 
   /**

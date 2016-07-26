@@ -1,0 +1,150 @@
+mixin apply
+  form#apply.apply-form.orbit(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
+    .row.column
+      h1.apply-form__header Apply for SD Hacks 2016
+      ul.orbit-container
+        li.is-active.orbit-slide
+          div
+            h3.text-center Step 1 of 3: About You
+            .small-12.large-8.large-offset-2.columns
+              .row
+                +apply-1
+        li.orbit-slide
+          div
+            h3.text-center Step 2 of 3: For SD Hacks
+            .small-12.large-8.large-offset-2.columns
+              .row
+                +apply-2
+        li.orbit-slide.js-apply-form__confirm-slide
+          div
+            h3.text-center Step 3 of 3: Email Confirmation
+            .small-12.large-8.large-offset-2.columns
+              .row
+                +apply-3
+
+      nav.orbit-bullets
+        button.is-active.apply-form__bullet(data-slide="0", disabled="")
+        button.apply-form__bullet(data-slide="1", disabled="")
+        button.apply-form__bullet(data-slide="2", disabled="")
+
+mixin apply-1
+  .large-6.small-12.columns
+    label.apply-form__required First Name
+    input(type="text", placeholder="First Name", required="", name="firstName")
+  .large-6.small-12.columns
+    label.apply-form__required Last Name
+    input(type="text", placeholder="Last Name", required="", name="lastName")
+
+  .large-6.small-12.columns
+    label.apply-form__required Gender
+    select(placeholder="Gender", required="", name="gender", value="Male")
+      option(value="Male") Male
+      option(value="Female") Female
+      option(value="Other") Other
+  .large-6.small-12.columns
+    label.apply-form__required Birthdate
+    input(type="date", data-date-format="MM dd yyyy", data-date="", required="", name="birthdate")
+
+  .large-6.small-12.columns
+    label.apply-form__required Email
+    input(type="text", placeholder="Email", required="", name="email")
+  .large-6.small-12.columns
+    label.apply-form__required Phone Number
+    .input-group
+      span.input-group-label +1
+      input.input-group-field(type="text", placeholder="", required="", name="phone")
+
+  .small-12.columns
+    label.apply-form__required University
+    input(type="text", placeholder="University", class="js-apply-form__universities", required="", data-dropdown-menu="", name="university")
+
+  .large-6.small-12.columns
+    label.apply-form__required Major
+    input(type="text", placeholder="Major", class="js-apply-form__majors", required="", name="major")
+  .large-6.small-12.columns
+    label.apply-form__required Year in School
+    input(type="number", placeholder="Year in School", min="1", max="10", value="1", name="year")
+
+  .small-12.columns
+    button.orbit-next.button.success
+      span.show-for-sr
+        Next Slide
+      |Next
+
+mixin apply-2
+  .large-6.small-12.columns
+    label Github Username
+    .input-group
+      span.input-group-label @
+      input.input-group-field(type="text", placeholder="Github Username", name="github")
+  .large-6.small-12.columns
+    label Personal Website
+    input(type="text", placeholder="Personal Website", name="website")
+
+  .small-12.columns
+    label Resume
+    input(type="file", placeholder="Resume", name="resume")
+
+  .small-12.columns
+    label
+      input(type="checkbox", name="shareResume") 
+      | Would like us to share your resume and personal information so that companies may contact you about job opportunities?
+
+  .small-12.columns
+    label Dietary Restrictions
+    textarea(placeholder="Dietary Restrictions", name="diet")
+
+  .small-12.columns
+    label.apply-form__required Will you be travelling from outside San Diego county?
+    input(id="outOfStateY", type="radio", value="Y", name="outOfState")
+    label(for="outOfStateY") Yes
+    input(id="outOfStateN", type="radio", value="N", name="outOfState", checked="")
+    label(for="outOfStateN") No
+
+  .small-12.columns
+    label If yes, from where?
+    input(type="text", placeholder="Which county?", name="county")
+
+
+  .large-5.small-12.columns
+    label.apply-form__required T-Shirt Fit
+    input(id="shirtFitM", type="radio", value="M", name="shirtFit", checked="")
+    label(for="shirtFitM") Men's
+    input(id="shirtFitW", type="radio", value="W", name="shirtFit")
+    label(for="shirtFitW") Women's
+
+  .large-7.small-12.columns
+    label.apply-form__required T-Shirt Size
+    each val, ind in ["XS", "S", "M", "L", "XL", "XXL"]
+      input(id="shirtSize#{val}", type="radio", value=val, checked=ind === 2, name="shirtSize")
+      label(for="shirtSize#{val}")= val
+
+  .large-6.small-12.columns
+    label.apply-form__required Will this be your first hackathon?
+    input(id="firstHackathonY", type="radio", value="true", name="firstHackathon", checked="")
+    label(for="firstHackathonY") Yes
+    input(id="firstHackathonN", type="radio", value="false", name="firstHackathon")
+    label(for="firstHackathonN") No
+
+  .small-12.columns
+    label.apply-form__required What do you hope to get out of attending the hackathon?
+    textarea(placeholder="Your outcome", name="outcomeStmt")
+
+  .small-12.columns
+    label.apply-form__required Do you have any friends that might be interested in SD Hacks?
+    textarea(placeholder="friend@email.com, friend2@email.com", name="referred")
+    
+  .small-12.columns
+    .button-group.row
+      .small-3.columns
+        input.js-apply-form__button--final(type="submit", class="success button", value="Apply!", id="submitApp")
+        button.orbit-previous.button.alert
+          span.show-for-sr
+            Previous Slide
+          | Back
+      .small-9.columns
+        label.js-apply-form__error.js-apply-form__error--message.text-left(for="#submitApp")
+
+mixin apply-3
+  h2 Successfully Applied!
+  h4 Check your email for a confirmation link

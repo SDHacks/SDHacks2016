@@ -1,0 +1,52 @@
+.js {
+  &-apply-form__error {
+    display: none;
+
+    &--message {
+      color: $alert-color;
+      font-size: 1.1em;
+      line-height: 2.2em;
+    }
+  }
+}
+
+.apply-form {
+  display: none;
+  background-color: $white;
+  padding-top: 150px;
+  top: -125px;
+
+  &__header {
+    font-size: 3.0em;
+    text-align: center;
+  }
+
+  &__required {
+    &::after {
+      content: "*";
+      color: $alert-color;
+      font-weight: bold;
+      font-size: 1.4em;
+      line-height: 1.0em;
+    }
+  }
+
+  &__bullet {
+    cursor: pointer;
+  }
+}
+
+.ui-menu-item {
+  background-color: #fff;
+  padding: 2px;
+  margin-right: 2.2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $white;
+  }
+
+  @media screen and (max-width: 640px) {
+    margin-right: 1.5rem;
+  }
+}

@@ -13,6 +13,7 @@ $empty-hex-colour: lighten($hero-background, 10);
 
 .hero {
   position: relative;
+  z-index: 10;
   overflow: hidden;
   width: 100%;
   height: $hero-size-mobile;

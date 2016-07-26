@@ -3,7 +3,6 @@ mixin apply-modal
     h2 Apply for SD Hacks 2016
     h4.center Step 1 of 2: About You
     form.row#applyForm(enctype="multipart/form-data", method="POST", action="/api/register")
-      .large-12.columns
       .large-6.small-12.columns
         label.apply-modal__required First Name
         input(type="text", form="applyForm", placeholder="First Name", required="", name="firstName")
