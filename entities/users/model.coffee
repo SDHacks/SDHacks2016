@@ -1,6 +1,8 @@
 mongoose = require('mongoose')
 findOrCreate = require('mongoose-findorcreate')
 timestamps = require('mongoose-timestamp')
+crate = require('mongoose-crate')
+S3 = require('mongoose-crate-s3')
 jwt = require('jsonwebtoken')
 
 require('dotenv').config();
@@ -8,31 +10,104 @@ Schema = mongoose.Schema
 db = mongoose.createConnection(process.env.MONGODB_URI)
 
 UsersSchema = new Schema({
-  firstName: String,
-  lastName: String,
-  birthdate: Date,
-  gender: String,
-  email: String,
-  phone: Number,
-  university: String,
-  major: String,
-  year: Number,
-  github: String,
-  website: String,
-  #TODO: Resume
-  diet: String,
-  shirtSize: String,
-  travel: {
-    outOfState: Boolean,
-    county: String
+  firstName: {
+    type: String,
+    trim: true,
+    required: [true, "You must have a first name"]
   },
-  hackathons: [String],
-  outcomeStmt: String,
-  referred: [String]
+  lastName: {
+    type: String,
+    trim: true,
+    required: [true, "You must have a last name"]
+  },
+  birthdate: {
+    type: Date,
+    required: [true, "You must have a birthdate"]
+  },
+  gender: {
+    type: String,
+    required: [true, "You must have a gender"]
+  },
+  email: {
+    type: String,
+    required: [true, "You must have an email"],
+    trim: true,
+    unique: true,
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "You must use a valid email"]
+  },
+  phone: {
+    type: Number,
+    required: [true, "You must have a phone number"]
+  },
+  university: {
+    type: String,
+    trim: true,
+    required: [true, "You must have a university"]
+  },
+  major: {
+    type: String,
+    trim: true,
+    required: [true, "You must have a major"]
+  },
+  year: {
+    type: Number,
+    required: [true, "You must have a school year"],
+    min: [1, "You must be at least a first year"],
+    max: [10, "You cannot be that old"]
+  },
+  github: {
+    type: String,
+    trim: true,
+    required: false,
+  },
+  website: {
+    type: String,
+    trim: true,
+    required: false,
+  },
+  shareResume: {
+    type: Boolean,
+    default: false
+  },
+  diet: {
+    type: String,
+    trim: true,
+  },
+  shirtSize: {
+    type: String,
+    required: [true, "You must have a shirt size"]
+  },
+  travel: {
+    outOfState: {
+      type: Boolean,
+      default: false
+    },
+    county: {
+      type: String
+    }
+  },
+  firstHackathon: Boolean,
+  outcomeStmt: String, #What they hope their outcome of the hackathon will be
+  referred: [String], #The emails of the people they referred
+  confirmed: {type: Boolean, default: false}
 })
 
 UsersSchema.plugin(findOrCreate)
 UsersSchema.plugin(timestamps)
+UsersSchema.plugin(crate, {
+  storage: new S3({
+    key: process.env.S3_KEY,
+    secret: process.env.S3_SECRET,
+    bucket: process.env.S3_BUCKET,
+    acl: 'public-read',
+    region: 'us-west-1',
+    path: (attachment) ->
+      '/' + attachment.name
+  }),
+  fields: {
+    resume: {}
+  }
+})
 
 UsersSchema.methods.generateJwt = () ->
   expiry = new Date();
@@ -51,7 +126,7 @@ UsersSchema.methods.generateJwt = () ->
     year: this.year,
     github: this.github,
     website: this.website,
-    #TODO: Resume
+    shareResume: this.shareResume,
     diet: this.diet,
     shirtSize: this.shirtSize,
     travel: this.travel,
