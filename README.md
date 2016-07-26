@@ -1,4 +1,4 @@
-# <img src="static/assets/img/logo.png" height="50" style="float:left;"> SD Hacks 2016 
+# <img src="static/assets/img/logo.png" height="100" style="float:left;">
 [![CircleCI](https://circleci.com/gh/SDHacks/SDHacks2016.svg?style=svg&circle-token=3b53586e361c8808a2e674c813516d0b094e8e6d)](https://circleci.com/gh/SDHacks/SDHacks2016) [![Heroku](http://heroku-badge.herokuapp.com/?app=sdhacks2016-prod&style=flat)](https://www.sdhacks.io/)
 
 ### Usage
