@@ -11,8 +11,8 @@ var gulp   = require('gulp'),
     plumber = require('gulp-plumber');
     
 gulp.task('default', ['watch', 'nodemon']);
-gulp.task('test', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
-gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js', 'build-ng']);
+gulp.task('test', ['sass', 'jscoffee', 'jshint', 'build-js']);
+gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js']);
 
 // Handle Errors
 function handleError(err) {
