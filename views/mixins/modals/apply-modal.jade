@@ -1,8 +1,9 @@
 mixin apply-modal
   .reveal.medium.apply-modal(id="applyModal", data-reveal="")
     h2 Apply for SD Hacks 2016
-    h3 About You
+    h4.center Step 1 of 2: About You
     form.row#applyForm(enctype="multipart/form-data", method="POST", action="/api/register")
+      .large-12.columns
       .large-6.small-12.columns
         label.apply-modal__required First Name
         input(type="text", form="applyForm", placeholder="First Name", required="", name="firstName")
@@ -48,8 +49,9 @@ mixin apply-modal
 mixin apply-next-modal
   .reveal.medium.apply-next-modal(id="applyNextModal", data-reveal="")
     h2 Apply for SD Hacks 2016
-    h3 For SD Hacks
+    h4.center Step 2 of 2: For SD Hacks
     .row
+      .large-12.columns
       .large-6.small-12.columns
         label Github Username
         .input-group
@@ -84,14 +86,14 @@ mixin apply-next-modal
         input(type="text", form="applyForm", placeholder="Which county?", name="county")
 
 
-      .large-6.small-12.columns
+      .large-5.small-12.columns
         label.apply-modal__required T-Shirt Fit
         input(id="shirtFitM", type="radio", form="applyForm", value="M", name="shirtFit", checked="")
         label(for="shirtFitM") Men's
         input(id="shirtFitW", type="radio", form="applyForm", value="W", name="shirtFit")
         label(for="shirtFitW") Women's
 
-      .large-6.small-12.columns
+      .large-7.small-12.columns
         label.apply-modal__required T-Shirt Size
         each val, ind in ["XS", "S", "M", "L", "XL", "XXL"]
           input(id="shirtSize#{val}", type="radio", form="applyForm", value=val, checked=ind === 2, name="shirtSize")
@@ -114,7 +116,7 @@ mixin apply-next-modal
 
       .small-12.columns
         .button-group
-          input.js-apply-modal__button--final(type="submit", form="applyForm", class="success button", value="Apply!")
+          input.js-apply-modal__button--final(type="submit", form="applyForm", class="success button", value="Apply!" id="submitApp")
           input.js-apply-modal__button--back(type="submit", form="applyForm", class="button", value="Back")
 
       .small-12.columns.js-apply-modal__error
@@ -128,6 +130,6 @@ mixin apply-next-modal
 mixin apply-done-modal
   .reveal.medium.apply-done-modal(id="applyDoneModal", data-reveal="")
     h2 Successfully Applied!
-    h3 Check your email for a confirmation link
+    h4 Check your email for a confirmation link
     button.close-button(data-close="", aria-label="Close modal", type="button")
       span(aria-hidden="true") &times;
