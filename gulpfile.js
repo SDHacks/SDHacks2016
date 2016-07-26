@@ -67,24 +67,12 @@ gulp.task('build-js', function() {
     .pipe(gulp.dest('static/assets/js/dist'));
 });
 
-// NG Builder
-gulp.task('build-ng', function() {
-  gulp.src('static/app/**/*.js')
-    .pipe(plumber(plumberOptions))
-    .pipe(sourcemaps.init())
-      .pipe(concat('angular-app.min.js'))
-      .pipe(uglify())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('static/assets/js/dist'));
-});
-
 // Watcher
 gulp.task('watch', function() {
   gulp.watch('static/assets/scss/**/*.scss', ['sass']);
   gulp.watch('static/assets/coffee/*.coffee', ['jscoffee']);
   gulp.watch(['static/app/**/*.js', 'static/assets/js/*.js'], ['jshint']);
   gulp.watch('static/assets/js/*.js', ['build-js']);
-  gulp.watch('static/app/**/*.js', ['build-ng']);
 });
 
 // Nodemon

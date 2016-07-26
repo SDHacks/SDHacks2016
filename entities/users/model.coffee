@@ -88,7 +88,7 @@ UsersSchema = new Schema({
   },
   firstHackathon: Boolean,
   outcomeStmt: String, #What they hope their outcome of the hackathon will be
-  referred: [String], #The emails of the people they referred
+  teammates: [String],
   confirmed: {type: Boolean, default: false}
 })
 
@@ -132,7 +132,7 @@ UsersSchema.methods.generateJwt = () ->
     travel: this.travel,
     hackathons: this.hackathons,
     outcomeStmt: this.outcomeStmt,
-    referred: this.referred,
+    teammates: this.teammates,
     exp: parseInt(expiry.getTime() / 1000),
   }, process.env.USER_SECRET);
 

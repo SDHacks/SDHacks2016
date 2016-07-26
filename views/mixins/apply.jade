@@ -2,7 +2,7 @@ mixin apply
   form#apply.apply-form.orbit(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
     .row.column
       h1.apply-form__header Apply for SD Hacks 2016
-      ul.orbit-container
+      ul.orbit-container.apply-form__container
         li.is-active.orbit-slide
           div
             h3.text-center Step 1 of 3: About You
@@ -21,11 +21,6 @@ mixin apply
             .small-12.large-8.large-offset-2.columns
               .row
                 +apply-3
-
-      nav.orbit-bullets
-        button.is-active.apply-form__bullet(data-slide="0", disabled="")
-        button.apply-form__bullet(data-slide="1", disabled="")
-        button.apply-form__bullet(data-slide="2", disabled="")
 
 mixin apply-1
   .large-6.small-12.columns
@@ -131,8 +126,14 @@ mixin apply-2
     textarea(placeholder="Your outcome", name="outcomeStmt")
 
   .small-12.columns
-    label.apply-form__required Do you have any friends that might be interested in SD Hacks?
-    textarea(placeholder="friend@email.com, friend2@email.com", name="referred")
+    label Please enter the email addresses of your desired team members
+
+  .small-12.large-4.columns
+    input(type="email", placeholder="example@email.com", name="team1")
+  .small-12.large-4.columns
+    input(type="email", placeholder="example@email.com", name="team2")
+  .small-12.large-4.columns
+    input(type="email", placeholder="example@email.com", name="team3")
     
   .small-12.columns
     .button-group.row

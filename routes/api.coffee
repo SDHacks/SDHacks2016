@@ -8,17 +8,11 @@ module.exports = (app, User, sendConfirm) ->
 
     #TODO
     #Form validation
-    if req.body.referred.length != 0
-      req.body.referred = req.body.referred.replace(/\s*,\s*/g, ',').split(","); # Removes spaces after comma and seperates
-    else
-      req.body.referred = null
 
     User.count {email: req.body.email}, (err, count) ->
       if count > 0
         res.status 400
         return res.json {'error': 'This email has already been used'}
-
-      #Refer emails
 
       user.firstName = req.body.firstName
       user.lastName = req.body.lastName
@@ -40,7 +34,11 @@ module.exports = (app, User, sendConfirm) ->
       }
       user.firstHackathon = req.body.firstHackathon
       user.outcomeStmt = req.body.outcomeStmt
-      user.referred = req.body.referred
+      user.teammates = []
+      
+      user.teammates.push(req.body.team1) if req.body.team1
+      user.teammates.push(req.body.team2) if req.body.team2
+      user.teammates.push(req.body.team3) if req.body.team3
 
       userError = (errorMessage, code = 500) =>
         res.status code
