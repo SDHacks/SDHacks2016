@@ -1,4 +1,11 @@
-h1 SD Hacks 2016
-h3 You have successfully applied!
-p This is SD Hacks 2016 confirmation for #{user.firstName} #{user.lastName}
-p To confirm your email please go to #{confirmUrl}
+container.body-drip
+  spacer(size="16")
+  div.content
+    center
+      img.logo(src="https://s32.postimg.org/h7ccn56et/sdhacks2.png")
+    row
+      columns
+        //- h1(style="text-align:center") SD Hacks 2016
+        h3 Dear #{user.firstName} #{user.lastName},
+        p(style="color:#646464 !important") You have successfully applied to SD Hacks 2016! We just need you to confirm your email by 
+          | going to #{confirmUrl}
