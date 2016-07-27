@@ -25,6 +25,25 @@
   &__header {
     font-size: 3.0em;
     text-align: center;
+
+    &--close {
+      color: $dark-gray;
+      cursor: pointer;
+      float: right;
+      outline: none;
+      line-height: 1.4em;
+
+      &:hover {
+        color: darken($dark-gray, 20%);
+      }
+    }
+
+    &--close-text {
+      font-size: 0.2em;
+      line-height: 0;
+      display: block;
+      margin-top: -10px;
+    }
   }
 
   &__required {
@@ -87,18 +106,32 @@
   }
 }
 
+.ui-autocomplete {
+  border-radius: $global-radius;
 
-.ui-menu-item {
-  background-color: #fff;
-  padding: 2px;
-  margin-right: 2.2rem;
-  cursor: pointer;
+  .ui-menu-item {
+    background-color: lighten($white, 2%);
+    padding: 0 5px;
+    cursor: pointer;
 
-  &:hover {
-    background-color: $white;
-  }
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-gray;
+    }
 
-  @media screen and (max-width: 640px) {
-    margin-right: 1.5rem;
+    &:first-child {
+      border-radius: $global-radius $global-radius 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $global-radius $global-radius;
+    }
+
+    &:hover {
+      background-color: $white;
+    }
+
+    @media screen and (max-width: 640px) {
+      margin-right: 1.5rem;
+    }
   }
 }

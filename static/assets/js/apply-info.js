@@ -30,6 +30,7 @@ $(document).ready(function() {
       $('html,body').animate({
         scrollTop: applyForm.offset().top
       }, 150, 'swing');
+      $("input:visible:first", applyForm).focus();
     });
 
     //Ensure it only opens once
@@ -37,6 +38,14 @@ $(document).ready(function() {
       new Foundation.Orbit(applyForm);
       applyForm.addClass("js-apply-form__orbit");
     }
+  });
+
+  $(".js-apply-form__close").click(function(e) {
+    applyForm.slideUp(500, function() {
+      $('html,body').animate({
+        scrollTop: 0
+      }, 150, 'swing');
+    });
   });
 
   $(".apply-form").submit(function(e) {
@@ -68,4 +77,9 @@ $(document).ready(function() {
       processData: false
     });
   });
+
+  jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+    var ul = this.menu.element;
+    ul.outerWidth(this.element.outerWidth());
+  };
 });

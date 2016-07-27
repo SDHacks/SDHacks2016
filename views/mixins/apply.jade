@@ -1,7 +1,11 @@
 mixin apply
   form#apply.apply-form.orbit.js-bordered(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
     .row.column
-      h1.apply-form__header Apply for SD Hacks 2016
+      .small-12.large-8.large-offset-2.columns
+        h1.apply-form__header Apply for SD Hacks 2016
+          button.apply-form__header--close.js-apply-form__close(data-close="", aria-label="Close reveal", type="button")
+            span(aria-hidden="true") &times; 
+              span.apply-form__header--close-text Close
       ul.orbit-container.apply-form__container
         li.is-active.orbit-slide
           div
