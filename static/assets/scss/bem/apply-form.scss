@@ -19,6 +19,18 @@
   &__header {
     font-size: 3.0em;
     text-align: center;
+
+    &--close {
+      color: $dark-gray;
+      cursor: pointer;
+      float: right;
+      outline: none;
+      line-height: 1.4em;
+
+      &:hover {
+        color: darken($dark-gray, 20%);
+      }
+    }
   }
 
   &__required {
