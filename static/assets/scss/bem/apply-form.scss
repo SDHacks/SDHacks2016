@@ -31,6 +31,13 @@
         color: darken($dark-gray, 20%);
       }
     }
+
+    &--close-text {
+      font-size: 0.2em;
+      line-height: 0;
+      display: block;
+      margin-top: -10px;
+    }
   }
 
   &__required {
