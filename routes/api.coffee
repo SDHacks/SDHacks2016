@@ -30,7 +30,7 @@ module.exports = (app, User, sendConfirm) ->
       user.shirtSize = req.body.shirtFit + req.body.shirtSize
       user.travel = {
         outOfState: req.body.outOfState,
-        county: req.body.county
+        city: req.body.city
       }
       user.firstHackathon = req.body.firstHackathon
       user.outcomeStmt = req.body.outcomeStmt

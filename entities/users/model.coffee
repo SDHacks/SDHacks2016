@@ -82,7 +82,7 @@ UsersSchema = new Schema({
       type: Boolean,
       default: false
     },
-    county: {
+    city: {
       type: String
     }
   },
