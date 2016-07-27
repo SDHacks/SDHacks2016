@@ -12,9 +12,16 @@
 
 .apply-form {
   display: none;
-  background-color: $white;
+  background-color: #f3f3f3;
   padding-top: 150px;
   top: -125px;
+  margin-bottom: -75px; /* Due to negative top attribute */
+  border-image: url(/assets/img/hexagon_border-light.svg) 250 0 215 repeat;
+  border-top-width: 0 !important;
+  border-top: none;
+  border-style: solid;
+  background-clip: padding-box;
+  position: relative;
 
   &__header {
     font-size: 3.0em;
@@ -56,39 +63,45 @@
 
   &__container {
     outline: 0;
+
+    &--header {
+      font-size: 1.8em;
+    }
+    &--subheader {
+      font-size: 1.4em;
+    }
+
+    input:not([type="submit"]), textarea {
+      background-color: #fff;
+
+      &[type=file] {
+        background-color: transparent;
+      }
+      &#submitApp {
+        margin-right: 10px;
+      }
+    }
+
+    label {
+      margin-left: 2px;
+    }
   }
 
   textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
     background: lighten($white, 2%);
   }
-}
 
-.ui-autocomplete {
-  border-radius: $global-radius;
-
-  .ui-menu-item {
-    background-color: lighten($white, 2%);
-    padding: 0 5px;
-    cursor: pointer;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid $light-gray;
+  &__nav-button {
+    &:nth-child(2) {
+      margin-left: 6px;
     }
 
-    &:first-child {
-      border-radius: $global-radius $global-radius 0 0;
+    &:focus {
+      outline: none;
     }
+  }
 
-    &:last-child {
-      border-radius: 0 0 $global-radius $global-radius;
-    }
-
-    &:hover {
-      background-color: $white;
-    }
-
-    @media screen and (max-width: 640px) {
-      margin-right: 1.5rem;
-    }
+  &__slide-content {
+    margin-top: 20px;
   }
 }

@@ -110,6 +110,10 @@ $empty-hex-colour: lighten($hero-background, 10);
     }
 
     &--date {
+      @media #{$small-only} {
+        font-size: 28px;
+      }
+
       color: $white;
       font-weight: bold;
       text-transform: uppercase;
@@ -119,6 +123,11 @@ $empty-hex-colour: lighten($hero-background, 10);
     }
 
     &--place {
+      @media #{$small-only} {
+        font-size: 24px;
+        padding-bottom: 5%;
+      }
+
       color: $warning-color;
       text-shadow: 
         0 -1px 3px rgba(0, 0, 0, 0.7), 
