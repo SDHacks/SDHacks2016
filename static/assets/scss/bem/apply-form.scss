@@ -15,6 +15,7 @@
   background-color: #f3f3f3;
   padding-top: 150px;
   top: -125px;
+  margin-bottom: -75px; /* Due to negative top attribute */
   border-image: url(/assets/img/hexagon_border-light.svg) 250 0 215 repeat;
   border-top-width: 0 !important;
   border-top: none;
