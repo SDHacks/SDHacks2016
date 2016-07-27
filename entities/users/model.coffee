@@ -51,9 +51,9 @@ UsersSchema = new Schema({
   },
   year: {
     type: Number,
-    required: [true, "You must have a school year"],
-    min: [1, "You must be at least a first year"],
-    max: [10, "You cannot be that old"]
+    required: [true, "You must have a graduation year"],
+    min: [2016, "You would have already graduated"],
+    max: [2030, "You are graduating too late"]
   },
   github: {
     type: String,

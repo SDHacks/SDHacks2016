@@ -34,6 +34,14 @@
   &__bullet {
     cursor: pointer;
   }
+
+  &__container {
+    outline: 0;
+  }
+
+  textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
+    background: lighten($white, 2%);
+  }
 }
 
 .ui-menu-item {

@@ -57,16 +57,9 @@ mixin apply-1
     label.apply-form__required Major
     input(type="text", placeholder="Major", class="js-apply-form__majors", required="", name="major")
   .large-6.small-12.columns
-    label.apply-form__required Year in School
-    input(type="number", placeholder="Year in School", min="1", max="10", value="1", name="year")
+    label.apply-form__required Graduation Year
+    input(type="number", min="2016", max="2030", value="2016", name="year")
 
-  .small-12.columns
-    button.orbit-next.button.success
-      span.show-for-sr
-        Next Slide
-      |Next
-
-mixin apply-2
   .large-6.small-12.columns
     label Github Username
     .input-group
@@ -86,17 +79,24 @@ mixin apply-2
       | Would like us to share your resume and personal information so that companies may contact you about job opportunities?
 
   .small-12.columns
+    button.orbit-next.button
+      span.show-for-sr
+        Next Slide
+      |Next
+
+mixin apply-2
+  .small-12.columns
     label Dietary Restrictions
     textarea(placeholder="Dietary Restrictions", name="diet")
 
-  .small-12.columns
+  .small-12.large-6.columns
     label.apply-form__required Will you be travelling from outside San Diego county?
     input(id="outOfStateY", type="radio", value="Y", name="outOfState")
     label(for="outOfStateY") Yes
     input(id="outOfStateN", type="radio", value="N", name="outOfState", checked="")
     label(for="outOfStateN") No
 
-  .small-12.columns
+  .small-12.large-6.columns
     label If yes, from where?
     input(type="text", placeholder="Which county?", name="county")
 
@@ -134,18 +134,28 @@ mixin apply-2
     input(type="email", placeholder="example@email.com", name="team2")
   .small-12.large-4.columns
     input(type="email", placeholder="example@email.com", name="team3")
+
+  .small-12.columns
+    label We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, pre and post-event informational e-mails, and occasional messages about hackathons in line with the MLH Privacy Policy.
+
+  .small-12.columns
+    label
+      input(type="checkbox", required="") 
+      | I accept the 
+      a(href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf") MLH Code of Conduct
     
   .small-12.columns
     .button-group.row
       .small-3.columns
-        input.js-apply-form__button--final(type="submit", class="success button", value="Apply!", id="submitApp")
-        button.orbit-previous.button.alert
+        button.orbit-previous.button
           span.show-for-sr
             Previous Slide
           | Back
+        input.js-apply-form__button--final(type="submit", class="success button", value="Apply!", id="submitApp")
       .small-9.columns
         label.js-apply-form__error.js-apply-form__error--message.text-left(for="#submitApp")
 
 mixin apply-3
-  h2 Successfully Applied!
-  h4 Check your email for a confirmation link
+  .column.text-center
+    h2 Successfully Applied!
+    h4 Check your email for a confirmation link
