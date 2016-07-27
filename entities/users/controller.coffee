@@ -8,7 +8,7 @@ module.exports = (app) ->
   # Show
   app.get '/users/:id', (req, res) ->
     User.findById(req.params.id, (e, user) ->
-      if e
+      if e or user is null
         res.redirect '/'
       res.render 'entity_views/users/show', {user: user}
     )

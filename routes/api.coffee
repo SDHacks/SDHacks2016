@@ -1,6 +1,19 @@
 #Api Routes
 multer = require('multer')
-upload = multer({dest: 'public/uploads/', limits: {fileSize: 5 * 1024 * 1024}}) #5MB file size
+crypto = require('crypto')
+mime = require('mime')
+
+storage = multer.diskStorage {
+  dest: 'public/uploads/',
+  filename: (req, file, cb) ->
+    crypto.pseudoRandomBytes 16, (err, raw) ->
+      cb null, raw.toString('hex') + '.' + mime.extension(file.mimetype);
+}
+upload = multer({
+  storage: storage,
+  #5MB file size
+  limits: { fileSize: 5 * 1024 * 1024 }
+}) 
 
 module.exports = (app, User, sendConfirm) ->
   app.post '/api/register', upload.single('resume'), (req, res) =>
@@ -69,7 +82,7 @@ module.exports = (app, User, sendConfirm) ->
               return userError 'Failed to send email confirmation'
 
             res.status 200
-            res.json {'token': user.generateJwt()}
+            res.json {'success': true}
 
       if req.file
         user.attach 'resume', {path: req.file.path}, saveUser

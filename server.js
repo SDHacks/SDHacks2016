@@ -42,6 +42,9 @@
     app.use(sslRedirect());
 
     // Extras
+    // Rendering tools
+    app.locals.moment = require('moment');
+
     // Passport Logic
     var passport = require('passport');
     var User = require('./entities/users/model');

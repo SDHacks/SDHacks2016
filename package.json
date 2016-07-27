@@ -43,6 +43,8 @@
     "jsonwebtoken": "^7.0.1",
     "kerberos": "0.0.21",
     "method-override": "2.3.6",
+    "mime": "^1.3.4",
+    "moment": "^2.14.1",
     "mongoose": "4.5.1",
     "mongoose-crate": "^1.0.11",
     "mongoose-crate-s3": "^1.1.4",

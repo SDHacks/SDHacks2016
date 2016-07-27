@@ -1,0 +1,55 @@
+.user-show {
+  &__container {
+    padding-top: 1.5em;
+  }
+
+  &__logo {
+    max-width: 125px;
+    padding-right: 15px;
+
+    @media #{$medium-up} {
+      padding-right: 0;
+      max-width: 200px;
+    }
+  }
+
+  &__name {
+    font-size: 1.5em;
+  }
+
+  &__details {
+    padding-top: 10px;
+    list-style: none;
+    margin-left: 0;
+
+    &--item {
+      line-height: 1.9em;
+
+      i {
+        margin-right: 10px;
+        min-width: 20px;
+      }
+    }
+  }
+
+  &__questions {
+    background-color: $white;
+
+    &--header:not(:first-child) {
+      padding-top: 1.0em;
+    }
+  }
+
+  &__question, &__answer {
+    padding: 10px 0;
+  }
+
+  &__question {
+    max-width: 15em;
+    font-weight: 600;
+  }
+
+  &__answer {
+
+  }
+}
