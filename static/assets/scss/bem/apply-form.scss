@@ -63,14 +63,35 @@
 
   &__container {
     outline: 0;
+
+    &--header {
+      font-size: 1.8em;
+    }
+    &--subheader {
+      font-size: 1.4em;
+    }
+
+    input:not([type="submit"]), textarea {
+      background-color: #fff;
+
+      &[type=file] {
+        background-color: transparent;
+      }
+      &#submitApp {
+        margin-right: 10px;
+      }
+    }
+
+    label {
+      margin-left: 2px;
+    }
   }
 
   textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
     background: lighten($white, 2%);
   }
 
-  .button {
-
+  &__nav-button {
     &:nth-child(2) {
       margin-left: 6px;
     }
@@ -80,59 +101,7 @@
     }
   }
 
-  .form-content {
+  &__slide-content {
     margin-top: 20px;
-  }
-}
-
-.apply-form__container {
-  h2 {
-    font-size: 1.8em;
-  }
-  h4 {
-    font-size: 1.4em;
-  }
-  input:not([type="submit"]), textarea {
-    background-color: #fff;
-
-    &[type=file] {
-      background-color: transparent;
-    }
-    &#submitApp {
-      margin-right: 10px;
-    }
-  }
-  label {
-    margin-left: 2px;
-  }
-}
-
-.ui-autocomplete {
-  border-radius: $global-radius;
-
-  .ui-menu-item {
-    background-color: lighten($white, 2%);
-    padding: 0 5px;
-    cursor: pointer;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid $light-gray;
-    }
-
-    &:first-child {
-      border-radius: $global-radius $global-radius 0 0;
-    }
-
-    &:last-child {
-      border-radius: 0 0 $global-radius $global-radius;
-    }
-
-    &:hover {
-      background-color: $white;
-    }
-
-    @media screen and (max-width: 640px) {
-      margin-right: 1.5rem;
-    }
   }
 }

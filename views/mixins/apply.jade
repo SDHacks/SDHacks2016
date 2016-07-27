@@ -10,19 +10,19 @@ mixin apply
         li.is-active.orbit-slide
           div
             h3.text-center Step 1 of 3: About You
-            .small-12.large-8.large-offset-2.columns.form-content
+            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
               .row
                 +apply-1
         li.orbit-slide
           div
             h3.text-center Step 2 of 3: For SD Hacks
-            .small-12.large-8.large-offset-2.columns.form-content
+            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
               .row
                 +apply-2
         li.orbit-slide.js-apply-form__confirm-slide
           div
             h3.text-center Step 3 of 3: Email Confirmation
-            .small-12.large-8.large-offset-2.columns.form-content
+            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
               .row
                 +apply-3
 
@@ -83,7 +83,7 @@ mixin apply-1
       | Would like us to share your resume and personal information so that companies may contact you about job opportunities?
 
   .small-12.columns
-    button.orbit-next.button
+    button.orbit-next.button.apply-form__nav-button
       span.show-for-sr
         Next Slide
       |Next
@@ -151,15 +151,15 @@ mixin apply-2
   .small-12.columns
     .button-group.row
       .small-3.columns
-        button.orbit-previous.button
+        button.orbit-previous.button.apply-form__nav-button
           span.show-for-sr
             Previous Slide
           | Back
-        input.js-apply-form__button--final(type="submit", class="success button", value="Apply!", id="submitApp")
+        input.js-apply-form__button--final.apply-form__nav-button(type="submit", class="success button", value="Apply!", id="submitApp")
       .small-9.columns
         label.js-apply-form__error.js-apply-form__error--message.text-left(for="#submitApp")
 
 mixin apply-3
   .column.text-center
-    h2 Successfully Applied!
-    h4 Check your email for a confirmation link
+    h2.apply-form__container--header Successfully Applied!
+    h4.apply-form__container--subheader Check your email for a confirmation link
