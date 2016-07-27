@@ -56,17 +56,32 @@
   }
 }
 
-.ui-menu-item {
-  background-color: #fff;
-  padding: 2px;
-  margin-right: 2.2rem;
-  cursor: pointer;
+.ui-autocomplete {
+  border-radius: $global-radius;
 
-  &:hover {
-    background-color: $white;
-  }
+  .ui-menu-item {
+    background-color: lighten($white, 2%);
+    padding: 0 5px;
+    cursor: pointer;
 
-  @media screen and (max-width: 640px) {
-    margin-right: 1.5rem;
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-gray;
+    }
+
+    &:first-child {
+      border-radius: $global-radius $global-radius 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $global-radius $global-radius;
+    }
+
+    &:hover {
+      background-color: $white;
+    }
+
+    @media screen and (max-width: 640px) {
+      margin-right: 1.5rem;
+    }
   }
 }
