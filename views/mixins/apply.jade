@@ -1,24 +1,24 @@
 mixin apply
-  form#apply.apply-form.orbit(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
+  form#apply.apply-form.orbit.js-bordered(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
     .row.column
       h1.apply-form__header Apply for SD Hacks 2016
       ul.orbit-container.apply-form__container
         li.is-active.orbit-slide
           div
             h3.text-center Step 1 of 3: About You
-            .small-12.large-8.large-offset-2.columns
+            .small-12.large-8.large-offset-2.columns.form-content
               .row
                 +apply-1
         li.orbit-slide
           div
             h3.text-center Step 2 of 3: For SD Hacks
-            .small-12.large-8.large-offset-2.columns
+            .small-12.large-8.large-offset-2.columns.form-content
               .row
                 +apply-2
         li.orbit-slide.js-apply-form__confirm-slide
           div
             h3.text-center Step 3 of 3: Email Confirmation
-            .small-12.large-8.large-offset-2.columns
+            .small-12.large-8.large-offset-2.columns.form-content
               .row
                 +apply-3
 

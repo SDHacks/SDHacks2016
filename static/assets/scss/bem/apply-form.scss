@@ -12,9 +12,15 @@
 
 .apply-form {
   display: none;
-  background-color: $white;
+  background-color: #f3f3f3;
   padding-top: 150px;
   top: -125px;
+  border-image: url(/assets/img/hexagon_border-light.svg) 250 0 215 repeat;
+  border-top-width: 0 !important;
+  border-top: none;
+  border-style: solid;
+  background-clip: padding-box;
+  position: relative;
 
   &__header {
     font-size: 3.0em;
@@ -42,7 +48,45 @@
   textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
     background: lighten($white, 2%);
   }
+
+  .button {
+
+    &:nth-child(2) {
+      margin-left: 6px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .form-content {
+    margin-top: 20px;
+  }
 }
+
+.apply-form__container {
+  h2 {
+    font-size: 1.8em;
+  }
+  h4 {
+    font-size: 1.4em;
+  }
+  input:not([type="submit"]), textarea {
+    background-color: #fff;
+
+    &[type=file] {
+      background-color: transparent;
+    }
+    &#submitApp {
+      margin-right: 10px;
+    }
+  }
+  label {
+    margin-left: 2px;
+  }
+}
+
 
 .ui-menu-item {
   background-color: #fff;
