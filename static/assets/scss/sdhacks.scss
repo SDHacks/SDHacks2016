@@ -26,28 +26,44 @@ p {
 }
 
 footer {
-  border-image: url(/assets/img/hexagon_border-dark.svg) 250 0 215 repeat;
+  border-image: url(/assets/img/hexagon_border-dark-grey.svg) 250 0 215 repeat;
   border-style: solid;
   border-bottom-width: 0px !important;
   background-clip: padding-box;
-  background-color: #106F87;
+  background-color: #313131;
   text-align: center;
   color: $white;
   padding-bottom: 20px;
   bottom: 0;
   position: relative;
 
+  p {
+    font-size: 1.2em;
+    margin-bottom: 0;
+  }
+
+  a {
+    line-height: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
   @media #{$large-up} {
-    height: 190px;
+    height: 230px;
   }
 
   @media #{$medium-up} {
     img {
+      margin-top: 4px;
     }
 
     p {
       line-height: 50px;
     }
+  }
+
+  .aligned {
+    margin-top: 37px;
   }
 }
 
