@@ -278,8 +278,8 @@ input:-webkit-autofill {
   border-radius: $global-radius;
 
   .ui-menu-item {
-    background-color: lighten($white, 2%);
-    padding: 0 5px;
+    background-color: #fdfdfd;
+    padding: 5px 10px;
     cursor: pointer;
 
     &:not(:last-child) {
