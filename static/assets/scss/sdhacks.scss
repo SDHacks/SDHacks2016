@@ -144,12 +144,24 @@ footer {
   text-align: center;
 
   img {
-    padding: 0 20px;
+    padding: 0 12px;
     margin-bottom: 40px;
     display: inline-block;
-    max-height: 75px;
     max-width: 100%;
   }
+  .platinum img {
+    max-height: 76px;
+  }
+  .gold img {
+    max-height: 62px;
+  }
+  .silver img {
+    max-height: 50px;
+  }
+  .bronze img {
+    max-height: 40px;
+  }
+
 }
 
 input:-webkit-autofill {
