@@ -22,6 +22,8 @@ module.exports = (app, User, sendConfirm) ->
     #TODO
     #Form validation
 
+    req.body.phone = req.body.phone.replace /\D/g, ''
+
     User.count {email: req.body.email}, (err, count) ->
       if count > 0
         res.status 400
@@ -29,7 +31,7 @@ module.exports = (app, User, sendConfirm) ->
 
       user.firstName = req.body.firstName
       user.lastName = req.body.lastName
-      user.birthdate = req.body.birthdate
+      user.birthdate = req.body.birthdate_year + "-" + req.body.birthdate_month + "-" + req.body.birthdate_day + "T00:00:00.000Z" # Timezone agnostic
       user.gender = req.body.gender
       user.email = req.body.email
       user.phone = req.body.phone
