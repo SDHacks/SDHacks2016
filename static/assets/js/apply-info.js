@@ -70,13 +70,14 @@ $(document).ready(function() {
         var token = data.token;
         ga('send', 'event', 'Registration', 'registered');
         
+        $(".spinner", applyForm).css('display', 'none');
         applyForm.foundation('changeSlide', $('.js-apply-form__confirm-slide'));
         $('html,body').animate({
           scrollTop: applyForm.offset().top
         }, 150, 'swing');
       },
       error: function(data) {
-        $(".spinner", applyForm).css('display', 'inline-block');
+        $(".spinner", applyForm).css('display', 'none');
         data = data.responseJSON;
         if(data.error) {
           showError(data.error);

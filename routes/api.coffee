@@ -23,6 +23,9 @@ module.exports = (app, User, sendConfirm) ->
     #Form validation
 
     req.body.phone = req.body.phone.replace /\D/g, ''
+    if req.body.phone.length != 10
+      res.status 400
+      return res.json {'error': 'Your phone number must be exactly 10 digits'}
 
     User.count {email: req.body.email}, (err, count) ->
       if count > 0
