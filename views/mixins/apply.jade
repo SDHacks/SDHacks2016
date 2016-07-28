@@ -101,7 +101,7 @@ mixin apply-1
   .small-12.columns
     label
       input(type="checkbox", name="shareResume") 
-      | Would like us to share your resume and personal information so that companies may contact you about job opportunities?
+      | Would you like us to share your resume and personal information so that companies may contact you about job opportunities?
 
   .small-12.columns
     button.orbit-next.button.apply-form__nav-button
@@ -151,7 +151,7 @@ mixin apply-2
     textarea(placeholder="Your outcome", name="outcomeStmt", required="")
 
   .small-12.columns
-    label Please enter the email addresses of your desired team members
+    label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
 
   .small-12.large-4.columns
     input(type="email", placeholder="example@email.com", name="team1")
@@ -171,13 +171,13 @@ mixin apply-2
     
   .small-12.columns
     .button-group.row
-      .small-3.columns
+      .small-4.medium-3.columns
         button.orbit-previous.button.apply-form__nav-button
           span.show-for-sr
             Previous Slide
           | Back
         input.js-apply-form__button--final.apply-form__nav-button(type="submit", class="success button", value="Apply!", id="submitApp")
-      .small-9.columns
+      .small-8.medium-9.columns
         label.js-apply-form__error.js-apply-form__error--message.text-left(for="#submitApp")
 
 mixin apply-3

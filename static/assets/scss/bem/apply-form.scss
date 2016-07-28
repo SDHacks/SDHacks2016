@@ -12,7 +12,7 @@
 
 .apply-form {
   display: none;
-  background-color: #f3f3f3;
+  background-color: #EEEEEE;
   padding-top: 150px;
   top: -125px;
   margin-bottom: -75px; /* Due to negative top attribute */
@@ -44,6 +44,10 @@
       line-height: 0;
       display: block;
       margin-top: -10px;
+
+      @media #{$medium-up} {
+        height: 10px;
+      }
     }
   }
 
@@ -72,10 +76,10 @@
     }
 
     input:not([type="submit"]):not([type="file"]), textarea, select {
-      background-color: #fff !important;
+      background-color: #fdfdfd !important;
 
       &[type=file] {
-        background-color: transparent;
+        background-color: transparent !important;
       }
       &#submitApp {
         margin-right: 10px;
@@ -83,6 +87,7 @@
     }
 
     label {
+      line-height: 1.6;
       margin-left: 2px;
     }
   }
@@ -90,10 +95,19 @@
   textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
     background: lighten($white, 2%);
   }
+  input[type="checkbox"] {
+    margin-bottom: 0;
+  }
 
   &__nav-button {
+
+    &:nth-child(1) {
+      margin-top: 6px;
+      margin-right: 6px;
+    }
+
     &:nth-child(2) {
-      margin-left: 6px;
+      margin-top: 6px;
     }
 
     &:focus {

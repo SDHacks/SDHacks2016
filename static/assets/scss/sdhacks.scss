@@ -88,6 +88,7 @@ footer {
 
   h3 {
     // color: lighten($black, 25);
+    margin-top: 10px;
     color: $faq_color;
   }
 
@@ -144,12 +145,38 @@ footer {
   text-align: center;
 
   img {
-    padding: 0 20px;
+    padding: 0 12px;
     margin-bottom: 40px;
     display: inline-block;
-    max-height: 75px;
     max-width: 100%;
   }
+  .platinum img {
+    height: 75px;
+
+    @media #{$medium-up} {
+      height: 105px;
+    }
+  }
+  .gold img {
+    height: 60px;
+
+    @media #{$medium-up} {
+      height: 85px;
+    }
+  }
+  .silver img {
+    height: 45px;
+    @media #{$medium-up} {
+      height: 65px;
+    }
+  }
+  .bronze img {
+    height: 36px;
+    @media #{$medium-up} {
+      height: 50px;
+    }
+  }
+
 }
 
 input:-webkit-autofill {
