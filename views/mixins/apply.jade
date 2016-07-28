@@ -39,10 +39,31 @@ mixin apply-1
     select(placeholder="Gender", required="", name="gender", value="Male")
       option(value="Male") Male
       option(value="Female") Female
+      option(value="Non-Binary") Non-Binary
+      option(value="I prefer not to say") I prefer not to say
       option(value="Other") Other
   .large-6.small-12.columns
     label.apply-form__required Birthdate
-    input(type="date", data-date-format="MM dd yyyy", data-date="", required="", name="birthdate")
+    .row
+      .small-4.columns
+        select(required="", name="birthdate_day")
+          option(value="", disabled="", selected="") Day
+          - var n = 1
+          while n <= 31
+            option(value=n)= n++
+      .small-4.columns
+        select(required="", name="birthdate_month")
+          option(value="", disabled="", selected="") Month
+          - var n = 1
+          while n <= 12
+            - var month = n < 10 ? '0' + n++ : n++
+            option(value=month)= month
+      .small-4.columns
+        select(required="", name="birthdate_year")
+          option(value="", disabled="", selected="") Year
+          - var n = 1980
+          while n <= 2016
+            option(value=n)= n++
 
   .large-6.small-12.columns
     label.apply-form__required Email
@@ -51,7 +72,7 @@ mixin apply-1
     label.apply-form__required Phone Number
     .input-group
       span.input-group-label +1
-      input.input-group-field(type="text", placeholder="", required="", name="phone")
+      input.input-group-field(type="text", placeholder="(555) 555 5555", required="", name="phone")
 
   .small-12.columns
     label.apply-form__required University
@@ -127,7 +148,7 @@ mixin apply-2
 
   .small-12.columns
     label.apply-form__required What do you hope to get out of attending the hackathon?
-    textarea(placeholder="Your outcome", name="outcomeStmt")
+    textarea(placeholder="Your outcome", name="outcomeStmt", required="")
 
   .small-12.columns
     label Please enter the email addresses of your desired team members

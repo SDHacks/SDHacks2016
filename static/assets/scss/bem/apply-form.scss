@@ -71,8 +71,8 @@
       font-size: 1.4em;
     }
 
-    input:not([type="submit"]), textarea {
-      background-color: #fff;
+    input:not([type="submit"]):not([type="file"]), textarea, select {
+      background-color: #fff !important;
 
       &[type=file] {
         background-color: transparent;
