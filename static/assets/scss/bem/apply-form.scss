@@ -44,6 +44,10 @@
       line-height: 0;
       display: block;
       margin-top: -10px;
+
+      @media #{$medium-up} {
+        height: 10px;
+      }
     }
   }
 
