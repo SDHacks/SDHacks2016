@@ -76,7 +76,9 @@
     }
 
     input:not([type="submit"]):not([type="file"]), textarea, select {
-      background-color: #fdfdfd !important;
+      &:not(:disabled) {
+        background-color: #fdfdfd !important;
+      }
 
       &[type=file] {
         background-color: transparent !important;

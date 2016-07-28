@@ -127,4 +127,12 @@ $(document).ready(function() {
 
     $("#institution-label").text(label);
   });
+
+  $("#outofstate").change(function() {
+    var outOfState = $("input[type=radio]:checked", this).val() === 'true';
+    if(outOfState) 
+      $("#city").attr('disabled', false);
+    else
+      $("#city").attr('disabled', true);
+  });
 });

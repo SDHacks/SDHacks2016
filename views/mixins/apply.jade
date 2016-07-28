@@ -122,7 +122,7 @@ mixin apply-2
     label Dietary Restrictions
     textarea(placeholder="Dietary Restrictions", name="diet")
 
-  .small-12.large-6.columns
+  .small-12.large-6.columns#outofstate
     label.apply-form__required Will you be travelling from outside San Diego county?
     input(id="outOfStateY", type="radio", value="true", name="outOfState")
     label(for="outOfStateY") Yes
@@ -131,7 +131,7 @@ mixin apply-2
 
   .small-12.large-6.columns
     label If yes, from where?
-    input(type="text", placeholder="Which city?", name="city")
+    input#city(type="text", placeholder="Which city?", name="city", disabled="")
 
 
   .large-5.small-12.columns
