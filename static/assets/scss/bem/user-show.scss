@@ -1,9 +1,19 @@
 .user-show {
   &__container {
-    padding-top: 1.5em;
+    @media #{$medium-up} {
+      padding-top: 1.5em;
+    }
+  }
+
+  &__disclaimer {
+    top: 0;
+    background-color: darken($white, 5%);
+    width: 100%;
+    padding-top: 10px;
   }
 
   &__logo {
+    display: block;
     max-width: 125px;
     padding-right: 15px;
 
