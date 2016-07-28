@@ -2,11 +2,21 @@ $(document).ready(function() {
   //Load the application form
   var applyForm = $(".apply-form");
 
+  function mustMatch(event, ui) {
+    var source = $(this).val();
+    var temp = $(".ui-autocomplete li").map(function () { return $(this).text()}).get();
+    var found = $.inArray(source, temp);
+
+    if(found < 0) {
+        $(this).val('');
+    }
+  }
+
   //Load in the autocomplete values
   $.getJSON("/assets/schools.json").done(function(data) {
     $(".js-apply-form__universities").autocomplete({
       source: data,
-      appendTo: "#applyModal"
+      change: mustMatch
     });
     //CSS fix for Foundation
     $('.ui-autocomplete').addClass('dropdown menu').attr("data-dropdown-menu", "");
@@ -17,7 +27,7 @@ $(document).ready(function() {
   $.getJSON("/assets/majors.json").done(function(data) {
     $(".js-apply-form__majors").autocomplete({
       source: data,
-      appendTo: "#applyModal"
+      change: mustMatch
     });
     //CSS fix for Foundation
     $('.ui-autocomplete').addClass('dropdown menu').attr("data-dropdown-menu", "");
@@ -93,4 +103,28 @@ $(document).ready(function() {
     var ul = this.menu.element;
     ul.outerWidth(this.element.outerWidth());
   };
+
+  $("#instituton-radio").change(function() {
+    var uni = $("#institution-uni");
+    var hs = $("#institution-hs");
+
+    var hide = null, show = null, label = null;
+    if($("#institution-radio-uni").is(':checked')) {
+      hide = hs;
+      show = uni;
+      label = "University";
+    } else {
+      show = hs;
+      hide = uni;
+      label = "High School";
+    }
+
+    show.css('display', 'block');
+    show.attr('name', 'university');
+
+    hide.css('display', 'none');
+    hide.attr('name', '');
+
+    $("#institution-label").text(label);
+  });
 });

@@ -74,9 +74,17 @@ mixin apply-1
       span.input-group-label +1
       input.input-group-field(type="text", placeholder="(555) 555 5555", required="", name="phone")
 
-  .small-12.columns
-    label.apply-form__required University
-    input(type="text", placeholder="University", class="js-apply-form__universities", required="", data-dropdown-menu="", name="university")
+  .small-12.large-6.columns#instituton-radio
+    label.apply-form__required Institution
+    input#institution-radio-uni(type="radio", value="uni", name="institution", checked="")
+    label(for="institution-radio-uni") University
+    input#institution-radio-hs(type="radio", value="hs", name="institution")
+    label(for="institution-radio-hs") High School
+
+  .small-12.large-6.columns
+    label.apply-form__required#institution-label University
+    input#institution-uni(type="text", placeholder="University", class="js-apply-form__universities", required="", data-dropdown-menu="", name="university")
+    input#institution-hs(type="text", placeholder="High School", style="display: none", data-dropdown-menu="", value="")
 
   .large-6.small-12.columns
     label.apply-form__required Major
