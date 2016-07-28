@@ -71,7 +71,7 @@ gulp.task('build-js', function() {
 gulp.task('watch', function() {
   gulp.watch('static/assets/scss/**/*.scss', ['sass']);
   gulp.watch('static/assets/coffee/*.coffee', ['jscoffee']);
-  gulp.watch(['static/app/**/*.js', 'static/assets/js/*.js'], ['jshint']);
+  gulp.watch('static/assets/js/*.js', ['jshint']);
   gulp.watch('static/assets/js/*.js', ['build-js']);
 });
 

@@ -48,9 +48,16 @@ $(document).ready(function() {
     });
   });
 
-  $(".apply-form").submit(function(e) {
+  var showError = function(message) {
+    $(".js-apply-form__error--message").text(message);
+    $(".js-apply-form__error").css('display', 'block');
+  };
+
+  applyForm.submit(function(e) {
     e.preventDefault();
     $(".js-apply-form__error").css('display', 'none');
+    $(".spinner", applyForm).css('display', 'inline-block');
+
     var formData = new FormData($(this)[0]);
 
     $.ajax({
@@ -64,12 +71,15 @@ $(document).ready(function() {
         ga('send', 'event', 'Registration', 'registered');
         
         applyForm.foundation('changeSlide', $('.js-apply-form__confirm-slide'));
+        $('html,body').animate({
+          scrollTop: applyForm.offset().top
+        }, 150, 'swing');
       },
       error: function(data) {
+        $(".spinner", applyForm).css('display', 'inline-block');
         data = data.responseJSON;
         if(data.error) {
-          $(".js-apply-form__error--message").text(data.error);
-          $(".js-apply-form__error").css('display', 'block');
+          showError(data.error);
         }
       },
       cache: false,
