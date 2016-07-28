@@ -150,16 +150,30 @@ footer {
     max-width: 100%;
   }
   .platinum img {
-    max-height: 76px;
+    height: 75px;
+
+    @media #{$medium-up} {
+      height: 105px;
+    }
   }
   .gold img {
-    max-height: 62px;
+    height: 60px;
+
+    @media #{$medium-up} {
+      height: 85px;
+    }
   }
   .silver img {
-    max-height: 50px;
+    height: 45px;
+    @media #{$medium-up} {
+      height: 65px;
+    }
   }
   .bronze img {
-    max-height: 40px;
+    height: 36px;
+    @media #{$medium-up} {
+      height: 50px;
+    }
   }
 
 }

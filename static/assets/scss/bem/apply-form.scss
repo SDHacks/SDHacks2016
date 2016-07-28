@@ -72,10 +72,10 @@
     }
 
     input:not([type="submit"]), textarea {
-      background-color: #fff;
+      background-color: #fff !important;
 
       &[type=file] {
-        background-color: transparent;
+        background-color: transparent !important;
       }
       &#submitApp {
         margin-right: 10px;
@@ -83,6 +83,7 @@
     }
 
     label {
+      line-height: 1.6;
       margin-left: 2px;
     }
   }
@@ -90,16 +91,19 @@
   textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
     background: lighten($white, 2%);
   }
+  input[type="checkbox"] {
+    margin-bottom: 0;
+  }
 
   &__nav-button {
 
     &:nth-child(1) {
-      margin-bottom: 6px;
+      margin-top: 6px;
       margin-right: 6px;
     }
 
     &:nth-child(2) {
-      margin-bottom: 6px;
+      margin-top: 6px;
     }
 
     &:focus {
