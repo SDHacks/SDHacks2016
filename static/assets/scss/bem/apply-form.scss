@@ -92,8 +92,14 @@
   }
 
   &__nav-button {
+
+    &:nth-child(1) {
+      margin-bottom: 6px;
+      margin-right: 6px;
+    }
+
     &:nth-child(2) {
-      margin-left: 6px;
+      margin-bottom: 6px;
     }
 
     &:focus {
