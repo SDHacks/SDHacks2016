@@ -58,7 +58,7 @@ gulp.task('jshint', function() {
 
 // JS Builder
 gulp.task('build-js', function() {
-  gulp.src('static/assets/js/*.js')
+  gulp.src(['static/assets/js/*.js', 'static/assets/js/vendor/*.js'])
     .pipe(plumber(plumberOptions))
     .pipe(sourcemaps.init())
       .pipe(uglify())
@@ -72,7 +72,7 @@ gulp.task('watch', function() {
   gulp.watch('static/assets/scss/**/*.scss', ['sass']);
   gulp.watch('static/assets/coffee/*.coffee', ['jscoffee']);
   gulp.watch('static/assets/js/*.js', ['jshint']);
-  gulp.watch('static/assets/js/*.js', ['build-js']);
+  gulp.watch(['static/assets/js/*.js', 'static/assets/js/vendor/*.js'], ['build-js']);
 });
 
 // Nodemon

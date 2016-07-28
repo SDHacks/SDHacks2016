@@ -29,6 +29,23 @@
         margin-right: 10px;
         min-width: 20px;
       }
+
+      .editable {
+        cursor: pointer;
+
+        * {
+          display: inline;
+        }
+      }
+    }
+
+    .fa-edit {
+      margin-left: 10px;
+      display: none;
+    }
+
+    &--item:hover .fa-edit {
+      display: inline-block;
     }
   }
 
@@ -37,6 +54,15 @@
 
     &--header:not(:first-child) {
       padding-top: 1.0em;
+    }
+
+    .fa-edit {
+      margin-left: 10px;
+      display: none;
+    }
+
+    .columns:hover .fa-edit {
+      display: inline-block;
     }
   }
 
@@ -50,6 +76,21 @@
   }
 
   &__answer {
+    display: inline-block;
+    cursor: pointer;
 
+    form {
+      display: inline;
+    }
+
+    &--phone:before {
+      content: '+1 '
+    }
+
+    &--column {
+      &:hover {
+        background-color: lighten($white, 5%);
+      }
+    }
   }
 }

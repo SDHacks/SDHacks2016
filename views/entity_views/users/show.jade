@@ -11,79 +11,84 @@ block content
       ul.user-show__details
         li.user-show__details--item
           i.fa.fa-university
-          | #{user.university}
+          span.editable#university #{user.university}
         li.user-show__details--item
           i.fa.fa-graduation-cap
-          | #{user.major}
+          span.editable#major #{user.major}
         li.user-show__details--item
           i.fa.fa-envelope
-          | #{user.email}
+          span.not-editable#email #{user.email}
         li.user-show__details--item
           i.fa.fa-github
-          | #{user.github}
+          span.editable#github #{user.github}
         li.user-show__details--item
           i.fa.fa-globe
-          a(href=user.website) #{user.website}
+          span.editable#website #{user.website}
 
     .small-12.large-9.columns
       h3.user-show__questions--header Your Details
       .row.user-show__questions
         .small-12.large-4.columns
           .user-show__question Gender
-        .small-12.large-8.columns
-          .user-show__answer #{user.gender}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#gender #{user.gender}
 
         .small-12.large-4.columns
           .user-show__question Birthdate
-        .small-12.large-8.columns
-          .user-show__answer #{moment(user.birthdate).format('MM/DD/YYYY')}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#birthdate #{moment(user.birthdate).format('YYYY-MM-DD')}
 
         .small-12.large-4.columns
           .user-show__question Phone Number
-        .small-12.large-8.columns
-          .user-show__answer +1 #{user.phone}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer.user-show__answer--phone#phone #{user.phone}
 
         .small-12.large-4.columns
           .user-show__question Graduation Year
-        .small-12.large-8.columns
-          .user-show__answer #{user.year}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#year #{user.year}
 
         .small-12.large-4.columns
           .user-show__question Resume
-        .small-12.large-8.columns
-          .user-show__answer
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer.user-show__answer--file
             a(href=user.resume.url) Download
 
       h3.user-show__questions--header SD Hacks Details
       .row.user-show__questions
         .small-12.large-4.columns
           .user-show__question Dietary Restrictions
-        .small-12.large-8.columns
-          .user-show__answer #{user.diet !== "" ? user.diet : "None"}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#diet #{user.diet !== "" ? user.diet : "None"}
 
-        if user.travel.outOfState
-          .small-12.large-4.columns
-            .user-show__question City
-          .small-12.large-8.columns
-            .user-show__answer #{user.travel.city}
+        .small-12.large-4.columns
+          .user-show__question City
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#travel #{user.travel.outOfState ? user.travel.city : "San Diego"}
 
         .small-12.large-4.columns
           .user-show__question T-Shirt Size
-        .small-12.large-8.columns
-          .user-show__answer #{user.shirtSize}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#shirtSize #{user.shirtSize}
 
         .small-12.large-4.columns
           .user-show__question First Hackathon?
-        .small-12.large-8.columns
-          .user-show__answer #{user.firstHackathon}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#firstHackathon #{user.firstHackathon}
 
         .small-12.large-4.columns
           .user-show__question Outcome
-        .small-12.large-8.columns
-          .user-show__answer #{user.outcomeStmt}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#outcomeStmt #{user.outcomeStmt}
 
         .small-12.large-4.columns
           .user-show__question Desired Teammates
-        .small-12.large-8.columns
-          .user-show__answer 
-            | #{user.teammates.join(', ')}
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#teammates #{user.teammates.join(', ')}
+
+  script(type='text/javascript').
+    var user_id = '#{user._id}';
+
+block scripts
+  script(src='/assets/js/dist/jquery.jeditable.min.js')
+  script(src='/assets/js/dist/user-info.min.js')
