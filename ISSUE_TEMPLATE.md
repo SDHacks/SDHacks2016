@@ -1,10 +1,16 @@
 ## SD Hacks 2016 Issue
 
 ### Device (and Operating System)
+  
+  eg. iPhone 6
 
 ### Browser
 
+  eg. Chrome
+
 ### Outline of the Issue
+
+  eg. Error appears saying "Wtf is this" when I click apply after filling in my info
 
 ### Screenshots
 
@@ -18,3 +24,4 @@
   
 ### Possible Cause
 
+  eg. I have no idea. Maybe the database or something.
