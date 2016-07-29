@@ -113,7 +113,13 @@ footer {
   }
 
   a {
-    color: lighten($primary-color, 15);
+    color: inherit;
+    border-bottom: 2px solid #fceaca;
+    padding: 0 0 0 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
   }
 
   .tesc {
