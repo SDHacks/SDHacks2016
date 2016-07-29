@@ -4,7 +4,7 @@ $(document).ready(function() {
 
   function mustMatch(event, ui) {
     var source = $(this).val();
-    var temp = $(".ui-autocomplete li").map(function () { return $(this).text()}).get();
+    var temp = $(".ui-autocomplete li").map(function () { return $(this).text(); }).get();
     var found = $.inArray(source, temp);
 
     if(found < 0) {
@@ -76,12 +76,14 @@ $(document).ready(function() {
       data: formData,
       async: true,
       success: function (data) {
-        //JWT Token
-        var token = data.token;
         ga('send', 'event', 'Registration', 'registered');
+
+        $("#js-apply-form__email").text(data.email);
         
         $(".spinner", applyForm).css('display', 'none');
-        applyForm.foundation('changeSlide', $('.js-apply-form__confirm-slide'));
+        $(".apply-form__container").css('height', '');
+
+        applyForm.foundation('changeSlide', true, $('.js-apply-form__confirm-slide'));
         $('html,body').animate({
           scrollTop: applyForm.offset().top
         }, 150, 'swing');
@@ -134,5 +136,23 @@ $(document).ready(function() {
       $("#city").attr('disabled', false);
     else
       $("#city").attr('disabled', true);
+  });
+
+  $("#js-apply-form__next").click(function() {
+    var valid = true;
+    $.each($("input", $("#apply-form__slide-1")), function() {
+      var input = $(this);
+      if(this.validity && !this.validity.valid) {
+        valid = false;
+      }
+    }).promise().done(function() {
+      if(valid) {
+        applyForm.foundation('changeSlide', true, $("#apply-form__slide-2"));
+      }
+    });
+  });
+
+  $("#js-apply-form__previous").click(function() {
+    applyForm.foundation('changeSlide', false, $("#apply-form__slide-1"));
   });
 });
