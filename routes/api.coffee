@@ -77,7 +77,7 @@ module.exports = (app, User, sendConfirm) ->
 
           sendConfirm {
             to: user.email,
-            subject: 'SD Hacks 2016'
+            subject: 'Thank you for your application!'
           }, {
             'user': user,
             'confirmUrl': req.protocol + '://' + req.get('host') + '/confirm/' + user._id
