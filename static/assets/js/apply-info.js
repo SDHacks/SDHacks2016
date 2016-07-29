@@ -137,7 +137,17 @@ $(document).ready(function() {
   });
 
   $("#js-apply-form__next").click(function() {
-    applyForm.foundation('changeSlide', true, $("#apply-form__slide-2"));
+    var valid = true;
+    $.each($("input", $("#apply-form__slide-1")), function() {
+      var input = $(this);
+      if(this.validity && !this.validity.valid) {
+        valid = false;
+      }
+    }).promise().done(function() {
+      if(valid) {
+        applyForm.foundation('changeSlide', true, $("#apply-form__slide-2"));
+      }
+    });
   });
 
   $("#js-apply-form__previous").click(function() {
