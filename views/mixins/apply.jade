@@ -7,13 +7,13 @@ mixin apply
             span(aria-hidden="true") &times; 
               span.apply-form__header--close-text Close
       ul.orbit-container.apply-form__container
-        li.is-active.orbit-slide
+        li.is-active.orbit-slide#apply-form__slide-1
           div
             h3.text-center Step 1 of 3: About You
             .small-12.large-8.large-offset-2.columns.apply-form__slide-content
               .row
                 +apply-1
-        li.orbit-slide
+        li.orbit-slide#apply-form__slide-2
           div
             h3.text-center Step 2 of 3: For SD Hacks
             .small-12.large-8.large-offset-2.columns.apply-form__slide-content
@@ -113,7 +113,7 @@ mixin apply-1
       | Would you like us to share your resume and personal information so that companies may contact you about job opportunities?
 
   .small-12.columns
-    button.orbit-next.button.apply-form__nav-button
+    button.button.apply-form__nav-button#js-apply-form__next
       span.show-for-sr
         Next Slide
       |Next
@@ -135,14 +135,14 @@ mixin apply-2
     input#city(type="text", placeholder="Which city?", name="city", disabled="")
 
 
-  .large-5.small-12.columns
+  .large-6.small-12.columns
     label.apply-form__required T-Shirt Fit
     input(id="shirtFitM", type="radio", value="M", name="shirtFit", checked="")
     label(for="shirtFitM") Men's
     input(id="shirtFitW", type="radio", value="W", name="shirtFit")
     label(for="shirtFitW") Women's
 
-  .large-7.small-12.columns
+  .large-6.small-12.columns
     label.apply-form__required T-Shirt Size
     each val, ind in ["XS", "S", "M", "L", "XL", "XXL"]
       input(id="shirtSize#{val}", type="radio", value=val, checked=ind === 2, name="shirtSize")
@@ -181,7 +181,7 @@ mixin apply-2
   .small-12.columns
     .button-group.row
       .small-12.large-4.columns
-        button.orbit-previous.button.apply-form__nav-button
+        button.button.apply-form__nav-button#js-apply-form__previous
           span.show-for-sr
             Previous Slide
           | Back
