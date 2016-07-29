@@ -76,11 +76,13 @@ $(document).ready(function() {
       data: formData,
       async: true,
       success: function (data) {
-        //JWT Token
-        var token = data.token;
         ga('send', 'event', 'Registration', 'registered');
+
+        $("#js-apply-form__email").text(data.email);
         
         $(".spinner", applyForm).css('display', 'none');
+        $(".apply-form__container").css('height', '');
+
         applyForm.foundation('changeSlide', true, $('.js-apply-form__confirm-slide'));
         $('html,body').animate({
           scrollTop: applyForm.offset().top

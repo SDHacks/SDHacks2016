@@ -87,7 +87,7 @@ module.exports = (app, User, sendConfirm) ->
               return userError 'Failed to send email confirmation'
 
             res.status 200
-            res.json {'success': true}
+            res.json {'email': user.email}
 
       if req.file
         user.attach 'resume', {path: req.file.path}, saveUser
