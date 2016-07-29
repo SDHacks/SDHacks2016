@@ -88,8 +88,8 @@ mixin apply-1
     input#institution-hs(type="text", placeholder="High School", style="display: none", data-dropdown-menu="", value="")
 
   .large-6.small-12.columns
-    label.apply-form__required Major
-    input(type="text", placeholder="Major", class="js-apply-form__majors", required="", name="major")
+    label.apply-form__required#major-label Major
+    input#major(type="text", placeholder="Major", class="js-apply-form__majors", required="", name="major")
   .large-6.small-12.columns
     label.apply-form__required Graduation Year
     input(type="number", min="2016", max="2030", value="2016", name="year")
