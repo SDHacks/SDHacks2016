@@ -115,6 +115,10 @@ footer {
   a {
     color: lighten($primary-color, 15);
   }
+
+  .tesc {
+    max-width: 300px;
+  }
   
   &--bg {
     position: absolute;
