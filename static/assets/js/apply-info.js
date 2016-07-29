@@ -110,15 +110,17 @@ $(document).ready(function() {
     var uni = $("#institution-uni");
     var hs = $("#institution-hs");
 
-    var hide = null, show = null, label = null;
+    var hide = null, show = null, label = null, majorRequired = false;
     if($("#institution-radio-uni").is(':checked')) {
       hide = hs;
       show = uni;
       label = "University";
+      majorRequired = true;
     } else {
       show = hs;
       hide = uni;
       label = "High School";
+      majorRequired = false;
     }
 
     show.css('display', 'block');
@@ -126,6 +128,14 @@ $(document).ready(function() {
 
     hide.css('display', 'none');
     hide.attr('name', '');
+
+    if(majorRequired) {
+      $("#major").attr('required', true);
+      $("#major-label").addClass("apply-form__required");
+    } else {
+      $("#major").attr('required', false);
+      $("#major-label").removeClass("apply-form__required");
+    }
 
     $("#institution-label").text(label);
   });

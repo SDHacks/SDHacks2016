@@ -65,7 +65,8 @@ module.exports = (app, User, sendConfirm) ->
       saveUser = (error) =>
         if error
           #Throw an error
-          console.error 'Failed to upload resume: ' + error
+          console.error 'Failed to upload resume'
+          console.log error
           return userError 'Failed to upload resume'
         
         user.save (err) ->
