@@ -319,3 +319,128 @@ input:-webkit-autofill {
 }
 
 .ui-helper-hidden-accessible{display:none}
+
+// Buttons
+
+input {
+  border-radius: 0;
+}
+
+input {
+  -webkit-appearance: none;
+}
+input:focus {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.buttons {
+  padding: 0px 20px 0px 20px;
+}
+
+.btn {
+  pointer-events: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 10px 15px 10px 0px;
+  font-size: 20px;  
+  letter-spacing: .03em; 
+  background-color: #646464; 
+  color: #FFFFFF; 
+  box-sizing: border-box; 
+  height: 46px; 
+  padding: 23px;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+  top: -6px;
+}
+#sponsor {
+  width: 250px;
+  transform: translateY(1px);
+}
+@media only screen and (max-width: 480px)  {
+  #update_signup {
+    transform: translateX(-2px);
+  }
+  .btn, #sponsor {
+    width: 80%;
+  }
+}
+
+#sponsor:hover {
+  background-color: #868686; 
+  color: #FFFFFF;
+}
+
+.validate {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#update_signup {
+  border-radius: $global-radius;
+  position: relative;
+}
+
+.email-input {
+  outline: none;
+  border: 0;
+  border-radius: $global-radius;
+  width: 100%;
+  background: transparent; 
+  font-size: 14px;
+  line-height: 24px;
+  padding: 8px 31% 8px 8px;
+  font-size: 18px;
+  color: #646464;
+}
+.subscribe-button, .btn.sponsor {
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+}
+.email-input, .btn.sponsor {
+  margin: 10px;
+}
+.email-input {
+  margin-left: -10px;
+
+  &::-webkit-input-placeholder, &::-moz-placeholder, &::-ms-input-placeholder, &::-webkit-input-placeholder {
+    color: #646464;
+  }
+}
+
+.subscribe-button {
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  position: absolute;
+  right: 0;
+  min-width: 100%;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  background-color: #00a3c7;
+  height: 100%; 
+  padding: 0 15px 0 15px;
+  line-height: 40px;
+  transform: translateY(-50%);
+  border-radius: $global-radius;
+}
+
+
+.subscribe-button:hover {
+  background-color: #22B9CE;
+}
+
+#temporary-sponsor {
+  width: 250px;
+  background-color: #646464;
+
+  &:hover {
+    background-color: lighten(#646464, 8%);
+  }
+}
