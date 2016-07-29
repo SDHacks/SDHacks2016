@@ -1,38 +1,18 @@
 //- Homepage
+include mixins/apply
+include mixins/footer
 include mixins/hero/hero
-include mixins/modals/apply-modal
 
 extends layout
 
 block content
   +hero
+  +apply
+
   .row
     .small-12.large-8.large-offset-2.end.columns
       h2 About
       p SD Hacks 2016 will be the second iteration of UC San Diego’s 36-hour, 1,000 student hackathon. We’ll take care of providing you with the best workshops, mentorship, hardware, food, internet, swag and job opportunities out there. We’re also going to have additional resources for Virtual Reality and Hardware hackers. Just be prepared to learn a lot, make new friends, and have an incredible weekend!
-
-      //- h2 Last Year
-      //- p Last year, SD Hacks brought over 800 students from all over California together to build great things.
-      //-   .row.last-year
-      //-     .small-4.columns
-      //-       span.stat.stat--blue 1.2K
-      //-       p Hackers
-      //-     .small-4.columns
-      //-       span.stat.stat--blue 28
-      //-       p Sponsors
-      //-     .small-4.columns
-      //-       span.stat.stat--yellow $18K
-      //-       p Prizes
-      //- p This year, SD Hacks intends to become bigger and greater than ever before.
-
-      //- h2 Where?
-      //- p 
-      //-   | SD Hacks 2016 will be held in 
-      //-   b Rimac Arena 
-      //-   | in 
-      //-   b UC San Diego. 
-      //-   | The official address of UCSD is 
-      //-   b 9500 Gilman Drive, La Jolla, CA 92093
       .flex-video
         iframe(src="https://www.youtube.com/embed/70n1yu3BNsE", frameborder="0", allowfullscreen="")
 
@@ -41,7 +21,7 @@ block content
     .bordered--bg.bg-bottom
     .row
       .small-12.large-8.large-offset-2.end.columns
-        h2 FAQ
+        h2.faq FAQ
         .row
           .small-12.medium-6.columns.faq-left
             .qa
@@ -50,10 +30,10 @@ block content
                 | multiple days, in which a large number of 
                 | people meet to collaboratively build out their 
                 | ideas using technology. We'll be partaking in 
-                a(href="https://en.wikipedia.org/wiki/Hacker_culture") this 
-                | kind of hacking, not 
-                a(href="https://en.wikipedia.org/wiki/Hacker_(computer_security)") this 
-                | kind.
+                a(href="https://en.wikipedia.org/wiki/Hacker_culture") this
+                |  kind of hacking, not 
+                a(href="https://www.youtube.com/watch?v=hkDD03yeLnU") this
+                |  kind.
             .qa
               h3 Who can attend?
               p Any college or high school students over 18 years of age from anywhere in the world are eligible. This includes graduate students, but be sure to understand any agreements you’ve made with your university with regards to research and IP. If you are enrolled at a UC campus but not yet 18, you are also eligible to participate. We wish we could invite minors but unfortunately cannot for legal reasons.
@@ -61,15 +41,12 @@ block content
               h3 What should I bring?
               p Bring your student ID, computer, any external peripherals you may need (chargers, monitors, etc.), any other hardware that you definitely plan on using, and an open mind. Also bring a change of clothes, a toothbrush, and any other toiletries you may need. You may also bring a sleeping bag if you plan to nap.
             .qa
-              h3 How can I help?
-              p Please email us at 
-                a(href="mailto:hello@sdhacks.io") hello@sdhacks.io 
-                | if you have a question not listed here or if 
-                | you’re interested in helping out!
+              h3 When should I show up and when should I leave?
+              p You should plan to arrive at the hackathon late Friday evening and to leave early Sunday afternoon. A detailed schedule will be released closer to the event date.
           .small-12.medium-6.columns.faq-right
             .qa
               h3 What if I don't have a team?
-              p We allow teams of up to four hackers. If you’re concerned that you may not have a team going in, no worries! We will host a team formation event at the beginning of the hackathon so that no one has to hack alone (unless they want to). If you do have a team, make sure everyone applies, and later on in the registration process, we will send out surveys to do our best to keep you with your team.
+              p We allow teams of up to four hackers. If you’re concerned that you may not have a team going in, no worries! We will host a team formation event at the beginning of the hackathon so that no one has to hack alone (unless they want to). If you do have a team, we will do our best to accept you all. Make sure ALL members apply and include all other members’ addresses in their applications.
             .qa              
               h3 How do I get there?
               p We will send buses to most-- if not all-- undergraduate UC campuses. If you won’t be at or near a UC campus on September 30th, we will try our best to reimburse some of your travel expenses from wherever you are.
@@ -77,15 +54,21 @@ block content
               h3 Do I have to pay to get in?
               p Nope!
             .qa
+              h3 How can I help?
+              p Please email us at 
+                a(href="mailto:hello@sdhacks.io") hello@sdhacks.io
+                |  if you have a question not listed here or if 
+                | you’re interested in helping out!
+            .qa
               h3 Are there any rules?
               p 
                 | As a Major League Hacking member event, we are 
                 | adopting Major League Hacking’s 
-                a(href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf") Code of Conduct 
-                | which requires you to respect others and help 
+                a(href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf") Code of Conduct
+                |  which requires you to respect others and help 
                 | us keep SD Hacks a safe space for everyone. If 
                 | you want your project to be considered for an 
-                | award, you may only submit code that your team 
+                | award, you may only submit work that your team 
                 | wrote during the hackathon.
             
 
@@ -100,37 +83,26 @@ block content
   .row
     .small-12
       .sponsors
-        img.viasat(src="/assets/img/sponsors/viasat.png")
-        img.qualcomm(src="/assets/img/sponsors/qualcomm.png")
+        .platinum
+          a(target="_blank" href="https://www.viasat.com/")
+            img.viasat(src="/assets/img/sponsors/viasat.png")
+          a(target="_blank" href="https://www.qualcomm.com/")
+            img.qualcomm(src="/assets/img/sponsors/qualcomm.png")
+        .gold
+        .silver
+          a(target="_blank" href="http://www.alumni.ucsd.edu/")
+            img.ucsdalum(src="assets/img/sponsors/ucsd_alumni_logo.png")
+        .bronze
 
-  footer.js-bordered
-    .bordered--bg.bg-top.footer-bg
-    .row
-      .small-12.large-10.large-offset-1.end.columns
-        .row
-          .small-6.large-4.columns
-            img.tesc(src="/assets/img/tesc_white.svg")
-          .show-for-large.large-4.columns
-            p Made by the SD Hacks team
-          .small-6.large-4.columns.social-media
-            a(href="https://www.facebook.com/SDHacks/")
-              i.fa.fa-facebook-square
-            a(href="mailto:hello@sdhacks.io")
-              i.fa.fa-envelope
-            a(href="https://twitter.com/sdhacks")
-              i.fa.fa-twitter
-
-  //-+apply-modal
-  //-+apply-next-modal
+  +footer
 
 block scripts
   script(src='/assets/bower/bower_components/d3/d3.min.js')
   script(src='/assets/bower/bower_components/topojson/topojson.min.js')
   script(src='/assets/bower/bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js')
   script(src='/assets/js/dist/hexagons.min.js')
-
+    
   script(src='/assets/bower/bower_components/jquery-ui/jquery-ui.min.js')
-  script(src='/assets/bower/bower_components/jquery-validation/dist/jquery.validate.min.js')
+  script(src='/assets/bower/bower_components/velocity/velocity.min.js')
   script(src='/assets/js/dist/apply-info.min.js')
-  script(src='/assets/js/dist/modals.min.js')
-  script(src='/assets/js/dist/get-updates.min.js')
+  script(src='/assets/js/dist/switch-images.min.js')

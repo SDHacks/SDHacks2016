@@ -1,0 +1,203 @@
+mixin apply
+  form#apply.apply-form.orbit.js-bordered(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
+    .row.column
+      .small-12.large-8.large-offset-2.columns
+        h1.apply-form__header Apply for SD Hacks 2016
+          button.apply-form__header--close.js-apply-form__close(data-close="", aria-label="Close reveal", type="button")
+            span(aria-hidden="true") &times; 
+              span.apply-form__header--close-text Close
+      ul.orbit-container.apply-form__container
+        li.is-active.orbit-slide#apply-form__slide-1
+          div
+            h3.text-center Step 1 of 3: About You
+            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
+              .row
+                +apply-1
+        li.orbit-slide#apply-form__slide-2
+          div
+            h3.text-center Step 2 of 3: For SD Hacks
+            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
+              .row
+                +apply-2
+        li.orbit-slide.js-apply-form__confirm-slide
+          div
+            h3.text-center Step 3 of 3: Email Confirmation
+            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
+              .row
+                +apply-3
+
+mixin apply-1
+  .large-6.small-12.columns
+    label.apply-form__required First Name
+    input(type="text", placeholder="First Name", required="", name="firstName")
+  .large-6.small-12.columns
+    label.apply-form__required Last Name
+    input(type="text", placeholder="Last Name", required="", name="lastName")
+
+  .large-6.small-12.columns
+    label.apply-form__required Gender
+    select(placeholder="Gender", required="", name="gender", value="Male")
+      option(value="Male") Male
+      option(value="Female") Female
+      option(value="Non-Binary") Non-Binary
+      option(value="I prefer not to say") I prefer not to say
+      option(value="Other") Other
+  .large-6.small-12.columns
+    label.apply-form__required Birthdate
+    .row
+      .small-4.columns
+        select(required="", name="birthdate_day")
+          option(value="", disabled="", selected="") Day
+          - var n = 1
+          while n <= 31
+            - var day = n < 10 ? '0' + n++ : n++
+            option(value=day)= day
+      .small-4.columns
+        select(required="", name="birthdate_month")
+          option(value="", disabled="", selected="") Month
+          - var n = 1
+          while n <= 12
+            - var month = n < 10 ? '0' + n++ : n++
+            option(value=month)= month
+      .small-4.columns
+        select(required="", name="birthdate_year")
+          option(value="", disabled="", selected="") Year
+          - var n = 1980
+          while n <= 1999
+            option(value=n)= n++
+
+  .large-6.small-12.columns
+    label.apply-form__required Email
+    input(type="text", placeholder="Email", required="", name="email")
+  .large-6.small-12.columns
+    label.apply-form__required Phone Number
+    .input-group
+      span.input-group-label +1
+      input.input-group-field(type="text", placeholder="(555) 555 5555", required="", name="phone")
+
+  .small-12.large-6.columns#instituton-radio
+    label.apply-form__required Institution
+    input#institution-radio-uni(type="radio", value="uni", name="institution", checked="")
+    label(for="institution-radio-uni") University
+    input#institution-radio-hs(type="radio", value="hs", name="institution")
+    label(for="institution-radio-hs") High School
+
+  .small-12.large-6.columns
+    label.apply-form__required#institution-label University
+    input#institution-uni(type="text", placeholder="University", class="js-apply-form__universities", required="", data-dropdown-menu="", name="university")
+    input#institution-hs(type="text", placeholder="High School", style="display: none", data-dropdown-menu="", value="")
+
+  .large-6.small-12.columns
+    label.apply-form__required Major
+    input(type="text", placeholder="Major", class="js-apply-form__majors", required="", name="major")
+  .large-6.small-12.columns
+    label.apply-form__required Graduation Year
+    input(type="number", min="2016", max="2030", value="2016", name="year")
+
+  .large-6.small-12.columns
+    label Github Username
+    .input-group
+      span.input-group-label @
+      input.input-group-field(type="text", placeholder="Github Username", name="github")
+  .large-6.small-12.columns
+    label Personal Website
+    input(type="text", placeholder="Personal Website", name="website")
+
+  .small-12.columns
+    label Resume
+    input(type="file", placeholder="Resume", name="resume")
+
+  .small-12.columns
+    label
+      input(type="checkbox", name="shareResume") 
+      | Would you like us to share your resume and personal information so that companies may contact you about job opportunities?
+
+  .small-12.columns
+    button.button.apply-form__nav-button#js-apply-form__next
+      span.show-for-sr
+        Next Slide
+      |Next
+
+mixin apply-2
+  .small-12.columns
+    label Dietary Restrictions
+    textarea(placeholder="Dietary Restrictions", name="diet")
+
+  .small-12.large-6.columns#outofstate
+    label.apply-form__required Will you be travelling from outside San Diego county?
+    input(id="outOfStateY", type="radio", value="true", name="outOfState")
+    label(for="outOfStateY") Yes
+    input(id="outOfStateN", type="radio", value="false", name="outOfState", checked="")
+    label(for="outOfStateN") No
+
+  .small-12.large-6.columns
+    label If yes, from where?
+    input#city(type="text", placeholder="Which city?", name="city", disabled="")
+
+
+  .large-6.small-12.columns
+    label.apply-form__required T-Shirt Fit
+    input(id="shirtFitM", type="radio", value="M", name="shirtFit", checked="")
+    label(for="shirtFitM") Men's
+    input(id="shirtFitW", type="radio", value="W", name="shirtFit")
+    label(for="shirtFitW") Women's
+
+  .large-6.small-12.columns
+    label.apply-form__required T-Shirt Size
+    each val, ind in ["XS", "S", "M", "L", "XL", "XXL"]
+      input(id="shirtSize#{val}", type="radio", value=val, checked=ind === 2, name="shirtSize")
+      label(for="shirtSize#{val}")= val
+
+  .large-6.small-12.columns
+    label.apply-form__required Will this be your first hackathon?
+    input(id="firstHackathonY", type="radio", value="true", name="firstHackathon", checked="")
+    label(for="firstHackathonY") Yes
+    input(id="firstHackathonN", type="radio", value="false", name="firstHackathon")
+    label(for="firstHackathonN") No
+
+  .small-12.columns
+    label.apply-form__required What do you hope to get out of attending the hackathon?
+    textarea(placeholder="Your outcome", name="outcomeStmt", required="")
+
+  .small-12.columns
+    label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
+
+  .small-12.large-4.columns
+    input(type="email", placeholder="example@email.com", name="team1")
+  .small-12.large-4.columns
+    input(type="email", placeholder="example@email.com", name="team2")
+  .small-12.large-4.columns
+    input(type="email", placeholder="example@email.com", name="team3")
+
+  .small-12.columns
+    label We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, pre and post-event informational e-mails, and occasional messages about hackathons in line with the MLH Privacy Policy.
+
+  .small-12.columns
+    label
+      input(type="checkbox", required="") 
+      | I accept the 
+      a(href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf") MLH Code of Conduct
+    
+  .small-12.columns
+    .button-group.row
+      .small-12.large-4.columns
+        button.button.apply-form__nav-button#js-apply-form__previous
+          span.show-for-sr
+            Previous Slide
+          | Back
+        input.js-apply-form__button--final.apply-form__nav-button(type="submit", class="success button", value="Apply!", id="submitApp")
+        .spinner(style="display: none")
+          .rect1
+          .rect2
+          .rect3
+          .rect4
+          .rect5
+      .small-12.large-8.columns
+        label.js-apply-form__error.js-apply-form__error--message.text-left(for="#submitApp")
+
+mixin apply-3
+  .column.text-center
+    h2.apply-form__container--header Successfully Applied!
+    h4.apply-form__container--subheader Check your email 
+      span#js-apply-form__email
+      |  for a confirmation link

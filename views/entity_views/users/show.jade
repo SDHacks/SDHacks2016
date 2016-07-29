@@ -1,3 +1,96 @@
 //- Show one User
 
 extends ../../layout
+
+block content
+  .row.user-show__container
+    .small-12.show-for-small-only.columns.user-show__disclaimer.text-center
+      p Tap to edit any of the information
+    .small-12.large-3.columns
+      a(href="/")
+        img.user-show__logo(src="/assets/img/logo.png", alt="SD Hacks 2016")
+      span.user-show__name #{user.firstName} #{user.lastName}
+      ul.user-show__details
+        li.user-show__details--item
+          i.fa.fa-university
+          span.editable#university #{user.university}
+        li.user-show__details--item
+          i.fa.fa-graduation-cap
+          span.editable#major #{user.major}
+        li.user-show__details--item
+          i.fa.fa-envelope
+          span.not-editable#email #{user.email}
+        li.user-show__details--item
+          i.fa.fa-github
+          span.editable#github #{user.github}
+        li.user-show__details--item
+          i.fa.fa-globe
+          span.editable#website #{user.website}
+
+    .small-12.large-9.columns
+      h3.user-show__questions--header Your Details
+      .row.user-show__questions
+        .small-12.large-4.columns
+          .user-show__question Gender
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#gender #{user.gender}
+
+        .small-12.large-4.columns
+          .user-show__question Birthdate
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#birthdate #{moment(user.birthdate).format('YYYY-MM-DD')}
+
+        .small-12.large-4.columns
+          .user-show__question Phone Number
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer.user-show__answer--phone#phone #{user.phone}
+
+        .small-12.large-4.columns
+          .user-show__question Graduation Year
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#year #{user.year}
+
+        .small-12.large-4.columns
+          .user-show__question Resume
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer.user-show__answer--file
+            a(href=user.resume.url) Download
+
+      h3.user-show__questions--header SD Hacks Details
+      .row.user-show__questions
+        .small-12.large-4.columns
+          .user-show__question Dietary Restrictions
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#diet #{user.diet !== "" ? user.diet : "None"}
+
+        .small-12.large-4.columns
+          .user-show__question City
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#travel #{user.travel.outOfState ? user.travel.city : "San Diego"}
+
+        .small-12.large-4.columns
+          .user-show__question T-Shirt Size
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#shirtSize #{user.shirtSize}
+
+        .small-12.large-4.columns
+          .user-show__question First Hackathon?
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#firstHackathon #{user.firstHackathon}
+
+        .small-12.large-4.columns
+          .user-show__question Outcome
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#outcomeStmt #{user.outcomeStmt}
+
+        .small-12.large-4.columns
+          .user-show__question Desired Teammates
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#teammates #{user.teammates.join(', ')}
+
+  script(type='text/javascript').
+    var user_id = '#{user._id}';
+
+block scripts
+  script(src='/assets/js/dist/jquery.jeditable.min.js')
+  script(src='/assets/js/dist/user-info.min.js')

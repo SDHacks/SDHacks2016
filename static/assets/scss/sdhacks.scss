@@ -7,6 +7,13 @@
 
 @import 'bem.scss';
 
+$faq_bgcolor: #026F88;
+$faq_color: lighten(#F8C773, 18);
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 h2 {
   text-transform: uppercase;
   font-weight: bold;
@@ -19,28 +26,44 @@ p {
 }
 
 footer {
-  border-image: url(/assets/img/hexagon_border-dark.svg) 250 0 215 repeat;
+  border-image: url(/assets/img/hexagon_border-dark-grey.svg) 250 0 215 repeat;
   border-style: solid;
   border-bottom-width: 0px !important;
   background-clip: padding-box;
-  background-color: #106F87;
+  background-color: #313131;
   text-align: center;
   color: $white;
   padding-bottom: 20px;
   bottom: 0;
   position: relative;
 
+  p {
+    font-size: 1.2em;
+    margin-bottom: 0;
+  }
+
+  a {
+    line-height: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
   @media #{$large-up} {
-    height: 190px;
+    height: 230px;
   }
 
   @media #{$medium-up} {
     img {
+      margin-top: 4px;
     }
 
     p {
       line-height: 50px;
     }
+  }
+
+  .aligned {
+    margin-top: 37px;
   }
 }
 
@@ -66,9 +89,9 @@ footer {
 }
 
 .bordered {
-  border-image: url(/assets/img/hexagon_border.svg) 250 0 215 repeat;
+  border-image: url(/assets/img/hexagon_border-dark.svg) 250 0 215 repeat;
   border-style: solid;
-  background-color: #75C8DC;
+  background-color: $faq_bgcolor;
   background-clip: padding-box;
   color: $white;
   padding-top: 50px;
@@ -76,37 +99,49 @@ footer {
   position: relative;
 
   h2 {
-    color: $white;
     margin-bottom: 35px;
   }
 
   h3 {
     // color: lighten($black, 25);
-    color: $white
+    margin-top: 10px;
+    color: $faq_color;
   }
 
   p {
-    color: lighten($black, 25);
+    color: $white;
   }
 
   a {
-    color: #106F87;
+    color: inherit;
+    border-bottom: 2px solid #fceaca;
+    padding: 0 0 0 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
   }
 
-  // To get rid of a white line between wave and content
+  .tesc {
+    max-width: 300px;
+  }
+
+  .tesc {
+    max-width: 300px;
+  }
   
   &--bg {
     position: absolute;
     width: 100%;
     height: 30px;
-    background-color: #75C8DC;
+    background-color: #026F88;
     z-index: -5;
 
     &.bg-top {
       top: -15px;
 
       &.footer-bg {
-        background-color: #106F87;
+        background-color: #313131;
       }
     }
 
@@ -125,6 +160,10 @@ footer {
   }
 }
 
+.faq {
+  color: $faq_color;
+}
+
 .sponsor-interest {
   text-align: center;
   font-size: 1.1em;
@@ -132,15 +171,42 @@ footer {
 
 .sponsors {
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 80px;
   text-align: center;
 
   img {
-    padding: 0 20px;
+    padding: 0 12px;
+    margin-bottom: 40px;
     display: inline-block;
-    max-height: 80px;
     max-width: 100%;
   }
+  .platinum img {
+    height: 75px;
+
+    @media #{$medium-up} {
+      height: 95px;
+    }
+  }
+  .gold img {
+    height: 60px;
+
+    @media #{$medium-up} {
+      height: 80px;
+    }
+  }
+  .silver img {
+    height: 45px;
+    @media #{$medium-up} {
+      height: 60px;
+    }
+  }
+  .bronze img {
+    height: 36px;
+    @media #{$medium-up} {
+      height: 42px;
+    }
+  }
+
 }
 
 input:-webkit-autofill {
@@ -166,130 +232,90 @@ input:-webkit-autofill {
   }
 }
 
-// Emergency fix (add good practice later)
-@media screen and (max-width: 420px) {
-  .hero__content h1 {
-    font-size: 28px !important;
-  }
-  .hero__content h2 {
-    font-size: 24px !important;
-    padding-bottom: 5%;
-  }
-
+.spinner {
+  display: inline-block;
+  position: relative;
+  top: 12px;
+  width: 50px;
+  height: 28px;
+  text-align: center;
+  font-size: 10px;
 }
 
+.spinner > div {
+  background-color: $primary-color;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  margin-right: 1px;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+.ui-autocomplete {
+  border-radius: $global-radius;
+
+  .ui-menu-item {
+    background-color: #fdfdfd;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-gray;
+    }
+
+    &:first-child {
+      border-radius: $global-radius $global-radius 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $global-radius $global-radius;
+    }
+
+    &:hover {
+      background-color: $white;
+    }
+
+    @media screen and (max-width: 640px) {
+      margin-right: 1.5rem;
+    }
+  }
+}
 
 .ui-helper-hidden-accessible{display:none}
-
-// Buttons
-
-input {
-  border-radius: 0;
-}
-
-input {
-  -webkit-appearance: none;
-}
-input:focus {
-  border: none !important;
-  box-shadow: none !important;
-  background-color: transparent !important;
-}
-
-.buttons {
-  padding: 0px 20px 0px 20px;
-}
-
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  margin: 10px 0px 10px 0px;
-  font-size: 20px; 
-  border: 3px solid #FFFFFF; 
-  border-radius: 5px; 
-  letter-spacing: .03em; 
-  background-color: #646464; 
-  color: #FFFFFF; 
-  box-sizing: border-box; 
-  height: 40px; 
-  padding: 20px;
-  cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
-}
-#sponsor {
-  width: 250px;
-  transform: translateY(1px);
-}
-@media only screen and (max-width: 480px)  {
-  #update_signup {
-    transform: translateX(-2px);
-  }
-  .btn, #sponsor {
-    width: 80%;
-  }
-}
-
-#sponsor:hover {
-  background-color: #868686; 
-  color: #FFFFFF;
-}
-
-.validate {
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-#update_signup {
-  position: relative;
-}
-
-.email-input {
-  outline: none;
-  border: 0;
-  width: 100%;
-  background: transparent; 
-  font-size: 14px;
-  line-height: 24px;
-  padding: 8px 31% 8px 8px;
-  font-size: 18px;
-  color: #646464;
-}
-.subscribe-button, .btn.sponsor {
-  font-family: 'Source Sans Pro';
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 20px;
-}
-.email-input, .btn.sponsor {
-  margin: 10px;
-}
-.email-input {
-  margin-left: -10px;
-
-  &::-webkit-input-placeholder, &::-moz-placeholder, &::-ms-input-placeholder, &::-webkit-input-placeholder {
-    color: #646464;
-  }
-}
-
-.subscribe-button {
-  cursor: pointer;
-  border: 0;
-  outline: none;
-  position: absolute;
-  right: 0;
-  min-width: 100%;
-  transition: all 0.3s ease-in-out;
-  color: white;
-  background-color: #00a3c7;
-  height: 100%; 
-  padding: 0 15px 0 15px;
-  line-height: 40px;
-  transform: translateY(-50%);
-  border-radius: 5px;
-}
-
-
-.subscribe-button:hover {
-  background-color: #22B9CE;
-}

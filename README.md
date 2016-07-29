@@ -1,22 +1,9 @@
-# SDHacks 2016
-
-### Available Gulp Tasks:
-
-*Automatic Tasks:*
-
-- **sass:** Live compiling of **scss** files to **minified css**
-- **jscoffee:** Live compiling of **coffee** files to **minified js**
-- **jshint:** Javascript **linter** for your project
-- **build-js:** Compiles files on **static/assets/js** to **minified js** (with sourcemaps) separately
-- **build-ng:** Compiles and concatenates all your angular app code into one single minified file (with sourcemaps)
-
-*Manual Tasks:*
-
-- **img-optimizer:** Lossless compression for all the images used in your project
+# <img src="static/assets/img/logo.png" height="100" style="float:left;">
+[![CircleCI](https://circleci.com/gh/SDHacks/SDHacks2016.svg?style=svg&circle-token=3b53586e361c8808a2e674c813516d0b094e8e6d)](https://circleci.com/gh/SDHacks/SDHacks2016) [![Heroku](http://heroku-badge.herokuapp.com/?app=sdhacks2016-prod&style=flat)](https://www.sdhacks.io/)
 
 ### Usage
 
-Assuming you already have the needed **MEAN Stack** pieces installed on your computer/server (**MongoDB**, **NodeJS** & **ExpressJS**) plus **Git** & **Bower** Just run:
+Assuming you already have the needed **MEAN Stack** pieces installed on your computer/server (**[MongoDB](https://www.mongodb.com/)** & **[NodeJS](https://nodejs.org/en/)**) as well as **Git** Just run:
 
     1. git clone
     2. cd SDHacks2016
@@ -26,5 +13,4 @@ Assuming you already have the needed **MEAN Stack** pieces installed on your com
     6. gulp
     
 Edit any options in the new .env file to match your needs
-
-From inside your app's folder and then open **http://localhost:3000** in your browser.
+To preview the website, open **http://localhost:3000** in your browser.

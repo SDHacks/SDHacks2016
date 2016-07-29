@@ -13,6 +13,7 @@ $empty-hex-colour: lighten($hero-background, 10);
 
 .hero {
   position: relative;
+  z-index: 10;
   overflow: hidden;
   width: 100%;
   height: $hero-size-mobile;
@@ -38,6 +39,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       transition: fill 250ms linear;
       stroke: $hero-background;
       stroke-width: 2px;
+      -webkit-touch-callout: none;
 
       &:after {
         background-color: #444;
@@ -78,7 +80,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       fill: url(/#filled);
 
       &-colour {
-        fill: $primary-color;
+        fill: darken($primary-color, 20%);
       }
     }
 
@@ -108,18 +110,29 @@ $empty-hex-colour: lighten($hero-background, 10);
       height: 325px;  
     }
 
-    h1 {
+    &--date {
+      @media #{$small-only} {
+        font-size: 28px;
+      }
+
       color: $white;
       font-weight: bold;
       text-transform: uppercase;
+      text-shadow: 
+        0 -1px 5px rgba(0, 0, 0, 0.7),
+        0 5px 10px rgba(0, 0, 0, 0.5);
     }
 
-    h2 {
+    &--place {
+      @media #{$small-only} {
+        font-size: 24px;
+        padding-bottom: 5%;
+      }
+
       color: $warning-color;
-    }
-
-    form {
-      pointer-events: auto;
+      text-shadow: 
+        0 -1px 3px rgba(0, 0, 0, 0.7), 
+        0 2px 7px rgba(0, 0, 0, 0.5);
     }
 
     a {
@@ -127,7 +140,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       line-height: 10px;
       text-transform: uppercase;
       font-weight: bold;
-      border: 3px $white solid;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
 
       @media #{$medium-up} {
         width: 200px;
@@ -138,10 +151,10 @@ $empty-hex-colour: lighten($hero-background, 10);
       }
 
       &:nth-of-type(2) {
-        background-color: transparent;
+        background-color: #646464;
 
         &:hover {
-          background-color: scale-color($button-background, $lightness: -15%);
+          background-color: scale-color(#646464, $lightness: -15%);
         }
       }
     }

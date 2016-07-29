@@ -1,9 +1,17 @@
 //- Main Layout of our project
 doctype
-html(lang='en-US')
+html(lang='en-US', prefix="og: http://ogp.me/ns#")
     head
         meta(charset='UTF-8')
         base(href='/')
+
+        //- Facebook meta data
+        meta(property='og:title', content='SD Hacks 2016')
+        meta(property='og:description', content='Official Website of SD Hacks 2016')
+        meta(property='og:image', content='https://www.sdhacks.io/assets/img/logo.png')
+        meta(property='og:image:secure_url', content='https://www.sdhacks.io/assets/img/logo.png')
+        meta(property='og:image:type', content='image/png')
+
         title SD Hacks 2016
         meta(name="theme-color", content="#19A3C5")
         meta(name='description', content='Official Website of SD Hacks 2016')
@@ -30,4 +38,5 @@ html(lang='en-US')
     script(src='/assets/bower/bower_components/jquery/dist/jquery.min.js')
     script(src='/assets/bower/bower_components/foundation-sites/dist/foundation.min.js')
     block scripts
+    link(rel='stylesheet', href='/assets/bower/bower_components/motion-ui/dist/motion-ui.min.css')
     link(rel='stylesheet', href='/assets/bower/bower_components/font-awesome/css/font-awesome.min.css')
