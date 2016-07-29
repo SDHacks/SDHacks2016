@@ -152,7 +152,8 @@ $(document).ready(function() {
     var valid = true;
     $.each($("input, select", $("#apply-form__slide-1")), function() {
       var input = $(this);
-      if(this.validity && !this.validity.valid) {
+      var visible = input.is(":visible");
+      if(this.validity && visible && !this.validity.valid) {
         valid = false;
       }
     }).promise().done(function() {
