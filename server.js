@@ -62,7 +62,7 @@
     });
     var confirmSender = transporter.templateSender(new EmailTemplate('./views/emails/confirmation'), {
       from: {
-        name: 'SD Hacks 2016',
+        name: 'SD Hacks Team',
         address: process.env.MAIL_USER
       }
     });

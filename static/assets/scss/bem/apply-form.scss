@@ -24,8 +24,12 @@
   position: relative;
 
   &__header {
-    font-size: 3.0em;
+    font-size: 2em;
     text-align: center;
+
+    @media #{$medium-up} {
+      font-size: 3.0em;
+    }
 
     &--close {
       color: $dark-gray;
@@ -95,6 +99,10 @@
 
   textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
     background: lighten($white, 2%);
+
+    &:focus {
+      outline: none;
+    }
   }
   input[type="checkbox"] {
     margin-bottom: 0;

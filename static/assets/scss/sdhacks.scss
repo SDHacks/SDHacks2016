@@ -115,6 +115,10 @@ footer {
   a {
     color: lighten($primary-color, 15);
   }
+
+  .tesc {
+    max-width: 300px;
+  }
   
   &--bg {
     position: absolute;
@@ -127,7 +131,7 @@ footer {
       top: -15px;
 
       &.footer-bg {
-        background-color: #106F87;
+        background-color: #313131;
       }
     }
 
@@ -170,26 +174,26 @@ footer {
     height: 75px;
 
     @media #{$medium-up} {
-      height: 105px;
+      height: 95px;
     }
   }
   .gold img {
     height: 60px;
 
     @media #{$medium-up} {
-      height: 85px;
+      height: 80px;
     }
   }
   .silver img {
     height: 45px;
     @media #{$medium-up} {
-      height: 65px;
+      height: 60px;
     }
   }
   .bronze img {
     height: 36px;
     @media #{$medium-up} {
-      height: 50px;
+      height: 42px;
     }
   }
 
