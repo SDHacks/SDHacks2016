@@ -140,7 +140,7 @@ $(document).ready(function() {
 
   $("#js-apply-form__next").click(function() {
     var valid = true;
-    $.each($("input", $("#apply-form__slide-1")), function() {
+    $.each($("input, select", $("#apply-form__slide-1")), function() {
       var input = $(this);
       if(this.validity && !this.validity.valid) {
         valid = false;
