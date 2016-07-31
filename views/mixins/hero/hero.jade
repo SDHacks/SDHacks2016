@@ -2,9 +2,9 @@ include fill
 include stroke
 
 mixin hero-image(id)
-  pattern(id="pool#{id}", width="100%", height="100%", preserveAspectRatio="xMidYMid" viewBox="0 0 186 124")
+  pattern(id="pool#{id}", width="100%", height="100%", preserveAspectRatio="xMidYMid" viewBox="0 0 372 248")
     +stroke
-    image(xlink:href="/assets/img/hero/#{id}.jpg", width="320", height="213", preserveAspectRatio="xMidYMid meet", y="-44")
+    image(xlink:href="/assets/img/hero/#{id}.jpg", width="640", height="427", preserveAspectRatio="xMidYMid meet", y="-89.5")
 
 mixin hero
   a#mlh-trust-badge(style="display:block;max-width:100px;min-width:60px;position:absolute;right:50px;top:0;width:10%;z-index:1000" href="https://mlh.io/seasons/na-2017/events?utm_source=na-2017&utm_medium=TrustBadge&utm_campaign=na-2017&utm_content=white" target="_blank")
@@ -13,7 +13,7 @@ mixin hero
     svg
       defs
         - var n = 1
-        while n <= 8 
+        while n <= 64 
           +hero-image(n)
           +fill-image(n++)
         pattern(id="logo", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")

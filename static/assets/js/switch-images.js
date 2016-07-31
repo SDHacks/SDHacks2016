@@ -1,4 +1,5 @@
 var imageCounter = 0;
+var totalImages = 64;
 var images = [
 	'#image-pool1',
 	'#image-pool2',
@@ -29,8 +30,7 @@ function pickRandHexagon(hexagonSelector) {
 }
 
 function pickImage() {
-	imageCounter++;
-	return images[imageCounter%images.length];
+	return "#image-pool" + ((imageCounter++ % totalImages) + 1);
 }
 
 function highlightHexagon() {
