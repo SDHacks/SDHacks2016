@@ -178,6 +178,9 @@ function resize() {
 
     d3.select(".hero__hexagon--border")
         .attr('height', borderHeight)
+        .style('-webkit-transform', transform)
+        .style('-moz-transform', transform)
+        .style('-ms-transform', transform)
         .style('transform', transform);
 
     var hexagons = $(".hero__hexagon--empty");

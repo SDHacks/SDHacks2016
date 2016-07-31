@@ -113,10 +113,7 @@ mixin apply-1
       | Would you like us to share your resume and personal information so that companies may contact you about job opportunities?
 
   .small-12.columns
-    button.button.apply-form__nav-button#js-apply-form__next
-      span.show-for-sr
-        Next Slide
-      |Next
+    input.button.apply-form__nav-button#js-apply-form__next(type="button", value="Next")
 
 mixin apply-2
   .small-12.columns
@@ -181,10 +178,7 @@ mixin apply-2
   .small-12.columns
     .button-group.row
       .small-12.large-4.columns
-        button.button.apply-form__nav-button#js-apply-form__previous
-          span.show-for-sr
-            Previous Slide
-          | Back
+        input.button.apply-form__nav-button#js-apply-form__previous(type="button", value="Back")
         input.js-apply-form__button--final.apply-form__nav-button(type="submit", class="success button", value="Apply!", id="submitApp")
         .spinner(style="display: none")
           .rect1

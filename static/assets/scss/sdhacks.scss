@@ -341,11 +341,13 @@ input:focus {
 
 .btn {
   pointer-events: auto;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 250px;
-  margin: 10px 15px 10px 0px;
+  margin: 0 15px 10px 0px;
   font-size: 20px;  
   letter-spacing: .03em; 
   background-color: #646464; 
@@ -356,17 +358,19 @@ input:focus {
   cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
-  top: -6px;
 }
-#sponsor {
+#temporary-sponsor {
   width: 250px;
-  transform: translateY(1px);
+  background-color: #646464;
+  margin-bottom: 0;
+  vertical-align: top;
+
+  &:hover {
+    background-color: lighten(#646464, 8%);
+  }
 }
 @media only screen and (max-width: 480px)  {
-  #update_signup {
-    transform: translateX(-2px);
-  }
-  .btn, #sponsor {
+  .btn, #temporary-sponsor {
     width: 80%;
   }
 }
@@ -396,6 +400,9 @@ input:focus {
   padding: 8px 31% 8px 8px;
   font-size: 18px;
   color: #646464;
+  position: absolute;
+  left: 8px;
+  top: -8px;
 }
 .subscribe-button, .btn.sponsor {
   font-family: 'Source Sans Pro';
@@ -420,6 +427,7 @@ input:focus {
   outline: none;
   position: absolute;
   right: 0;
+  top: 0;
   min-width: 100%;
   transition: all 0.3s ease-in-out;
   color: white;
@@ -427,20 +435,10 @@ input:focus {
   height: 100%; 
   padding: 0 15px 0 15px;
   line-height: 40px;
-  transform: translateY(-50%);
   border-radius: $global-radius;
 }
 
 
 .subscribe-button:hover {
   background-color: #22B9CE;
-}
-
-#temporary-sponsor {
-  width: 250px;
-  background-color: #646464;
-
-  &:hover {
-    background-color: lighten(#646464, 8%);
-  }
 }
