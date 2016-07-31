@@ -70,7 +70,12 @@
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
     app.use(favicon(path.join(__dirname, 'static/assets/img/favicon.png')));
-    app.use(logger('dev'));
+    if('development' == app.get('env'))
+      app.use(logger('dev'))
+    else
+      app.use(logger('common', {
+        skip: function (req, res) { return res.statusCode < 400 }
+      }));
     app.use(cookieParser());
     app.use(bodyParser.json());
     app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
