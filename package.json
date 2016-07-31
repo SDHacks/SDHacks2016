@@ -11,6 +11,7 @@
     "postinstall": "bower install && gulp prod"
   },
   "dependencies": {
+    "basic-auth": "^1.0.4",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "coffee-script": "1.10.0",

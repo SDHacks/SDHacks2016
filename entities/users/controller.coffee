@@ -1,4 +1,4 @@
-module.exports = (app) ->
+module.exports = (app, config) ->
 
   # Model and Config
   User = require('./model')
@@ -6,7 +6,19 @@ module.exports = (app) ->
 
   # Admin
 
-  app.get "/users/admin", (req, res, next) ->
+  basicAuth = require('basic-auth')
+  auth = (req, res, next) ->
+    unauthorized = (res) ->
+      res.set 'WWW-Authenticate', 'Basic realm=Authorization Required'
+      return res.send 401
+
+    user = basicAuth(req)
+
+    return unauthorized res if (!user || !user.name || !user.pass)
+    return next() if (user.name == config.ADMIN_USER && user.pass == config.ADMIN_PASS)
+    return unauthorized res
+
+  app.get "/users/admin", auth, (req, res, next) ->
     #TODO Secure this endpoint
     User.find (err, users) ->
       res.render("entity_views/users/admin.jade", {users: users})

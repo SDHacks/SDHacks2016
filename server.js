@@ -48,7 +48,6 @@
     // Passport Logic
     var passport = require('passport');
     var User = require('./entities/users/model');
-    require('./extras/passport')(passport, LocalStrategy, User, process.env);
 
     // Node mailer
     var transporter = mailer.createTransport({
@@ -81,7 +80,6 @@
     app.use(passport.initialize());
     app.use(flash());
     app.use(methodOverride('X-HTTP-Method-Override'));
-    require('./extras/middleware')(app);
     app.use(static_dir(path.join(__dirname, 'static')));
     var appRoutes = require('./routes/index')(app, process.env, User);
     var apiRoutes = require('./routes/api')(app, User, confirmSender);
