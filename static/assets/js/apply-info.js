@@ -68,15 +68,18 @@ $(document).ready(function() {
   });
 
   $(".js-apply-form__button--final").click(function(e) {
+    console.log('[Apply Form] Submitted');
     var form = $(".apply-form");
     if ((typeof(form[0].checkValidity) == "function" ) && !form[0].checkValidity()) {
       showError('Please fill out all required fields');
       return form.submit();
     }
+    console.log('[Apply Form] Prevented Default');
     showError("");
     $(".spinner", applyForm).css('display', 'inline-block');
 
     var formData = new FormData(form[0]);
+    console.log('[Apply Form] Form Data created');
 
     $.ajax({
       url: '/api/register',
@@ -84,6 +87,7 @@ $(document).ready(function() {
       data: formData,
       async: true,
       success: function (data) {
+        console.log('[Apply Form] Successful Registration');
         ga('send', 'event', 'Registration', 'registered');
 
         $("#js-apply-form__email").text(data.email);
@@ -97,6 +101,7 @@ $(document).ready(function() {
         }, 150, 'swing');
       },
       error: function(data) {
+        console.log('[Apply Form] Error Occurred');
         $(".spinner", applyForm).css('display', 'none');
         data = data.responseJSON;
         if(data.error) {

@@ -8,11 +8,23 @@ var gulp   = require('gulp'),
     coffee = require('gulp-coffee'),
     sass = require('gulp-sass'),
     nodemon = require('gulp-nodemon'),
-    plumber = require('gulp-plumber');
+    plumber = require('gulp-plumber'),
+    path = require('path');
     
-gulp.task('default', ['watch', 'nodemon']);
-gulp.task('test', ['sass', 'jscoffee', 'jshint', 'build-js']);
-gulp.task('prod', ['sass', 'jscoffee', 'jshint', 'build-js']);
+gulp.task('default', ['package-js', 'sass', 'watch', 'nodemon']);
+gulp.task('test', ['sass', 'jshint', 'package-js']);
+gulp.task('prod', ['sass', 'jshint', 'package-js']);
+
+var bowerComponentPath = 'static/assets/bower/bower_components/';
+var bowerComponents = [
+  path.join(bowerComponentPath, 'jquery/dist/jquery.min.js'),
+  path.join(bowerComponentPath, 'foundation-sites/dist/foundation.min.js'),
+  path.join(bowerComponentPath, 'd3/d3.min.js'),
+  path.join(bowerComponentPath, 'topojson/topojson.min.js'),
+  path.join(bowerComponentPath, 'jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js'),
+  path.join(bowerComponentPath, 'jquery-ui/jquery-ui.min.js'),
+  path.join(bowerComponentPath, 'velocity/velocity.min.js')
+];
 
 // Handle Errors
 function handleError(err) {
@@ -36,18 +48,6 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('static/assets/css'));
 });
 
-// Coffee Compiler
-gulp.task('jscoffee', function() {
-  gulp.src('static/assets/coffee/*.coffee')
-    .pipe(plumber(plumberOptions))
-    .pipe(sourcemaps.init())
-      .pipe(coffee())
-      .pipe(uglify())
-      .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('static/assets/js/dist'))
-});
-
 // JS Linter
 gulp.task('jshint', function() {
   gulp.src(['static/app/**/*.js', 'static/assets/js/*.js'])
@@ -60,26 +60,37 @@ gulp.task('jshint', function() {
 gulp.task('build-js', function() {
   gulp.src(['static/assets/js/*.js', 'static/assets/js/vendor/*.js'])
     .pipe(plumber(plumberOptions))
-    .pipe(sourcemaps.init())
+    .pipe(gutil.env.type === 'production' ? sourcemaps.init() : gutil.noop())
       .pipe(uglify())
       .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write())
+    .pipe(gutil.env.type === 'production' ? sourcemaps.write() : gutil.noop())
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('static/assets/js/dist'));
+});
+
+gulp.task('package-js', function() {
+  gulp.start(['build-js', 'package-bower']);
+});
+
+gulp.task('package-bower', function() {
+  gulp.src(bowerComponents, {base: bowerComponentPath})
+    .pipe(plumber(plumberOptions))
+    .pipe(concat('vendor.js'))
     .pipe(gulp.dest('static/assets/js/dist'));
 });
 
 // Watcher
 gulp.task('watch', function() {
   gulp.watch('static/assets/scss/**/*.scss', ['sass']);
-  gulp.watch('static/assets/coffee/*.coffee', ['jscoffee']);
   gulp.watch('static/assets/js/*.js', ['jshint']);
-  gulp.watch(['static/assets/js/*.js', 'static/assets/js/vendor/*.js'], ['build-js']);
+  gulp.watch(['static/assets/js/*.js', 'static/assets/js/vendor/*.js'], ['package-js']);
 });
 
 // Nodemon
 gulp.task('nodemon', function() {
   nodemon({
     script: 'server.js',
-    ext: 'js coffee',
+    ext: 'js',
     env: { 'NODE_ENV': 'development' }
   });
 });

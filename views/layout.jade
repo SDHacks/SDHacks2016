@@ -18,9 +18,6 @@ html(lang='en-US', prefix="og: http://ogp.me/ns#")
         meta(name='keywords', content='SD Hacks, 2016, SD Hacks 2016, hackathon, UCSD, UC, University of California San Diego, San Diego')
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0')
-        //if lt IE 9
-          script(src='/assets/bower/bower_components/html5shiv/dist/html5shiv.min.js')
-          script(src='/assets/bower/bower_components/respond/dest/respond.min.js')
         link(rel='shortcut icon', href='/assets/img/favicon.png')
         link(rel='stylesheet', href='/assets/css/sdhacks.min.css')
 
@@ -35,8 +32,8 @@ html(lang='en-US', prefix="og: http://ogp.me/ns#")
           ga('create', 'UA-80513105-1', 'auto');
           ga('send', 'pageview');
 
-    script(src='/assets/bower/bower_components/jquery/dist/jquery.min.js')
-    script(src='/assets/bower/bower_components/foundation-sites/dist/foundation.min.js')
+    script(src='/assets/js/dist/vendor.js')
+    script(src='/assets/js/dist/app.js')
     block scripts
     link(rel='stylesheet', href='/assets/bower/bower_components/motion-ui/dist/motion-ui.min.css')
     link(rel='stylesheet', href='/assets/bower/bower_components/font-awesome/css/font-awesome.min.css')
