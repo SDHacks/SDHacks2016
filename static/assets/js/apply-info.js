@@ -63,12 +63,20 @@ $(document).ready(function() {
     $(".js-apply-form__error").css('display', 'block');
   };
 
-  applyForm.submit(function(e) {
-    e.preventDefault();
-    $(".js-apply-form__error").css('display', 'none');
+  $(".apply-form").submit(function(e) {
+    return false;
+  });
+
+  $(".js-apply-form__button--final").click(function(e) {
+    var form = $(".apply-form");
+    if ((typeof(form[0].checkValidity) == "function" ) && !form[0].checkValidity()) {
+      showError('Please fill out all required fields');
+      return form.submit();
+    }
+    showError("");
     $(".spinner", applyForm).css('display', 'inline-block');
 
-    var formData = new FormData($(this)[0]);
+    var formData = new FormData(form[0]);
 
     $.ajax({
       url: '/api/register',
@@ -125,9 +133,11 @@ $(document).ready(function() {
 
     show.css('display', 'block');
     show.attr('name', 'university');
+    show.attr('required', true);
 
     hide.css('display', 'none');
     hide.attr('name', '');
+    hide.attr('required', false);
 
     if(majorRequired) {
       $("#major").attr('required', true);

@@ -32,6 +32,7 @@ UsersSchema = new Schema({
     type: String,
     required: [true, "You must have an email"],
     trim: true,
+    lowercase: true,
     unique: true,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "You must use a valid email"]
   },
