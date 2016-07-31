@@ -4,6 +4,12 @@ module.exports = (app) ->
   User = require('./model')
   # Index
 
+  # Admin
+
+  app.get "/users/admin", (req, res, next) ->
+    #TODO Secure this endpoint
+    User.find (err, users) ->
+      res.render("entity_views/users/admin.jade", {users: users})
 
   # Show
   app.get '/users/:id', (req, res) ->
@@ -62,12 +68,3 @@ module.exports = (app) ->
 
 
   # Destroy
-
-
-  # Admin
-
-  app.get "/users/admin", (req, res, next) ->
-    #TODO Secure this endpoint
-    User.find().exec (err, users) ->
-      return next(err)  if err
-      res.render("entity_views/users/admin.jade", {users: users})

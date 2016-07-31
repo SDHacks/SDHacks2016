@@ -1,0 +1,22 @@
+.user-admin {
+  &__container {
+    @media #{$medium-up} {
+      padding-top: 1.5em;
+    }
+  }
+
+  &__header {
+    text-align: left;
+  }
+
+  &__logo {
+    display: block;
+    max-width: 125px;
+    padding-right: 15px;
+
+    @media #{$medium-up} {
+      padding-right: 0;
+      max-width: 200px;
+    }
+  }
+}

@@ -90,7 +90,7 @@ gulp.task('watch', function() {
 gulp.task('nodemon', function() {
   nodemon({
     script: 'server.js',
-    ext: 'js',
+    ext: 'js coffee',
     env: { 'NODE_ENV': 'development' }
   });
 });
