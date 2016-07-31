@@ -79,7 +79,7 @@
       font-size: 1.4em;
     }
 
-    input:not([type="submit"]):not([type="file"]), textarea, select {
+    input:not([type="submit"]):not([type="file"]):not([type="button"]), textarea, select {
       &:not(:disabled) {
         background-color: #fdfdfd !important;
       }
