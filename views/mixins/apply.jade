@@ -46,19 +46,19 @@ mixin apply-1
     label.apply-form__required Birthdate
     .row
       .small-4.columns
-        select(required="", name="birthdate_day")
-          option(value="", disabled="", selected="") Day
-          - var n = 1
-          while n <= 31
-            - var day = n < 10 ? '0' + n++ : n++
-            option(value=day)= day
-      .small-4.columns
         select(required="", name="birthdate_month")
           option(value="", disabled="", selected="") Month
           - var n = 1
           while n <= 12
             - var month = n < 10 ? '0' + n++ : n++
             option(value=month)= month
+      .small-4.columns
+        select(required="", name="birthdate_day")
+          option(value="", disabled="", selected="") Day
+          - var n = 1
+          while n <= 31
+            - var day = n < 10 ? '0' + n++ : n++
+            option(value=day)= day
       .small-4.columns
         select(required="", name="birthdate_year")
           option(value="", disabled="", selected="") Year
