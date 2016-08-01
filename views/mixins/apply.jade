@@ -26,14 +26,10 @@ mixin apply
 mixin apply-1
   .large-6.small-12.columns
     label.apply-form__required First Name
-    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName", data-validation-allowing=" -'", data-validation-error-msg="Please enter a valid name")
+    input(type="text", placeholder="First Name", data-validation="length alphanumeric", name="firstName", data-validation-allowing=" -'", data-validation-length="1-50")
   .large-6.small-12.columns
     label.apply-form__required Last Name
-    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName", data-validation-allowing=" -'", data-validation-error-msg="Please enter a valid name")
-    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName", data-validation-error-msg="Please enter a valid name")
-  .large-6.small-12.columns
-    label.apply-form__required Last Name
-    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName", )
+    input(type="text", placeholder="Last Name", data-validation="length alphanumeric", name="lastName", data-validation-allowing=" -'", data-validation-length="1-50")
 
   .large-6.small-12.columns
     label.apply-form__required Gender
@@ -99,7 +95,7 @@ mixin apply-1
     label Github Username
     .input-group
       span.input-group-label @
-      input.input-group-field(type="text", placeholder="Github Username", name="github")
+      input.input-group-field(type="text", placeholder="Github Username", name="github" data-validation="length" data-validation-length="0-50")
   .large-6.small-12.columns
     label Personal Website
     input(type="text", placeholder="Personal Website", name="website")
@@ -121,7 +117,7 @@ mixin apply-1
 mixin apply-2
   .small-12.columns
     label Dietary Restrictions
-    textarea(placeholder="Dietary Restrictions", name="diet")
+    textarea(placeholder="Dietary Restrictions", name="diet" data-validation="length" data-validation-length="0-1000")
 
   .small-12.large-6.columns#outofstate
     label.apply-form__required Will you be travelling from outside San Diego county?
@@ -159,7 +155,7 @@ mixin apply-2
     label.apply-form__required What do you hope to get out of attending the hackathon?
     span#outcomeStmt-length-element 500
     |  chars left
-    textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="alphanumeric")
+    textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="length alphanumeric" data-validation-length="0-1000")
 
   .small-12.columns
     label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
