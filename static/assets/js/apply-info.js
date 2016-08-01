@@ -37,28 +37,28 @@ $(document).ready(function() {
 
   $(".js-apply-form__open").click(function(e) {
     applyForm.slideDown(500, function() {
+      //Ensure it only opens once
+      if(!applyForm.hasClass("js-apply-form__orbit")) {
+        $(".slick-container").slick({
+          infinite: false,
+          draggable: false,
+          arrows: false,
+          swipe: false,
+          touchMove: false,
+          adaptiveHeight: true
+        });
+        $('#outcomeStmt').restrictLength( $('#outcomeStmt-length-element') );
+        applyForm.addClass("js-apply-form__orbit");
+
+        $.validate({
+          modules : 'file'
+        });
+      }
       $('html,body').animate({
         scrollTop: applyForm.offset().top
       }, 150, 'swing');
       $("input:visible:first", applyForm).focus();
     });
-
-    //Ensure it only opens once
-    if(!applyForm.hasClass("js-apply-form__orbit")) {
-      $(".slick-container").slick({
-        infinite: false,
-        draggable: false,
-        arrows: false,
-        swipe: false,
-        touchMove: false,
-        adaptiveHeight: true
-      });
-      applyForm.addClass("js-apply-form__orbit");
-
-      $.validate({
-        modules : 'file'
-      });
-    }
   });
 
   $(".js-apply-form__close").click(function(e) {

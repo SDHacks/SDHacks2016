@@ -26,10 +26,10 @@ mixin apply
 mixin apply-1
   .large-6.small-12.columns
     label.apply-form__required First Name
-    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName")
+    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName", data-validation-allowing=" -'")
   .large-6.small-12.columns
     label.apply-form__required Last Name
-    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName")
+    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName", data-validation-allowing=" -'")
 
   .large-6.small-12.columns
     label.apply-form__required Gender
@@ -153,7 +153,9 @@ mixin apply-2
 
   .small-12.columns
     label.apply-form__required What do you hope to get out of attending the hackathon?
-    textarea(placeholder="Your outcome", name="outcomeStmt", data-validation="alphanumeric")
+    span#outcomeStmt-length-element 500
+    |  chars left
+    textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="alphanumeric")
 
   .small-12.columns
     label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
