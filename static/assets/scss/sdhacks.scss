@@ -200,7 +200,7 @@ footer {
   }
   .silver img {
     height: 45px;
-    
+
     @media #{$medium-up} {
       height: 50px;
     }
@@ -324,3 +324,8 @@ input:-webkit-autofill {
 }
 
 .ui-helper-hidden-accessible{display:none}
+
+.slick-list {
+  overflow-y: visible !important;
+  height: auto !important;
+}
