@@ -53,7 +53,7 @@ $(document).ready(function() {
       applyForm.addClass("js-apply-form__orbit");
 
       $.validate({
-        modules : 'html5'
+        modules : 'file'
       });
     }
   });
