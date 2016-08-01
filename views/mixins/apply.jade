@@ -1,5 +1,5 @@
 mixin apply
-  .apply-form.orbit.js-bordered(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false")
+  form#apply.apply-form.orbit.js-bordered(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
     .row.column
       .small-12.large-8.large-offset-2.columns
         h1.apply-form__header Apply for SD Hacks 2016
@@ -11,16 +11,14 @@ mixin apply
           div
             h3.text-center Step 1 of 3: About You
             .small-12.large-8.large-offset-2.columns.apply-form__slide-content
-              form#applyFormOne(method="POST")
-                .row
-                  +apply-1
+              .row
+                +apply-1
         li.orbit-slide#apply-form__slide-2
           div
             h3.text-center Step 2 of 3: For SD Hacks
             .small-12.large-8.large-offset-2.columns.apply-form__slide-content
-              form.js-apply-form#apply(enctype="multipart/form-data", method="POST", action="/api/register")
-                .row
-                  +apply-2
+              .row
+                +apply-2
         li.orbit-slide.js-apply-form__confirm-slide
           div
             h3.text-center Step 3 of 3: Email Confirmation
@@ -31,14 +29,14 @@ mixin apply
 mixin apply-1
   .large-6.small-12.columns
     label.apply-form__required First Name
-    input(type="text", placeholder="First Name", required="", name="firstName")
+    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName")
   .large-6.small-12.columns
     label.apply-form__required Last Name
-    input(type="text", placeholder="Last Name", required="", name="lastName")
+    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName")
 
   .large-6.small-12.columns
     label.apply-form__required Gender
-    select(placeholder="Gender", required="", name="gender", value="Male")
+    select(placeholder="Gender", data-validation="required", name="gender", value="Male")
       option(value="Male") Male
       option(value="Female") Female
       option(value="Non-Binary") Non-Binary
@@ -48,21 +46,21 @@ mixin apply-1
     label.apply-form__required Birthdate
     .row
       .small-4.columns
-        select(required="", name="birthdate_month")
+        select(data-validation="number", name="birthdate_month")
           option(value="", disabled="", selected="") Month
           - var n = 1
           while n <= 12
             - var month = n < 10 ? '0' + n++ : n++
             option(value=month)= month
       .small-4.columns
-        select(required="", name="birthdate_day")
+        select(data-validation="number", name="birthdate_day")
           option(value="", disabled="", selected="") Day
           - var n = 1
           while n <= 31
             - var day = n < 10 ? '0' + n++ : n++
             option(value=day)= day
       .small-4.columns
-        select(required="", name="birthdate_year")
+        select(data-validation="number", name="birthdate_year")
           option(value="", disabled="", selected="") Year
           - var n = 1980
           while n <= 1999
@@ -70,12 +68,12 @@ mixin apply-1
 
   .large-6.small-12.columns
     label.apply-form__required Email
-    input(type="email", placeholder="Email", required="", name="email")
+    input(type="email", placeholder="Email", data-validation="email", name="email")
   .large-6.small-12.columns
     label.apply-form__required Phone Number
     .input-group
       span.input-group-label +1
-      input.input-group-field(type="text", placeholder="(555) 555 5555", required="", name="phone")
+      input.input-group-field(type="text", placeholder="(555) 555 5555", data-validation="number", name="phone", data-validation-length="10", data-validation-allowing=" ()")
 
   .small-12.large-6.columns#instituton-radio
     label.apply-form__required Institution
@@ -86,15 +84,15 @@ mixin apply-1
 
   .small-12.large-6.columns
     label.apply-form__required#institution-label University
-    input#institution-uni(type="text", placeholder="University", class="js-apply-form__universities", required="", data-dropdown-menu="", name="university")
+    input#institution-uni(type="text", placeholder="University", class="js-apply-form__universities", data-validation="required", data-dropdown-menu="", name="university")
     input#institution-hs(type="text", placeholder="High School", style="display: none", data-dropdown-menu="", value="")
 
   .large-6.small-12.columns
     label.apply-form__required#major-label Major
-    input#major(type="text", placeholder="Major", class="js-apply-form__majors", required="", name="major")
+    input#major(type="text", placeholder="Major", class="js-apply-form__majors", data-validation="required", name="major")
   .large-6.small-12.columns
     label.apply-form__required Graduation Year
-    input(type="number", min="2016", max="2030", value="2016", name="year")
+    input(type="number", value="2016", name="year", data-validation="number", data-validation-allowing="range[2016;2030]")
 
   .large-6.small-12.columns
     label Github Username
@@ -107,7 +105,7 @@ mixin apply-1
 
   .small-12.columns
     label Resume
-    input(type="file", placeholder="Resume", name="resume")
+    input(type="file", placeholder="Resume", name="resume", data-validation="size", data-validation-max-size="5M")
 
   .small-12.columns
     label
@@ -158,7 +156,7 @@ mixin apply-2
 
   .small-12.columns
     label.apply-form__required What do you hope to get out of attending the hackathon?
-    textarea(placeholder="Your outcome", name="outcomeStmt", required="")
+    textarea(placeholder="Your outcome", name="outcomeStmt", data-validation="alphanumeric")
 
   .small-12.columns
     label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
@@ -175,7 +173,7 @@ mixin apply-2
 
   .small-12.columns
     label
-      input(type="checkbox", required="") 
+      input(type="checkbox", data-validation="required") 
       | I accept the 
       a(href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf") MLH Code of Conduct
     
@@ -183,7 +181,7 @@ mixin apply-2
     .button-group.row
       .small-12.large-4.columns
         input.button.apply-form__nav-button#js-apply-form__previous(type="button", value="Back")
-        input.js-apply-form__button--final.apply-form__nav-button(type="submit", class="success button", value="Apply!", id="submitApp")
+        input.js-apply-form__button--final.apply-form__nav-button(type="button", class="success button", value="Apply!", id="submitApp")
         .spinner(style="display: none")
           .rect1
           .rect2

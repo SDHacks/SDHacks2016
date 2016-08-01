@@ -51,6 +51,10 @@ $(document).ready(function() {
       $(".orbit-slide", applyForm).unbind('keydown');
       $(".orbit-container", applyForm).unbind('keydown');
       applyForm.addClass("js-apply-form__orbit");
+
+      $.validate({
+        modules : 'file'
+      });
     }
   });
 
@@ -67,12 +71,7 @@ $(document).ready(function() {
     $(".js-apply-form__error").css('display', 'block');
   };
 
-  $("#applyFormOne").submit(function(e) {
-    var btn = $(document.activeElement);
-    console.log('Apply');
-    if(btn.is("#js-apply-form__next")) {
-      applyForm.foundation('changeSlide', true);
-    }
+  $(".apply-form").submit(function(e) {
     return false;
   });
 
@@ -84,20 +83,16 @@ $(document).ready(function() {
     }
   });
 
-  $(".js-apply-form").submit(function(e) {
-    return false;
-  });
-
-  $("#apply").submit(function(e) {
-    var form = $("#apply");
-
+  $(".js-apply-form__button--final").click(function(e) {
+    var form = $(".apply-form");
+    if (!$("#apply-form__slide-2").isValid()) {
+      return false;
+    }
+    
     showError("");
     $(".spinner", applyForm).css('display', 'inline-block');
 
-    var formData = new FormData($("#applyFormOne")[0]);
-    var secondFormData = $(form).serializeArray();
-    for (var i = 0; i < secondFormData.length; i++)
-      formData.append(secondFormData[i].name, secondFormData[i].value);
+    var formData = new FormData(form[0]);
 
     $.ajax({
       url: '/api/register',
@@ -128,7 +123,6 @@ $(document).ready(function() {
       contentType: false,
       processData: false
     });
-    return false;
   });
 
   jQuery.ui.autocomplete.prototype._resizeMenu = function () {
@@ -155,11 +149,11 @@ $(document).ready(function() {
 
     show.css('display', 'block');
     show.attr('name', 'university');
-    show.attr('required', true);
+    show.attr('data-validation', 'required');
 
     hide.css('display', 'none');
     hide.attr('name', '');
-    hide.attr('required', false);
+    hide.attr('data-validation', '');
 
     if(majorRequired) {
       $("#major").attr('required', true);
@@ -178,6 +172,12 @@ $(document).ready(function() {
       $("#city").attr('disabled', false);
     else
       $("#city").attr('disabled', true);
+  });
+
+  $("#js-apply-form__next").click(function() {
+    if($("#apply-form__slide-1").isValid()) {
+      applyForm.foundation('changeSlide', true);
+    }
   });
 
   $("#js-apply-form__previous").click(function() {
