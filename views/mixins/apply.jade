@@ -114,8 +114,10 @@ mixin apply-1
       input(type="checkbox", name="shareResume") 
       | Would you like us to share your resume and personal information so that companies may contact you about job opportunities?
 
-  .small-12.columns
+  .small-12.large-4.columns
     input.button.apply-form__nav-button#js-apply-form__next(type="submit", value="Next")
+  .small-12.large-8.columns
+    label.js-apply-form__error.js-apply-form__error--message.text-left
 
 mixin apply-2
   .small-12.columns

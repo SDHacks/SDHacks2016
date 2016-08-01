@@ -76,6 +76,14 @@ $(document).ready(function() {
     return false;
   });
 
+  $("input[type=radio]").on("change", function(e) {
+    if (this.value === "hs") {
+      $("#major").prop("disabled", true);
+    } else {
+      $("#major").prop("disabled", false);
+    }
+  });
+
   $(".js-apply-form").submit(function(e) {
     return false;
   });
