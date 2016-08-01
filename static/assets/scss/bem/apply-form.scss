@@ -53,6 +53,10 @@
     }
   }
 
+  &__slide {
+    outline: 0;
+  }
+
   &__required {
     &::after {
       content: "*";

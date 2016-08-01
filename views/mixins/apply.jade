@@ -6,25 +6,22 @@ mixin apply
           button.apply-form__header--close.js-apply-form__close(data-close="", aria-label="Close reveal", type="button")
             span(aria-hidden="true") &times; 
               span.apply-form__header--close-text Close
-      ul.orbit-container.apply-form__container
-        li.is-active.orbit-slide#apply-form__slide-1
-          div
-            h3.text-center Step 1 of 3: About You
-            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
-              .row
-                +apply-1
-        li.orbit-slide#apply-form__slide-2
-          div
-            h3.text-center Step 2 of 3: For SD Hacks
-            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
-              .row
-                +apply-2
-        li.orbit-slide.js-apply-form__confirm-slide
-          div
-            h3.text-center Step 3 of 3: Email Confirmation
-            .small-12.large-8.large-offset-2.columns.apply-form__slide-content
-              .row
-                +apply-3
+      ul.slick-container.apply-form__container
+        .apply-form__slide#apply-form__slide-1
+          h3.text-center Step 1 of 3: About You
+          .small-12.large-8.large-offset-2.columns.apply-form__slide-content
+            .row
+              +apply-1
+        .apply-form__slide#apply-form__slide-2
+          h3.text-center Step 2 of 3: For SD Hacks
+          .small-12.large-8.large-offset-2.columns.apply-form__slide-content
+            .row
+              +apply-2
+        .apply-form__slide.js-apply-form__confirm-slide
+          h3.text-center Step 3 of 3: Email Confirmation
+          .small-12.large-8.large-offset-2.columns.apply-form__slide-content
+            .row
+              +apply-3
 
 mixin apply-1
   .large-6.small-12.columns
@@ -105,15 +102,17 @@ mixin apply-1
 
   .small-12.columns
     label Resume
-    input(type="file", placeholder="Resume", name="resume", data-validation="size", data-validation-max-size="5M")
+    input(type="file", placeholder="Resume", name="resume", data-validation="mime size", data-validation-max-size="5M", data-validation-allowing="docx doc pdf odt pages md txt")
 
   .small-12.columns
     label
       input(type="checkbox", name="shareResume") 
       | Would you like us to share your resume and personal information so that companies may contact you about job opportunities?
 
-  .small-12.columns
-    input.button.apply-form__nav-button#js-apply-form__next(type="button", value="Next")
+  .small-12.large-4.columns
+    input.button.apply-form__nav-button#js-apply-form__next(type="submit", value="Next")
+  .small-12.large-8.columns
+    label.js-apply-form__error.js-apply-form__error--message.text-left
 
 mixin apply-2
   .small-12.columns

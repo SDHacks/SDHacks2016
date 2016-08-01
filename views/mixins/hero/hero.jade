@@ -1,33 +1,12 @@
 include fill
 include stroke
 
-mixin hero-image-hor(id, poolId)
-  pattern(id="pool#{poolId}", width="100%", height="100%", preserveAspectRatio="xMidYMid" viewBox="0 0 372 248")
-    +stroke
-    image(xlink:href="/assets/img/hero/hor-#{id}.jpg", width="640", height="427", preserveAspectRatio="xMidYMid meet", y="-89.5")
-mixin hero-image-ver(id, poolId)
-  pattern(id="pool#{poolId}", width="100%", height="100%", preserveAspectRatio="xMidYMid" viewBox="0 0 248 372")
-    +stroke
-    image(xlink:href="/assets/img/hero/ver-#{id}.jpg", width="427", height="640", preserveAspectRatio="xMidYMid meet", x="-89.5")
-
 mixin hero
   a#mlh-trust-badge(style="display:block;max-width:100px;min-width:60px;position:absolute;right:50px;top:0;width:10%;z-index:1000" href="https://mlh.io/seasons/na-2017/events?utm_source=na-2017&utm_medium=TrustBadge&utm_campaign=na-2017&utm_content=white" target="_blank")
     img(src="/assets/img/mlh.png" alt="Major League Hacking 2017 Hackathon Season" style="width:100%")
   .hero
     svg
       defs
-        - var horizontalHeroImages = 44
-        - var verticalHeroImages = 20
-        - var n = 1
-        - var poolCount = 1
-        while n <= horizontalHeroImages 
-          +hero-image-hor(n++, poolCount)
-          +fill-image(poolCount++)
-        - n = 1
-        while n <= verticalHeroImages
-          +hero-image-ver(n++, poolCount)
-          +fill-image(poolCount++)
-
         pattern(id="logo", width="1", height="1", viewBox="0 0 100 100", preserveAspectRatio="xMidYMid")
           +stroke
           image(xlink:href="/assets/img/logo.svg", width="100", height="100", preserveAspectRatio="xMidYMid")

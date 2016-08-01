@@ -45,11 +45,14 @@ $(document).ready(function() {
 
     //Ensure it only opens once
     if(!applyForm.hasClass("js-apply-form__orbit")) {
-      new Foundation.Orbit(applyForm);
-      $(".orbit-slide", applyForm).unbind('swipeleft');
-      $(".orbit-slide", applyForm).unbind('swiperight');
-      $(".orbit-slide", applyForm).unbind('keydown');
-      $(".orbit-container", applyForm).unbind('keydown');
+      $(".slick-container").slick({
+        infinite: false,
+        draggable: false,
+        arrows: false,
+        swipe: false,
+        touchMove: false,
+        adaptiveHeight: true
+      });
       applyForm.addClass("js-apply-form__orbit");
 
       $.validate({
@@ -73,6 +76,14 @@ $(document).ready(function() {
 
   $(".apply-form").submit(function(e) {
     return false;
+  });
+
+  $("input[type=radio]").on("change", function(e) {
+    if (this.value === "hs") {
+      $("#major").prop("disabled", true);
+    } else {
+      $("#major").prop("disabled", false);
+    }
   });
 
   $(".js-apply-form__button--final").click(function(e) {
@@ -99,7 +110,7 @@ $(document).ready(function() {
         $(".spinner", applyForm).css('display', 'none');
         $(".apply-form__container").css('height', '');
 
-        applyForm.foundation('changeSlide', true, $('.js-apply-form__confirm-slide'));
+        $(".slick-container").slick('slickNext');
         $('html,body').animate({
           scrollTop: applyForm.offset().top
         }, 150, 'swing');
@@ -168,11 +179,11 @@ $(document).ready(function() {
 
   $("#js-apply-form__next").click(function() {
     if($("#apply-form__slide-1").isValid()) {
-      applyForm.foundation('changeSlide', true);
+      $(".slick-container").slick('slickNext');
     }
   });
 
   $("#js-apply-form__previous").click(function() {
-    applyForm.foundation('changeSlide', false);
+    $(".slick-container").slick('slickPrev');
   });
 });
