@@ -78,6 +78,14 @@ $(document).ready(function() {
     return false;
   });
 
+  $("input[type=radio]").on("change", function(e) {
+    if (this.value === "hs") {
+      $("#major").prop("disabled", true);
+    } else {
+      $("#major").prop("disabled", false);
+    }
+  });
+
   $(".js-apply-form__button--final").click(function(e) {
     var form = $(".apply-form");
     if (!$("#apply-form__slide-2").isValid()) {
