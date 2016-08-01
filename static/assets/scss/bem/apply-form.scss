@@ -83,7 +83,12 @@
 
     input:not([type="submit"]):not([type="file"]):not([type="button"]), textarea, select {
       &:not(:disabled) {
-        background-color: #fdfdfd !important;
+        background-color: #fdfdfd;
+
+        &:focus {
+          background-color: darken(#fdfdfd, 2);
+          outline: none;
+        }
       }
 
       &[type=file] {
@@ -99,13 +104,6 @@
     }
   }
 
-  textarea, select, input[type="text"], input[type="date"], input[type="email"], input[type="number"], input[type="tel"] {
-    background: lighten($white, 2%);
-
-    &:focus {
-      outline: none;
-    }
-  }
   input[type="checkbox"] {
     margin-bottom: 0;
   }

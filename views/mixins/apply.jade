@@ -156,17 +156,17 @@ mixin apply-2
     label.apply-form__required What do you hope to get out of attending the hackathon?
     span#outcomeStmt-length-element 500
     |  chars left
-    textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="length alphanumeric")
+    textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="length required", data-validation-length="1-500")
 
   .small-12.columns
     label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
 
   .small-12.large-4.columns
-    input(type="email", placeholder="example@email.com", name="team1", data-validation="email")
+    input(type="email", placeholder="example@email.com", name="team1", data-validation="email", data-validation-optional="true")
   .small-12.large-4.columns
-    input(type="email", placeholder="example@email.com", name="team2", data-validation="email")
+    input(type="email", placeholder="example@email.com", name="team2", data-validation="email", data-validation-optional="true")
   .small-12.large-4.columns
-    input(type="email", placeholder="example@email.com", name="team3", data-validation="email")
+    input(type="email", placeholder="example@email.com", name="team3", data-validation="email", data-validation-optional="true")
 
   .small-12.columns
     label We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, pre and post-event informational e-mails, and occasional messages about hackathons in line with the MLH Privacy Policy.
