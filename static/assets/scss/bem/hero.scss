@@ -11,6 +11,18 @@ $hero-size-mobile: 1.5 * $hero-mobile-hex-count * $hero-mobile-hex-radius;
 $hero-background: #313131;
 $empty-hex-colour: lighten($hero-background, 10);
 
+@keyframes hexagonFade {
+  0% { fill-opacity: 0; }
+  40% { fill-opacity: 0.8; }
+  60% { fill-opacity: 0.8; }
+  100% { fill-opacity: 0; }
+}
+
+.animatingHexagon {
+  animation-name: hexagonFade;
+  animation-duration: 5s;
+}
+
 .hero {
   position: relative;
   z-index: 10;

@@ -45,22 +45,11 @@ function highlightHexagon() {
 
 	randHexagon.parent().append(clone);
 
-	clone.velocity({
-		properties: { fillOpacity: 0.8 },
-		options: { 
-		    duration: 2000
-		}
-  }).velocity({
-  	properties: { fillOpacity: 0 },
-  	options: {
-  		duration: 2000,
-  		delay: 1000,
-		  complete: function() {
-		  	randHexagon.data('wasSelected', false);
-		    clone.remove();
-		  }
-  	}
-  });
+	clone.addClass('animatingHexagon');
+	window.setTimeout(function() {
+		randHexagon.data('wasSelected', false);
+		clone.remove();
+	}, 5000);
 }
 
 function mainLoop() {

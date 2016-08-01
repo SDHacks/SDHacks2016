@@ -68,11 +68,7 @@ $(document).ready(function() {
   };
 
   $("#applyFormOne").submit(function(e) {
-    var btn = $(document.activeElement);
-    console.log('Apply');
-    if(btn.is("#js-apply-form__next")) {
-      applyForm.foundation('changeSlide', true);
-    }
+    applyForm.foundation('changeSlide', true);
     return false;
   });
 
