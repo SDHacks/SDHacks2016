@@ -51,7 +51,8 @@ $(document).ready(function() {
         applyForm.addClass("js-apply-form__orbit");
 
         $.validate({
-          modules : 'file'
+          modules : 'file',
+          scrollToTopOnError : false
         });
       }
       $('html,body').animate({

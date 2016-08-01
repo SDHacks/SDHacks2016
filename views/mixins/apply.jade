@@ -43,21 +43,21 @@ mixin apply-1
     label.apply-form__required Birthdate
     .row
       .small-4.columns
-        select(data-validation="number", name="birthdate_month")
+        select(data-validation="number", name="birthdate_month", data-validation-error-msg="Please select a birth month")
           option(value="", disabled="", selected="") Month
           - var n = 1
           while n <= 12
             - var month = n < 10 ? '0' + n++ : n++
             option(value=month)= month
       .small-4.columns
-        select(data-validation="number", name="birthdate_day")
+        select(data-validation="number", name="birthdate_day", data-validation-error-msg="Please select a birth day")
           option(value="", disabled="", selected="") Day
           - var n = 1
           while n <= 31
             - var day = n < 10 ? '0' + n++ : n++
             option(value=day)= day
       .small-4.columns
-        select(data-validation="number", name="birthdate_year")
+        select(data-validation="number", name="birthdate_year", data-validation-error-msg="Please select a birth year")
           option(value="", disabled="", selected="") Year
           - var n = 1980
           while n <= 1999
@@ -65,12 +65,13 @@ mixin apply-1
 
   .large-6.small-12.columns
     label.apply-form__required Email
-    input(type="email", placeholder="Email", data-validation="email", name="email")
+    input(type="email", placeholder="email@gmail.com", data-validation="email", name="email")
   .large-6.small-12.columns
     label.apply-form__required Phone Number
     .input-group
       span.input-group-label +1
-      input.input-group-field(type="text", placeholder="(555) 555 5555", data-validation="number", name="phone", data-validation-length="10", data-validation-allowing=" ()")
+      input.input-group-field(type="text", placeholder="(555) 555 5555", data-validation="number", data-validation-ignore="(,), ", name="phone", data-validation-error-msg-container="#phone-error-message")
+    span#phone-error-message
 
   .small-12.large-6.columns#instituton-radio
     label.apply-form__required Institution
@@ -89,7 +90,7 @@ mixin apply-1
     input#major(type="text", placeholder="Major", class="js-apply-form__majors", data-validation="required", name="major")
   .large-6.small-12.columns
     label.apply-form__required Graduation Year
-    input(type="number", value="2016", name="year", data-validation="number", data-validation-allowing="range[2016;2030]")
+    input(type="number", value="2016", name="year", data-validation="number", data-validation-allowing="range[2016;2030]", data-validation-error-msg-number="Must be a current student or have graduated in 2016")
 
   .large-6.small-12.columns
     label Github Username
@@ -155,17 +156,17 @@ mixin apply-2
     label.apply-form__required What do you hope to get out of attending the hackathon?
     span#outcomeStmt-length-element 500
     |  chars left
-    textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="length alphanumeric" data-validation-length="0-1000")
+    textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="length alphanumeric")
 
   .small-12.columns
     label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
 
   .small-12.large-4.columns
-    input(type="email", placeholder="example@email.com", name="team1")
+    input(type="email", placeholder="example@email.com", name="team1", data-validation="email")
   .small-12.large-4.columns
-    input(type="email", placeholder="example@email.com", name="team2")
+    input(type="email", placeholder="example@email.com", name="team2", data-validation="email")
   .small-12.large-4.columns
-    input(type="email", placeholder="example@email.com", name="team3")
+    input(type="email", placeholder="example@email.com", name="team3", data-validation="email")
 
   .small-12.columns
     label We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, pre and post-event informational e-mails, and occasional messages about hackathons in line with the MLH Privacy Policy.
