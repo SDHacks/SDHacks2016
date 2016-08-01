@@ -45,7 +45,7 @@ function highlightHexagon() {
 
 	randHexagon.parent().append(clone);
 
-	clone.addClass('animatingHexagon');
+	clone.addClass('hero__hexagon--animating');
 	window.setTimeout(function() {
 		randHexagon.data('wasSelected', false);
 		clone.remove();

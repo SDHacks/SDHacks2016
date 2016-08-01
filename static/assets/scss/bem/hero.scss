@@ -18,12 +18,6 @@ $empty-hex-colour: lighten($hero-background, 10);
   100% { fill-opacity: 0; }
 }
 
-.animatingHexagon {
-  animation-name: hexagonFade;
-  animation-duration: 5s;
-  transform: translateZ(0);
-}
-
 .hero {
   position: relative;
   z-index: 10;
@@ -46,6 +40,12 @@ $empty-hex-colour: lighten($hero-background, 10);
   &__hexagon {
     fill: $body-background;
     pointer-events: all;
+
+    &--animating {
+      animation-name: hexagonFade;
+      animation-duration: 5s;
+      transform: translateZ(0);
+    }
 
     path {
       -webkit-transition: fill 250ms linear;
