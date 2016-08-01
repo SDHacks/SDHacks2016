@@ -186,6 +186,10 @@ footer {
     @media #{$medium-up} {
       height: 95px;
     }
+
+    #logo-qualcomm {
+      height: 80px;
+    }
   }
   .gold img {
     height: 60px;
@@ -195,7 +199,8 @@ footer {
     }
   }
   .silver img {
-    height: 40px;
+    height: 45px;
+    
     @media #{$medium-up} {
       height: 50px;
     }
