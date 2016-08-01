@@ -1,0 +1,25 @@
+include fill
+
+mixin hero-image-hor(id, poolId)
+  pattern(id="pool#{poolId}", width="100%", height="100%", preserveAspectRatio="xMidYMid" viewBox="0 0 372 248")
+    +stroke
+    image(xlink:href="/assets/img/hero/hor-#{id}.jpg", width="640", height="427", preserveAspectRatio="xMidYMid meet", y="-89.5")
+mixin hero-image-ver(id, poolId)
+  pattern(id="pool#{poolId}", width="100%", height="100%", preserveAspectRatio="xMidYMid" viewBox="0 0 248 372")
+    +stroke
+    image(xlink:href="/assets/img/hero/ver-#{id}.jpg", width="427", height="640", preserveAspectRatio="xMidYMid meet", x="-89.5")
+
+mixin patterns
+  svg
+    defs
+      - var horizontalHeroImages = 44
+      - var verticalHeroImages = 20
+      - var n = 1
+      - var poolCount = 1
+      while n <= horizontalHeroImages 
+        +hero-image-hor(n++, poolCount)
+        +fill-image(poolCount++)
+      - n = 1
+      while n <= verticalHeroImages
+        +hero-image-ver(n++, poolCount)
+        +fill-image(poolCount++)
