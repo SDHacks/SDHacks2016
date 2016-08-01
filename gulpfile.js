@@ -24,7 +24,8 @@ var bowerComponents = [
   path.join(bowerComponentPath, 'jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js'),
   path.join(bowerComponentPath, 'jquery-form-validator/form-validator/jquery.form-validator.min.js'),
   path.join(bowerComponentPath, 'jquery-form-validator/form-validator/file.js'),
-  path.join(bowerComponentPath, 'jquery-ui/jquery-ui.min.js')
+  path.join(bowerComponentPath, 'jquery-ui/jquery-ui.min.js'),
+  path.join(bowerComponentPath, 'slick-carousel/slick/slick.min.js')
 ];
 
 // Handle Errors
