@@ -26,10 +26,14 @@ mixin apply
 mixin apply-1
   .large-6.small-12.columns
     label.apply-form__required First Name
-    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName", data-validation-allowing=" -'")
+    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName", data-validation-allowing=" -'", data-validation-error-msg="Please enter a valid name")
   .large-6.small-12.columns
     label.apply-form__required Last Name
-    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName", data-validation-allowing=" -'")
+    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName", data-validation-allowing=" -'", data-validation-error-msg="Please enter a valid name")
+    input(type="text", placeholder="First Name", data-validation="alphanumeric", name="firstName", data-validation-error-msg="Please enter a valid name")
+  .large-6.small-12.columns
+    label.apply-form__required Last Name
+    input(type="text", placeholder="Last Name", data-validation="alphanumeric", name="lastName", )
 
   .large-6.small-12.columns
     label.apply-form__required Gender
