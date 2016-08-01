@@ -329,3 +329,12 @@ input:-webkit-autofill {
   overflow-y: visible !important;
   height: auto !important;
 }
+
+.form-error {
+  display: block;
+  margin: 0;
+  font-weight: 400;
+  position: relative;
+  top: -1em;
+  font-size: 0.8em;
+}
