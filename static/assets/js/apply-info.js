@@ -67,20 +67,29 @@ $(document).ready(function() {
     $(".js-apply-form__error").css('display', 'block');
   };
 
-  $(".apply-form").submit(function(e) {
+  $("#applyFormOne").submit(function(e) {
+    var btn = $(document.activeElement);
+    console.log('Apply');
+    if(btn.is("#js-apply-form__next")) {
+      applyForm.foundation('changeSlide', true);
+    }
     return false;
   });
 
-  $(".js-apply-form__button--final").click(function(e) {
-    var form = $(".apply-form");
-    if ((typeof(form[0].checkValidity) == "function" ) && !form[0].checkValidity()) {
-      showError('Please fill out all required fields');
-      return form.submit();
-    }
+  $(".js-apply-form").submit(function(e) {
+    return false;
+  });
+
+  $("#apply").submit(function(e) {
+    var form = $("#apply");
+
     showError("");
     $(".spinner", applyForm).css('display', 'inline-block');
 
-    var formData = new FormData(form[0]);
+    var formData = new FormData($("#applyFormOne")[0]);
+    var secondFormData = $(form).serializeArray();
+    for (var i = 0; i < secondFormData.length; i++)
+      formData.append(secondFormData[i].name, secondFormData[i].value);
 
     $.ajax({
       url: '/api/register',
@@ -111,6 +120,7 @@ $(document).ready(function() {
       contentType: false,
       processData: false
     });
+    return false;
   });
 
   jQuery.ui.autocomplete.prototype._resizeMenu = function () {
@@ -160,21 +170,6 @@ $(document).ready(function() {
       $("#city").attr('disabled', false);
     else
       $("#city").attr('disabled', true);
-  });
-
-  $("#js-apply-form__next").click(function() {
-    var valid = true;
-    $.each($("input, select", $("#apply-form__slide-1")), function() {
-      var input = $(this);
-      var visible = input.is(":visible");
-      if(this.validity && visible && !this.validity.valid) {
-        valid = false;
-      }
-    }).promise().done(function() {
-      if(valid) {
-        applyForm.foundation('changeSlide', true);
-      }
-    });
   });
 
   $("#js-apply-form__previous").click(function() {

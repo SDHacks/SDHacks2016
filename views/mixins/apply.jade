@@ -1,5 +1,5 @@
 mixin apply
-  form#apply.apply-form.orbit.js-bordered(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false", enctype="multipart/form-data", method="POST", action="/api/register")
+  .apply-form.orbit.js-bordered(role="region", aria-label="Hacker Application", data-infinite-wrap="false", data-auto-play="false")
     .row.column
       .small-12.large-8.large-offset-2.columns
         h1.apply-form__header Apply for SD Hacks 2016
@@ -11,14 +11,16 @@ mixin apply
           div
             h3.text-center Step 1 of 3: About You
             .small-12.large-8.large-offset-2.columns.apply-form__slide-content
-              .row
-                +apply-1
+              form#applyFormOne(method="POST")
+                .row
+                  +apply-1
         li.orbit-slide#apply-form__slide-2
           div
             h3.text-center Step 2 of 3: For SD Hacks
             .small-12.large-8.large-offset-2.columns.apply-form__slide-content
-              .row
-                +apply-2
+              form.js-apply-form#apply(enctype="multipart/form-data", method="POST", action="/api/register")
+                .row
+                  +apply-2
         li.orbit-slide.js-apply-form__confirm-slide
           div
             h3.text-center Step 3 of 3: Email Confirmation
@@ -113,7 +115,7 @@ mixin apply-1
       | Would you like us to share your resume and personal information so that companies may contact you about job opportunities?
 
   .small-12.columns
-    input.button.apply-form__nav-button#js-apply-form__next(type="button", value="Next")
+    input.button.apply-form__nav-button#js-apply-form__next(type="submit", value="Next")
 
 mixin apply-2
   .small-12.columns
@@ -179,7 +181,7 @@ mixin apply-2
     .button-group.row
       .small-12.large-4.columns
         input.button.apply-form__nav-button#js-apply-form__previous(type="button", value="Back")
-        input.js-apply-form__button--final.apply-form__nav-button(type="button", class="success button", value="Apply!", id="submitApp")
+        input.js-apply-form__button--final.apply-form__nav-button(type="submit", class="success button", value="Apply!", id="submitApp")
         .spinner(style="display: none")
           .rect1
           .rect2
