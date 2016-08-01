@@ -20,7 +20,7 @@ module.exports = (app, config) ->
 
   app.get "/users/admin", auth, (req, res, next) ->
     #TODO Secure this endpoint
-    User.find().sort({createdAt: -1}).exec (err, users) ->
+    User.find({deleted: {$ne: true}}).sort({createdAt: -1}).exec (err, users) ->
       res.render("entity_views/users/admin.jade", {users: users})
 
   # Show
@@ -36,6 +36,18 @@ module.exports = (app, config) ->
 
   # Create
 
+
+  # Destroy
+
+  app.get '/users/:id/delete', auth, (req, res) ->
+    User.findById(req.params.id, (e, user) ->
+      if e
+        res.status 400
+        res.json {'error': 'User not found'}
+      user.softdelete (err, newUser) ->
+        newUser.save()
+        res.json {'success': true}
+    )
 
   # Edit
   app.post '/users/:id/edit', (req, res) ->
@@ -75,8 +87,3 @@ module.exports = (app, config) ->
 
         res.send originalValue
     )
-
-  # Update
-
-
-  # Destroy

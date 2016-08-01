@@ -1,15 +1,5 @@
 var imageCounter = 0;
 var totalImages = 64;
-var images = [
-	'#image-pool1',
-	'#image-pool2',
-	'#image-pool3',
-	'#image-pool4',
-	'#image-pool5',
-	'#image-pool6',
-	'#image-pool7',
-	'#image-pool8'
-];
 
 function pickRandHexagon(hexagonSelector) {
 	var rand = Math.floor(Math.random()*hexagonSelector.length);

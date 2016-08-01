@@ -4,6 +4,7 @@ timestamps = require('mongoose-timestamp')
 crate = require('mongoose-crate')
 S3 = require('mongoose-crate-s3')
 jwt = require('jsonwebtoken')
+softDelete = require('mongoose-softdelete')
 
 require('dotenv').config();
 Schema = mongoose.Schema
@@ -95,6 +96,7 @@ UsersSchema = new Schema({
 
 UsersSchema.plugin(findOrCreate)
 UsersSchema.plugin(timestamps)
+UsersSchema.plugin(softDelete)
 UsersSchema.plugin(crate, {
   storage: new S3({
     key: process.env.S3_KEY,

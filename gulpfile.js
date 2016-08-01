@@ -62,10 +62,10 @@ gulp.task('jshint', function() {
 gulp.task('build-js', function() {
   gulp.src(['static/assets/js/*.js', 'static/assets/js/vendor/*.js'])
     .pipe(plumber(plumberOptions))
-    .pipe(gutil.env.type === 'production' ? sourcemaps.init() : gutil.noop())
+    .pipe(gutil.env.type !== 'production' ? sourcemaps.init() : gutil.noop())
       .pipe(uglify())
       .pipe(rename({ suffix: '.min' }))
-    .pipe(gutil.env.type === 'production' ? sourcemaps.write() : gutil.noop())
+    .pipe(gutil.env.type !== 'production' ? sourcemaps.write() : gutil.noop())
     .pipe(concat('app.js'))
     .pipe(gulp.dest('static/assets/js/dist'));
 });
