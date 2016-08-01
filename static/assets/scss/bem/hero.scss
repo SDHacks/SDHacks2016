@@ -21,6 +21,7 @@ $empty-hex-colour: lighten($hero-background, 10);
 .animatingHexagon {
   animation-name: hexagonFade;
   animation-duration: 5s;
+  transform: translateZ(0);
 }
 
 .hero {
