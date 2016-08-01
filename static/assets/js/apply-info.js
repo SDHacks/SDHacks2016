@@ -51,6 +51,10 @@ $(document).ready(function() {
       $(".orbit-slide", applyForm).unbind('keydown');
       $(".orbit-container", applyForm).unbind('keydown');
       applyForm.addClass("js-apply-form__orbit");
+
+      $.validate({
+        modules : 'html5'
+      });
     }
   });
 
@@ -73,10 +77,10 @@ $(document).ready(function() {
 
   $(".js-apply-form__button--final").click(function(e) {
     var form = $(".apply-form");
-    if ((typeof(form[0].checkValidity) == "function" ) && !form[0].checkValidity()) {
-      showError('Please fill out all required fields');
-      return form.submit();
+    if (!$("#apply-form__slide-2").isValid()) {
+      return false;
     }
+    
     showError("");
     $(".spinner", applyForm).css('display', 'inline-block');
 
@@ -137,11 +141,11 @@ $(document).ready(function() {
 
     show.css('display', 'block');
     show.attr('name', 'university');
-    show.attr('required', true);
+    show.attr('data-validation', 'required');
 
     hide.css('display', 'none');
     hide.attr('name', '');
-    hide.attr('required', false);
+    hide.attr('data-validation', '');
 
     if(majorRequired) {
       $("#major").attr('required', true);
@@ -163,18 +167,9 @@ $(document).ready(function() {
   });
 
   $("#js-apply-form__next").click(function() {
-    var valid = true;
-    $.each($("input, select", $("#apply-form__slide-1")), function() {
-      var input = $(this);
-      var visible = input.is(":visible");
-      if(this.validity && visible && !this.validity.valid) {
-        valid = false;
-      }
-    }).promise().done(function() {
-      if(valid) {
-        applyForm.foundation('changeSlide', true);
-      }
-    });
+    if($("#apply-form__slide-1").isValid()) {
+      applyForm.foundation('changeSlide', true);
+    }
   });
 
   $("#js-apply-form__previous").click(function() {
