@@ -79,11 +79,17 @@ $(document).ready(function() {
     return false;
   });
 
+  // Disable the Major selection for High Schools
   $("input[type=radio]").on("change", function(e) {
     if (this.value === "hs") {
+      $("#major").val("");
+      $("#major-error-message").text("");
+      $("#major").css("border-color", "#cacaca");
+      $("#major").prop("data-validation", "");
       $("#major").prop("disabled", true);
     } else {
       $("#major").prop("disabled", false);
+      $("#major").prop("data-validation", "required")
     }
   });
 

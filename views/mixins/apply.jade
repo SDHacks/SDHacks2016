@@ -87,7 +87,9 @@ mixin apply-1
 
   .large-6.small-12.columns
     label.apply-form__required#major-label Major
-    input#major(type="text", placeholder="Major", class="js-apply-form__majors", data-validation="required", name="major")
+    input#major(type="text", placeholder="Major", class="js-apply-form__majors", data-validation="required", name="major",
+    data-validation-error-msg-container="#major-error-message")
+    span#major-error-message
   .large-6.small-12.columns
     label.apply-form__required Graduation Year
     input(type="number", value="2016", name="year", data-validation="number", data-validation-allowing="range[2016;2030]", data-validation-error-msg-number="Must be a current student or have graduated in 2016")
@@ -159,7 +161,7 @@ mixin apply-2
     textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="length required", data-validation-length="1-500")
 
   .small-12.columns
-    label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
+    label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ email addresses in their applications. Don’t worry, you can come back and edit your application at any time.
 
   .small-12.large-4.columns
     input(type="email", placeholder="example@email.com", name="team1", data-validation="email", data-validation-optional="true")
