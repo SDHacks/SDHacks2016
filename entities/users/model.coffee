@@ -73,7 +73,6 @@ UsersSchema = new Schema({
   food: {
     type: String,
     trim: true,
-    required: true,
   },
   diet: {
     type: String,
