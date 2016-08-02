@@ -2,6 +2,7 @@
 multer = require('multer')
 crypto = require('crypto')
 mime = require('mime')
+EmailTemplate = require('email-templates').EmailTemplate
 
 storage = multer.diskStorage {
   dest: 'public/uploads/',
@@ -15,7 +16,21 @@ upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 }) 
 
-module.exports = (app, User, sendConfirm) ->
+module.exports = (app, User, transporter) ->
+  confirmSender = transporter.templateSender new EmailTemplate('./views/emails/confirmation'), {
+      from: {
+        name: 'SD Hacks Team',
+        address: process.env.MAIL_USER
+      }
+    }
+
+  referSender = transporter.templateSender new EmailTemplate('./views/emails/refer'), {
+      from: {
+        name: 'SD Hacks Team',
+        address: process.env.MAIL_USER
+      }
+    }
+
   app.post '/api/register', upload.single('resume'), (req, res) =>
     user = new User
 
@@ -77,7 +92,7 @@ module.exports = (app, User, sendConfirm) ->
                 return userError err.errors[field].message, 400
             return userError 'Failed due to database error'
 
-          sendConfirm {
+          confirmSender {
             to: user.email,
             subject: 'Thank you for your application!'
           }, {
@@ -90,6 +105,15 @@ module.exports = (app, User, sendConfirm) ->
 
             res.status 200
             res.json {'email': user.email}
+
+            # Queue up the referall emails
+            (referSender {
+              to: referral,
+              subject: user.firstName + '\'s invitation to SD Hacks 2016'
+            }, {
+              'user': user,
+              'referUrl': req.protocol + '://' + req.get('host')
+            }) for referral in user.teammates
 
       if req.file
         user.attach 'resume', {path: req.file.path}, saveUser
