@@ -108,13 +108,17 @@ $(document).ready(function() {
     // Can be any age
     if ($("#institution-uni").val().indexOf("The University of California") !== -1) {
       // All ages allowed
-      $("#select-year").attr("data-validation-allowing", "")
+      $("#select-year").attr("data-validation-allowing", "");
+      $("#select-month").attr("data-validation-allowing", "");
       $("#age-error-message").text("");
       $("#select-year").css("border-color", "#cacaca");
     }
     else {
       // Needs to be over 18 - check age
-      $("#select-year").attr("data-validation-allowing", "range[1980;1998]")
+      $("#select-year").attr("data-validation-allowing", "range[1980;1998]");
+      if (parseInt($("#select-year").val()) === 1998)
+        $("#select-month").attr("data-validation-allowing", "range[1;9]");
+      else $("#select-month").attr("data-validation-allowing", "");
       // TODO: Make it work for specific month and date (sept 30)
     }
   }
