@@ -44,6 +44,7 @@ module.exports = (app, User, sendConfirm) ->
       user.github = req.body.github
       user.website = req.body.website
       user.shareResume = req.body.shareResume
+      user.food = req.body.food
       user.diet = req.body.diet
       user.shirtSize = req.body.shirtFit + req.body.shirtSize
       user.travel = {

@@ -99,7 +99,7 @@ mixin apply-1
       input.input-group-field(type="text", placeholder="Github Username", name="github" data-validation="length" data-validation-length="0-50")
   .large-6.small-12.columns
     label Personal Website
-    input(type="text", placeholder="Personal Website", name="website")
+    input(type="text", placeholder="Personal Website", name="website", data-validation="url", data-validation-optional="true")
 
   .small-12.columns
     label Resume
@@ -117,8 +117,12 @@ mixin apply-1
 
 mixin apply-2
   .small-12.columns
+    label.apply-form__required What kind of food would you like to see at the hackathon?
+    textarea(placeholder="Doritos and Mountain Dew", name="food", data-validation="required length", data-validation-length="0-1000")
+
+  .small-12.columns
     label Dietary Restrictions
-    textarea(placeholder="Dietary Restrictions", name="diet" data-validation="length" data-validation-length="0-1000")
+    textarea(placeholder="Dietary Restrictions", name="diet", data-validation="length", data-validation-length="0-1000")
 
   .small-12.large-6.columns#outofstate
     label.apply-form__required Will you be travelling from outside San Diego county?
