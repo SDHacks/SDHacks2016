@@ -70,9 +70,9 @@ module.exports = (app, User, transporter) ->
       user.outcomeStmt = req.body.outcomeStmt
       user.teammates = []
       
-      user.teammates.push(req.body.team1) if req.body.team1
-      user.teammates.push(req.body.team2) if req.body.team2
-      user.teammates.push(req.body.team3) if req.body.team3
+      user.teammates.push(req.body.team1.toLowerCase()) if req.body.team1
+      user.teammates.push(req.body.team2.toLowerCase()) if req.body.team2
+      user.teammates.push(req.body.team3.toLowerCase()) if req.body.team3
 
       userError = (errorMessage, code = 500) =>
         res.status code
@@ -107,13 +107,19 @@ module.exports = (app, User, transporter) ->
             res.json {'email': user.email}
 
             # Queue up the referall emails
-            (referSender {
-              to: referral,
-              subject: user.firstName + '\'s invitation to SD Hacks 2016'
-            }, {
-              'user': user,
-              'referUrl': req.protocol + '://' + req.get('host')
-            }) for referral in user.teammates
+            for referral in user.teammates
+              do (referral) ->
+                User.count {email: referral}, (err, c) ->
+                  console.log err
+                  if err is null and c < 1
+                    console.log c
+                    referSender {
+                      to: referral,
+                      subject: user.firstName + '\'s invitation to SD Hacks 2016'
+                    }, {
+                      'user': user,
+                      'referUrl': req.protocol + '://' + req.get('host')
+                    }
 
       if req.file
         user.attach 'resume', {path: req.file.path}, saveUser
