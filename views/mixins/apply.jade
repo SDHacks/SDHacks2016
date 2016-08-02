@@ -43,25 +43,26 @@ mixin apply-1
     label.apply-form__required Birthdate
     .row
       .small-4.columns
-        select(data-validation="number", name="birthdate_month", data-validation-error-msg="Please select a birth month")
+        select#select-month(data-validation="number", name="birthdate_month", data-validation-error-msg="Please select a birth month")
           option(value="", disabled="", selected="") Month
           - var n = 1
           while n <= 12
             - var month = n < 10 ? '0' + n++ : n++
             option(value=month)= month
       .small-4.columns
-        select(data-validation="number", name="birthdate_day", data-validation-error-msg="Please select a birth day")
+        select#select-date(data-validation="number", name="birthdate_day", data-validation-error-msg="Please select a birth day")
           option(value="", disabled="", selected="") Day
           - var n = 1
           while n <= 31
             - var day = n < 10 ? '0' + n++ : n++
             option(value=day)= day
       .small-4.columns
-        select(data-validation="number", name="birthdate_year", data-validation-error-msg="Please select a birth year")
+        select#select-year(data-validation="number", name="birthdate_year", data-validation-error-msg="Please select a birth year", data-validation-allowing="range[1980;1998]", data-validation-error-msg-number="You must be over 18 to participate, unless you attend a University of California", data-validation-error-msg-container="#age-error-message")
           option(value="", disabled="", selected="") Year
           - var n = 1980
-          while n <= 1999
+          while n <= 2016
             option(value=n)= n++
+        span#age-error-message
 
   .large-6.small-12.columns
     label.apply-form__required Email

@@ -93,6 +93,32 @@ $(document).ready(function() {
     }
   });
 
+  $("#select-month,#select-date,#select-year").each(function() {
+    $(this).on("change", function(e) {
+      validateUniYear(e); 
+    });
+  });
+  $("#institution-uni").on("input", function(e) {
+    validateUniYear(e);
+  });
+
+  // TODO: Add an event that listens for jquery autofill being used
+
+  function validateUniYear (e) {
+    // Can be any age
+    if ($("#institution-uni").val().indexOf("The University of California") !== -1) {
+      // All ages allowed
+      $("#select-year").attr("data-validation-allowing", "")
+      $("#age-error-message").text("");
+      $("#select-year").css("border-color", "#cacaca");
+    }
+    else {
+      // Needs to be over 18 - check age
+      $("#select-year").attr("data-validation-allowing", "range[1980;1998]")
+      // TODO: Make it work for specific month and date (sept 30)
+    }
+  }
+
   $(".js-apply-form__button--final").click(function(e) {
     var form = $(".apply-form");
     if (!$("#apply-form__slide-2").isValid()) {
@@ -155,7 +181,6 @@ $(document).ready(function() {
       hide = uni;
       label = "High School";
       majorRequired = false;
-      $("#major").val('');
     }
 
     show.css('display', 'block');
