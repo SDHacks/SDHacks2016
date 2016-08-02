@@ -67,6 +67,11 @@ block content
           | Click field to edit
       .row.user-show__questions
         .small-12.large-4.columns
+          .user-show__question Preferred Foods
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#food #{user.food}
+          
+        .small-12.large-4.columns
           .user-show__question Dietary Restrictions
         .small-12.large-8.columns.user-show__answer--column
           .user-show__answer#diet #{user.diet ? user.diet : "None"}

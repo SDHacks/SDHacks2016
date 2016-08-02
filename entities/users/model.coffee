@@ -70,6 +70,11 @@ UsersSchema = new Schema({
     type: Boolean,
     default: false
   },
+  food: {
+    type: String,
+    trim: true,
+    required: true,
+  },
   diet: {
     type: String,
     trim: true,
@@ -129,6 +134,7 @@ UsersSchema.methods.generateJwt = () ->
     github: this.github,
     website: this.website,
     shareResume: this.shareResume,
+    food: this.food,
     diet: this.diet,
     shirtSize: this.shirtSize,
     travel: this.travel,

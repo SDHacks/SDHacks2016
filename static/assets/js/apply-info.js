@@ -155,6 +155,7 @@ $(document).ready(function() {
       hide = uni;
       label = "High School";
       majorRequired = false;
+      $("#major").val('');
     }
 
     show.css('display', 'block');

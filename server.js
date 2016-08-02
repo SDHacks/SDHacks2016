@@ -13,6 +13,7 @@
   var methodOverride = require('method-override');
   var static_dir = require('serve-static');
   var errorHandler = require('errorhandler');
+  var helmet = require('helmet');
   var throng = require('throng');
   var cookieParser = require('cookie-parser');
   var LocalStrategy = require('passport-local').Strategy;
@@ -21,7 +22,6 @@
   var flash = require('connect-flash');
   var device = require('express-device');
   var mailer = require('nodemailer');
-  var EmailTemplate = require('email-templates').EmailTemplate;
   var sslRedirect = require('heroku-ssl-redirect');
 
   require('dotenv').config({silent: process.env.NODE_ENV !== 'development'});
@@ -40,6 +40,7 @@
     var server = app.listen(port);
 
     app.use(sslRedirect());
+    app.use(helmet());
 
     // Extras
     // Rendering tools
@@ -57,12 +58,6 @@
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS
-      }
-    });
-    var confirmSender = transporter.templateSender(new EmailTemplate('./views/emails/confirmation'), {
-      from: {
-        name: 'SD Hacks Team',
-        address: process.env.MAIL_USER
       }
     });
 
@@ -87,7 +82,7 @@
     app.use(methodOverride('X-HTTP-Method-Override'));
     app.use(static_dir(path.join(__dirname, 'static')));
     var appRoutes = require('./routes/index')(app, process.env, User);
-    var apiRoutes = require('./routes/api')(app, User, confirmSender);
+    var apiRoutes = require('./routes/api')(app, User, transporter);
     app.get('*', function(req, res){
       res.render('layout');
     });
