@@ -13,6 +13,7 @@
   var methodOverride = require('method-override');
   var static_dir = require('serve-static');
   var errorHandler = require('errorhandler');
+  var helmet = require('helmet');
   var throng = require('throng');
   var cookieParser = require('cookie-parser');
   var LocalStrategy = require('passport-local').Strategy;
@@ -40,6 +41,7 @@
     var server = app.listen(port);
 
     app.use(sslRedirect());
+    app.use(helmet());
 
     // Extras
     // Rendering tools
