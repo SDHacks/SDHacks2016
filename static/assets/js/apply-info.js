@@ -80,7 +80,7 @@ $(document).ready(function() {
   });
 
   // Disable the Major selection for High Schools
-  $("input[type=radio]").on("change", function(e) {
+  $("#institution-radio").on("change", function(e) {
     if (this.value === "hs") {
       $("#major").val("");
       $("#major-error-message").text("");
