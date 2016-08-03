@@ -17,6 +17,7 @@ block content
           th Name
           th Email
           th Github
+          th University
           th Confirmed
         for user in users
           tr
@@ -32,4 +33,5 @@ block content
                 a(href="//github.com/#{user.github}", target="_tab") @#{user.github}
               else
                 | None
+            td #{user.university}
             td #{user.confirmed ? "True" : "False"}

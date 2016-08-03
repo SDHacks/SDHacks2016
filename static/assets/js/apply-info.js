@@ -8,7 +8,10 @@ $(document).ready(function() {
     var found = $.inArray(source, temp);
 
     if(found < 0) {
-        $(this).val('');
+      var val = $(this).val().toLowerCase().trim();
+      if(val === 'ucsd' || val === 'uc san diego' || val === 'university of california san diego') {
+        $(this).val('The University of California, San Diego');
+      }
     }
   }
 
