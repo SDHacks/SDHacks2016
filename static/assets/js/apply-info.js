@@ -104,11 +104,11 @@ $(document).ready(function() {
 
   $("#institution-uni").focusout(function(e) {
     validateUniYear(e);
-  }
+  });
 
   function validateUniYear (e) {
     // Can be any age
-    console.log($("#institution-uni").val())
+    console.log($("#institution-uni").val());
     if ($("#institution-uni").val().indexOf("The University of California") !== -1) {
       // All ages allowed
       $("#select-year").attr("data-validation-allowing", "");
@@ -119,7 +119,6 @@ $(document).ready(function() {
     else {
       // Needs to be over 18 - check age
       $("#select-year").css("border-color", "rgb(185, 74, 72)");
-      $("#age-error-message").text("You must be 18+ or a UC student");
       $("#select-year").attr("data-validation-allowing", "range[1980;1998]");
       if (parseInt($("#select-year").val()) === 1998)
         $("#select-month").attr("data-validation-allowing", "range[1;9]");
