@@ -89,7 +89,7 @@ $(document).ready(function() {
       $("#major").prop("disabled", true);
     } else {
       $("#major").prop("disabled", false);
-      $("#major").prop("data-validation", "required")
+      $("#major").prop("data-validation", "required");
     }
   });
 
