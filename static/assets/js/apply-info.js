@@ -79,13 +79,51 @@ $(document).ready(function() {
     return false;
   });
 
-  $("input[type=radio]").on("change", function(e) {
+  // Disable the Major selection for High Schools
+  $("#institution-radio").on("change", function(e) {
     if (this.value === "hs") {
+      $("#major").val("");
+      $("#major-error-message").text("");
+      $("#major").css("border-color", "#cacaca");
+      $("#major").prop("data-validation", "");
       $("#major").prop("disabled", true);
     } else {
       $("#major").prop("disabled", false);
+      $("#major").prop("data-validation", "required")
     }
   });
+
+  $("#select-month,#select-date,#select-year").each(function() {
+    $(this).on("change", function(e) {
+      validateUniYear(e); 
+    });
+  });
+  $("#institution-uni").on("input", function(e) {
+    validateUniYear(e);
+  });
+
+  $("#institution-uni").focusout(function(e) {
+    validateUniYear(e);
+  });
+
+  function validateUniYear (e) {
+    // Can be any age
+    if ($("#institution-uni").val().indexOf("The University of California") !== -1) {
+      // All ages allowed
+      $("#select-year").attr("data-validation-allowing", "");
+      $("#select-month").attr("data-validation-allowing", "");
+      $("#age-error-message").text("");
+      $("#select-year").css("border-color", "#cacaca");
+    }
+    else {
+      // Needs to be over 18 - check age
+      $("#select-year").css("border-color", "rgb(185, 74, 72)");
+      $("#select-year").attr("data-validation-allowing", "range[1980;1998]");
+      if (parseInt($("#select-year").val()) === 1998)
+        $("#select-month").attr("data-validation-allowing", "range[1;9]");
+      else $("#select-month").attr("data-validation-allowing", "");
+    }
+  }
 
   $(".js-apply-form__button--final").click(function(e) {
     var form = $(".apply-form");
@@ -149,7 +187,6 @@ $(document).ready(function() {
       hide = uni;
       label = "High School";
       majorRequired = false;
-      $("#major").val('');
     }
 
     show.css('display', 'block');

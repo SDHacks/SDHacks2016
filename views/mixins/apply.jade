@@ -43,25 +43,26 @@ mixin apply-1
     label.apply-form__required Birthdate
     .row
       .small-4.columns
-        select(data-validation="number", name="birthdate_month", data-validation-error-msg="Please select a birth month")
+        select#select-month(data-validation="number", name="birthdate_month", data-validation-error-msg="Please select a birth month", data-validation-error-msg-number="You must be 18+ or a UC student", data-validation-allowing="")
           option(value="", disabled="", selected="") Month
           - var n = 1
           while n <= 12
             - var month = n < 10 ? '0' + n++ : n++
             option(value=month)= month
       .small-4.columns
-        select(data-validation="number", name="birthdate_day", data-validation-error-msg="Please select a birth day")
+        select#select-date(data-validation="number", name="birthdate_day", data-validation-error-msg="Please select a birth day")
           option(value="", disabled="", selected="") Day
           - var n = 1
           while n <= 31
             - var day = n < 10 ? '0' + n++ : n++
             option(value=day)= day
       .small-4.columns
-        select(data-validation="number", name="birthdate_year", data-validation-error-msg="Please select a birth year")
+        select#select-year(data-validation="number", name="birthdate_year", data-validation-error-msg="Please select a birth year", data-validation-allowing="range[1980;1998]", data-validation-error-msg-number="You must be 18+ or a UC student", data-validation-error-msg-container="#age-error-message")
           option(value="", disabled="", selected="") Year
           - var n = 1980
-          while n <= 1999
+          while n <= 2016
             option(value=n)= n++
+        span#age-error-message
 
   .large-6.small-12.columns
     label.apply-form__required Email
@@ -87,7 +88,9 @@ mixin apply-1
 
   .large-6.small-12.columns
     label.apply-form__required#major-label Major
-    input#major(type="text", placeholder="Major", class="js-apply-form__majors", data-validation="required", name="major")
+    input#major(type="text", placeholder="Major", class="js-apply-form__majors", data-validation="required", name="major",
+    data-validation-error-msg-container="#major-error-message")
+    span#major-error-message
   .large-6.small-12.columns
     label.apply-form__required Graduation Year
     input(type="number", value="2016", name="year", data-validation="number", data-validation-allowing="range[2016;2030]", data-validation-error-msg-number="Must be a current student or have graduated in 2016")
@@ -163,7 +166,7 @@ mixin apply-2
     textarea#outcomeStmt(placeholder="Your outcome", name="outcomeStmt", rows="3", data-validation="length required", data-validation-length="1-500")
 
   .small-12.columns
-    label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ addresses in their applications. Don’t worry, you can come back and edit your application at any time.
+    label Please enter the email addresses of your desired teammates. We will do our best to accept whole teams if ALL members apply and include all members’ email addresses in their applications. Don’t worry, you can come back and edit your application at any time.
 
   .small-12.large-4.columns
     input(type="email", placeholder="example@email.com", name="team1", data-validation="email", data-validation-optional="true")
