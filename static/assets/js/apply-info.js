@@ -108,7 +108,6 @@ $(document).ready(function() {
 
   function validateUniYear (e) {
     // Can be any age
-    console.log($("#institution-uni").val());
     if ($("#institution-uni").val().indexOf("The University of California") !== -1) {
       // All ages allowed
       $("#select-year").attr("data-validation-allowing", "");
