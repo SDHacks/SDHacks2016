@@ -1,0 +1,14 @@
+container.body-drip
+  spacer(size="16")
+  div.content
+    center
+      img.logo(src="https://s32.postimg.org/h7ccn56et/sdhacks2.png")
+    row
+      columns
+        h3 Hello,
+        p Your friend #{user.firstName} #{user.lastName} just submitted an application to SD Hacks 2016 and invited you to come along as their teammate! 
+          a(href=referUrl) Click here 
+          | to fill out an application of your own. Include the email #{user.email} in one of the desired teammate fields if you would also like #{user.firstName} on your team.
+        p Have a great day,
+          br
+          | The SDHacks Team

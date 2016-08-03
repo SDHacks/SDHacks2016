@@ -37,17 +37,29 @@ $(document).ready(function() {
 
   $(".js-apply-form__open").click(function(e) {
     applyForm.slideDown(500, function() {
+      //Ensure it only opens once
+      if(!applyForm.hasClass("js-apply-form__orbit")) {
+        $(".slick-container").slick({
+          infinite: false,
+          draggable: false,
+          arrows: false,
+          swipe: false,
+          touchMove: false,
+          adaptiveHeight: true
+        });
+        $('#outcomeStmt').restrictLength( $('#outcomeStmt-length-element') );
+        applyForm.addClass("js-apply-form__orbit");
+
+        $.validate({
+          modules : 'file',
+          scrollToTopOnError : false
+        });
+      }
       $('html,body').animate({
         scrollTop: applyForm.offset().top
       }, 150, 'swing');
       $("input:visible:first", applyForm).focus();
     });
-
-    //Ensure it only opens once
-    if(!applyForm.hasClass("js-apply-form__orbit")) {
-      new Foundation.Orbit(applyForm);
-      applyForm.addClass("js-apply-form__orbit");
-    }
   });
 
   $(".js-apply-form__close").click(function(e) {
@@ -63,12 +75,66 @@ $(document).ready(function() {
     $(".js-apply-form__error").css('display', 'block');
   };
 
-  applyForm.submit(function(e) {
-    e.preventDefault();
-    $(".js-apply-form__error").css('display', 'none');
+  $(".apply-form").submit(function(e) {
+    return false;
+  });
+
+  // Disable the Major selection for High Schools
+  $("#institution-radio").on("change", function(e) {
+    if (this.value === "hs") {
+      $("#major").val("");
+      $("#major-error-message").text("");
+      $("#major").css("border-color", "#cacaca");
+      $("#major").prop("data-validation", "");
+      $("#major").prop("disabled", true);
+    } else {
+      $("#major").prop("disabled", false);
+      $("#major").prop("data-validation", "required")
+    }
+  });
+
+  $("#select-month,#select-date,#select-year").each(function() {
+    $(this).on("change", function(e) {
+      validateUniYear(e); 
+    });
+  });
+  $("#institution-uni").on("input", function(e) {
+    validateUniYear(e);
+  });
+
+  $("#institution-uni").focusout(function(e) {
+    validateUniYear(e);
+  });
+
+  function validateUniYear (e) {
+    // Can be any age
+    if ($("#institution-uni").val().indexOf("The University of California") !== -1) {
+      // All ages allowed
+      $("#select-year").attr("data-validation-allowing", "");
+      $("#select-month").attr("data-validation-allowing", "");
+      $("#age-error-message").text("");
+      $("#select-year").css("border-color", "#cacaca");
+    }
+    else {
+      // Needs to be over 18 - check age
+      $("#select-year").css("border-color", "rgb(185, 74, 72)");
+      $("#select-year").attr("data-validation-allowing", "range[1980;1998]");
+      if (parseInt($("#select-year").val()) === 1998)
+        $("#select-month").attr("data-validation-allowing", "range[1;9]");
+      else $("#select-month").attr("data-validation-allowing", "");
+    }
+  }
+
+  $(".js-apply-form__button--final").click(function(e) {
+    var form = $(".apply-form");
+    if (!$("#apply-form__slide-2").isValid()) {
+      return false;
+    }
+    
+    showError("");
     $(".spinner", applyForm).css('display', 'inline-block');
 
-    var formData = new FormData($(this)[0]);
+    var formData = new FormData(form[0]);
 
     $.ajax({
       url: '/api/register',
@@ -83,7 +149,7 @@ $(document).ready(function() {
         $(".spinner", applyForm).css('display', 'none');
         $(".apply-form__container").css('height', '');
 
-        applyForm.foundation('changeSlide', true, $('.js-apply-form__confirm-slide'));
+        $(".slick-container").slick('slickNext');
         $('html,body').animate({
           scrollTop: applyForm.offset().top
         }, 150, 'swing');
@@ -125,9 +191,11 @@ $(document).ready(function() {
 
     show.css('display', 'block');
     show.attr('name', 'university');
+    show.attr('data-validation', 'required');
 
     hide.css('display', 'none');
     hide.attr('name', '');
+    hide.attr('data-validation', '');
 
     if(majorRequired) {
       $("#major").attr('required', true);
@@ -149,21 +217,12 @@ $(document).ready(function() {
   });
 
   $("#js-apply-form__next").click(function() {
-    var valid = true;
-    $.each($("input, select", $("#apply-form__slide-1")), function() {
-      var input = $(this);
-      var visible = input.is(":visible");
-      if(this.validity && visible && !this.validity.valid) {
-        valid = false;
-      }
-    }).promise().done(function() {
-      if(valid) {
-        applyForm.foundation('changeSlide', true, $("#apply-form__slide-2"));
-      }
-    });
+    if($("#apply-form__slide-1").isValid()) {
+      $(".slick-container").slick('slickNext');
+    }
   });
 
   $("#js-apply-form__previous").click(function() {
-    applyForm.foundation('changeSlide', false, $("#apply-form__slide-1"));
+    $(".slick-container").slick('slickPrev');
   });
 });

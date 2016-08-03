@@ -3,8 +3,32 @@
 extends ../../layout
 
 block content
-  img(src='/assets/img/expressjs.png', alt='Logo', id="logo")
-  h1 Hello <span class="mean">{{guest.name}}</span>
-  p This is a <b>restricted zone</b> of the app, you're @ <b>users#admin</b>
-  .input-group.input-group-sm#demoinput
-    input.form-control(type='text', placeholder='Your Name...', id="texti", ng-model="guest.name", ng-init="guest.name='Admin'")
+  .row.expanded.user-admin__container
+    .small-12.large-2.columns
+      a(href="/")
+        img.user-admin__logo(src="/assets/img/logo.png", alt="SD Hacks 2016")
+      h2.user-admin__header Users
+    .small-12.large-10.columns
+      table
+        tr
+          th Delete
+          th Registered
+          th Name
+          th Email
+          th Github
+          th Confirmed
+        for user in users
+          tr
+            td.text-center
+              a.js-delete-user(data-user="#{user._id}")
+                i.fa.fa-trash
+            td #{moment(user.createdAt).fromNow()}
+            td 
+              a(href="/users/#{user._id}") #{user.firstName} #{user.lastName}
+            td #{user.email}
+            td 
+              if user.github
+                a(href="//github.com/#{user.github}", target="_tab") @#{user.github}
+              else
+                | None
+            td #{user.confirmed ? "True" : "False"}

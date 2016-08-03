@@ -11,6 +11,7 @@
     "postinstall": "bower install && gulp prod"
   },
   "dependencies": {
+    "basic-auth": "^1.0.4",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "coffee-script": "1.10.0",
@@ -36,6 +37,7 @@
     "gulp-sourcemaps": "1.6.0",
     "gulp-uglify": "1.5.3",
     "gulp-util": "3.0.7",
+    "helmet": "^2.1.2",
     "heroku-ssl-redirect": "0.0.3",
     "jade": "1.11.0",
     "jshint": "2.9.2",
@@ -49,6 +51,7 @@
     "mongoose-crate": "^1.0.11",
     "mongoose-crate-s3": "^1.1.4",
     "mongoose-findorcreate": "^0.1.2",
+    "mongoose-softdelete": "^0.6.3",
     "mongoose-timestamp": "^0.5.0",
     "morgan": "1.7.0",
     "multer": "^1.1.0",

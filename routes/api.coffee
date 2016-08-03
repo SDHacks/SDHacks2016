@@ -2,6 +2,7 @@
 multer = require('multer')
 crypto = require('crypto')
 mime = require('mime')
+EmailTemplate = require('email-templates').EmailTemplate
 
 storage = multer.diskStorage {
   dest: 'public/uploads/',
@@ -15,7 +16,21 @@ upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 }) 
 
-module.exports = (app, User, sendConfirm) ->
+module.exports = (app, User, transporter) ->
+  confirmSender = transporter.templateSender new EmailTemplate('./views/emails/confirmation'), {
+      from: {
+        name: 'SD Hacks Team',
+        address: process.env.MAIL_USER
+      }
+    }
+
+  referSender = transporter.templateSender new EmailTemplate('./views/emails/refer'), {
+      from: {
+        name: 'SD Hacks Team',
+        address: process.env.MAIL_USER
+      }
+    }
+
   app.post '/api/register', upload.single('resume'), (req, res) =>
     user = new User
 
@@ -44,6 +59,7 @@ module.exports = (app, User, sendConfirm) ->
       user.github = req.body.github
       user.website = req.body.website
       user.shareResume = req.body.shareResume
+      user.food = req.body.food
       user.diet = req.body.diet
       user.shirtSize = req.body.shirtFit + req.body.shirtSize
       user.travel = {
@@ -54,9 +70,9 @@ module.exports = (app, User, sendConfirm) ->
       user.outcomeStmt = req.body.outcomeStmt
       user.teammates = []
       
-      user.teammates.push(req.body.team1) if req.body.team1
-      user.teammates.push(req.body.team2) if req.body.team2
-      user.teammates.push(req.body.team3) if req.body.team3
+      user.teammates.push(req.body.team1.toLowerCase()) if req.body.team1
+      user.teammates.push(req.body.team2.toLowerCase()) if req.body.team2
+      user.teammates.push(req.body.team3.toLowerCase()) if req.body.team3
 
       userError = (errorMessage, code = 500) =>
         res.status code
@@ -76,7 +92,7 @@ module.exports = (app, User, sendConfirm) ->
                 return userError err.errors[field].message, 400
             return userError 'Failed due to database error'
 
-          sendConfirm {
+          confirmSender {
             to: user.email,
             subject: 'Thank you for your application!'
           }, {
@@ -89,6 +105,21 @@ module.exports = (app, User, sendConfirm) ->
 
             res.status 200
             res.json {'email': user.email}
+
+            # Queue up the referall emails
+            for referral in user.teammates
+              do (referral) ->
+                User.count {email: referral}, (err, c) ->
+                  console.log err
+                  if err is null and c < 1
+                    console.log c
+                    referSender {
+                      to: referral,
+                      subject: user.firstName + '\'s invitation to SD Hacks 2016'
+                    }, {
+                      'user': user,
+                      'referUrl': req.protocol + '://' + req.get('host')
+                    }
 
       if req.file
         user.attach 'resume', {path: req.file.path}, saveUser

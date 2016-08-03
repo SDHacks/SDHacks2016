@@ -16,19 +16,23 @@ block content
           span.editable#university #{user.university}
         li.user-show__details--item
           i.fa.fa-graduation-cap
-          span.editable#major #{user.major}
+          span.editable#major #{user.major ? user.major : "None"}
         li.user-show__details--item
           i.fa.fa-envelope
           span.not-editable#email #{user.email}
         li.user-show__details--item
           i.fa.fa-github
-          span.editable#github #{user.github}
+          span.editable#github #{user.github ? user.github : "None"}
         li.user-show__details--item
           i.fa.fa-globe
-          span.editable#website #{user.website}
+          span.editable#website #{user.website ? user.website : "None"}
 
     .small-12.large-9.columns
-      h3.user-show__questions--header Your Details
+      .row.user-show__questions--section
+        .small-12.large-4.columns
+          h3.user-show__questions--header Your Details
+        .small-8.hide-for-small-only.columns.user-show__questions--edit
+          | Click field to edit
       .row.user-show__questions
         .small-12.large-4.columns
           .user-show__question Gender
@@ -56,12 +60,21 @@ block content
           .user-show__answer.user-show__answer--file
             a(href=user.resume.url) Download
 
-      h3.user-show__questions--header SD Hacks Details
+      .row.user-show__questions--padded
+        .small-12.large-4.columns
+          h3.user-show__questions--header SD Hacks Details
+        .small-8.hide-for-small-only.columns.user-show__questions--edit
+          | Click field to edit
       .row.user-show__questions
+        .small-12.large-4.columns
+          .user-show__question Preferred Foods
+        .small-12.large-8.columns.user-show__answer--column
+          .user-show__answer#food #{user.food}
+          
         .small-12.large-4.columns
           .user-show__question Dietary Restrictions
         .small-12.large-8.columns.user-show__answer--column
-          .user-show__answer#diet #{user.diet !== "" ? user.diet : "None"}
+          .user-show__answer#diet #{user.diet ? user.diet : "None"}
 
         .small-12.large-4.columns
           .user-show__question City
@@ -86,11 +99,7 @@ block content
         .small-12.large-4.columns
           .user-show__question Desired Teammates
         .small-12.large-8.columns.user-show__answer--column
-          .user-show__answer#teammates #{user.teammates.join(', ')}
+          .user-show__answer#teammates #{user.teammates.length != 0 ? user.teammates.join(', ') : "None"}
 
   script(type='text/javascript').
     var user_id = '#{user._id}';
-
-block scripts
-  script(src='/assets/js/dist/jquery.jeditable.min.js')
-  script(src='/assets/js/dist/user-info.min.js')

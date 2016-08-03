@@ -19,4 +19,4 @@ module.exports = (app, config, User) ->
     )
 
   # Imports
-  require('../entities/users/controller')(app)
+  require('../entities/users/controller')(app, config)

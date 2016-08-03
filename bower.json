@@ -23,7 +23,8 @@
     "jquery-throttle-debounce": "*",
     "foundation-sites": "^6.2.3",
     "jquery-ui": "^1.11.4",
-    "velocity": "^1.2.3",
-    "motion-ui": "^1.2.2"
+    "motion-ui": "^1.2.2",
+    "jquery-form-validator": "^2.3.36",
+    "slick-carousel": "^1.6.0"
   }
 }

@@ -4,6 +4,7 @@ timestamps = require('mongoose-timestamp')
 crate = require('mongoose-crate')
 S3 = require('mongoose-crate-s3')
 jwt = require('jsonwebtoken')
+softDelete = require('mongoose-softdelete')
 
 require('dotenv').config();
 Schema = mongoose.Schema
@@ -32,6 +33,7 @@ UsersSchema = new Schema({
     type: String,
     required: [true, "You must have an email"],
     trim: true,
+    lowercase: true,
     unique: true,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "You must use a valid email"]
   },
@@ -46,8 +48,7 @@ UsersSchema = new Schema({
   },
   major: {
     type: String,
-    trim: true,
-    required: [true, "You must have a major"]
+    trim: true
   },
   year: {
     type: Number,
@@ -68,6 +69,10 @@ UsersSchema = new Schema({
   shareResume: {
     type: Boolean,
     default: false
+  },
+  food: {
+    type: String,
+    trim: true,
   },
   diet: {
     type: String,
@@ -94,6 +99,7 @@ UsersSchema = new Schema({
 
 UsersSchema.plugin(findOrCreate)
 UsersSchema.plugin(timestamps)
+UsersSchema.plugin(softDelete)
 UsersSchema.plugin(crate, {
   storage: new S3({
     key: process.env.S3_KEY,
@@ -127,6 +133,7 @@ UsersSchema.methods.generateJwt = () ->
     github: this.github,
     website: this.website,
     shareResume: this.shareResume,
+    food: this.food,
     diet: this.diet,
     shirtSize: this.shirtSize,
     travel: this.travel,

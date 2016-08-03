@@ -1,14 +1,5 @@
 var imageCounter = 0;
-var images = [
-	'#image-pool1',
-	'#image-pool2',
-	'#image-pool3',
-	'#image-pool4',
-	'#image-pool5',
-	'#image-pool6',
-	'#image-pool7',
-	'#image-pool8'
-];
+var totalImages = 64;
 
 function pickRandHexagon(hexagonSelector) {
 	var rand = Math.floor(Math.random()*hexagonSelector.length);
@@ -29,8 +20,7 @@ function pickRandHexagon(hexagonSelector) {
 }
 
 function pickImage() {
-	imageCounter++;
-	return images[imageCounter%images.length];
+	return "#image-pool" + ((imageCounter++ % totalImages) + 1);
 }
 
 function highlightHexagon() {
@@ -45,22 +35,11 @@ function highlightHexagon() {
 
 	randHexagon.parent().append(clone);
 
-	clone.velocity({
-		properties: { fillOpacity: 0.8 },
-		options: { 
-		    duration: 2000
-		}
-  }).velocity({
-  	properties: { fillOpacity: 0 },
-  	options: {
-  		duration: 2000,
-  		delay: 1000,
-		  complete: function() {
-		  	randHexagon.data('wasSelected', false);
-		    clone.remove();
-		  }
-  	}
-  });
+	clone.addClass('hero__hexagon--animating');
+	window.setTimeout(function() {
+		randHexagon.data('wasSelected', false);
+		clone.remove();
+	}, 5000);
 }
 
 function mainLoop() {

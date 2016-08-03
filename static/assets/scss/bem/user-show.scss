@@ -62,17 +62,12 @@
   &__questions {
     background-color: $white;
 
-    &--header:not(:first-child) {
-      padding-top: 1.0em;
+    &--padded {
+      margin-top: 2.0em;
     }
 
-    .fa-edit {
-      margin-left: 10px;
-      display: none;
-    }
-
-    .columns:hover .fa-edit {
-      display: inline-block;
+    &--edit {
+      line-height: 3.0em;
     }
   }
 

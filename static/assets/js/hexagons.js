@@ -5,13 +5,18 @@ var radius = 95,
 var logoRow = 2,
     smallLogoRow = 2;
 var fillChance = 0.35;
-var initialHeight = parseInt(d3.select('.hero').style('height'));
+var initialHeight = 0;
 
 var borderSVGWidth = 457,
     borderSVGHeight = 250;
 
 var border, path, topology, projection, mousing = 0;
-$(document).ready(resize);
+$(document).ready(function() {
+    if($(".hero").length) {
+        initialHeight = parseInt(d3.select('.hero').style('height'));
+        resize();
+    }
+});
 
 function hexClass(d) {
     var classes = ["hero__hexagon--empty"];
