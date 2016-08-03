@@ -338,3 +338,12 @@ input:-webkit-autofill {
   top: -1em;
   font-size: 0.8em;
 }
+
+.about-columns {
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  h4 {
+    color: $primary-color;
+  }
+}
