@@ -88,6 +88,22 @@
       display: inline;
     }
 
+    &--error {
+      color: $alert-color;
+      margin-left: 10px;
+    }
+
+    &--success {
+      color: $primary-color;
+      margin-left: 10px;
+    }
+
+    &--file {
+      input:first-child {
+        margin-bottom: 5px;
+      }
+    }
+
     &--phone:before {
       content: '+1 '
     }

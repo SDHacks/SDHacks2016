@@ -58,7 +58,13 @@ block content
           .user-show__question Resume
         .small-12.large-8.columns.user-show__answer--column
           .user-show__answer.user-show__answer--file
-            a(href=user.resume.url) Download
+            if user.resume.url
+              a(href=user.resume.url) Download
+            form#upload-form(enctype="multipart/form-data", method="POST", action="/api/upload")
+              input(type="file", placeholder="Resume", name="resume", data-validation="mime size", data-validation-max-size="5M", data-validation-allowing="docx, pdf, odt, pages, md, txt, vnd.openxmlformats-officedocument.wordprocessingml")
+              input(type="hidden", name="user_id", value=user._id)
+              input(type="submit", placeholder="Submit", class="button primary", value="Upload")
+              span#upload-form-error
 
       .row.user-show__questions--padded
         .small-12.large-4.columns

@@ -31,6 +31,26 @@ module.exports = (app, User, transporter) ->
       }
     }
 
+  app.post '/api/upload', upload.single('resume'), (req, res) =>
+    userError = () ->
+      res.status 400
+      res.json {'error': true}
+
+    if not req.body.user_id or not req.file
+      return userError()
+
+    User.findById req.body.user_id, (e, user) =>
+      if e or user is null
+        return userError()
+
+      user.attach 'resume', {path: req.file.path}, (error) ->
+        if error
+          console.error 'Failed to upload new user resume'
+          userError()
+
+        user.save()
+        res.json {'sucess': true}
+
   app.post '/api/register', upload.single('resume'), (req, res) =>
     user = new User
 
