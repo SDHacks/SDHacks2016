@@ -339,6 +339,13 @@ input:-webkit-autofill {
   font-size: 0.8em;
 }
 
+.section-header {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-size: 24px;
+  text-align: center;
+}
+
 .about-columns {
   margin-top: 40px;
 
@@ -389,6 +396,5 @@ input:-webkit-autofill {
     .about-column-text {
       align-self: center;
     }
-
   }
 }
