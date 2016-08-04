@@ -17,6 +17,3 @@ module.exports = (app, config, User) ->
       # Redirect to the profile
       res.redirect('/users/' + req.params.id) 
     )
-
-  # Imports
-  require('../entities/users/controller')(app, config)

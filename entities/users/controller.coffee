@@ -1,4 +1,4 @@
-module.exports = (app, config) ->
+module.exports = (app, config, referTeammates) ->
 
   # Model and Config
   User = require('./model')
@@ -65,12 +65,21 @@ module.exports = (app, config) ->
       
       # Make rules for certain fields
       originalValue = req.body.value
-      # Teammates
-      if req.body.id == 'teammates'
-        req.body.value = req.body.value.replace /\s/g, ''
-        req.body.value = req.body.value.split ','
+      sendReferral = false
 
-      if req.body.id == 'travel'
+      # Teammates
+      if req.body.id.indexOf('teammate') == 0
+        teammateId = req.body.id.slice -1
+        trackEdit(user, req.body.id, user.teammates[teammateId], req.body.value)
+        # Ensure they're not adding a new email
+        if user.teammates[teammateId] is undefined
+          user.teammates.push req.body.value
+        else
+          user.teammates[teammateId] = req.body.value
+        user.markModified 'teammates'
+        sendReferral = true
+
+      else if req.body.id == 'travel'
         user.travel.outOfState = (req.body.value != 'San Diego')
         trackEdit(user, 'city', user.travel.city, req.body.value)
         user.travel.city = req.body.value
@@ -81,9 +90,10 @@ module.exports = (app, config) ->
       user.save (err) ->
         if err
           res.status 500
-          console.err 'Error editing user data'
-          console.err err
+          console.error 'Error editing user data'
           return res.json {'error': 'Something went wrong in the database'}
 
+        if sendReferral
+          referTeammates user, req
         res.send originalValue
     )

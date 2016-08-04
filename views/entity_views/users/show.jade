@@ -13,19 +13,19 @@ block content
       ul.user-show__details
         li.user-show__details--item
           i.fa.fa-university
-          span.editable#university #{user.university}
+          span.user-show__editable#university #{user.university}
         li.user-show__details--item
           i.fa.fa-graduation-cap
-          span.editable#major #{user.major ? user.major : "None"}
+          span.user-show__editable#major #{user.major ? user.major : "None"}
         li.user-show__details--item
           i.fa.fa-envelope
           span.not-editable#email #{user.email}
         li.user-show__details--item
           i.fa.fa-github
-          span.editable#github #{user.github ? user.github : "None"}
+          span.user-show__editable#github #{user.github ? user.github : "None"}
         li.user-show__details--item
           i.fa.fa-globe
-          span.editable#website #{user.website ? user.website : "None"}
+          span.user-show__editable#website #{user.website ? user.website : "None"}
 
     .small-12.large-9.columns
       .row.user-show__questions--section
@@ -57,7 +57,7 @@ block content
         .small-12.large-4.columns
           .user-show__question Resume
         .small-12.large-8.columns.user-show__answer--column
-          .user-show__answer.user-show__answer--file
+          .user-show__answer.user-show__answer--file.user-show__answer--not-editable
             if user.resume.url
               a(href=user.resume.url) Download
             form#upload-form(enctype="multipart/form-data", method="POST", action="/api/upload")
@@ -105,7 +105,13 @@ block content
         .small-12.large-4.columns
           .user-show__question Desired Teammates
         .small-12.large-8.columns.user-show__answer--column
-          .user-show__answer#teammates #{user.teammates.length != 0 ? user.teammates.join(', ') : "None"}
+          .user-show__answer.user-show__answer--not-editable
+            .row
+              - var n = 0
+              while n < 3
+                .small-12.columns.user-show__editable(id="teammate-#{n}")
+                  | #{user.teammates[n] ? user.teammates[n] : "Desired Teammate #" + (n+1)}
+                - n++
 
   script(type='text/javascript').
     var user_id = '#{user._id}';
