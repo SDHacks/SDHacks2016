@@ -9,7 +9,9 @@ block content
     .small-12.large-3.columns
       a(href="/")
         img.user-show__logo(src="/assets/img/logo.png", alt="SD Hacks 2016")
-      span.user-show__name #{user.firstName} #{user.lastName}
+      span.user-show__name.user-show__editable#firstName #{user.firstName}
+      | 
+      span.user-show__name.user-show__editable#lastName #{user.lastName}
       ul.user-show__details
         li.user-show__details--item
           i.fa.fa-university
