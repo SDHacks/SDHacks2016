@@ -16,7 +16,7 @@ upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 }) 
 
-module.exports = (app, User, transporter) ->
+module.exports = (app, config, User, transporter) ->
   confirmSender = transporter.templateSender new EmailTemplate('./views/emails/confirmation'), {
       from: {
         name: 'SD Hacks Team',
@@ -30,6 +30,41 @@ module.exports = (app, User, transporter) ->
         address: process.env.MAIL_USER
       }
     }
+
+  referTeammates = (user, req) ->
+    # Queue up the referall emails
+    for referral in user.teammates
+      do (referral) ->
+        User.count {email: referral}, (err, c) ->
+          if err is null and c < 1
+            console.log c
+            referSender {
+              to: referral,
+              subject: user.firstName + '\'s invitation to SD Hacks 2016'
+            }, {
+              'user': user,
+              'referUrl': req.protocol + '://' + req.get('host')
+            }
+
+  app.post '/api/upload', upload.single('resume'), (req, res) =>
+    userError = () ->
+      res.status 400
+      res.json {'error': true}
+
+    if not req.body.user_id or not req.file
+      return userError()
+
+    User.findById req.body.user_id, (e, user) =>
+      if e or user is null
+        return userError()
+
+      user.attach 'resume', {path: req.file.path}, (error) ->
+        if error
+          console.error 'Failed to upload new user resume'
+          userError()
+
+        user.save()
+        res.json {'sucess': true}
 
   app.post '/api/register', upload.single('resume'), (req, res) =>
     user = new User
@@ -106,22 +141,12 @@ module.exports = (app, User, transporter) ->
             res.status 200
             res.json {'email': user.email}
 
-            # Queue up the referall emails
-            for referral in user.teammates
-              do (referral) ->
-                User.count {email: referral}, (err, c) ->
-                  console.log err
-                  if err is null and c < 1
-                    console.log c
-                    referSender {
-                      to: referral,
-                      subject: user.firstName + '\'s invitation to SD Hacks 2016'
-                    }, {
-                      'user': user,
-                      'referUrl': req.protocol + '://' + req.get('host')
-                    }
+            referTeammates user, req
 
       if req.file
         user.attach 'resume', {path: req.file.path}, saveUser
       else
         saveUser null
+
+  # Imports
+  require('../entities/users/controller')(app, config, referTeammates)
