@@ -37,7 +37,6 @@ module.exports = (app, config, User, transporter) ->
       do (referral) ->
         User.count {email: referral}, (err, c) ->
           if err is null and c < 1
-            console.log c
             referSender {
               to: referral,
               subject: user.firstName + '\'s invitation to SD Hacks 2016'
