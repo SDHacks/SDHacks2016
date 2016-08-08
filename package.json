@@ -51,6 +51,7 @@
     "mongoose-crate": "^1.0.11",
     "mongoose-crate-s3": "^1.1.4",
     "mongoose-findorcreate": "^0.1.2",
+    "mongoose-sanitizer": "^1.0.0",
     "mongoose-softdelete": "^0.6.3",
     "mongoose-timestamp": "^0.5.0",
     "morgan": "1.7.0",

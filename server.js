@@ -85,6 +85,8 @@
     var apiRoutes = require('./routes/api')(app, process.env, User, transporter);
     app.get('*', function(req, res){
       res.render('layout');
+      res.status(404);
+      res.render('error', {'error': 'Page not found'});
     });
 
 
