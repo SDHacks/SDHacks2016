@@ -49,6 +49,7 @@
     // Passport Logic
     var passport = require('passport');
     var User = require('./entities/users/model');
+    var Sponsor = require('./entities/sponsors/model');
 
     // Node mailer
     var transporter = mailer.createTransport({

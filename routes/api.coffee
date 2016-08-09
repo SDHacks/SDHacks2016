@@ -149,3 +149,4 @@ module.exports = (app, config, User, transporter) ->
 
   # Imports
   require('../entities/users/controller')(app, config, referTeammates)
+  require('../entities/sponsors/controller')(app, config)
