@@ -21,6 +21,11 @@
   }
 
   &__output {
-    padding-left: 15px;
+    margin-left: 15px;
+    background-color: $body-font-color;
+
+    &:hover {
+      background-color: inherit;
+    }
   }
 }
