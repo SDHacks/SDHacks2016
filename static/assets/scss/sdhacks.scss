@@ -207,25 +207,11 @@ footer {
   }
   .bronze img {
     height: 32px;
-
     @media #{$medium-up} {
       height: 40px;
     }
   }
 
-  // Custom
-  a#logo-iboss {
-    margin-left: 20px;
-    margin-right: 20px;
-
-    img {
-      height: 40px;
-
-      @media #{$medium-up} {
-        height: 44px;
-      }
-    }
-  }
 }
 
 input:-webkit-autofill {
