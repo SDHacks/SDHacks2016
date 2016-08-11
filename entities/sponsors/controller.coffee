@@ -19,23 +19,17 @@ module.exports = (app, config) ->
     return unauthorized res
 
   # Index
+  app.get '/sponsors', (req, res, next) ->
+
 
   # Admin
-  app.get "/sponsors/admin", auth, (req, res, next) ->
+  app.get '/sponsors/admin', auth, (req, res, next) ->
     #TODO Secure this endpoint
     Sponsor.find({deleted: {$ne: true}}).sort({createdAt: -1}).exec (err, sponsors) ->
-      res.render("entity_views/sponsors/admin.jade", {sponsors: sponsors})
-
-  # Show
-  app.get '/sponsors/:id', (req, res) ->
-    
-
-  # New
-
+      res.render "entity_views/sponsors/admin.jade", {sponsors: sponsors}
 
   # Create
   app.post '/sponsors/create', auth, (req, res) ->
-    console.log req.body
     if not req.body.companyName?
       res.status 400
       return res.json {'error': true}
@@ -54,6 +48,17 @@ module.exports = (app, config) ->
         return res.json {'error': true}
 
       return res.json sponsor
+
+  # Show
+  app.get '/sponsors/:id', (req, res) ->
+    Sponsor.findById req.params.id, (e, sponsor) ->
+      if e or !sponsor?
+        return res.redirect '/'
+
+      res.render "entity_views/sponsors/show.jade", {sponsor: sponsor}
+
+
+  # New
 
   # Destroy
   app.get '/sponsors/:id/delete', auth, (req, res) ->

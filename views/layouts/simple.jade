@@ -1,0 +1,12 @@
+//- Simple two column layout with logo
+
+extends ../layout
+
+block content
+  .row.expanded.user-admin__container
+    .small-12.large-2.columns
+      a(href="/")
+        img.user-admin__logo(src="/assets/img/logo.png", alt="SD Hacks 2016")
+      block left-content
+    .small-12.large-10.columns
+      block right-content

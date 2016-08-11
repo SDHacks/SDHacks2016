@@ -1,5 +1,7 @@
 # App Routes
-module.exports = (app, config, User) ->
+module.exports = (app, config) ->
+  User = require('../entities/users/model')
+  
   auth = require('express-jwt') {secret: config.USER_SECRET, userProperty: 'payload'}
 
   # Basic

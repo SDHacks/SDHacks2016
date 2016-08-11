@@ -16,7 +16,9 @@ upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 }) 
 
-module.exports = (app, config, User, transporter) ->
+module.exports = (app, config, transporter) ->
+  User = require('../entities/users/model')
+
   confirmSender = transporter.templateSender new EmailTemplate('./views/emails/confirmation'), {
       from: {
         name: 'SD Hacks Team',
@@ -146,6 +148,15 @@ module.exports = (app, config, User, transporter) ->
         user.attach 'resume', {path: req.file.path}, saveUser
       else
         saveUser null
+
+  app.get '/api/applicants', (req, res) ->
+    # Select the fields necessary for sorting and searching
+    User.find({deleted: {$ne: true}, confirmed: true, shareResume: true}, 'university major year travel.outOfState').exec (err, users) ->
+      if err or !users?
+        res.status 401
+        return res.json {'error': true}
+
+      res.json users
 
   # Imports
   require('../entities/users/controller')(app, config, referTeammates)

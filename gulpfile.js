@@ -25,7 +25,8 @@ var bowerComponents = [
   path.join(bowerComponentPath, 'jquery-form-validator/form-validator/jquery.form-validator.min.js'),
   path.join(bowerComponentPath, 'jquery-form-validator/form-validator/file.js'),
   path.join(bowerComponentPath, 'jquery-ui/jquery-ui.min.js'),
-  path.join(bowerComponentPath, 'slick-carousel/slick/slick.min.js')
+  path.join(bowerComponentPath, 'slick-carousel/slick/slick.min.js'),
+  path.join(bowerComponentPath, 'underscore/underscore-min.js')
 ];
 
 // Handle Errors
@@ -65,8 +66,8 @@ gulp.task('build-js', function() {
     .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
       .pipe(uglify())
       .pipe(rename({ suffix: '.min' }))
-    .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write())
     .pipe(concat('app.js'))
+    .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write())
     .pipe(gulp.dest('static/assets/js/dist'));
 });
 

@@ -1,0 +1,26 @@
+//- Show one User
+
+extends ../../layouts/simple
+
+block title
+  title SD Hacks 2016 - Resume Browser
+
+block left-content
+  h3 #{sponsor.companyName}
+  h5 Resume Browser
+
+block right-content
+  .row
+    .small-12.columns
+      p Total Resumes: 
+        span#js-filter-total
+        |  (
+        span#js-filter-selected
+        |  selected)
+      input(type="button", class="button primary", value="Download")
+    .medium-4.columns#js-filter-university
+      h3 Universities
+    .medium-4.columns#js-filter-major
+      h3 Majors
+    .medium-4.columns#js-filters-year
+      h3 Graduation
