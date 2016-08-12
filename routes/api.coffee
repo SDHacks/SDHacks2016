@@ -65,7 +65,7 @@ module.exports = (app, config, transporter) ->
           userError()
 
         user.save()
-        res.json {'sucess': true}
+        res.json {'url': user.resume.url}
 
   app.post '/api/register', upload.single('resume'), (req, res) =>
     user = new User

@@ -6,7 +6,7 @@ module.exports = (app, config, referTeammates) ->
   auth = (req, res, next) ->
     unauthorized = (res) ->
       res.set 'WWW-Authenticate', 'Basic realm=Authorization Required'
-      return res.send 401
+      return res.sendStatus 401
 
     user = require('basic-auth')(req)
 

@@ -61,7 +61,7 @@ block content
         .small-12.large-8.columns.user-show__answer--column
           .user-show__answer.user-show__answer--file.user-show__answer--not-editable
             if user.resume.url
-              a(href=user.resume.url) Download
+              a#resume(href=user.resume.url) Download
             form#upload-form(enctype="multipart/form-data", method="POST", action="/api/upload")
               input(type="file", placeholder="Resume", name="resume", data-validation="mime size", data-validation-max-size="5M", data-validation-allowing="docx, pdf, odt, pages, md, txt, vnd.openxmlformats-officedocument.wordprocessingml")
               input(type="hidden", name="user_id", value=user._id)
