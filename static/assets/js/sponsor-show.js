@@ -19,7 +19,7 @@ $(document).ready(function() {
   var yearFilter = $("#js-filters-year");
   var majorFilter = $("#js-filter-major");
 
-  $.getJSON('/api/applicants', function(data) {
+  $.getJSON('/sponsors/applicants', function(data) {
     totalApplicants = data;
 
     //Get distinct elements for each of the fields

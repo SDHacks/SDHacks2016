@@ -149,15 +149,6 @@ module.exports = (app, config, transporter) ->
       else
         saveUser null
 
-  app.get '/api/applicants', (req, res) ->
-    # Select the fields necessary for sorting and searching
-    User.find({deleted: {$ne: true}, confirmed: true, shareResume: true}, 'university major year travel.outOfState').exec (err, users) ->
-      if err or !users?
-        res.status 401
-        return res.json {'error': true}
-
-      res.json users
-
   # Imports
   require('../entities/users/controller')(app, config, referTeammates)
   require('../entities/sponsors/controller')(app, config)

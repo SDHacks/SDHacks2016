@@ -16,6 +16,8 @@ SponsorsSchema = new Schema({
     username: {
       type: String,
       trim: true,
+      unique: true,
+      lowercase: true,
       required: [true, "You must have a username"]
     },
     password: {

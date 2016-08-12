@@ -23,14 +23,19 @@ block content
                 i.fa.fa-trash
             td #{moment(sponsor.createdAt).fromNow()}
             td #{sponsor.companyName}
-            td #{sponsor.login.username}
+            td 
+              a(href="/sponsors/#{sponsor.login.username}") #{sponsor.login.username}
 
       row.column
         form#js-create-sponsor(method="POST", enctype="multipart/form-data")
-          row
+          .row
             .medium-6.columns
               label Company Name
                 input#js-company-name(type="text", placeholder="JP Morgan", value="", name="companyName", required="")
             .medium-6.columns
-              input(type="submit", value="Create", class="button primary")
-              span.user-admin__output#js-company-output
+              label Company Login 
+                small Must be all lowercase with no spaces
+                input#js-company-login(type="text", placeholder="jp-morgan", value="", name="login", required="")
+            .small-1.columns
+              input.button.primary(type="submit", value="Create")
+            .small-2.columns.user-admin__output#js-company-output

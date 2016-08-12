@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "basic-auth": "^1.0.4",
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "coffee-script": "1.10.0",
@@ -54,7 +55,6 @@
     "mongoose-sanitizer": "^1.0.0",
     "mongoose-softdelete": "^0.6.3",
     "mongoose-timestamp": "^0.5.0",
-    "moniker": "^0.1.2",
     "morgan": "1.7.0",
     "multer": "^1.1.0",
     "node-sass": "^3.8.0",
