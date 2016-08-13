@@ -36,7 +36,7 @@ $(document).ready(function() {
           .text(data.sponsor.companyName));
         row.append($("<td></td>")
           .append($("<a></a>")
-            .attr('href', '/sponsors/' + data.sponsor.login.username)
+            .attr('href', '/sponsors')
             .text(data.sponsor.login.username)
           ));
         $("#sponsor-table tr:first").after(row);

@@ -1,6 +1,22 @@
 module.exports = (app, config) ->
   generatePassword = require 'password-generator'
   bcrypt = require 'bcrypt'
+  moment = require 'moment'
+  streams = require 'memory-streams'
+  AWS = require 'aws-sdk'
+  s3Zip = require 's3-zip'
+  fs = require 'fs'
+
+  AWS.config.update {
+    accessKeyId: config.S3_KEY,
+    secretAccessKey: config.S3_SECRET,
+    region: 'us-west-1'
+  }
+
+  s3ZipConfig = {
+    region: 'us-west-1',
+    bucket: config.S3_BUCKET
+  }
 
   # Model and Config
   Sponsor = require('./model')
@@ -27,15 +43,25 @@ module.exports = (app, config) ->
 
     user = require('basic-auth')(req)
 
-    return unauthorized res if (!user or !user.name or !user.pass or user.name != req.params.username)
+    return unauthorized res if (!user or !user.name or !user.pass)
+    req.params.username = user.name #Store the sponsor name in params
+
     Sponsor.findOne {'login.username': user.name}, (err, sponsor) ->
       return unauthorized res if err or !sponsor?
 
-      bcrypt.compare user.pass, sponsor.login.password, (err, res) ->
-        return unauthorized res if err or !res
+      bcrypt.compare user.pass, sponsor.login.password, (err, result) ->
+        return unauthorized res if err or !result
         return next()
 
   # Index
+
+  # Show
+  app.get '/sponsors', sponsorAuth, (req, res) ->
+    Sponsor.findOne {'login.username': req.params.username}, (e, sponsor) ->
+      if e or !sponsor?
+        return res.redirect '/'
+
+      res.render "entity_views/sponsors/show.jade", {sponsor: sponsor}
 
   # Admin
   app.get '/sponsors/admin', auth, (req, res, next) ->
@@ -72,21 +98,49 @@ module.exports = (app, config) ->
 
   app.get '/sponsors/applicants', (req, res) ->
     # Select the fields necessary for sorting and searching
-    User.find({deleted: {$ne: true}, confirmed: true, shareResume: true}, 'university major year travel.outOfState').exec (err, users) ->
+    User.find({deleted: {$ne: true}, confirmed: true, shareResume: true, resume: {$exists: true}}, 'university major year travel.outOfState').exec (err, users) ->
       if err or !users?
         res.status 401
         return res.json {'error': true}
 
       res.json users
 
-  # Show
-  app.get '/sponsors/:username', sponsorAuth, (req, res) ->
-    Sponsor.findOne {'login.username': req.params.username}, (e, sponsor) ->
-      if e or !sponsor?
-        return res.redirect '/'
+  app.post '/sponsors/applicants/download', sponsorAuth, (req, res) ->
+    # Get the list of applicant IDs
+    User.find({ _id: {$in: req.body.applicants} }).exec (err, users) ->
+      return res.json {'error': true} if err or users.length == 0
 
-      res.render "entity_views/sponsors/show.jade", {sponsor: sponsor}
+      # Create a list of file names to filter by
+      fileNames = users.filter (user) ->
+        # Ensure a resume has been uploaded
+        return user.resume? and user.resume.name?
+      .map (user) ->
+        # Map the names of the resumes
+        user.resume.name
 
+      fileName = req.params.username + "-" + moment().format("YYYYMMDDHHmmss") + "-" + generatePassword(12, false, /[\dA-F]/) + ".zip"
+      # Put it into the public uploads folder
+      filePath = __dirname + '../../../public/uploads/' + fileName
+      output = fs.createWriteStream filePath
+      # Zip it to a local file
+      pipe = s3Zip.archive(s3ZipConfig, 'resumes/', fileNames).pipe output
+
+      pipe.on 'finish', () ->
+        fs.readFile filePath, (err, data) ->
+          return res.json {'error': true} if err
+
+          #Upload it back to S3
+          s3 = new AWS.S3()
+          s3.upload {
+            Bucket: config.S3_BUCKET,
+            Key: "downloads/" + fileName,
+            Body: data,
+            ACL:'public-read'
+          }, (err, data) ->
+            return res.json {'error': true} if err
+
+            # Send back the location
+            res.json {'file': data.Location}
 
   # New
 

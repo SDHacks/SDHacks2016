@@ -127,4 +127,19 @@ $(document).ready(function() {
       updateFilters();
     });
   };
+
+  $("#js-filter-download").click(function() {
+    var applicants = _.map(filteredApplicants, function(user) {
+      return user._id;
+    });
+
+    $.post('/sponsors/applicants/download', {'applicants': applicants}, function(data) {
+      if(data.error || !data.file) {
+        console.error('Could not download selected applicants');
+        return;
+      }
+
+      top.location.href = data.file;
+    }, "json");
+  });
 });

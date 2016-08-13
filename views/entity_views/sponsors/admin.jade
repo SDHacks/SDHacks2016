@@ -24,7 +24,7 @@ block content
             td #{moment(sponsor.createdAt).fromNow()}
             td #{sponsor.companyName}
             td 
-              a(href="/sponsors/#{sponsor.login.username}") #{sponsor.login.username}
+              a(href="/sponsors") #{sponsor.login.username}
 
       row.column
         form#js-create-sponsor(method="POST", enctype="multipart/form-data")
