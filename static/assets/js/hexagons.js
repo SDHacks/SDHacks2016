@@ -13,6 +13,7 @@ var borderSVGWidth = 457,
 var border, path, topology, projection, mousing = 0;
 $(document).ready(function() {
     if($(".hero").length) {
+        $(window).resize($.debounce(250, resize));
         initialHeight = parseInt(d3.select('.hero').style('height'));
         resize();
     }
@@ -194,5 +195,3 @@ function resize() {
         selector.data('fill', selector.css('fill'));
     });
 }
-
-$(window).resize($.debounce(250, resize));
