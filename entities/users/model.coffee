@@ -108,7 +108,7 @@ UsersSchema.plugin(crate, {
     acl: 'public-read',
     region: 'us-west-1',
     path: (attachment) ->
-      '/' + attachment.name
+      'resumes/' + attachment.name
   }),
   fields: {
     resume: {}
