@@ -2,7 +2,7 @@ module.exports = (app, config) ->
   generatePassword = require 'password-generator'
   bcrypt = require 'bcrypt'
   moment = require 'moment'
-  streams = require 'memory-streams'
+  path = require 'path'
   AWS = require 'aws-sdk'
   s3Zip = require 's3-zip'
   fs = require 'fs'
@@ -98,7 +98,7 @@ module.exports = (app, config) ->
 
   app.get '/sponsors/applicants', (req, res) ->
     # Select the fields necessary for sorting and searching
-    User.find({deleted: {$ne: true}, confirmed: true, shareResume: true, resume: {$exists: true}}, 'university major year travel.outOfState').exec (err, users) ->
+    User.find({deleted: {$ne: true}, confirmed: true, shareResume: true, resume: {$exists: true}, 'resume.size': {$gt: 0}}, 'university major year gender').exec (err, users) ->
       if err or !users?
         res.status 401
         return res.json {'error': true}
@@ -120,7 +120,7 @@ module.exports = (app, config) ->
 
       fileName = req.params.username + "-" + moment().format("YYYYMMDDHHmmss") + "-" + generatePassword(12, false, /[\dA-F]/) + ".zip"
       # Put it into the public uploads folder
-      filePath = __dirname + '../../../public/uploads/' + fileName
+      filePath = path.join __dirname, '../../public/uploads/', fileName
       output = fs.createWriteStream filePath
       # Zip it to a local file
       pipe = s3Zip.archive(s3ZipConfig, 'resumes/', fileNames).pipe output

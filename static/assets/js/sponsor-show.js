@@ -5,19 +5,22 @@ $(document).ready(function() {
   var total = {
     universities: [],
     graduatingYears: [],
-    majors: []
+    majors: [],
+    genders: []
   };
 
   var filters = {
     universities: [],
     graduatingYears: [],
-    majors: []
+    majors: [],
+    genders: []
   };
 
   //Filter fields
   var universityFilter = $("#js-filter-university");
-  var yearFilter = $("#js-filters-year");
+  var yearFilter = $("#js-filter-year");
   var majorFilter = $("#js-filter-major");
+  var genderFilter = $("#js-filter-gender");
 
   $.getJSON('/sponsors/applicants', function(data) {
     totalApplicants = data;
@@ -42,6 +45,12 @@ $(document).ready(function() {
     });
     total.majors = _.sortBy(total.majors);
 
+    total.genders = _.uniq(totalApplicants, 'gender')
+    .map(function(user) {
+      return user.gender;
+    });
+    total.genders = _.sortBy(total.genders);
+
     //Add UI elements for each
     createFilterUI();
 
@@ -62,6 +71,9 @@ $(document).ready(function() {
     filters.majors = _.map($("input:checked", majorFilter), function(input) {
       return $(input).val();
     });
+    filters.genders = _.map($("input:checked", genderFilter), function(input) {
+      return $(input).val();
+    });
 
     //Filter applicants
     filteredApplicants = _.filter(totalApplicants, function(user) {
@@ -74,6 +86,10 @@ $(document).ready(function() {
       }
 
       if(!_.contains(filters.graduatingYears, user.year.toString())) {
+        return false;
+      }
+
+      if(!_.contains(filters.genders, user.gender.toLowerCase())) {
         return false;
       }
 
@@ -121,6 +137,13 @@ $(document).ready(function() {
 
       var element = createFilterElement(major.toLowerCase(), major);
       majorFilter.append(element);
+    });
+
+    _.each(total.genders, function(gender) {
+      if(typeof gender === "undefined") return;
+
+      var element = createFilterElement(gender.toLowerCase(), gender);
+      genderFilter.append(element);
     });
 
     $(".sponsor-show__filter-option > :input").change(function() {
