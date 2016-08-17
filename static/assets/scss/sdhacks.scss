@@ -225,15 +225,14 @@ footer {
        height: 45px;   
      }   
    }   
- }
- a#logo-1517 img {
-  height: 38px;
-
-  @media #{$medium-up} {
-    height: 48px;
   }
- }
+  a#logo-1517 img {
+    height: 38px;
 
+    @media #{$medium-up} {
+      height: 48px;
+    }
+  }
 }
 
 input:-webkit-autofill {
