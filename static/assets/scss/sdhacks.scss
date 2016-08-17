@@ -209,7 +209,7 @@ footer {
     height: 32px;
 
     @media #{$medium-up} {
-      height: 40px;
+      height: 42px;
     }
   }
 
@@ -225,6 +225,13 @@ footer {
        height: 45px;   
      }   
    }   
+ }
+ a#logo-1517 img {
+  height: 38px;
+
+  @media #{$medium-up} {
+    height: 48px;
+  }
  }
 
 }
