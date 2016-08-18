@@ -233,6 +233,13 @@ footer {
       height: 48px;
     }
   }
+  a#logo-jsoe img {
+    height: 50px;
+
+    @media #{$medium-up} {
+      height: 64px;
+    }
+  }
 }
 
 input:-webkit-autofill {
