@@ -104,10 +104,6 @@
       }
     }
 
-    &--phone:before {
-      content: '+1 '
-    }
-
     &--column {
       &:hover {
         background-color: lighten($white, 5%);
