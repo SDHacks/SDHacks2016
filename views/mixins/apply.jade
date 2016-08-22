@@ -70,9 +70,7 @@ mixin apply-1
     input(type="email", placeholder="email@gmail.com", data-validation="email", name="email")
   .large-6.small-12.columns
     label.apply-form__required Phone Number
-    .input-group
-      span.input-group-label +1
-      input.input-group-field(type="text", placeholder="(555) 555 5555", data-validation="number", data-validation-ignore="(,), ", name="phone", data-validation-error-msg-container="#phone-error-message")
+    input(type="text", placeholder="(555) 555 5555", data-validation="number", data-validation-ignore="(,), ", name="phone", data-validation-error-msg-container="#phone-error-message")
     span#phone-error-message
 
   .small-12.large-6.columns#instituton-radio
