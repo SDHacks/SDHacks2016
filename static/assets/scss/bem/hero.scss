@@ -171,6 +171,10 @@ $empty-hex-colour: lighten($hero-background, 10);
           background-color: scale-color(#646464, $lightness: -15%);
         }
       }
+
+      &:nth-of-type(3) {
+        background-color: #4e9b4e;
+      }
     }
   }
 }
