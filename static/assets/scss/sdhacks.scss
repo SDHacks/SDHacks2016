@@ -206,10 +206,10 @@ footer {
     }
   }
   .bronze img {
-    height: 32px;
+    height: 28px;
 
     @media #{$medium-up} {
-      height: 42px;
+      height: 32px;
     }
   }
 
@@ -233,15 +233,26 @@ footer {
       height: 48px;
     }
   }
+  a#logo-a16z img {
+    height: 34px;
+
+    @media #{$medium-up} {
+      height: 41px;
+    }
+  }
   a#logo-jsoe img {
     height: 50px;
 
     @media #{$medium-up} {
-      height: 64px;
+      height: 60px;
     }
   }
-  a#logo-nanovr img {
+  a#logo-perkinscoie img {
+    height: 60px;
 
+    @media #{$medium-up} {
+      height: 75px;
+    }
   }
 }
 
