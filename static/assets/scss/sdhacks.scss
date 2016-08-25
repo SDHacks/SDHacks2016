@@ -206,10 +206,10 @@ footer {
     }
   }
   .bronze img {
-    height: 32px;
+    height: 28px;
 
     @media #{$medium-up} {
-      height: 42px;
+      height: 32px;
     }
   }
 
@@ -227,21 +227,32 @@ footer {
    }   
   }
   a#logo-1517 img {
-    height: 38px;
+    height: 40px;
 
     @media #{$medium-up} {
-      height: 48px;
+      height: 50px;
+    }
+  }
+  a#logo-a16z img {
+    height: 34px;
+
+    @media #{$medium-up} {
+      height: 40px;
     }
   }
   a#logo-jsoe img {
     height: 50px;
 
     @media #{$medium-up} {
-      height: 64px;
+      height: 60px;
     }
   }
-  a#logo-nanovr img {
+  a#logo-perkinscoie img {
+    height: 60px;
 
+    @media #{$medium-up} {
+      height: 75px;
+    }
   }
 }
 
