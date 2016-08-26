@@ -206,12 +206,54 @@ footer {
     }
   }
   .bronze img {
-    height: 32px;
+    height: 28px;
+
+    @media #{$medium-up} {
+      height: 32px;
+    }
+  }
+
+  // Custom 
+  a#logo-iboss {    
+   margin-left: 20px;    
+   margin-right: 20px;   
+   
+   img {   
+     height: 42px;   
+     
+     @media #{$medium-up} {    
+       height: 45px;   
+     }   
+   }   
+  }
+  a#logo-1517 img {
+    height: 40px;
+
+    @media #{$medium-up} {
+      height: 50px;
+    }
+  }
+  a#logo-a16z img {
+    height: 34px;
+
     @media #{$medium-up} {
       height: 40px;
     }
   }
+  a#logo-jsoe img {
+    height: 50px;
 
+    @media #{$medium-up} {
+      height: 60px;
+    }
+  }
+  a#logo-perkinscoie img {
+    height: 60px;
+
+    @media #{$medium-up} {
+      height: 75px;
+    }
+  }
 }
 
 input:-webkit-autofill {
