@@ -19,4 +19,12 @@
       max-width: 200px;
     }
   }
+
+  &__output {
+    background-color: $body-font-color;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
 }

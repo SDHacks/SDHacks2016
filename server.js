@@ -49,6 +49,7 @@
     // Passport Logic
     var passport = require('passport');
     var User = require('./entities/users/model');
+    var Sponsor = require('./entities/sponsors/model');
 
     // Node mailer
     var transporter = mailer.createTransport({
@@ -81,10 +82,11 @@
     app.use(flash());
     app.use(methodOverride('X-HTTP-Method-Override'));
     app.use(static_dir(path.join(__dirname, 'static')));
-    var appRoutes = require('./routes/index')(app, process.env, User);
-    var apiRoutes = require('./routes/api')(app, process.env, User, transporter);
+    var appRoutes = require('./routes/index')(app, process.env);
+    var apiRoutes = require('./routes/api')(app, process.env, transporter);
     app.get('*', function(req, res){
-      res.render('layout');
+      res.status(404);
+      res.render('error', {'error': 'Page not found'});
     });
 
 
@@ -95,12 +97,12 @@
     } else {
       // 404
       app.use(function(req, res) {
-       res.status(404).send("404: Not Found");
+       res.sendStatus(404);
       });
 
       // 500
       app.use(function(err, req, res, next) {
-       res.status(500).send(err, "500: Server Error");
+       res.sendStatus(500);
       });
     }
 

@@ -28,6 +28,7 @@ $(document).ready(function() {
         success: function (data) {
           error.addClass("user-show__answer--success");
           error.text("Resume successfully updated");
+          $("#resume").attr('href', data.url);
 
           $("input[type=file]", $("#upload-form")).val('');
         },

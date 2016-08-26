@@ -11,7 +11,9 @@
     "postinstall": "bower install && gulp prod"
   },
   "dependencies": {
+    "aws-sdk": "^2.5.0",
     "basic-auth": "^1.0.4",
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "coffee-script": "1.10.0",
@@ -51,6 +53,7 @@
     "mongoose-crate": "^1.0.11",
     "mongoose-crate-s3": "^1.1.4",
     "mongoose-findorcreate": "^0.1.2",
+    "mongoose-sanitizer": "^1.0.0",
     "mongoose-softdelete": "^0.6.3",
     "mongoose-timestamp": "^0.5.0",
     "morgan": "1.7.0",
@@ -60,8 +63,10 @@
     "nodemon": "1.9.2",
     "passport": "0.3.2",
     "passport-local": "^1.0.0",
+    "password-generator": "^2.0.2",
     "replace": "0.3.0",
     "request": "^2.72.0",
+    "s3-zip": "0.0.7",
     "serve-favicon": "2.3.0",
     "serve-static": "1.11.1",
     "throng": "^4.0.0",

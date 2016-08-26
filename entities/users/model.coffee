@@ -97,6 +97,7 @@ UsersSchema = new Schema({
   confirmed: {type: Boolean, default: false}
 })
 
+UsersSchema.plugin(require('mongoose-sanitizer'))
 UsersSchema.plugin(findOrCreate)
 UsersSchema.plugin(timestamps)
 UsersSchema.plugin(softDelete)

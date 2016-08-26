@@ -16,7 +16,9 @@ upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 }) 
 
-module.exports = (app, config, User, transporter) ->
+module.exports = (app, config, transporter) ->
+  User = require('../entities/users/model')
+
   confirmSender = transporter.templateSender new EmailTemplate('./views/emails/confirmation'), {
       from: {
         name: 'SD Hacks Team',
@@ -37,7 +39,6 @@ module.exports = (app, config, User, transporter) ->
       do (referral) ->
         User.count {email: referral}, (err, c) ->
           if err is null and c < 1
-            console.log c
             referSender {
               to: referral,
               subject: user.firstName + '\'s invitation to SD Hacks 2016'
@@ -64,7 +65,7 @@ module.exports = (app, config, User, transporter) ->
           userError()
 
         user.save()
-        res.json {'sucess': true}
+        res.json {'url': user.resume.url}
 
   app.post '/api/register', upload.single('resume'), (req, res) =>
     user = new User
@@ -150,3 +151,4 @@ module.exports = (app, config, User, transporter) ->
 
   # Imports
   require('../entities/users/controller')(app, config, referTeammates)
+  require('../entities/sponsors/controller')(app, config)

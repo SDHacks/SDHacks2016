@@ -2,22 +2,21 @@ module.exports = (app, config, referTeammates) ->
 
   # Model and Config
   User = require('./model')
-  # Index
 
-  # Admin
-
-  basicAuth = require('basic-auth')
   auth = (req, res, next) ->
     unauthorized = (res) ->
       res.set 'WWW-Authenticate', 'Basic realm=Authorization Required'
-      return res.send 401
+      return res.sendStatus 401
 
-    user = basicAuth(req)
+    user = require('basic-auth')(req)
 
     return unauthorized res if (!user || !user.name || !user.pass)
     return next() if (user.name == config.ADMIN_USER && user.pass == config.ADMIN_PASS)
     return unauthorized res
+    
+  # Index
 
+  # Admin
   app.get "/users/admin", auth, (req, res, next) ->
     #TODO Secure this endpoint
     User.find({deleted: {$ne: true}}).sort({createdAt: -1}).exec (err, users) ->

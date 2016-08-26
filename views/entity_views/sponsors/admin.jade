@@ -1,0 +1,41 @@
+//- Restricted zone (Manage Sponsors)
+
+extends ../../layout
+
+block content
+  .row.expanded.user-admin__container
+    .small-12.large-2.columns
+      a(href="/")
+        img.user-admin__logo(src="/assets/img/logo.png", alt="SD Hacks 2016")
+      h2.user-admin__header Sponsors
+      p Total Users: #{sponsors.length}
+    .small-12.large-10.columns
+      table#sponsor-table
+        tr
+          th Delete
+          th Created
+          th Company Name
+          th Login Username
+        for sponsor in sponsors
+          tr
+            td.text-center
+              a.js-delete-sponsor(data-sponsor="#{sponsor._id}")
+                i.fa.fa-trash
+            td #{moment(sponsor.createdAt).fromNow()}
+            td #{sponsor.companyName}
+            td 
+              a(href="/sponsors") #{sponsor.login.username}
+
+      row.column
+        form#js-create-sponsor(method="POST", enctype="multipart/form-data")
+          .row
+            .medium-6.columns
+              label Company Name
+                input#js-company-name(type="text", placeholder="JP Morgan", value="", name="companyName", required="")
+            .medium-6.columns
+              label Company Login 
+                small Must be all lowercase with no spaces
+                input#js-company-login(type="text", placeholder="jp-morgan", value="", name="login", required="")
+            .small-1.columns
+              input.button.primary(type="submit", value="Create")
+            .small-2.columns.user-admin__output#js-company-output
