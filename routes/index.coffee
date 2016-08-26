@@ -8,6 +8,12 @@ module.exports = (app, config) ->
   app.get '/', (req, res) ->
     res.render 'home.jade'
 
+  mentorRedirect = (req, res) ->
+    res.redirect 'http://bit.ly/SDHacks2016Volunteer'
+
+  app.get '/volunteer', mentorRedirect
+  app.get '/mentor', mentorRedirect
+
   # Email confirm
   app.get '/confirm/:id', (req, res) ->
     # Confirm the email
