@@ -9,13 +9,13 @@ module.exports = (app, config) ->
     res.render 'home.jade'
 
   mentorRedirect = (req, res) ->
-    res.redirect 'http://bit.ly/SDHacks2016Volunteer'
+    res.render 'mentor.jade'
 
   app.get '/volunteer', mentorRedirect
   app.get '/mentor', mentorRedirect
 
   giveRedirect = (req, res) ->
-    res.redirect 'https://crowdsurf.ucsd.edu/project/2780'
+    res.render 'give.jade'
 
   app.get '/give', giveRedirect
 
