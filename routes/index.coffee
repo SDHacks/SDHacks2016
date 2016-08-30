@@ -14,6 +14,11 @@ module.exports = (app, config) ->
   app.get '/volunteer', mentorRedirect
   app.get '/mentor', mentorRedirect
 
+  giveRedirect = (req, res) ->
+    res.redirect 'https://crowdsurf.ucsd.edu/project/2780'
+
+  app.get '/give', giveRedirect
+
   # Email confirm
   app.get '/confirm/:id', (req, res) ->
     # Confirm the email
