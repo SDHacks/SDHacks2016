@@ -14,16 +14,10 @@ module.exports = (app, config) ->
   app.get '/volunteer', mentorRedirect
   app.get '/mentor', mentorRedirect
 
-  # So far have just added this between here
   giveRedirect = (req, res) ->
     res.redirect 'https://crowdsurf.ucsd.edu/project/2780'
 
   app.get '/give', giveRedirect
-  # And here
-
-  # Issue is when you go to sdhacks.io/give from a blank/incognito window it redirects
-  # to sdhacks.io. But THEN afterwards from sdhacks.io go to /give then it works.
-  # Can't seem to reproduce this locally cosistently.
 
   # Email confirm
   app.get '/confirm/:id', (req, res) ->
