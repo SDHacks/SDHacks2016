@@ -39,6 +39,7 @@
     var port = process.env.PORT || 3000;
     var server = app.listen(port);
 
+    require('./routes/redirects')(app);
     app.use(sslRedirect());
     app.use(helmet());
 

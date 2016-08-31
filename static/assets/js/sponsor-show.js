@@ -22,44 +22,46 @@ $(document).ready(function() {
   var majorFilter = $("#js-filter-major");
   var genderFilter = $("#js-filter-gender");
 
-  $.getJSON('/sponsors/applicants', function(data) {
-    totalApplicants = data;
+  var getApplicants = function() {
+    $.getJSON('/sponsors/applicants', function(data) {
+      totalApplicants = data;
 
-    //Get distinct elements for each of the fields
-    total.universities = _.uniq(totalApplicants, function(x) {
-      return x.university.toLowerCase();
-    }).map(function(user) {
-      return user.university;
+      //Get distinct elements for each of the fields
+      total.universities = _.uniq(totalApplicants, function(x) {
+        return x.university.toLowerCase();
+      }).map(function(user) {
+        return user.university;
+      });
+      total.universities = _.sortBy(total.universities);
+
+      total.graduatingYears = _.uniq(totalApplicants, 'year')
+      .map(function(user) {
+        return user.year;
+      });
+      total.graduatingYears = _.sortBy(total.graduatingYears);
+
+      total.majors = _.uniq(totalApplicants, 'major')
+      .map(function(user) {
+        return user.major;
+      });
+      total.majors = _.sortBy(total.majors);
+
+      total.genders = _.uniq(totalApplicants, 'gender')
+      .map(function(user) {
+        return user.gender;
+      });
+      total.genders = _.sortBy(total.genders);
+
+      //Add UI elements for each
+      createFilterUI();
+
+      //Update total
+      $("#js-filter-total").text(data.length);
+
+      //Filter the results
+      updateFilters();
     });
-    total.universities = _.sortBy(total.universities);
-
-    total.graduatingYears = _.uniq(totalApplicants, 'year')
-    .map(function(user) {
-      return user.year;
-    });
-    total.graduatingYears = _.sortBy(total.graduatingYears);
-
-    total.majors = _.uniq(totalApplicants, 'major')
-    .map(function(user) {
-      return user.major;
-    });
-    total.majors = _.sortBy(total.majors);
-
-    total.genders = _.uniq(totalApplicants, 'gender')
-    .map(function(user) {
-      return user.gender;
-    });
-    total.genders = _.sortBy(total.genders);
-
-    //Add UI elements for each
-    createFilterUI();
-
-    //Update total
-    $("#js-filter-total").text(data.length);
-
-    //Filter the results
-    updateFilters();
-  });
+  };
 
   var updateFilters = function() {
     filters.universities = _.map($("input:checked", universityFilter), function(input) {
@@ -165,4 +167,8 @@ $(document).ready(function() {
       top.location.href = data.file;
     }, "json");
   });
+
+  if($("#js-filter-download").length) {
+    getApplicants();
+  }
 });

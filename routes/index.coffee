@@ -8,17 +8,6 @@ module.exports = (app, config) ->
   app.get '/', (req, res) ->
     res.render 'home.jade'
 
-  mentorRedirect = (req, res) ->
-    res.render 'mentor.jade'
-
-  app.get '/volunteer', mentorRedirect
-  app.get '/mentor', mentorRedirect
-
-  giveRedirect = (req, res) ->
-    res.render 'give.jade'
-
-  app.get '/give', giveRedirect
-
   # Email confirm
   app.get '/confirm/:id', (req, res) ->
     # Confirm the email
