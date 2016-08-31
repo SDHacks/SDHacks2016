@@ -254,6 +254,13 @@ footer {
       height: 75px;
     }
   }
+  a#logo-edc img {
+    height: 58px;
+
+    @media #{$medium-up} {
+      height: 78px;
+    }
+  }
 }
 
 input:-webkit-autofill {
