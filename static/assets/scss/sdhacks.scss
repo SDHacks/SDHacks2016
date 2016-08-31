@@ -67,6 +67,10 @@ footer {
   }
 }
 
+.tesc {
+  max-width: 150px;
+}
+
 .last-year {
   text-align: center;
 
@@ -123,11 +127,7 @@ footer {
   }
 
   .tesc {
-    max-width: 300px;
-  }
-
-  .tesc {
-    max-width: 300px;
+    max-width: 100px;
   }
   
   &--bg {
@@ -252,6 +252,13 @@ footer {
 
     @media #{$medium-up} {
       height: 75px;
+    }
+  }
+  a#logo-edc img {
+    height: 58px;
+
+    @media #{$medium-up} {
+      height: 78px;
     }
   }
 }
