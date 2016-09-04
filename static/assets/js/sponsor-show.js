@@ -16,11 +16,21 @@ $(document).ready(function() {
     genders: []
   };
 
+  /*
+  Best way to filter this: how to do it?
+
+  Look at totalApplicants (list of all applicants) and make json regarding
+  the number of occurences.
+
+  */
+
   //Filter fields
   var universityFilter = $("#js-filter-university");
   var yearFilter = $("#js-filter-year");
   var majorFilter = $("#js-filter-major");
   var genderFilter = $("#js-filter-gender");
+
+  var uniData = {};
 
   var getApplicants = function() {
     $.getJSON('/sponsors/applicants', function(data) {
@@ -60,8 +70,32 @@ $(document).ready(function() {
 
       //Filter the results
       updateFilters();
+
+      createUniData(totalApplicants);
     });
   };
+
+  //Re-organizes university data for filtering purposes
+  var createUniData = function (applicants) {
+    _.each(applicants, function(applicant) {
+      if (uniData[applicant.university]) 
+        uniData[applicant.university].students++;
+      else 
+        uniData[applicant.university] = { students: 1, university: applicant.university }
+    });
+
+    var uniArr = $.map(uniData, function(el) { return el });
+    uniArr.sort(compareStudents);
+
+    console.log(uniArr);
+  }
+
+  var compareStudents = function (uniA, uniB) {
+    return uniA.students - uniB.students;
+  }
+  var compareAlphabet = function (uniA, uniB) {
+    return uniA.university.localeCompare(uniB.university);
+  }
 
   var updateFilters = function() {
     filters.universities = _.map($("input:checked", universityFilter), function(input) {
@@ -102,21 +136,25 @@ $(document).ready(function() {
   };
 
   var checkElem = 0;
+  var unis = [];
+
   var createFilterElement = function (value, text) {
     var div = $("<div></div>")
-        .addClass('sponsor-show__filter-option');
-      var input = $("<input />")
-        .attr('type', 'checkbox')
-        .attr('value', value)
-        .attr('checked', true)
-        .attr('id', 'filter-check-' + checkElem);
-      var label = $("<label></label>")
-        .attr('for', 'filter-check-' + checkElem++)
-        .text(text);
+      .addClass('sponsor-show__filter-option');
+    var input = $("<input />")
+      .attr('type', 'checkbox')
+      .attr('value', value)
+      .attr('checked', true)
+      .attr('id', 'filter-check-' + checkElem);
+    var label = $("<label></label>")
+      .attr('for', 'filter-check-' + checkElem++)
+      .text(text);
 
-      div.append(input);
-      div.append(label);
-      return div;
+    div.append(input);
+    div.append(label);
+
+    unis.push({text: div});
+    return div;
   };
 
   var createFilterUI = function() {
@@ -171,10 +209,6 @@ $(document).ready(function() {
   if($("#js-filter-download").length) {
     getApplicants();
   }
-
-  $("#js-university-most-common").click(function() {
-    console.log(total.universities);
-  });
 
   $("#js-university-select-all").click(function() {
     $("#js-filter-university input").prop("checked", true);
