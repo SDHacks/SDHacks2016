@@ -1,8 +1,13 @@
+.sponsor-jump {
+  a {
+    display: block;
+  }
+}
 .sponsor-show {
   &__filter-option {
     display: block;
     background: #eee;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     position: relative;
     padding-top: 10px;
     padding-bottom: 10px;

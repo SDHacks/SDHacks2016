@@ -18,12 +18,35 @@ block right-content
         span#js-filter-selected
         |  selected)
       input#js-filter-download(type="button", class="button primary", value="Download")
-    .medium-4.columns#js-filter-university
-      h3 Universities
-    .medium-4.columns#js-filter-major
-      h3 Majors
-    .medium-4.columns
+
+    //- .small-12.columns.hide-for-medium.sponsor-jump
+    //-   h4 Jump to...
+    //-   a(href="#universities") Universities
+    //-   a(href="#majors") Majors
+    //-   a(href="#graduation") Graduation
+    //-   a(href="#gender") Gender
+    .small-12.medium-4.columns#js-filter-university
+      h3(name="universities") Universities
+      div#js-filter-university-fields
+        a#js-university-select-all 
+          h6 Select All
+        a#js-university-select-none 
+          h6 Select None
+        h5 Filter by:
+          a#js-university-most-common 
+            h6 Most Common
+          a#js-university-least-common
+            h6 UCs and CSUs
+    .small-12.medium-4.columns#js-filter-major
+      h3(name="majors") Majors
+      div
+        a#js-major-select-all 
+          h6 Select All
+        a#js-major-select-none 
+          h6 Select None
+    .small-12.medium-4.columns
       #js-filter-year
-        h3 Graduation
+        h3(name="graduation") Graduation
+      br
       #js-filter-gender
-        h3 Gender
+        h3(name="gender") Gender

@@ -171,4 +171,25 @@ $(document).ready(function() {
   if($("#js-filter-download").length) {
     getApplicants();
   }
+
+  $("#js-university-most-common").click(function() {
+    console.log(total.universities);
+  });
+
+  $("#js-university-select-all").click(function() {
+    $("#js-filter-university input").prop("checked", true);
+  });
+
+  $("#js-university-select-none").click(function() {
+    $("#js-filter-university input").prop("checked", false);
+  });
+
+  $("#js-major-select-all").click(function() {
+    $("#js-filter-major input").prop("checked", true);
+  });
+
+  $("#js-major-select-none").click(function() {
+    $("#js-filter-major input").prop("checked", false);
+  });
+
 });
