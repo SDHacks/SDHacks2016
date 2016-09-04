@@ -25,7 +25,7 @@ block right-content
     //-   a(href="#majors") Majors
     //-   a(href="#graduation") Graduation
     //-   a(href="#gender") Gender
-    .small-12.medium-5.columns#js-filter-university
+    .small-12.medium-5.columns
       h3(name="universities") Universities
       div#js-filter-university-fields
         a#js-university-select-all 
@@ -37,16 +37,20 @@ block right-content
             h6 Most Common
           a#js-university-alphabetical
             h6 Alphabetical
-    .small-12.medium-4.columns#js-filter-major
+      #js-filter-university
+    .small-12.medium-4.columns
       h3(name="majors") Majors
-      div
+      div#js-filter-major-fields
         a#js-major-select-all 
           h6 Select All
         a#js-major-select-none 
           h6 Select None
+      #js-filter-major
     .small-12.medium-3.columns
-      #js-filter-year
+      div
         h3(name="graduation") Graduation
+        #js-filter-year
       br
-      #js-filter-gender
-        h3(name="gender") Gender
+      div
+        h3(name="gender") Gender      
+        #js-filter-gender

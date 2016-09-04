@@ -71,12 +71,14 @@ $(document).ready(function() {
       //Filter the results
       updateFilters();
 
-      createUniData(totalApplicants);
+      sortUniArray(totalApplicants);
     });
   };
 
-  //Re-organizes university data for filtering purposes
-  var createUniData = function (applicants) {
+  var uniArr;
+
+  //Returns a sorted university data for filtering purposes
+  var sortUniArray = function (applicants) {
     _.each(applicants, function(applicant) {
       if (uniData[applicant.university]) 
         uniData[applicant.university].students++;
@@ -84,10 +86,12 @@ $(document).ready(function() {
         uniData[applicant.university] = { students: 1, university: applicant.university }
     });
 
-    var uniArr = $.map(uniData, function(el) { return el });
+    uniArr = $.map(uniData, function(el) { return el });
     uniArr.sort(compareStudents);
 
     console.log(uniArr);
+
+
   }
 
   var compareStudents = function (uniA, uniB) {
@@ -95,6 +99,13 @@ $(document).ready(function() {
   }
   var compareAlphabet = function (uniA, uniB) {
     return uniA.university.localeCompare(uniB.university);
+  }
+  var filterUniversityByStudents = function() {
+    uniArr.sort(compareStudents);
+    total.universities = []
+    for (var i=0; i<uniArr.length; i++) {
+      total.universities.push(uniArr[i].university)
+    }
   }
 
   var updateFilters = function() {
@@ -210,6 +221,12 @@ $(document).ready(function() {
     getApplicants();
   }
 
+  $("#js-university-most-common").click(function() {
+    filterUniversityByStudents();
+    createFilterUI();
+  })
+
+  // Methods for highlighting all or none
   $("#js-university-select-all").click(function() {
     $("#js-filter-university input").prop("checked", true);
   });
