@@ -263,4 +263,15 @@ $(document).ready(function() {
     $("#js-filter-major input").prop("checked", false);
   });
 
+  $("#js-select-everything").click(function() {
+    $(".resume-browser input").prop("checked", true);
+  });
+
+  $("#js-select-nothing").click(function() {
+    $(".resume-browser input").prop("checked", false);
+  });
+
+  //Select everything initially
+  $(".resume-browser input").prop("checked", true);
+
 });
