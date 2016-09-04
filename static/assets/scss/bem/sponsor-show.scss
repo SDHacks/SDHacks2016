@@ -30,3 +30,14 @@
     }
   }
 }
+.resume-browser {
+  a.button, input.button {
+    margin-right: 10px;
+
+    &.inactive {
+      background-color: #e6e6e6;
+      color: #666
+    }
+  }
+
+}

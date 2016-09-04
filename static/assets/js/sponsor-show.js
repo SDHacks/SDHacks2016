@@ -83,15 +83,11 @@ $(document).ready(function() {
       if (uniData[applicant.university]) 
         uniData[applicant.university].students++;
       else 
-        uniData[applicant.university] = { students: 1, university: applicant.university }
+        uniData[applicant.university] = { students: 1, university: applicant.university };
     });
 
     uniArr = $.map(uniData, function(el) { return el });
     uniArr.sort(compareStudents);
-
-    console.log(uniArr);
-
-
   }
 
   var compareStudents = function (uniA, uniB) {
@@ -104,7 +100,14 @@ $(document).ready(function() {
     uniArr.sort(compareStudents);
     total.universities = []
     for (var i=0; i<uniArr.length; i++) {
-      total.universities.push(uniArr[i].university)
+      total.universities.push(uniArr[i].university);
+    }
+  }
+  var filterUniversityByAlphabet = function() {
+    uniArr.sort(compareAlphabet);
+    total.universities = []
+    for (var i=0; i<uniArr.length; i++) {
+      total.universities.push(uniArr[i].university);
     }
   }
 
@@ -155,7 +158,6 @@ $(document).ready(function() {
     var input = $("<input />")
       .attr('type', 'checkbox')
       .attr('value', value)
-      .attr('checked', true)
       .attr('id', 'filter-check-' + checkElem);
     var label = $("<label></label>")
       .attr('for', 'filter-check-' + checkElem++)
@@ -221,9 +223,27 @@ $(document).ready(function() {
     getApplicants();
   }
 
-  $("#js-university-most-common").click(function() {
-    filterUniversityByStudents();
+  var updateFilterUI = function() {
+    //Clear filters
+    universityFilter.html("");
+    yearFilter.html("");
+    genderFilter.html("");
+    majorFilter.html("");
     createFilterUI();
+  }
+
+  $("#js-university-most-common").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-university-alphabetical").addClass("inactive");
+    filterUniversityByStudents();
+    updateFilterUI();
+  })
+
+  $("#js-university-alphabetical").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-university-most-common").addClass("inactive");
+    filterUniversityByAlphabet();
+    updateFilterUI();
   })
 
   // Methods for highlighting all or none
