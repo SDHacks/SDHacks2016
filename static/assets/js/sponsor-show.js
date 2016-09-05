@@ -85,10 +85,7 @@ $(document).ready(function() {
     });
   };
 
-  //Lists for holding sorted data for filtering
-  var uniArr;
-  var majorArr;
-
+  //Holds data of universities and majors
   var uniData = {};
   var majorData = {};
 
@@ -129,6 +126,8 @@ $(document).ready(function() {
     var matchesB = classB.match(/\d+$/);
     if (matchesB)
       numberB = parseInt(matchesB[0], 10);
+    console.log(classA);
+    console.log(classB);
     console.log(numberB-numberA);
     return numberB - numberA;
   }
@@ -140,7 +139,12 @@ $(document).ready(function() {
     var arr = [].slice.call(parentNode.children);
     arr.sort(sortByNumber).forEach(function(val, index) {
       parentNode.appendChild(val);
+      console.log(val);
+      console.log(parentNode);
+      console.log("---")
     });
+    console.log(arr);
+    console.log(arr.sort(sortByNumber));
   }
   var filterUniversityByAlphabet = function() {
     var parentNode = universityFilter[0];
@@ -218,7 +222,6 @@ $(document).ready(function() {
       .attr('checked', checked);
     var label = $("<label></label>")
       .attr('for', 'filter-check-' + checkElem++)
-      // .attr('class', 'check-ctr-' + check_ctr++)
       .text(text);
 
     if (occurrences) label.attr('data-occurrences', occurrences)
@@ -237,7 +240,6 @@ $(document).ready(function() {
   //Renders filter fields, based on params. 
   //Possible: "university", "year", "major", "gender". Accepts lists or
   // individual strings
-  var first_filter = true;
   var createFilterUI = function(option) {
     if (!option) option = ["university", "year", "major", "gender"];
     else if (typeof option === String) option = [option];
@@ -328,7 +330,6 @@ $(document).ready(function() {
     $(this).toggleClass("inactive");
     $("#js-university-alphabetical").addClass("inactive");
     filterUniversityByStudents();
-    updateFilterUI("university");
     $("#js-university-search").val("");
   });
 
@@ -336,7 +337,6 @@ $(document).ready(function() {
     $(this).toggleClass("inactive");
     $("#js-university-most-common").addClass("inactive");
     filterUniversityByAlphabet();
-    updateFilterUI("university");
     $("#js-university-search").val("");
   });
 
@@ -344,7 +344,6 @@ $(document).ready(function() {
     $(this).toggleClass("inactive");
     $("#js-major-most-common").addClass("inactive");
     filterMajorByAlphabet();
-    updateFilterUI("major");
     $("#js-major-search").val("");
   });
 
@@ -352,7 +351,6 @@ $(document).ready(function() {
     $(this).toggleClass("inactive");
     $("#js-major-alphabetical").addClass("inactive");
     filterMajorByStudents();
-    updateFilterUI("major");
     $("#js-major-search").val("");
   });
 
@@ -412,7 +410,7 @@ $(document).ready(function() {
   // Search functionality
   var prefix;
   var prefixMatch = function(str) {
-    return str.startsWith(prefix);
+    return str.toLowerCase().startsWith(prefix.toLowerCase());
   }
   $("#js-university-search").on("input", function() {
     // Update the list of universities and re-render
