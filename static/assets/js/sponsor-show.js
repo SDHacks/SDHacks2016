@@ -78,10 +78,14 @@ $(document).ready(function() {
       //Update total
       $("#js-filter-total").text(data.length);
 
+      //Select everything initially
+      $(".resume-browser input").prop("checked", true);
       //Filter the results
       updateFilters();
 
       addClickListeners();
+      
+      checkFilters();
     });
   };
 
@@ -393,39 +397,47 @@ $(document).ready(function() {
     $("#js-filter-gender input").prop("checked", false);
   });
 
-  //Select everything initially
-  $(".resume-browser input").prop("checked", true);
-
   $("a.button").click(function() {
     updateFilters();
     updateChecked(UNIVERSITY);
     updateChecked(MAJOR);
+    checkFilters();
   });
 
-  //Show things
+  //Show/hide different filters
   $("#js-show-university").click(function() {
     $(this).toggleClass("inactive");
     var display = ($("#university-wrapper").css("display") === "block") ? "none" : "block";
     $("#university-wrapper").css("display", display);
+    checkFilters();
   });
-
   $("#js-show-major").click(function() {
     $(this).toggleClass("inactive");
     var display = ($("#major-wrapper").css("display") === "block") ? "none" : "block";
     $("#major-wrapper").css("display", display);
+    checkFilters();
   });
-
   $("#js-show-year").click(function() {
     $(this).toggleClass("inactive");
     var display = ($("#graduation-wrapper").css("display") === "block") ? "none" : "block";
     $("#graduation-wrapper").css("display", display);
+    checkFilters();
   });
-
   $("#js-show-gender").click(function() {
     $(this).toggleClass("inactive");
     var display = ($("#gender-wrapper").css("display") === "block") ? "none" : "block";
     $("#gender-wrapper").css("display", display);
+    checkFilters();
   });
+
+  //Double checks and displays the number of elements in each filter selected
+  //ie - you have 1 university selected
+  var checkFilters = function() {
+    $("#js-show-university .selected").text(" (" + filters.universities.length.toString() + ")")
+    $("#js-show-major .selected").text(" (" + filters.majors.length.toString() + ")")
+    $("#js-show-year .selected").text(" (" + filters.graduatingYears.length.toString() + ")")
+    $("#js-show-gender .selected").text(" (" + filters.genders.length.toString() + ")")
+  }
 
   var updateChecked = function(type) {
     if (type == UNIVERSITY) {

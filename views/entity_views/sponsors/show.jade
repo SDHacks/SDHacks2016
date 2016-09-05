@@ -11,7 +11,7 @@ block left-content
 
 block right-content
   .row.resume-browser.resume-browser--top
-    .small-6.columns
+    .small-5.columns
       p Total Resumes: 
         span#js-filter-total
         |  (
@@ -21,12 +21,17 @@ block right-content
       a.button.inactive#js-select-everything Select Everything
       a.button.inactive#js-select-nothing Select Nothing
 
-    .small-6.columns
+    .small-7.columns
       p Show Filters:
-      a.button#js-show-university University
-      a.button#js-show-major Major
+      a.button#js-show-university Universities
+        span.selected
+      a.button#js-show-major Majors
+        span.selected
       a.button#js-show-year Graduation Year
+        span.selected
       a.button#js-show-gender Gender
+        span.selected
+      p#errors
  
     //- .small-12.columns.hide-for-medium.sponsor-jump
     //-   h4 Jump to...
@@ -66,7 +71,6 @@ block right-content
         a.button.inactive#js-year-select-all Select All
         a.button.inactive#js-year-select-none Select None
         #js-filter-year
-      br
       div#gender-wrapper
 
         h3(name="gender") Gender      
