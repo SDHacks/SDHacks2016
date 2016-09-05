@@ -21,6 +21,8 @@ $(document).ready(function() {
     majors: []
   }
 
+  var occurrences;
+
   //Stores copy of total for later
   var all;
 
@@ -30,8 +32,6 @@ $(document).ready(function() {
   var majorFilter = $("#js-filter-major");
   var genderFilter = $("#js-filter-gender");
 
-  var uniData = {};
-  var majorData = {};
 
   var getApplicants = function() {
     $.getJSON('/sponsors/applicants', function(data) {
@@ -86,8 +86,8 @@ $(document).ready(function() {
       //Filter the results
       updateFilters();
 
-      sortUniArray(totalApplicants);
-      sortMajorArray(totalApplicants);
+      createUniArray(totalApplicants);
+      createMajorArray(totalApplicants);
 
       addClickListeners();
     });
@@ -98,7 +98,7 @@ $(document).ready(function() {
   var majorArr;
 
   //Builds a sorted university data for filtering purposes
-  var sortUniArray = function (applicants) {
+  var createUniArray = function (applicants) {
     _.each(applicants, function(applicant) {
       if (uniData[applicant.university]) 
         uniData[applicant.university].students++;
@@ -106,12 +106,12 @@ $(document).ready(function() {
         uniData[applicant.university] = { students: 1, name: applicant.university };
     });
 
-    uniArr = $.map(uniData, function(el) { return el });
-    uniArr.sort(compareStudents);
+    // uniArr = $.map(uniData, function(el) { return el });
+    // uniArr.sort(compareStudents);
   }
 
   //Builds sorted array of major data for filtering purposes
-  var sortMajorArray = function(applicants) {
+  var createMajorArray = function(applicants) {
     _.each(applicants, function(applicant) {
       if (majorData[applicant.major]) 
         majorData[applicant.major].students++;
@@ -119,8 +119,8 @@ $(document).ready(function() {
         majorData[applicant.major] = { students: 1, name: applicant.major };
     });
 
-    majorArr = $.map(majorData, function(el) { return el });
-    majorArr.sort(compareStudents);
+    // majorArr = $.map(majorData, function(el) { return el });
+    // majorArr.sort(compareStudents);
   }
 
   // We want it sorted backwards (most students to least) hence the negative
@@ -139,6 +139,10 @@ $(document).ready(function() {
     var matchesB = classB.match(/\d+$/);
     if (matchesB)
       numberB = parseInt(matchesB[0], 10);
+    console.log(classA);
+    console.log(classB);
+    console.log(numberA);
+    console.log(numberB);
     return numberB - numberA;
   }
   var sortByAlphabet = function(a, b) {
@@ -217,18 +221,21 @@ $(document).ready(function() {
   var unis = [];
   var check_ctr = 0;
 
-  var createFilterElement = function (value, text, checked) {
+  var createFilterElement = function (value, text, checked, occurrences) {
     var div = $("<div class='filter-wrap' id='filter-wrap-" + checkElem + "'></div>")
       .addClass('sponsor-show__filter-option');
     var input = $("<input />")
       .attr('type', 'checkbox')
       .attr('value', value)
       .attr('id', 'filter-check-' + checkElem)
-      .attr('checked', checked);
+      // .attr('checked', checked);
     var label = $("<label></label>")
       .attr('for', 'filter-check-' + checkElem++)
-      .attr('class', 'check-ctr-' + check_ctr++)
+      // .attr('class', 'check-ctr-' + check_ctr++)
       .text(text);
+
+
+    if (occurrences) label.attr('data-occurrences', occurrences)
 
     div.append(input);
     div.append(label);
@@ -253,7 +260,11 @@ $(document).ready(function() {
       _.each(total.universities, function(university) {
         if(typeof university === "undefined") return;
 
-        var element = createFilterElement(university.toLowerCase(), university, checked.universities[check_ctr]);
+        console.log(uniData);
+        console.log(university);
+        console.log(uniData[university]);
+
+        var element = createFilterElement(university.toLowerCase(), university, checked.universities[check_ctr], uniData[university].students);
         universityFilter.append(element);
       });
     }
