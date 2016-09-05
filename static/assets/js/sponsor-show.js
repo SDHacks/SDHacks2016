@@ -119,6 +119,7 @@ $(document).ready(function() {
   var compareAlphabet = function (uniA, uniB) {
     return uniA.name.localeCompare(uniB.name);
   } 
+  //Todo: reorder elements on sort
   var sortByNumber = function(a, b) {
     var classA = a.getElementsByTagName('label')[0].getAttribute('data-occurrences');
     var classB = b.getElementsByTagName('label')[0].getAttribute('data-occurrences');
@@ -140,7 +141,6 @@ $(document).ready(function() {
     arr.sort(sortByNumber).forEach(function(val, index) {
       parentNode.appendChild(val);
     });
-    console.log(arr.sort(sortByNumber))
   }
   var filterUniversityByAlphabet = function() {
     var parentNode = universityFilter[0];
