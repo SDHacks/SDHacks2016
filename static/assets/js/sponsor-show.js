@@ -350,6 +350,14 @@ $(document).ready(function() {
 
   $("a.button").click(function() {
     updateFilters();
+  });
+
+  $("#js-university-search").change(function() {
+    // Update the list of universities and re-render
+  })
+
+  $("#js-major-search").change(function() {
+    // Update the list of universities and re-render
   })
 
 });

@@ -37,6 +37,8 @@ block right-content
           br
           a.button.inactive#js-university-most-common Most Common
           a.button.inactive#js-university-alphabetical Alphabetical
+        h5 Search: 
+          input#js-university-search(type="text" placeholder="University Name")
       #js-filter-university
     .small-12.medium-4.columns
       h3(name="majors") Majors
@@ -47,7 +49,9 @@ block right-content
         h5 Filter by:
           br
           a.button.inactive#js-major-most-common Most Common
-          a.button.inactive#js-major-alphabetical Alphabetical
+          a.button.inactive#js-major-alphabetical Alphabetical        
+        h5 Search:
+          input#js-major-search(type="text" placeholder="Major")
       #js-filter-major
     .small-12.medium-3.columns
       div
