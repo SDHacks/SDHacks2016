@@ -377,6 +377,22 @@ $(document).ready(function() {
     updateChecked(MAJOR);
   });
 
+  $("#js-year-select-all").click(function() {
+    $("#js-filter-year input").prop("checked", true);
+  });
+
+  $("#js-year-select-none").click(function() {
+    $("#js-filter-year input").prop("checked", false);
+  });
+
+  $("#js-gender-select-all").click(function() {
+    $("#js-filter-gender input").prop("checked", true);
+  });
+
+  $("#js-gender-select-none").click(function() {
+    $("#js-filter-gender input").prop("checked", false);
+  });
+
   //Select everything initially
   $(".resume-browser input").prop("checked", true);
 
@@ -384,6 +400,31 @@ $(document).ready(function() {
     updateFilters();
     updateChecked(UNIVERSITY);
     updateChecked(MAJOR);
+  });
+
+  //Show things
+  $("#js-show-university").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#university-wrapper").css("display") === "block") ? "none" : "block";
+    $("#university-wrapper").css("display", display);
+  });
+
+  $("#js-show-major").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#major-wrapper").css("display") === "block") ? "none" : "block";
+    $("#major-wrapper").css("display", display);
+  });
+
+  $("#js-show-year").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#graduation-wrapper").css("display") === "block") ? "none" : "block";
+    $("#graduation-wrapper").css("display", display);
+  });
+
+  $("#js-show-gender").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#gender-wrapper").css("display") === "block") ? "none" : "block";
+    $("#gender-wrapper").css("display", display);
   });
 
   var updateChecked = function(type) {
