@@ -1,5 +1,48 @@
+.sponsor-jump {
+  a {
+    display: block;
+  }
+}
 .sponsor-show {
   &__filter-option {
     display: block;
+    background: #eee;
+    margin-bottom: 6px;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    input {
+      margin-bottom: 0;
+      position: relative;
+      left: 10px;
+    }
+
+    label {
+      margin: 0;
+      left: 0;
+      padding-left: 30px;
+      right: 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      padding-top: 10px;
+    }
+  }
+}
+.resume-browser {
+  a.button, input.button {
+    margin-right: 10px;
+
+    &.inactive {
+      background-color: #e6e6e6;
+      color: #666
+    }
+  }
+  &--top {
+    border-bottom: 2px solid #e6e6e6
+  }
+  &--content {
+    padding-top: 35px;
   }
 }
