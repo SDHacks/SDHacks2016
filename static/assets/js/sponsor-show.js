@@ -16,11 +16,6 @@ $(document).ready(function() {
     genders: []
   };
 
-  var checked = {
-    universities: [],
-    majors: []
-  }
-
   var occurrences;
 
   //Stores copy of total for later
@@ -70,13 +65,9 @@ $(document).ready(function() {
         genders: total.genders
       };
 
-      for (var i=0; i<all.universities.length; i++) {
-        checked.universities.push(false);
-      }
+      createUniArray(totalApplicants);
+      createMajorArray(totalApplicants);
 
-      for (var i=0; i<all.majors.length; i++) {
-        checked.majors.push(false);
-      }
       //Add UI elements for each
       createFilterUI();
 
@@ -86,9 +77,6 @@ $(document).ready(function() {
       //Filter the results
       updateFilters();
 
-      createUniArray(totalApplicants);
-      createMajorArray(totalApplicants);
-
       addClickListeners();
     });
   };
@@ -96,6 +84,9 @@ $(document).ready(function() {
   //Lists for holding sorted data for filtering
   var uniArr;
   var majorArr;
+
+  var uniData = {};
+  var majorData = {};
 
   //Builds a sorted university data for filtering purposes
   var createUniArray = function (applicants) {
@@ -105,9 +96,6 @@ $(document).ready(function() {
       else 
         uniData[applicant.university] = { students: 1, name: applicant.university };
     });
-
-    // uniArr = $.map(uniData, function(el) { return el });
-    // uniArr.sort(compareStudents);
   }
 
   //Builds sorted array of major data for filtering purposes
@@ -118,9 +106,6 @@ $(document).ready(function() {
       else 
         majorData[applicant.major] = { students: 1, name: applicant.major };
     });
-
-    // majorArr = $.map(majorData, function(el) { return el });
-    // majorArr.sort(compareStudents);
   }
 
   // We want it sorted backwards (most students to least) hence the negative
@@ -131,18 +116,14 @@ $(document).ready(function() {
     return uniA.name.localeCompare(uniB.name);
   } 
   var sortByNumber = function(a, b) {
-    var classA = a.getElementsByTagName('label')[0].className;
-    var classB = b.getElementsByTagName('label')[0].className;
+    var classA = a.getElementsByTagName('label')[0].getAttribute('data-occurrences');
+    var classB = b.getElementsByTagName('label')[0].getAttribute('data-occurrences');
     var matchesA = classA.match(/\d+$/);
     if (matchesA)
       numberA = parseInt(matchesA[0], 10);
     var matchesB = classB.match(/\d+$/);
     if (matchesB)
       numberB = parseInt(matchesB[0], 10);
-    console.log(classA);
-    console.log(classB);
-    console.log(numberA);
-    console.log(numberB);
     return numberB - numberA;
   }
   var sortByAlphabet = function(a, b) {
@@ -228,12 +209,11 @@ $(document).ready(function() {
       .attr('type', 'checkbox')
       .attr('value', value)
       .attr('id', 'filter-check-' + checkElem)
-      // .attr('checked', checked);
+      .attr('checked', checked);
     var label = $("<label></label>")
       .attr('for', 'filter-check-' + checkElem++)
       // .attr('class', 'check-ctr-' + check_ctr++)
       .text(text);
-
 
     if (occurrences) label.attr('data-occurrences', occurrences)
 
@@ -260,11 +240,7 @@ $(document).ready(function() {
       _.each(total.universities, function(university) {
         if(typeof university === "undefined") return;
 
-        console.log(uniData);
-        console.log(university);
-        console.log(uniData[university]);
-
-        var element = createFilterElement(university.toLowerCase(), university, checked.universities[check_ctr], uniData[university].students);
+        var element = createFilterElement(university.toLowerCase(), university, uniData[university].checked, uniData[university].students);
         universityFilter.append(element);
       });
     }
@@ -284,7 +260,7 @@ $(document).ready(function() {
       _.each(total.majors, function(major) {
         if(typeof major === "undefined") return;
 
-        var element = createFilterElement(major.toLowerCase(), major, checked.majors[check_ctr]);
+        var element = createFilterElement(major.toLowerCase(), major, majorData[major].checked, majorData[major].students);
         majorFilter.append(element);
       });
     }
@@ -429,20 +405,11 @@ $(document).ready(function() {
   //Keeps track of checked elements
   var addClickListeners = function () {
     $("#js-filter-university .filter-wrap label").click(function() {
-      var matches = $(this).attr("class").match(/\d+$/);
-      if (matches) {
-        number = parseInt(matches[0], 10);
-      }
-      checked.universities[number] = !checked.universities[number];
-      console.log(checked.universities);
+      uniData[$(this)[0].innerText].checked = !uniData[$(this)[0].innerText].checked;
+      console.log(uniData);
     });
     $("#js-filter-major .filter-wrap label").click(function() {
-      var matches = $(this).attr("class").match(/\d+$/);
-      if (matches) {
-        number = parseInt(matches[0], 10);
-      }
-      checked.majors[number] = !checked.majors[number];
-      console.log(checked.majors);
+      majorData[$(this)[0].innerText].checked = !majorData[$(this)[0].innerText].checked;
     });  
   }
 });
