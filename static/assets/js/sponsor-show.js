@@ -30,7 +30,6 @@ $(document).ready(function() {
   var majorFilter = $("#js-filter-major");
   var genderFilter = $("#js-filter-gender");
 
-
   var getApplicants = function() {
     $.getJSON('/sponsors/applicants', function(data) {
       totalApplicants = data;
@@ -437,6 +436,7 @@ $(document).ready(function() {
     $("#js-show-major .selected").text(" (" + filters.majors.length.toString() + ")")
     $("#js-show-year .selected").text(" (" + filters.graduatingYears.length.toString() + ")")
     $("#js-show-gender .selected").text(" (" + filters.genders.length.toString() + ")")
+    console.log(filters)
   }
 
   var updateChecked = function(type) {
@@ -471,6 +471,11 @@ $(document).ready(function() {
     updateFilterUI("major");
   });
 
+  //TODO: issue where filter numbers aren't updated immediately
+  $("label").click(function() {
+    checkFilters();
+  });
+
   //Keeps track of checked elements
   var addClickListeners = function () {
     $("#js-filter-university .filter-wrap label").click(function() {
@@ -478,6 +483,7 @@ $(document).ready(function() {
     });
     $("#js-filter-major .filter-wrap label").click(function() {
       majorData[$(this)[0].innerText].checked = !majorData[$(this)[0].innerText].checked;
-    });  
+    }); 
+
   }
 });
