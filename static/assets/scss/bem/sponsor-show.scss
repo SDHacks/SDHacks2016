@@ -39,5 +39,10 @@
       color: #666
     }
   }
-
+  &--top {
+    border-bottom: 2px solid #e6e6e6
+  }
+  &--content {
+    padding-top: 35px;
+  }
 }

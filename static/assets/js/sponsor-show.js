@@ -205,34 +205,50 @@ $(document).ready(function() {
     return div;
   };
 
+  /*
+  TODO: make createFilterUI only change certain sections */
   var createFilterUI = function() {
-    _.each(total.universities, function(university) {
-      if(typeof university === "undefined") return;
+    createFilterUI(null);
+  }
+  var createFilterUI = function(option) {
+    if (!option) option = ["university", "year", "major", "gender"];
+    else if (typeof option === String) option = [option];
+    
+    if (option.indexOf("university") !== -1) {
+      _.each(total.universities, function(university) {
+        if(typeof university === "undefined") return;
 
-      var element = createFilterElement(university.toLowerCase(), university);
-      universityFilter.append(element);
-    });
+        var element = createFilterElement(university.toLowerCase(), university);
+        universityFilter.append(element);
+      });
+    }
 
-    _.each(total.graduatingYears, function(year) {
-      if(typeof year === "undefined") return;
+    if (option.indexOf("year") !== -1) {
+      _.each(total.graduatingYears, function(year) {
+        if(typeof year === "undefined") return;
 
-      var element = createFilterElement(year, year);
-      yearFilter.append(element);
-    });
+        var element = createFilterElement(year, year);
+        yearFilter.append(element);
+      });
+    }
 
-    _.each(total.majors, function(major) {
-      if(typeof major === "undefined") return;
+    if (option.indexOf("major") !== -1) {
+      _.each(total.majors, function(major) {
+        if(typeof major === "undefined") return;
 
-      var element = createFilterElement(major.toLowerCase(), major);
-      majorFilter.append(element);
-    });
+        var element = createFilterElement(major.toLowerCase(), major);
+        majorFilter.append(element);
+      });
+    }
 
-    _.each(total.genders, function(gender) {
-      if(typeof gender === "undefined") return;
+    if (option.indexOf("gender") !== -1) {
+      _.each(total.genders, function(gender) {
+        if(typeof gender === "undefined") return;
 
-      var element = createFilterElement(gender.toLowerCase(), gender);
-      genderFilter.append(element);
-    });
+        var element = createFilterElement(gender.toLowerCase(), gender);
+        genderFilter.append(element);
+      });
+    }
 
     $(".sponsor-show__filter-option > :input").change(function() {
       updateFilters();
@@ -259,40 +275,46 @@ $(document).ready(function() {
   }
 
   var updateFilterUI = function() {
+    updateFilterUI(null);
+  }
+  var updateFilterUI = function(option) {
     //Clear filters
-    universityFilter.html("");
-    yearFilter.html("");
-    genderFilter.html("");
-    majorFilter.html("");
-    createFilterUI();
+    if (!option) option = ["university", "year", "major", "gender"];
+    else if (typeof option === "string") option = [option];
+
+    if (option.indexOf("university") !== -1) universityFilter.html("");
+    if (option.indexOf("year") !== -1) yearFilter.html("");
+    if (option.indexOf("gender") !== -1) genderFilter.html("");
+    if (option.indexOf("major") !== -1) majorFilter.html("");
+    createFilterUI(option);
   }
 
   $("#js-university-most-common").click(function() {
     $(this).toggleClass("inactive");
     $("#js-university-alphabetical").addClass("inactive");
     filterUniversityByStudents();
-    updateFilterUI();
+    updateFilterUI("university");
   });
 
   $("#js-university-alphabetical").click(function() {
     $(this).toggleClass("inactive");
     $("#js-university-most-common").addClass("inactive");
     filterUniversityByAlphabet();
-    updateFilterUI();
+    updateFilterUI("university");
   });
 
   $("#js-major-alphabetical").click(function() {
     $(this).toggleClass("inactive");
     $("#js-major-most-common").addClass("inactive");
     filterMajorByAlphabet();
-    updateFilterUI();
+    updateFilterUI("major");
   });
 
   $("#js-major-most-common").click(function() {
     $(this).toggleClass("inactive");
     $("#js-major-alphabetical").addClass("inactive");
     filterMajorByStudents();
-    updateFilterUI();
+    updateFilterUI("major");
   });
 
   // Methods for highlighting all or none

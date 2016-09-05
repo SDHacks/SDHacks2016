@@ -10,7 +10,7 @@ block left-content
   h5 Resume Browser
 
 block right-content
-  .row.resume-browser
+  .row.resume-browser.resume-browser--top
     .small-12.columns
       p Total Resumes: 
         span#js-filter-total
@@ -27,6 +27,7 @@ block right-content
     //-   a(href="#majors") Majors
     //-   a(href="#graduation") Graduation
     //-   a(href="#gender") Gender
+  .row.resume-browser.resume-browser--content
     .small-12.medium-5.columns
       h3(name="universities") Universities
       div#js-filter-university-fields
