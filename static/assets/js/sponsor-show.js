@@ -126,9 +126,6 @@ $(document).ready(function() {
     var matchesB = classB.match(/\d+$/);
     if (matchesB)
       numberB = parseInt(matchesB[0], 10);
-    console.log(classA);
-    console.log(classB);
-    console.log(numberB-numberA);
     return numberB - numberA;
   }
   var sortByAlphabet = function(a, b) {
@@ -139,12 +136,7 @@ $(document).ready(function() {
     var arr = [].slice.call(parentNode.children);
     arr.sort(sortByNumber).forEach(function(val, index) {
       parentNode.appendChild(val);
-      console.log(val);
-      console.log(parentNode);
-      console.log("---")
     });
-    console.log(arr);
-    console.log(arr.sort(sortByNumber));
   }
   var filterUniversityByAlphabet = function() {
     var parentNode = universityFilter[0];
