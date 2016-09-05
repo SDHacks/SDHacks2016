@@ -16,13 +16,8 @@ $(document).ready(function() {
     genders: []
   };
 
-  /*
-  Best way to filter this: how to do it?
-
-  Look at totalApplicants (list of all applicants) and make json regarding
-  the number of occurences.
-
-  */
+  //Stores copy of total for later
+  var all;
 
   //Filter fields
   var universityFilter = $("#js-filter-university");
@@ -62,6 +57,13 @@ $(document).ready(function() {
         return user.gender;
       });
       total.genders = _.sortBy(total.genders);
+
+      all = {
+        universities: total.universities,
+        majors: total.majors,
+        graduatingYears: total.graduatingYears,
+        genders: total.genders
+      };
 
       //Add UI elements for each
       createFilterUI();
@@ -352,12 +354,25 @@ $(document).ready(function() {
     updateFilters();
   });
 
-  $("#js-university-search").change(function() {
+  // Search functionality
+  var prefix;
+  var prefixMatch = function(str) {
+    return str.startsWith(prefix);
+  }
+  $("#js-university-search").on("input", function() {
     // Update the list of universities and re-render
-  })
+    prefix = $(this).val();
+    total.universities = all.universities.filter(prefixMatch);
+    updateFilterUI("university");
+    console.log(all.universities);
+    console.log(all);
+  });
 
-  $("#js-major-search").change(function() {
+  $("#js-major-search").on("input", function() {
     // Update the list of universities and re-render
-  })
+    prefix = $(this).val();
+    total.majors = all.majors.filter(prefixMatch);
+    updateFilterUI("major");
+  });
 
 });
