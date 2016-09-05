@@ -120,7 +120,6 @@ $(document).ready(function() {
     for (var i=0; i<uniArr.length; i++) {
       total.universities.push(uniArr[i].name);
     }
-    console.log(uniArr);
   }
   var filterUniversityByAlphabet = function() {
     uniArr.sort(compareAlphabet);
@@ -129,7 +128,6 @@ $(document).ready(function() {
       total.universities.push(uniArr[i].name);
     }
   }
-
   var filterMajorByStudents = function() {
     majorArr.sort(compareStudents);
     total.majors = []
@@ -205,11 +203,13 @@ $(document).ready(function() {
     return div;
   };
 
-  /*
-  TODO: make createFilterUI only change certain sections */
+  //This will render all filter fields
   var createFilterUI = function() {
     createFilterUI(null);
   }
+  //Renders filter fields, based on params. 
+  //Possible: "university", "year", "major", "gender". Accepts lists or
+  // individual strings
   var createFilterUI = function(option) {
     if (!option) option = ["university", "year", "major", "gender"];
     else if (typeof option === String) option = [option];
@@ -274,9 +274,12 @@ $(document).ready(function() {
     getApplicants();
   }
 
+  //Clears all filter areas for re-rendering
   var updateFilterUI = function() {
     updateFilterUI(null);
   }
+  //Clears filter areas (based on params) for re-rendering.
+  //Same params as createFilterUI()
   var updateFilterUI = function(option) {
     //Clear filters
     if (!option) option = ["university", "year", "major", "gender"];
@@ -344,5 +347,9 @@ $(document).ready(function() {
 
   //Select everything initially
   $(".resume-browser input").prop("checked", true);
+
+  $("a.button").click(function() {
+    updateFilters();
+  })
 
 });
