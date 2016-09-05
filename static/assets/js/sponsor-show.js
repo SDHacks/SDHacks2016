@@ -1,3 +1,6 @@
+const UNIVERSITY = "university";
+const MAJOR = "major";
+
 $(document).ready(function() {
   var totalApplicants = [];
   var filteredApplicants = [];
@@ -65,8 +68,9 @@ $(document).ready(function() {
         genders: total.genders
       };
 
-      createUniArray(totalApplicants);
-      createMajorArray(totalApplicants);
+      //Generate state holders
+      createUniData(totalApplicants);
+      createMajorData(totalApplicants);
 
       //Add UI elements for each
       createFilterUI();
@@ -89,22 +93,22 @@ $(document).ready(function() {
   var majorData = {};
 
   //Builds a sorted university data for filtering purposes
-  var createUniArray = function (applicants) {
+  var createUniData = function (applicants) {
     _.each(applicants, function(applicant) {
       if (uniData[applicant.university]) 
         uniData[applicant.university].students++;
       else 
-        uniData[applicant.university] = { students: 1, name: applicant.university };
+        uniData[applicant.university] = { students: 1, name: applicant.university, checked: false };
     });
   }
 
   //Builds sorted array of major data for filtering purposes
-  var createMajorArray = function(applicants) {
+  var createMajorData = function(applicants) {
     _.each(applicants, function(applicant) {
       if (majorData[applicant.major]) 
         majorData[applicant.major].students++;
       else 
-        majorData[applicant.major] = { students: 1, name: applicant.major };
+        majorData[applicant.major] = { students: 1, name: applicant.major, checked:false };
     });
   }
 
@@ -124,6 +128,7 @@ $(document).ready(function() {
     var matchesB = classB.match(/\d+$/);
     if (matchesB)
       numberB = parseInt(matchesB[0], 10);
+    console.log(numberB-numberA);
     return numberB - numberA;
   }
   var sortByAlphabet = function(a, b) {
@@ -135,6 +140,7 @@ $(document).ready(function() {
     arr.sort(sortByNumber).forEach(function(val, index) {
       parentNode.appendChild(val);
     });
+    console.log(arr.sort(sortByNumber))
   }
   var filterUniversityByAlphabet = function() {
     var parentNode = universityFilter[0];
@@ -318,7 +324,6 @@ $(document).ready(function() {
     addClickListeners();
   }
 
-  // TODO: implement caching state
   $("#js-university-most-common").click(function() {
     $(this).toggleClass("inactive");
     $("#js-university-alphabetical").addClass("inactive");
@@ -354,26 +359,32 @@ $(document).ready(function() {
   // Methods for highlighting all or none
   $("#js-university-select-all").click(function() {
     $("#js-filter-university input").prop("checked", true);
+    updateChecked(UNIVERSITY);
   });
 
   $("#js-university-select-none").click(function() {
     $("#js-filter-university input").prop("checked", false);
+    updateChecked(UNIVERSITY);
   });
 
   $("#js-major-select-all").click(function() {
     $("#js-filter-major input").prop("checked", true);
+    updateChecked(MAJOR);
   });
 
   $("#js-major-select-none").click(function() {
     $("#js-filter-major input").prop("checked", false);
+    updateChecked(MAJOR);
   });
 
   $("#js-select-everything").click(function() {
     $(".resume-browser input").prop("checked", true);
+    updateChecked(MAJOR);
   });
 
   $("#js-select-nothing").click(function() {
     $(".resume-browser input").prop("checked", false);
+    updateChecked(MAJOR);
   });
 
   //Select everything initially
@@ -381,7 +392,22 @@ $(document).ready(function() {
 
   $("a.button").click(function() {
     updateFilters();
+    updateChecked(UNIVERSITY);
+    updateChecked(MAJOR);
   });
+
+  var updateChecked = function(type) {
+    if (type == UNIVERSITY) {
+      $("#js-filter-university .filter-wrap label").each(function () {
+        uniData[$(this)[0].innerText].checked = $("#" + $(this).attr('for')).prop('checked');
+      });
+    }
+    if (type == MAJOR) {
+      $("#js-filter-major .filter-wrap label").each(function () {
+        majorData[$(this)[0].innerText].checked = $("#" + $(this).attr('for')).prop('checked');
+      });
+    }
+  }
 
   // Search functionality
   var prefix;
@@ -406,7 +432,6 @@ $(document).ready(function() {
   var addClickListeners = function () {
     $("#js-filter-university .filter-wrap label").click(function() {
       uniData[$(this)[0].innerText].checked = !uniData[$(this)[0].innerText].checked;
-      console.log(uniData);
     });
     $("#js-filter-major .filter-wrap label").click(function() {
       majorData[$(this)[0].innerText].checked = !majorData[$(this)[0].innerText].checked;
