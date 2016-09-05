@@ -400,21 +400,21 @@ $(document).ready(function() {
   }
 
   // Search functionality
-  var prefix;
-  var prefixMatch = function(str) {
-    return str.toLowerCase().startsWith(prefix.toLowerCase());
+  var regex;
+  var regexMatch = function(reg) {
+    return reg.toLowerCase().match(regex)
   }
   $("#js-university-search").on("input", function() {
     // Update the list of universities and re-render
-    prefix = $(this).val();
-    total.universities = all.universities.filter(prefixMatch);
+    regex = new RegExp(".*" + $(this).val().toLowerCase() + ".*");
+    total.universities = all.universities.filter(regexMatch);
     updateFilterUI("university");
   });
 
   $("#js-major-search").on("input", function() {
     // Update the list of universities and re-render
-    prefix = $(this).val();
-    total.majors = all.majors.filter(prefixMatch);
+    regex = new RegExp(".*" + $(this).val().toLowerCase() + ".*");
+    total.majors = all.majors.filter(regexMatch);
     updateFilterUI("major");
   });
 
