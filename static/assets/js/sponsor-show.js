@@ -31,6 +31,7 @@ $(document).ready(function() {
   var genderFilter = $("#js-filter-gender");
 
   var uniData = {};
+  var majorData = {};
 
   var getApplicants = function() {
     $.getJSON('/sponsors/applicants', function(data) {
@@ -72,42 +73,76 @@ $(document).ready(function() {
       updateFilters();
 
       sortUniArray(totalApplicants);
+      sortMajorArray(totalApplicants);
     });
   };
 
+  //Lists for holding sorted data for filtering
   var uniArr;
+  var majorArr;
 
-  //Returns a sorted university data for filtering purposes
+  //Builds a sorted university data for filtering purposes
   var sortUniArray = function (applicants) {
     _.each(applicants, function(applicant) {
       if (uniData[applicant.university]) 
         uniData[applicant.university].students++;
       else 
-        uniData[applicant.university] = { students: 1, university: applicant.university };
+        uniData[applicant.university] = { students: 1, name: applicant.university };
     });
 
     uniArr = $.map(uniData, function(el) { return el });
     uniArr.sort(compareStudents);
   }
 
+  //Builds sorted array of major data for filtering purposes
+  var sortMajorArray = function(applicants) {
+    _.each(applicants, function(applicant) {
+      if (majorData[applicant.major]) 
+        majorData[applicant.major].students++;
+      else 
+        majorData[applicant.major] = { students: 1, name: applicant.major };
+    });
+
+    majorArr = $.map(majorData, function(el) { return el });
+    majorArr.sort(compareStudents);
+  }
+
+  // We want it sorted backwards (most students to least) hence the negative
   var compareStudents = function (uniA, uniB) {
-    return uniA.students - uniB.students;
+    return -(uniA.students - uniB.students);
   }
   var compareAlphabet = function (uniA, uniB) {
-    return uniA.university.localeCompare(uniB.university);
-  }
+    return uniA.name.localeCompare(uniB.name);
+  } 
   var filterUniversityByStudents = function() {
     uniArr.sort(compareStudents);
     total.universities = []
     for (var i=0; i<uniArr.length; i++) {
-      total.universities.push(uniArr[i].university);
+      total.universities.push(uniArr[i].name);
     }
+    console.log(uniArr);
   }
   var filterUniversityByAlphabet = function() {
     uniArr.sort(compareAlphabet);
     total.universities = []
     for (var i=0; i<uniArr.length; i++) {
-      total.universities.push(uniArr[i].university);
+      total.universities.push(uniArr[i].name);
+    }
+  }
+
+  var filterMajorByStudents = function() {
+    majorArr.sort(compareStudents);
+    total.majors = []
+    for (var i=0; i<majorArr.length; i++) {
+      total.majors.push(majorArr[i].name);
+    }
+  }
+
+  var filterMajorByAlphabet = function() {
+    majorArr.sort(compareAlphabet);
+    total.majors = []
+    for (var i=0; i<majorArr.length; i++) {
+      total.majors.push(majorArr[i].name);
     }
   }
 
@@ -237,14 +272,28 @@ $(document).ready(function() {
     $("#js-university-alphabetical").addClass("inactive");
     filterUniversityByStudents();
     updateFilterUI();
-  })
+  });
 
   $("#js-university-alphabetical").click(function() {
     $(this).toggleClass("inactive");
     $("#js-university-most-common").addClass("inactive");
     filterUniversityByAlphabet();
     updateFilterUI();
-  })
+  });
+
+  $("#js-major-alphabetical").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-major-most-common").addClass("inactive");
+    filterMajorByAlphabet();
+    updateFilterUI();
+  });
+
+  $("#js-major-most-common").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-major-alphabetical").addClass("inactive");
+    filterMajorByStudents();
+    updateFilterUI();
+  });
 
   // Methods for highlighting all or none
   $("#js-university-select-all").click(function() {
