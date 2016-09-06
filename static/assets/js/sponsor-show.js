@@ -1,3 +1,6 @@
+const UNIVERSITY = "university";
+const MAJOR = "major";
+
 $(document).ready(function() {
   var totalApplicants = [];
   var filteredApplicants = [];
@@ -15,6 +18,11 @@ $(document).ready(function() {
     majors: [],
     genders: []
   };
+
+  var occurrences;
+
+  //Stores copy of total for later
+  var all;
 
   //Filter fields
   var universityFilter = $("#js-filter-university");
@@ -52,16 +60,112 @@ $(document).ready(function() {
       });
       total.genders = _.sortBy(total.genders);
 
+      all = {
+        universities: total.universities,
+        majors: total.majors,
+        graduatingYears: total.graduatingYears,
+        genders: total.genders
+      };
+
+      //Generate state holders
+      createUniData(totalApplicants);
+      createMajorData(totalApplicants);
+
       //Add UI elements for each
       createFilterUI();
 
       //Update total
       $("#js-filter-total").text(data.length);
 
+      //Select everything initially
+      $(".resume-browser input").prop("checked", true);
       //Filter the results
       updateFilters();
+
+      addClickListeners();
+    
+      $("label").click(function() {
+        updateFilters();
+      });
     });
   };
+
+  //Holds data of universities and majors
+  var uniData = {};
+  var majorData = {};
+
+  //Builds a sorted university data for filtering purposes
+  var createUniData = function (applicants) {
+    _.each(applicants, function(applicant) {
+      if (uniData[applicant.university]) 
+        uniData[applicant.university].students++;
+      else 
+        uniData[applicant.university] = { students: 1, name: applicant.university, checked: false };
+    });
+  }
+
+  //Builds sorted array of major data for filtering purposes
+  var createMajorData = function(applicants) {
+    _.each(applicants, function(applicant) {
+      if (majorData[applicant.major]) 
+        majorData[applicant.major].students++;
+      else 
+        majorData[applicant.major] = { students: 1, name: applicant.major, checked:false };
+    });
+  }
+
+  // We want it sorted backwards (most students to least) hence the negative
+  var compareStudents = function (uniA, uniB) {
+    return -(uniA.students - uniB.students);
+  }
+  var compareAlphabet = function (uniA, uniB) {
+    return uniA.name.localeCompare(uniB.name);
+  } 
+  //Todo: reorder elements on sort
+  var sortByNumber = function(a, b) {
+    var classA = a.getElementsByTagName('label')[0].getAttribute('data-occurrences');
+    var classB = b.getElementsByTagName('label')[0].getAttribute('data-occurrences');
+    var matchesA = classA.match(/\d+$/);
+    if (matchesA)
+      numberA = parseInt(matchesA[0], 10);
+    var matchesB = classB.match(/\d+$/);
+    if (matchesB)
+      numberB = parseInt(matchesB[0], 10);
+    return numberB - numberA;
+  }
+  var sortByAlphabet = function(a, b) {
+    return a.innerText.localeCompare(b.innerText);
+  }
+  var filterUniversityByStudents = function() {
+    var parentNode = universityFilter[0];
+    var arr = [].slice.call(parentNode.children);
+    arr.sort(sortByNumber).forEach(function(val, index) {
+      parentNode.appendChild(val);
+    });
+  }
+  var filterUniversityByAlphabet = function() {
+    var parentNode = universityFilter[0];
+    var arr = [].slice.call(parentNode.children);
+    var sorted = arr.sort(sortByAlphabet);
+    sorted.forEach(function(val, index) {
+      parentNode.appendChild(val);
+    });
+  }
+  var filterMajorByStudents = function() {
+    var parentNode = majorFilter[0];
+    var arr = [].slice.call(parentNode.children);
+    var sorted = arr.sort(sortByNumber);
+    sorted.forEach(function(val, index) {
+      parentNode.appendChild(val);
+    });
+  }
+  var filterMajorByAlphabet = function() {
+    var parentNode = majorFilter[0];
+    var arr = [].slice.call(parentNode.children);
+    arr.sort(sortByAlphabet).forEach(function(val, index) {
+      parentNode.appendChild(val);
+    });
+  }
 
   var updateFilters = function() {
     filters.universities = _.map($("input:checked", universityFilter), function(input) {
@@ -99,55 +203,83 @@ $(document).ready(function() {
     });
 
     $("#js-filter-selected").text(filteredApplicants.length);
+    checkFilters();
   };
 
   var checkElem = 0;
-  var createFilterElement = function (value, text) {
-    var div = $("<div></div>")
-        .addClass('sponsor-show__filter-option');
-      var input = $("<input />")
-        .attr('type', 'checkbox')
-        .attr('value', value)
-        .attr('checked', true)
-        .attr('id', 'filter-check-' + checkElem);
-      var label = $("<label></label>")
-        .attr('for', 'filter-check-' + checkElem++)
-        .text(text);
+  var unis = [];
+  var check_ctr = 0;
 
-      div.append(input);
-      div.append(label);
-      return div;
+  var createFilterElement = function (value, text, checked, occurrences) {
+    var div = $("<div class='filter-wrap' id='filter-wrap-" + checkElem + "'></div>")
+      .addClass('sponsor-show__filter-option');
+    var input = $("<input />")
+      .attr('type', 'checkbox')
+      .attr('value', value)
+      .attr('id', 'filter-check-' + checkElem)
+      .attr('checked', checked);
+    var label = $("<label></label>")
+      .attr('for', 'filter-check-' + checkElem++)
+      .text(text);
+
+    if (occurrences) label.attr('data-occurrences', occurrences)
+
+    div.append(input);
+    div.append(label);
+
+    unis.push({text: div});
+    return div;
   };
 
+  //This will render all filter fields
   var createFilterUI = function() {
-    _.each(total.universities, function(university) {
-      if(typeof university === "undefined") return;
+    createFilterUI(null);
+  }
+  //Renders filter fields, based on params. 
+  //Possible: "university", "year", "major", "gender". Accepts lists or
+  // individual strings
+  var createFilterUI = function(option) {
+    if (!option) option = ["university", "year", "major", "gender"];
+    else if (typeof option === String) option = [option];
+    
+    if (option.indexOf("university") !== -1) {
+      _.each(total.universities, function(university) {
+        if(typeof university === "undefined") return;
 
-      var element = createFilterElement(university.toLowerCase(), university);
-      universityFilter.append(element);
-    });
+        var element = createFilterElement(university.toLowerCase(), university, uniData[university].checked, uniData[university].students);
+        universityFilter.append(element);
+      });
+    }
 
-    _.each(total.graduatingYears, function(year) {
-      if(typeof year === "undefined") return;
+    check_ctr = 0;
+    if (option.indexOf("year") !== -1) {
+      _.each(total.graduatingYears, function(year) {
+        if(typeof year === "undefined") return;
 
-      var element = createFilterElement(year, year);
-      yearFilter.append(element);
-    });
+        var element = createFilterElement(year, year, true);
+        yearFilter.append(element);
+      });
+    }
 
-    _.each(total.majors, function(major) {
-      if(typeof major === "undefined") return;
+    check_ctr = 0;
+    if (option.indexOf("major") !== -1) {
+      _.each(total.majors, function(major) {
+        if(typeof major === "undefined") return;
 
-      var element = createFilterElement(major.toLowerCase(), major);
-      majorFilter.append(element);
-    });
+        var element = createFilterElement(major.toLowerCase(), major, majorData[major].checked, majorData[major].students);
+        majorFilter.append(element);
+      });
+    }
 
-    _.each(total.genders, function(gender) {
-      if(typeof gender === "undefined") return;
+    check_ctr = 0;
+    if (option.indexOf("gender") !== -1) {
+      _.each(total.genders, function(gender) {
+        if(typeof gender === "undefined") return;
 
-      var element = createFilterElement(gender.toLowerCase(), gender);
-      genderFilter.append(element);
-    });
-
+        var element = createFilterElement(gender.toLowerCase(), gender, true);
+        genderFilter.append(element);
+      });
+    }
     $(".sponsor-show__filter-option > :input").change(function() {
       updateFilters();
     });
@@ -170,5 +302,192 @@ $(document).ready(function() {
 
   if($("#js-filter-download").length) {
     getApplicants();
+  }
+
+  //Clears all filter areas for re-rendering
+  var updateFilterUI = function() {
+    updateFilterUI(null);
+  }
+  //Clears filter areas (based on params) for re-rendering.
+  //Same params as createFilterUI()
+  var updateFilterUI = function(option) {
+    //Clear filters
+    if (!option) option = ["university", "year", "major", "gender"];
+    else if (typeof option === "string") option = [option];
+
+    if (option.indexOf("university") !== -1) universityFilter.html("");
+    if (option.indexOf("year") !== -1) yearFilter.html("");
+    if (option.indexOf("gender") !== -1) genderFilter.html("");
+    if (option.indexOf("major") !== -1) majorFilter.html("");
+    
+    createFilterUI(option);
+    addClickListeners();
+  }
+
+  $("#js-university-most-common").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-university-alphabetical").addClass("inactive");
+    filterUniversityByStudents();
+    $("#js-university-search").val("");
+  });
+
+  $("#js-university-alphabetical").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-university-most-common").addClass("inactive");
+    filterUniversityByAlphabet();
+    $("#js-university-search").val("");
+  });
+
+  $("#js-major-alphabetical").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-major-most-common").addClass("inactive");
+    filterMajorByAlphabet();
+    $("#js-major-search").val("");
+  });
+
+  $("#js-major-most-common").click(function() {
+    $(this).toggleClass("inactive");
+    $("#js-major-alphabetical").addClass("inactive");
+    filterMajorByStudents();
+    $("#js-major-search").val("");
+  });
+
+  // Methods for highlighting all or none
+  $("#js-university-select-all").click(function() {
+    $("#js-filter-university input").prop("checked", true);
+    updateChecked(UNIVERSITY);
+  });
+
+  $("#js-university-select-none").click(function() {
+    $("#js-filter-university input").prop("checked", false);
+    updateChecked(UNIVERSITY);
+  });
+
+  $("#js-major-select-all").click(function() {
+    $("#js-filter-major input").prop("checked", true);
+    updateChecked(MAJOR);
+  });
+
+  $("#js-major-select-none").click(function() {
+    $("#js-filter-major input").prop("checked", false);
+    updateChecked(MAJOR);
+  });
+
+  $("#js-select-everything").click(function() {
+    $(".resume-browser input").prop("checked", true);
+    updateChecked(MAJOR);
+  });
+
+  $("#js-select-nothing").click(function() {
+    $(".resume-browser input").prop("checked", false);
+    updateChecked(MAJOR);
+  });
+
+  $("#js-year-select-all").click(function() {
+    $("#js-filter-year input").prop("checked", true);
+  });
+
+  $("#js-year-select-none").click(function() {
+    $("#js-filter-year input").prop("checked", false);
+  });
+
+  $("#js-gender-select-all").click(function() {
+    $("#js-filter-gender input").prop("checked", true);
+  });
+
+  $("#js-gender-select-none").click(function() {
+    $("#js-filter-gender input").prop("checked", false);
+  });
+
+  $("a.button").click(function() {
+    updateFilters();
+    updateChecked(UNIVERSITY);
+    updateChecked(MAJOR);
+    checkFilters();
+  });
+
+  //Show/hide different filters
+  $("#js-show-university").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#university-wrapper").css("display") === "block") ? "none" : "block";
+    $("#university-wrapper").css("display", display);
+    checkFilters();
+  });
+  $("#js-show-major").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#major-wrapper").css("display") === "block") ? "none" : "block";
+    $("#major-wrapper").css("display", display);
+    checkFilters();
+  });
+  $("#js-show-year").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#graduation-wrapper").css("display") === "block") ? "none" : "block";
+    $("#graduation-wrapper").css("display", display);
+    checkFilters();
+  });
+  $("#js-show-gender").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#gender-wrapper").css("display") === "block") ? "none" : "block";
+    $("#gender-wrapper").css("display", display);
+    checkFilters();
+  });
+
+  //Double checks and displays the number of elements in each filter selected
+  //ie - you have 1 university selected
+  var checkFilters = function() {
+    $("#js-show-university .selected").text(" (" + filters.universities.length.toString() + ")")
+    $("#js-show-major .selected").text(" (" + filters.majors.length.toString() + ")")
+    $("#js-show-year .selected").text(" (" + filters.graduatingYears.length.toString() + ")")
+    $("#js-show-gender .selected").text(" (" + filters.genders.length.toString() + ")")
+    console.log(filters)
+  }
+
+  var updateChecked = function(type) {
+    if (type == UNIVERSITY) {
+      $("#js-filter-university .filter-wrap label").each(function () {
+        uniData[$(this)[0].innerText].checked = $("#" + $(this).attr('for')).prop('checked');
+      });
+    }
+    if (type == MAJOR) {
+      $("#js-filter-major .filter-wrap label").each(function () {
+        majorData[$(this)[0].innerText].checked = $("#" + $(this).attr('for')).prop('checked');
+      });
+    }
+  }
+
+  // Search functionality
+  var regex;
+  var regexMatch = function(reg) {
+    return reg.toLowerCase().match(regex)
+  }
+  $("#js-university-search").on("input", function() {
+    // Update the list of universities and re-render
+    regex = new RegExp(".*" + $(this).val().toLowerCase() + ".*");
+    total.universities = all.universities.filter(regexMatch);
+    updateFilterUI("university");
+  });
+
+  $("#js-major-search").on("input", function() {
+    // Update the list of universities and re-render
+    regex = new RegExp(".*" + $(this).val().toLowerCase() + ".*");
+    total.majors = all.majors.filter(regexMatch);
+    updateFilterUI("major");
+  });
+
+  //TODO: issue where filter numbers aren't updated immediately
+  $("label").click(function() {
+    updateFilters();
+    checkFilters();
+  });
+
+  //Keeps track of checked elements
+  var addClickListeners = function () {
+    $("#js-filter-university .filter-wrap label").click(function() {
+      uniData[$(this)[0].innerText].checked = !uniData[$(this)[0].innerText].checked;
+    });
+    $("#js-filter-major .filter-wrap label").click(function() {
+      majorData[$(this)[0].innerText].checked = !majorData[$(this)[0].innerText].checked;
+    }); 
+
   }
 });

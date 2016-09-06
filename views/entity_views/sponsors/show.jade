@@ -10,20 +10,64 @@ block left-content
   h5 Resume Browser
 
 block right-content
-  .row
-    .small-12.columns
+  .row.resume-browser.resume-browser--top
+    .small-5.columns
       p Total Resumes: 
         span#js-filter-total
         |  (
         span#js-filter-selected
         |  selected)
       input#js-filter-download(type="button", class="button primary", value="Download")
-    .medium-4.columns#js-filter-university
-      h3 Universities
-    .medium-4.columns#js-filter-major
-      h3 Majors
-    .medium-4.columns
-      #js-filter-year
-        h3 Graduation
-      #js-filter-gender
-        h3 Gender
+      a.button.inactive#js-select-everything Select Everything
+      a.button.inactive#js-select-nothing Select Nothing
+
+    .small-7.columns
+      p Show Filters:
+      a.button#js-show-university Universities
+        span.selected
+      a.button#js-show-major Majors
+        span.selected
+      a.button#js-show-year Graduation Year
+        span.selected
+      a.button#js-show-gender Gender
+        span.selected
+      p#errors
+ 
+  .row.resume-browser.resume-browser--content
+    .small-12.medium-5.columns#university-wrapper
+      h3(name="universities") Universities
+      div#js-filter-university-fields
+        a.button.inactive#js-university-select-all Select All
+        a.button.inactive#js-university-select-none Select None
+        h5 Sort by:
+          br
+          a.button.inactive#js-university-most-common Most Common
+          a.button.inactive#js-university-alphabetical Alphabetical
+        h5 Search: 
+          input#js-university-search(type="text" placeholder="University Name")
+      #js-filter-university
+    .small-12.medium-4.columns#major-wrapper
+      h3(name="majors") Majors
+      div#js-filter-major-fields
+        a.button.inactive#js-major-select-all Select All
+        a.button.inactive#js-major-select-none Select None
+        h5 Sort by:
+          br
+          a.button.inactive#js-major-most-common Most Common
+          a.button.inactive#js-major-alphabetical Alphabetical        
+        h5 Search:
+          input#js-major-search(type="text" placeholder="Major")
+      #js-filter-major
+    .small-12.medium-3.columns
+
+      div#graduation-wrapper
+        h3(name="graduation") Graduation
+        a.button.inactive#js-year-select-all Select All
+        a.button.inactive#js-year-select-none Select None
+        #js-filter-year
+      div#gender-wrapper
+
+        h3(name="gender") Gender      
+        a.button.inactive#js-gender-select-all Select All
+        a.button.inactive#js-gender-select-none Select None
+        #js-filter-gender
