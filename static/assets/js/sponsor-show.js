@@ -304,10 +304,6 @@ $(document).ready(function() {
     getApplicants();
   }
 
-  //Clears all filter areas for re-rendering
-  var updateFilterUI = function() {
-    updateFilterUI(null);
-  }
   //Clears filter areas (based on params) for re-rendering.
   //Same params as createFilterUI()
   var updateFilterUI = function(option) {
