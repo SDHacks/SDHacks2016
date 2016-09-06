@@ -20,12 +20,17 @@ $(document).ready(function() {
       error.text('');
       error.removeClass();
 
+      //Show the spinner
+      $(".spinner").css('display', 'inline-block');
+
       $.ajax({
         url: '/api/upload',
         type: 'POST',
         data: formData,
         async: true,
         success: function (data) {
+          $(".spinner").css('display', 'none');
+
           error.addClass("user-show__answer--success");
           error.text("Resume successfully updated");
           $("#resume").attr('href', data.url);
@@ -33,6 +38,7 @@ $(document).ready(function() {
           $("input[type=file]", $("#upload-form")).val('');
         },
         error: function(data) {
+          $(".spinner").css('display', 'none');
           error.addClass("user-show__answer--error");
           error.text("Resume update threw an error");
         },
