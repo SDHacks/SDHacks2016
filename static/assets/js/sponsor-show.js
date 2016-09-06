@@ -431,9 +431,9 @@ $(document).ready(function() {
 
     if (filters.universities.length === 0) $("#js-show-university").addClass("error");
     else $("#js-show-university").removeClass("error");
-    if (filters.majors.length === 0) $("#js-show-university").addClass("error");
+    if (filters.majors.length === 0) $("#js-show-major").addClass("error");
     else $("#js-show-major").removeClass("error");
-    if (filters.graduatingYears.length === 0) $("#js-show-major").addClass("error");
+    if (filters.graduatingYears.length === 0) $("#js-show-year").addClass("error");
     else $("#js-show-year").removeClass("error");
     if (filters.genders.length === 0) $("#js-show-gender").addClass("error");
     else $("#js-show-gender").removeClass("error");
