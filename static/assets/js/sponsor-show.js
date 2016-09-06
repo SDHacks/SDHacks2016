@@ -428,6 +428,15 @@ $(document).ready(function() {
     $("#js-show-major .selected").text(" (" + filters.majors.length.toString() + ")");
     $("#js-show-year .selected").text(" (" + filters.graduatingYears.length.toString() + ")");
     $("#js-show-gender .selected").text(" (" + filters.genders.length.toString() + ")");
+
+    if (filters.universities.length === 0) $("#js-show-university").addClass("error");
+    else $("#js-show-university").removeClass("error");
+    if (filters.majors.length === 0) $("#js-show-university").addClass("error");
+    else $("#js-show-major").removeClass("error");
+    if (filters.graduatingYears.length === 0) $("#js-show-major").addClass("error");
+    else $("#js-show-year").removeClass("error");
+    if (filters.genders.length === 0) $("#js-show-gender").addClass("error");
+    else $("#js-show-gender").removeClass("error");
   };
 
   var updateChecked = function(type) {
