@@ -3,18 +3,13 @@ module.exports = (app, config) ->
   bcrypt = require 'bcrypt'
   moment = require 'moment'
   path = require 'path'
-  AWS = require 'aws-sdk'
-  s3Zip = require 's3-zip'
+  S3Zipper = require 'aws-s3-zipper'
   fs = require 'fs'
 
-  AWS.config.update {
+  zipper = new S3Zipper {
     accessKeyId: config.S3_KEY,
     secretAccessKey: config.S3_SECRET,
-    region: 'us-west-1'
-  }
-
-  s3ZipConfig = {
-    region: 'us-west-1',
+    region: "us-west-1",
     bucket: config.S3_BUCKET
   }
 
@@ -123,33 +118,22 @@ module.exports = (app, config) ->
       fileNames = users.filter (user) ->
         # Ensure a resume has been uploaded
         return user.resume? and user.resume.name?
+
       .map (user) ->
         # Map the names of the resumes
-        user.resume.name
+        'resumes/' + user.resume.name
 
       fileName = req.params.username + "-" + moment().format("YYYYMMDDHHmmss") + "-" + generatePassword(12, false, /[\dA-F]/) + ".zip"
       # Put it into the public uploads folder
-      filePath = path.join __dirname, '../../public/uploads/', fileName
-      output = fs.createWriteStream filePath
-      # Zip it to a local file
-      pipe = s3Zip.archive(s3ZipConfig, 'resumes/', fileNames).pipe output
+      zipper.filterOutFiles = (file) ->
+        return file if fileNames.indexOf(file.Key) != -1
+        null
 
-      pipe.on 'finish', () ->
-        fs.readFile filePath, (err, data) ->
-          return res.json {'error': true} if err
-
-          #Upload it back to S3
-          s3 = new AWS.S3()
-          s3.upload {
-            Bucket: config.S3_BUCKET,
-            Key: "downloads/" + fileName,
-            Body: data,
-            ACL:'public-read'
-          }, (err, data) ->
-            return res.json {'error': true} if err
-
-            # Send back the location
-            res.json {'file': data.Location}
+      zipper.zipToS3File  "resumes", null, 'downloads/' + fileName, (err, result) ->
+        if err
+          console.error err
+          res.json {'error': true}
+        res.json {'file': result.zipFileLocation}
 
   # New
 
