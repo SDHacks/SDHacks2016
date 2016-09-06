@@ -83,8 +83,10 @@ $(document).ready(function() {
       updateFilters();
 
       addClickListeners();
-      
-      checkFilters();
+    
+      $("label").click(function() {
+        updateFilters();
+      });
     });
   };
 
@@ -201,6 +203,7 @@ $(document).ready(function() {
     });
 
     $("#js-filter-selected").text(filteredApplicants.length);
+    checkFilters();
   };
 
   var checkElem = 0;
@@ -473,6 +476,7 @@ $(document).ready(function() {
 
   //TODO: issue where filter numbers aren't updated immediately
   $("label").click(function() {
+    updateFilters();
     checkFilters();
   });
 
