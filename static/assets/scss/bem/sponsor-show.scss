@@ -3,6 +3,9 @@
     display: block;
   }
 }
+#errors {
+  color: red;
+}
 .sponsor-show {
   &__filter-option {
     display: block;
@@ -44,5 +47,8 @@
   }
   &--content {
     padding-top: 35px;
+  }
+  #graduation-wrapper {
+    margin-bottom: 20px;
   }
 }
