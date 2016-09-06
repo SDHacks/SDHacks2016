@@ -65,7 +65,6 @@ module.exports = (app, config) ->
 
   # Admin
   app.get '/sponsors/admin', auth, (req, res, next) ->
-    #TODO Secure this endpoint
     Sponsor.find({deleted: {$ne: true}}).sort({createdAt: -1}).exec (err, sponsors) ->
       res.render "entity_views/sponsors/admin.jade", {sponsors: sponsors}
 
@@ -96,9 +95,19 @@ module.exports = (app, config) ->
         return res.json {'sponsor': sponsor, 'password': generatedPw}
 
 
-  app.get '/sponsors/applicants', (req, res) ->
+  app.get '/sponsors/applicants', sponsorAuth, (req, res) ->
+    # Get the most recent date for sanitized users
+    sanitizedDate = config.RESUME_SANITIZED
     # Select the fields necessary for sorting and searching
-    User.find({deleted: {$ne: true}, confirmed: true, shareResume: true, resume: {$exists: true}, 'resume.size': {$gt: 0}}, 'university major year gender').exec (err, users) ->
+    User.find(
+      {
+        deleted: {$ne: true}, 
+        confirmed: true, 
+        shareResume: true, 
+        resume: {$exists: true}, 
+        'resume.size': {$gt: 0}, 
+        createdAt: {$lte: sanitizedDate}
+      }, 'university major year gender').exec (err, users) ->
       if err or !users?
         res.status 401
         return res.json {'error': true}
