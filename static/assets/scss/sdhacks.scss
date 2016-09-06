@@ -448,3 +448,25 @@ input:-webkit-autofill {
     }
   }
 }
+
+.accepted {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: $hero-background;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/img/accept_background.jpg") no-repeat center center;
+  background-size: cover;
+
+  .logo {
+    max-width: 200px;
+    height: auto;
+  }
+  h1 {
+    color: white
+  }
+  .centered {
+
+  }
+}
