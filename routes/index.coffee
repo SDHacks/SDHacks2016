@@ -8,6 +8,10 @@ module.exports = (app, config) ->
   app.get '/', (req, res) ->
     res.render 'home.jade'
 
+  # Actual confirmation (link for people who just got selected)
+  app.get '/accepted', (req, res) ->
+    res.render 'accepted.jade'
+
   # Email confirm
   app.get '/confirm/:id', (req, res) ->
     # Confirm the email
