@@ -74,10 +74,9 @@
         skip: function (req, res) { return res.statusCode < 400 }
       }));
     app.use(cookieParser());
-    app.use(bodyParser.json());
-    app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+    app.use(bodyParser.json({type: 'application/vnd.api+json', limit: '50mb'}));
     app.use(device.capture());
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.urlencoded({extended: true, limit: '50mb', parameterLimit: 3000}));
 
     app.use(passport.initialize());
     app.use(flash());
