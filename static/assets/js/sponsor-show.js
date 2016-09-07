@@ -87,6 +87,12 @@ $(document).ready(function() {
       $("label").click(function() {
         updateFilters();
       });
+
+      //Hide filters by default
+      $("#university-wrapper").css("display", "none");
+      $("#major-wrapper").css("display", "none");
+      $("#graduation-wrapper").css("display", "none");
+      $("#gender-wrapper").css("display", "none");
     });
   };
 
