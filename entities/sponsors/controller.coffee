@@ -102,7 +102,7 @@ module.exports = (app, config) ->
         resume: {$exists: true}, 
         'resume.size': {$gt: 0}, 
         createdAt: {$lte: sanitizedDate}
-      }, 'university major year gender').exec (err, users) ->
+      }, 'university majors year gender').exec (err, users) ->
       if err or !users?
         res.status 401
         return res.json {'error': true}
