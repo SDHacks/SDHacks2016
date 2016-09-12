@@ -8,6 +8,7 @@ block title
 block left-content
   h3 #{sponsor.companyName}
   h5 Resume Browser
+  p Instructions: Use the filters in the top right to filter out your desired resumes. Then click "Download" to download the resumes. Note that the files will be zipped and this may take up to 30 seconds to prepare.
 
 block right-content
   .row.resume-browser.resume-browser--top
@@ -24,13 +25,13 @@ block right-content
 
     .small-7.columns
       p Show Filters:
-      a.button#js-show-university Universities
+      a.button.inactive#js-show-university Universities
         span.selected
-      a.button#js-show-major Majors
+      a.button.inactive#js-show-major Majors
         span.selected
-      a.button#js-show-year Graduation Year
+      a.button.inactive#js-show-year Graduation Year
         span.selected
-      a.button#js-show-gender Gender
+      a.button.inactive#js-show-gender Gender
         span.selected
       p#errors
  
