@@ -18,7 +18,7 @@ block content
           span.user-show__editable#university #{user.university}
         li.user-show__details--item
           i.fa.fa-graduation-cap
-          span.user-show__editable#major #{user.major ? user.major : "None"}
+          span.user-show__editable#major #{user.majors ? user.majors[0] : "None"}
         li.user-show__details--item
           i.fa.fa-envelope
           span.not-editable#email #{user.email}

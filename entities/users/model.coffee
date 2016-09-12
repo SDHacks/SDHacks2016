@@ -46,10 +46,7 @@ UsersSchema = new Schema({
     trim: true,
     required: [true, "You must have a university"]
   },
-  major: {
-    type: String,
-    trim: true
-  },
+  majors: [{ type: String, trim: true }],
   year: {
     type: Number,
     required: [true, "You must have a graduation year"],
