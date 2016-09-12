@@ -78,6 +78,9 @@ module.exports = (app, config, referTeammates) ->
         user.markModified 'teammates'
         sendReferral = true
 
+      else if req.body.id == 'major'
+        trackEdit(user, 'majors', user.majors, req.body.value)
+        user.majors = [req.body.value]
       else if req.body.id == 'travel'
         user.travel.outOfState = (req.body.value != 'San Diego')
         trackEdit(user, 'city', user.travel.city, req.body.value)

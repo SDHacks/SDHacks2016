@@ -48,10 +48,11 @@ $(document).ready(function() {
       });
       total.graduatingYears = _.sortBy(total.graduatingYears);
 
-      total.majors = _.uniq(totalApplicants, 'major')
-      .map(function(user) {
-        return user.major;
+      total.majors = _.map(totalApplicants, function(user) {
+        return user.majors;
       });
+      total.majors = _.flatten(total.majors);
+      total.majors = _.uniq(total.majors);
       total.majors = _.sortBy(total.majors);
 
       total.genders = _.uniq(totalApplicants, 'gender')
@@ -113,10 +114,12 @@ $(document).ready(function() {
   //Builds sorted array of major data for filtering purposes
   var createMajorData = function(applicants) {
     _.each(applicants, function(applicant) {
-      if (majorData[applicant.major]) 
-        majorData[applicant.major].students++;
-      else 
-        majorData[applicant.major] = { students: 1, name: applicant.major, checked:false };
+      _.each(applicant.majors, function(major) {
+        if (majorData[major]) 
+          majorData[major].students++;
+        else 
+          majorData[major] = { students: 1, name: major, checked:false };
+      });
     });
   };
 
@@ -186,9 +189,10 @@ $(document).ready(function() {
         return false;
       }
 
-      if(!_.contains(filters.majors, user.major.toLowerCase())) {
+      if(!_.some(user.majors, function(major) {
+        return _.contains(filters.majors, major.toLowerCase());
+      }))
         return false;
-      }
 
       if(!_.contains(filters.graduatingYears, user.year.toString())) {
         return false;
