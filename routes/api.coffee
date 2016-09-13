@@ -61,6 +61,7 @@ module.exports = (app, config, transporter) ->
 
       user.attach 'resume', {path: req.file.path}, (error) ->
         if error
+          console.error error
           console.error 'Failed to upload new user resume'
           userError()
 
