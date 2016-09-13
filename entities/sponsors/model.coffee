@@ -25,7 +25,23 @@ SponsorsSchema = new Schema({
       trim: true,
       required: [true, "You must have a password"]
     }
-  }
+  },
+  downloads: [{
+    download_id: {
+      type: String,
+      trim: true,
+      required: [true, "You must have an associated ID"]
+    },
+    url: {
+      type: String,
+      trim: true,
+      required: false
+    },
+    error: {
+      type: Boolean,
+      required: false
+    }
+  }]
 })
 
 SponsorsSchema.plugin(require('mongoose-sanitizer'))

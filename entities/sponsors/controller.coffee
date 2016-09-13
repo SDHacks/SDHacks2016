@@ -3,6 +3,7 @@ module.exports = (app, config) ->
   bcrypt = require 'bcrypt'
   moment = require 'moment'
   path = require 'path'
+  uuid = require 'node-uuid'
   S3Zipper = require 'aws-s3-zipper'
   fs = require 'fs'
 
@@ -46,6 +47,7 @@ module.exports = (app, config) ->
 
       bcrypt.compare user.pass, sponsor.login.password, (err, result) ->
         return unauthorized res if err or !result
+        req.sponsor = sponsor
         return next()
 
   # Index
@@ -129,11 +131,27 @@ module.exports = (app, config) ->
         return file if fileNames.indexOf(file.Key) != -1
         null
 
+
+      downloadId = uuid.v1()
+      res.json {'zipping': downloadId}
+      console.log "Zipping started for ", fileNames.length, "files"
+
       zipper.zipToS3File  "resumes", null, 'downloads/' + fileName, (err, result) ->
+        download = {download_id: downloadId}
         if err
           console.error err
-          res.json {'error': true}
-        res.json {'file': result.zipFileLocation}
+          download.error = true
+        else
+          download.url = result.zipFileLocation
+        req.sponsor.downloads.push download
+        req.sponsor.save()
+
+  app.get '/sponsors/download/:id', sponsorAuth, (req, res) ->
+    download = req.sponsor.downloads.filter((download) ->
+      return download.download_id == req.params.id
+    ).pop()
+    return res.json {'error': true} if download is undefined
+    res.json {url: download.url}
 
   # New
 
