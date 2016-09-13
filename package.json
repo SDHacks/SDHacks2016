@@ -61,6 +61,7 @@
     "morgan": "1.7.0",
     "multer": "^1.1.0",
     "node-sass": "^3.8.0",
+    "node-uuid": "^1.4.7",
     "nodemailer": "^2.5.0",
     "nodemon": "1.9.2",
     "passport": "0.3.2",
