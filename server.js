@@ -10,7 +10,6 @@
   var favicon = require('serve-favicon');
   var logger = require('morgan');
   var bodyParser = require('body-parser');
-  var jsonStream = require('express-jsonstream');
   var methodOverride = require('method-override');
   var static_dir = require('serve-static');
   var errorHandler = require('errorhandler');
@@ -78,7 +77,6 @@
     app.use(bodyParser.json({type: 'application/vnd.api+json', limit: '50mb'}));
     app.use(device.capture());
     app.use(bodyParser.urlencoded({extended: true, limit: '50mb', parameterLimit: 3000}));
-    app.use(jsonStream());
 
     app.use(passport.initialize());
     app.use(flash());

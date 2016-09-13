@@ -129,24 +129,11 @@ module.exports = (app, config) ->
         return file if fileNames.indexOf(file.Key) != -1
         null
 
-      maxSize = config.RESUME_SIZE_LIMIT || 15;
-      outputObject = []
-
-      res.set 'Content-Type', 'application/json'
-      zipper.zipToS3FileFragments("resumes", null, 'downloads/' + fileName, null, maxSize*1024*1024, 
-        ((err, result) -> 
-          if err
-            console.error err
-            res.json {'error': true}
-          outputObject.push result.Location
-          res.jsonStream outputObject
-        ), ((err, result) ->
-          if err
-            console.error err
-            res.json {'error': true}
-          res.end()
-        )
-      )
+      zipper.zipToS3File  "resumes", null, 'downloads/' + fileName, (err, result) ->
+        if err
+          console.error err
+          res.json {'error': true}
+        res.json {'file': result.zipFileLocation}
 
   # New
 

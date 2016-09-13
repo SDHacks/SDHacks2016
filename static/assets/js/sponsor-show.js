@@ -290,22 +290,16 @@ $(document).ready(function() {
     });
 
     $.post('/sponsors/applicants/download', {'applicants': applicants}, function(data) {
-      console.log(data);
-
-      $(this).attr('value', 'Download');
-      $("#download-msg").html('');
       if(data.error || !data.file) {
         console.error('Could not download selected applicants');
 
         return;
       }
+      $(this).attr('value', 'Download');
+      $("#download-msg").html('');
 
       top.location.href = data.file;
-    })
-    .done(function(data) {
-      console.log("Done");
-      console.log(data);
-    });
+    }, "json");
 
     $("#download-msg").html('<p>Files are being zipped. This may take up to 30 seconds</p>');
     $(this).attr('value', 'Please wait');
