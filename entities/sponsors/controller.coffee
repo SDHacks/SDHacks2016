@@ -134,6 +134,7 @@ module.exports = (app, config) ->
 
       downloadId = uuid.v1()
       res.json {'zipping': downloadId}
+      console.log "Zipping started for ", fileNames.length, "files"
 
       zipper.zipToS3File  "resumes", null, 'downloads/' + fileName, (err, result) ->
         download = {download_id: downloadId}
