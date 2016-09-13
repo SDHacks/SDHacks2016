@@ -295,12 +295,14 @@ $(document).ready(function() {
 
         return;
       }
+      $(this).attr('value', 'Download');
+      $("#download-msg").html('');
 
       top.location.href = data.file;
     }, "json");
 
     $("#download-msg").html('<p>Files are being zipped. This may take up to 30 seconds</p>');
-    $(this).attr('value', 'Please wait.');
+    $(this).attr('value', 'Please wait');
   });
 
   if($("#js-filter-download").length) {
@@ -496,9 +498,4 @@ $(document).ready(function() {
       majorData[$(this)[0].innerText].checked = !majorData[$(this)[0].innerText].checked;
     }); 
   };
-
-  //Shows message to wait for download
-  $("#js-filter-download").click(function() {
-    $(this).attr('value', 'Please wait');
-  });
 });

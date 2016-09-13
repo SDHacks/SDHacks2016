@@ -52,7 +52,7 @@
     "moment": "^2.14.1",
     "mongoose": "4.5.1",
     "mongoose-crate": "^1.0.11",
-    "mongoose-crate-s3": "^1.1.4",
+    "mongoose-crate-s3": "github:sdhacks/mongoose-crate-s3",
     "mongoose-findorcreate": "^0.1.2",
     "mongoose-sanitizer": "^1.0.0",
     "mongoose-softdelete": "^0.6.3",

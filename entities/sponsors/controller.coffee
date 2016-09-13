@@ -41,7 +41,7 @@ module.exports = (app, config) ->
     return unauthorized res if (!user or !user.name or !user.pass)
     req.params.username = user.name #Store the sponsor name in params
 
-    Sponsor.findOne {'login.username': user.name}, (err, sponsor) ->
+    Sponsor.findOne {'login.username': user.name, deleted: {$ne: true}}, (err, sponsor) ->
       return unauthorized res if err or !sponsor?
 
       bcrypt.compare user.pass, sponsor.login.password, (err, result) ->
