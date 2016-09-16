@@ -50,7 +50,7 @@ $(document).ready(function() {
       total.graduatingYears = _.sortBy(total.graduatingYears);
 
       total.majors = _.map(totalApplicants, function(user) {
-        return user.majors;
+        return user.categories;
       });
       total.majors = _.flatten(total.majors);
       total.majors = _.uniq(total.majors);
@@ -115,7 +115,7 @@ $(document).ready(function() {
   //Builds sorted array of major data for filtering purposes
   var createMajorData = function(applicants) {
     _.each(applicants, function(applicant) {
-      _.each(applicant.majors, function(major) {
+      _.each(applicant.categories, function(major) {
         if (majorData[major]) 
           majorData[major].students++;
         else 
@@ -190,7 +190,7 @@ $(document).ready(function() {
         return false;
       }
 
-      if(!_.some(user.majors, function(major) {
+      if(!_.some(user.categories, function(major) {
         return _.contains(filters.majors, major.toLowerCase());
       }))
         return false;
