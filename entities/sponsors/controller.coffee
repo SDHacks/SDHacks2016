@@ -101,10 +101,11 @@ module.exports = (app, config) ->
         deleted: {$ne: true}, 
         confirmed: true, 
         shareResume: true, 
+        categories: {$exists: true},
         resume: {$exists: true}, 
         'resume.size': {$gt: 0}, 
         createdAt: {$lte: sanitizedDate}
-      }, 'university majors year gender').exec (err, users) ->
+      }, 'university categories year gender').exec (err, users) ->
       if err or !users?
         res.status 401
         return res.json {'error': true}
