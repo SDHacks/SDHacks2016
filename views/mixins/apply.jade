@@ -67,7 +67,7 @@ mixin apply-1
 
   .large-6.small-12.columns
     label.apply-form__required Email
-    input(type="email", placeholder="email@gmail.com", data-validation="email", name="email")
+    input#js-apply-form__email(type="email", placeholder="email@gmail.com", data-validation="email,custom", data-validation-regexp="^[a-zA-Z0-9._%+-]+@ucsd.edu$", data-validation-error-msg="You must enter a current UCSD email address", name="email")
   .large-6.small-12.columns
     label.apply-form__required Phone Number
     input(type="text", placeholder="(555) 555 5555", data-validation="number", data-validation-ignore="(,), ", name="phone", data-validation-error-msg-container="#phone-error-message")
@@ -82,7 +82,7 @@ mixin apply-1
 
   .small-12.large-6.columns
     label.apply-form__required#institution-label University
-    input#institution-uni(type="text", placeholder="University", class="js-apply-form__universities", data-validation="required", data-dropdown-menu="", name="university")
+    input#institution-uni(type="text", placeholder="University", class="js-apply-form__universities", data-validation="required", data-dropdown-menu="", name="university", value="The University of California, San Diego")
     input#institution-hs(type="text", placeholder="High School", style="display: none", data-dropdown-menu="", value="")
 
   .large-6.small-12.columns
@@ -187,7 +187,7 @@ mixin apply-2
     .button-group.row
       .small-12.large-4.columns
         input.button.apply-form__nav-button#js-apply-form__previous(type="button", value="Back")
-        //- input.js-apply-form__button--final.apply-form__nav-button(type="button", class="success button", value="Apply!", id="submitApp")
+        input.js-apply-form__button--final.apply-form__nav-button(type="button", class="success button", value="Apply!", id="submitApp")
         .spinner(style="display: none")
           .rect1
           .rect2
