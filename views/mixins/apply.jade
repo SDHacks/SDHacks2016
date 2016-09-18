@@ -67,7 +67,7 @@ mixin apply-1
 
   .large-6.small-12.columns
     label.apply-form__required Email
-    input#js-apply-form__email(type="email", placeholder="email@gmail.com", data-validation="email,custom", data-validation-regexp="^[a-zA-Z0-9._%+-]+@([a-zA-Z.]{0,})?ucsd.edu$", data-validation-error-msg="You must enter a current UCSD email address", name="email")
+    input#js-apply-form__email(type="email", placeholder="email@ucsd.edu", data-validation="email,custom", data-validation-regexp="^[a-zA-Z0-9._%+-]+@([a-zA-Z.]{0,})?ucsd.edu$", data-validation-error-msg="You must enter a current UCSD email address", name="email")
   .large-6.small-12.columns
     label.apply-form__required Phone Number
     input(type="text", placeholder="(555) 555 5555", data-validation="number", data-validation-ignore="(,), ", name="phone", data-validation-error-msg-container="#phone-error-message")

@@ -4,14 +4,16 @@ module.exports = (app, config) ->
   moment = require 'moment'
   path = require 'path'
   uuid = require 'node-uuid'
-  S3Zipper = require 'aws-s3-zipper'
+  s3Archiver = require 's3-archiver'
   fs = require 'fs'
 
-  zipper = new S3Zipper {
+  zipper = new s3Archiver {
     accessKeyId: config.S3_KEY,
     secretAccessKey: config.S3_SECRET,
     region: "us-west-1",
     bucket: config.S3_BUCKET
+  }, {
+    folder: "resumes"
   }
 
   # Model and Config
@@ -127,23 +129,20 @@ module.exports = (app, config) ->
         'resumes/' + user.resume.name
 
       fileName = req.params.username + "-" + moment().format("YYYYMMDDHHmmss") + "-" + generatePassword(12, false, /[\dA-F]/) + ".zip"
-      # Put it into the public uploads folder
-      zipper.filterOutFiles = (file) ->
-        return file if fileNames.indexOf(file.Key) != -1
-        null
-
 
       downloadId = uuid.v1()
       res.json {'zipping': downloadId}
       console.log "Zipping started for ", fileNames.length, "files"
 
-      zipper.zipToS3File  "resumes", null, 'downloads/' + fileName, (err, result) ->
+      zipper.zipFiles  fileNames, 'downloads/' + fileName, {
+        ACL: "public-read"
+      }, (err, result) ->
         download = {download_id: downloadId}
         if err
           console.error err
           download.error = true
         else
-          download.url = result.zipFileLocation
+          download.url = result.URL
         req.sponsor.downloads.push download
         req.sponsor.save()
 
