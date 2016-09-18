@@ -19,6 +19,7 @@ var bowerComponentPath = 'static/assets/bower/bower_components/';
 var bowerComponents = [
   path.join(bowerComponentPath, 'jquery/dist/jquery.min.js'),
   path.join(bowerComponentPath, 'foundation-sites/dist/foundation.min.js'),
+  path.join(bowerComponentPath, 'foundation-sites/dist/plugins/foundation.reveal.js'),
   path.join(bowerComponentPath, 'd3/d3.min.js'),
   path.join(bowerComponentPath, 'topojson/topojson.min.js'),
   path.join(bowerComponentPath, 'jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js'),

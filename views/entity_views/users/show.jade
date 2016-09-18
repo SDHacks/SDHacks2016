@@ -30,7 +30,36 @@ block content
           span.user-show__editable#website #{user.website ? user.website : "None"}
 
     .small-12.large-9.columns
-      .row.user-show__questions--section
+      if user.status
+        .row.user-show__questions--section
+          .small-12.large-12.columns
+            h3.user-show__questions--header Your Application
+        .row.user-show__questions
+          .small-12.large-4.columns
+            .user-show__question Status
+          .small-12.large-8.columns.user-show__answer--column.user-show__answer--short.user-show__answer--no-bg
+            if user.status == "Confirmed"
+              .user-show__answer.user-show__answer--not-editable#status You have accepted your application to SD Hacks 2016. 
+                |  We look forward to seeing you at the event!
+            if user.status == "Rejected"
+              .user-show__answer.user-show__answer--not-editable#status We're sorry, but due to limited space, we could not invite you to SD Hacks 2016. 
+                |  We hope to see you next year!
+            if user.status == "Unconfirmed"
+              .user-show__answer.user-show__answer--not-editable#status Congratulations, you've been accepted to SD Hacks 2016!
+            if user.status == "Declined"
+              .user-show__answer.user-show__answer--not-editable#status You indicated that you will not be able to accept your invitation. We hope to see you next year!
+            if user.status == "Waitlisted"
+              .user-show__answer.user-show__answer--not-editable#status You are currently on the wait list for SD Hacks 2016. 
+                |  We will let you know when whether a spot opens up for you. Thanks for your patience!
+
+          if user.status == "Unconfirmed"
+            .small-12.large-4.columns
+              .user-show__question
+            .small-12.large-8.columns.user-show__answer--column.user-show__answer--no-bg
+              button.button.user-show__button--pad(type="button", data-open="user-show-accept-modal") Accept
+              button.button.alert(type="button", data-open="user-show-decline-modal") Decline
+
+      .row.user-show__questions--padded
         .small-12.large-4.columns
           h3.user-show__questions--header Your Details
         .small-8.hide-for-small-only.columns.user-show__questions--edit
@@ -120,6 +149,10 @@ block content
                 .small-12.columns.user-show__editable(id="teammate-#{n}")
                   | #{user.teammates[n] ? user.teammates[n] : "Desired Teammate #" + (n+1)}
                 - n++
+
+  if user.status == "Unconfirmed"
+    include ../../mixins/modals/users-show-accept
+    include ../../mixins/modals/users-show-decline
 
   script(type='text/javascript').
     var user_id = '#{user._id}';
