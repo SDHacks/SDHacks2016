@@ -142,7 +142,7 @@ module.exports = (app, config) ->
           console.error err
           download.error = true
         else
-          download.url = result.URL
+          download.url = result.Location
         req.sponsor.downloads.push download
         req.sponsor.save()
 
