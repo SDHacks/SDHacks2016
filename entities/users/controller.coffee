@@ -99,21 +99,3 @@ module.exports = (app, config, referTeammates) ->
           referTeammates user, req
         res.send originalValue
     )
-
-  app.get '/users/:id/accept', (req, res) ->
-    User.findById(req.params.id, (e, user) ->
-      if e or user is null
-        return res.redirect '/'
-      
-      if user.status != "Unconfirmed" and user.status != "Waitlisted"
-        console.error 'Someone has tried to edit their status'
-        return res.json {'error': true}
-
-      if req.query.status == "false"
-        user.status = "Declined"
-      else
-        user.status = "Confirmed"
-      user.save()
-
-      res.json {'success': true}
-    )
