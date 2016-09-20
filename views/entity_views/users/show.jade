@@ -121,5 +121,9 @@ block content
                   | #{user.teammates[n] ? user.teammates[n] : "Desired Teammate #" + (n+1)}
                 - n++
 
+  if user.status == "Unconfirmed"
+    include ../../mixins/modals/users-show-accept
+    include ../../mixins/modals/users-show-decline
+
   script(type='text/javascript').
     var user_id = '#{user._id}';
