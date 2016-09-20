@@ -1,4 +1,5 @@
 mongoose = require('mongoose')
+mongoose.Promise = require('q').Promise
 timestamps = require('mongoose-timestamp')
 softDelete = require('mongoose-softdelete')
 
