@@ -80,6 +80,12 @@
     font-weight: 600;
   }
 
+  &__button {
+    &--pad {
+      margin-right: 5px;
+    }
+  }
+
   &__answer {
     display: inline-block;
     cursor: pointer;
@@ -107,6 +113,17 @@
     &--column {
       &:hover {
         background-color: lighten($white, 5%);
+      }
+    }
+
+    &--short {
+      line-height: 16px;
+      padding-bottom: 8px;
+    }
+
+    &--no-bg {
+      &:hover {
+        background-color: $white;
       }
     }
   }
