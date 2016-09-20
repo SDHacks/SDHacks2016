@@ -1,29 +1,6 @@
 $(document).ready(function() {
   //Check we are on the right page
   if(typeof user_id !== 'undefined') {
-    new Foundation.Reveal($("#user-show-accept-modal"), {});
-    new Foundation.Reveal($("#user-show-decline-modal"), {});
-
-    var changeStatus = function(status) {
-      $.getJSON("/users/"+user_id+"/accept", {
-          status: status
-        },function(data) {
-        if(data.error) {
-          return console.error("There was an error accepting the invitation");
-        }
-
-        location.reload();
-      });
-    };
-
-    $("#js-user-accept").click(function() {
-      changeStatus(true);
-    });
-
-    $("#js-user-decline").click(function() {
-      changeStatus(false);
-    });
-
     $('.user-show__answer:not(.user-show__answer--not-editable), .user-show__editable').editable('/users/' + user_id + '/edit', {
       indicator: 'Saving...',
       tooltip: 'Click to edit'
