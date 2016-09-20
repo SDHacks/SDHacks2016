@@ -14,6 +14,8 @@ var totalList = [];
 var currentTeam = [];
 //Array of team arrays
 var totalTeams = [];
+//People who haven't applied yet
+var nonApplicants = [];
 
 var sumTeamSize = 0.0;
 
@@ -52,13 +54,34 @@ User
     csvStream.end();
   }
 
+  function writeNonApplicantsCSV() {
+    console.log("Writing non-applicants");
+    var csvStream = csv
+      .createWriteStream({headers: true});
+    var writableStream = fs.createWriteStream("non-applicants.csv");
+
+    writableStream.on("finish", function() {
+      console.log("Finished writing non-applicants");
+    });
+
+    csvStream.pipe(writableStream);
+
+    for(var applicantIndex = 0; applicantIndex < nonApplicants.length; applicantIndex++) {
+      csvStream.write({email: nonApplicants[applicantIndex]});
+    }
+
+    csvStream.end();
+  }
+
   //Completed all users
   function finishedUsers() {
     //Show statistics
     console.log("Total Teams", totalTeams.length);
     console.log("Average Team Size", sumTeamSize / totalTeams.length);
+    console.log("Total Non-Applicants", nonApplicants.length);
 
     writeToCSV();
+    writeNonApplicantsCSV();
   }
 
   //Get the next user in the list
@@ -92,26 +115,29 @@ function processUser(id, team, callback) {
   //The index of the user in the master list
   var masterIndex = totalList.indexOf(id);
 
+  //Make a query for the user
+  var search = {};
+  search[idColumn] = id;
+
   //User isn't in the database
   if(masterIndex === -1) {
-    //Make sure they're not in the team
-    if(team.indexOf(id) === -1) {
-      //Add their ID to the team anyway
-      team.push(id);
-    }
-    return callback(team);
+    //If they don't exist, add their ID to the list of non-applicants
+    return User.findOne(search, function(err, user) {
+      if(err || user === null) {
+        nonApplicants.push(id);
+      }
+      callback(team);
+    });
   }
 
   team.push(id);
   totalList.splice(masterIndex, 1);
 
   //Get the information about the current user
-  var search = {};
-  search[idColumn] = id;
   User.findOne(search, function(err, user) {
     //If that user doesn't exist
     if(err || user === null) {
-      team.push(id);
+      nonApplicants.push(id);
       callback(team);
     }
 
