@@ -45,7 +45,7 @@ block content
                 .user-show__answer.user-show__answer--not-editable#bussing You will be taking the 
                   span.user-show__answer--highlight #{user.availableBus} 
                   | bus to get to the event.
-              else
+              else if user.busAvailable
                 .user-show__answer.user-show__answer--not-editable#bussing
                   | You are eligible to take the #{user.availableBus} bus.
                   br
