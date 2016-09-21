@@ -84,6 +84,10 @@
     &--pad {
       margin-right: 5px;
     }
+
+    &--top-pad {
+      margin-top: 5px;
+    }
   }
 
   &__answer {
@@ -125,6 +129,10 @@
       &:hover {
         background-color: $white;
       }
+    }
+
+    &--highlight {
+      font-weight: bold;
     }
   }
 }

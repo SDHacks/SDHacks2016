@@ -19,3 +19,5 @@ static/assets/js/dist/
 sdhacks.min.css
 build/config.gypi
 public/
+acceptances/
+*.csv
