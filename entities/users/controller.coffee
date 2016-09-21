@@ -105,7 +105,7 @@ module.exports = (app, config, referTeammates) ->
       if e or user is null
         return res.redirect '/'
       
-      if user.status != "Unconfirmed" and user.status != "Waitlisted"
+      if user.status != "Unconfirmed" and user.status != "Waitlisted" and user.status != "Confirmed"
         console.error 'Someone has tried to edit their status'
         return res.json {'error': true}
 
@@ -113,6 +113,8 @@ module.exports = (app, config, referTeammates) ->
         user.status = "Declined"
       else
         user.status = "Confirmed"
+        user.bussing = true if req.query.bus and req.query.bus == "true"
+
       user.save()
 
       res.json {'success': true}

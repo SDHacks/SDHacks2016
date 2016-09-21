@@ -4,9 +4,10 @@ $(document).ready(function() {
     new Foundation.Reveal($("#user-show-accept-modal"), {});
     new Foundation.Reveal($("#user-show-decline-modal"), {});
 
-    var changeStatus = function(status) {
+    var changeStatus = function(status, bussing) {
       $.getJSON("/users/"+user_id+"/accept", {
-          status: status
+          status: status,
+          bus: bussing
         },function(data) {
         if(data.error) {
           return console.error("There was an error accepting the invitation");
@@ -17,11 +18,15 @@ $(document).ready(function() {
     };
 
     $("#js-user-accept").click(function() {
-      changeStatus(true);
+      changeStatus(true, $("#js-user-bus").is(':checked'));
     });
 
     $("#js-user-decline").click(function() {
       changeStatus(false);
+    });
+
+    $("#js-user-take-bus").click(function() {
+      changeStatus(true, true);
     });
 
     $('.user-show__answer:not(.user-show__answer--not-editable), .user-show__editable').editable('/users/' + user_id + '/edit', {

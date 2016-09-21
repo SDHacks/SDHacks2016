@@ -41,6 +41,15 @@ block content
             if user.status == "Confirmed"
               .user-show__answer.user-show__answer--not-editable#status You have accepted your application to SD Hacks 2016. 
                 |  We look forward to seeing you at the event!
+              if user.bussing
+                .user-show__answer.user-show__answer--not-editable#bussing You will be taking the 
+                  span.user-show__answer--highlight #{user.availableBus} 
+                  | bus to get to the event.
+              else
+                .user-show__answer.user-show__answer--not-editable#bussing
+                  | You are eligible to take the #{user.availableBus} bus.
+                  br
+                  input.button#js-user-take-bus.user-show__button--top-pad(type="button", value="Take Bus")
             if user.status == "Rejected"
               .user-show__answer.user-show__answer--not-editable#status We're sorry, but due to limited space, we could not invite you to SD Hacks 2016. 
                 |  We hope to see you next year!

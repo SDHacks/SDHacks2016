@@ -89,6 +89,14 @@ UsersSchema = new Schema({
       type: String
     }
   },
+  availableBus: {
+    type: String,
+    trim: true
+  },
+  bussing: {
+    type: Boolean,
+    default: false
+  },
   firstHackathon: Boolean,
   outcomeStmt: String, #What they hope their outcome of the hackathon will be
   teammates: [{type: String, match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "You must use a valid email"]}],
