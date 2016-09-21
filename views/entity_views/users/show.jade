@@ -45,7 +45,7 @@ block content
                 .user-show__answer.user-show__answer--not-editable#bussing You will be taking the 
                   span.user-show__answer--highlight #{user.availableBus} 
                   | bus to get to the event.
-              else
+              else if user.busAvailable
                 .user-show__answer.user-show__answer--not-editable#bussing
                   | You are eligible to take the #{user.availableBus} bus.
                   br
@@ -59,7 +59,7 @@ block content
               .user-show__answer.user-show__answer--not-editable#status You indicated that you will not be able to accept your invitation. We hope to see you next year!
             if user.status == "Waitlisted"
               .user-show__answer.user-show__answer--not-editable#status You are currently on the wait list for SD Hacks 2016. 
-                |  We will let you know when whether a spot opens up for you. Thanks for your patience!
+                |  We will let you know if a spot opens up. Thanks for your patience!
 
           if user.status == "Unconfirmed"
             .small-12.large-4.columns
