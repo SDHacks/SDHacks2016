@@ -18,9 +18,12 @@ module.exports = (app, config, referTeammates) ->
 
   # Admin
   app.get "/users/admin", auth, (req, res, next) ->
-    #TODO Secure this endpoint
     User.find({deleted: {$ne: true}}).sort({createdAt: -1}).exec (err, users) ->
       res.render("entity_views/users/admin.jade", {users: users})
+
+  app.get "/users/admin/waitlist", auth, (req, res, next) ->
+    User.find({deleted: {$ne: true}, status: "Waitlisted"}).sort({createdAt: 1}).exec (err, users) ->
+      res.render("entity_views/users/waitlist.jade", {users: users})
 
   # Show
   app.get '/users/:id', (req, res) ->
@@ -46,6 +49,16 @@ module.exports = (app, config, referTeammates) ->
       user.softdelete (err, newUser) ->
         newUser.save()
         res.json {'success': true}
+    )
+
+  app.get '/users/:id/unwaitlist', auth, (req, res) ->
+    User.findById(req.params.id, (e, user) ->
+      if e
+        res.status 400
+        res.json {'error': 'User not found'}
+      user.status = "Unconfirmed" if user.status == "Waitlisted"
+      user.save()
+      res.json {'success': true}
     )
 
   # Edit

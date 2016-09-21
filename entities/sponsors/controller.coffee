@@ -6,6 +6,7 @@ module.exports = (app, config) ->
   uuid = require 'node-uuid'
   s3Archiver = require 's3-archiver'
   fs = require 'fs'
+  csv = require 'fast-csv'
 
   zipper = new s3Archiver {
     accessKeyId: config.S3_KEY,
@@ -13,7 +14,8 @@ module.exports = (app, config) ->
     region: "us-west-1",
     bucket: config.S3_BUCKET
   }, {
-    folder: "resumes"
+    folder: "resumes",
+    filePrefix: "resumes/"
   }
 
   # Model and Config
@@ -22,6 +24,39 @@ module.exports = (app, config) ->
 
   passwordLength = 16
   saltRounds = 10
+
+  exportApplicantInfo = (users, archive, finalize) ->
+    csvStream = csv.format {headers: true}
+
+    fileName = __dirname + "/" + process.hrtime()[1] + ".csv"
+    #Create a new CSV with the timestamp to store the user information
+    writableStream = fs.createWriteStream fileName
+    csvStream.pipe writableStream
+
+    csvStream.write({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      graduationYear: user.year,
+      university: user.university,
+      gender: user.gender,
+      website: user.website,
+      github: user.github,
+      resumeFile: user.resume.name,
+      resumeLink: user.resume.url
+    }) for user in users
+
+    #Wait until the CSV file is written
+    writableStream.on "finish", () ->
+      console.log "Wrote user CSV file";
+
+      #Append file to the zip
+      archive.append fs.createReadStream(fileName), {name: "applicants.csv"}
+
+      #Finish the process
+      finalize()
+      fs.unlink(fileName);
+
+    csvStream.end()
 
   auth = (req, res, next) ->
     unauthorized = (res) ->
@@ -133,6 +168,9 @@ module.exports = (app, config) ->
       downloadId = uuid.v1()
       res.json {'zipping': downloadId}
       console.log "Zipping started for ", fileNames.length, "files"
+
+      zipper.localConfig.finalizing = (archive, finalize) ->
+        exportApplicantInfo(users, archive, finalize)
 
       zipper.zipFiles  fileNames, 'downloads/' + fileName, {
         ACL: "public-read"

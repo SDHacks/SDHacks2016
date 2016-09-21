@@ -1,0 +1,24 @@
+//- Restricted zone (Manage Users)
+
+extends ../../layouts/simple
+
+block left-content
+  h2.user-admin__header Waitlist
+  p Total Users: #{users.length}
+
+block right-content
+  table
+    tr
+      th Accept
+      th Name
+      th Email
+      th University
+    for user in users
+      tr
+        td.text-center
+          a.js-accept-user(data-user="#{user._id}")
+            i.fa.fa-check
+        td 
+          a(href="/users/#{user._id}") #{user.firstName} #{user.lastName}
+        td #{user.email}
+        td #{user.university}
