@@ -15,7 +15,7 @@ block right-content
       th Email
       th Github
       th University
-      th Confirmed
+      th Status
     for user in users
       tr
         td.text-center
@@ -31,4 +31,4 @@ block right-content
           else
             | None
         td #{user.university}
-        td #{user.confirmed ? "True" : "False"}
+        td #{user.status ? user.status : ""}
