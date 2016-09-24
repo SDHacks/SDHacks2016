@@ -1,0 +1,20 @@
+//- Restricted zone (Manage User Checkins)
+
+extends ../../layout
+
+block content
+  .user-checkin__background
+  .user-checkin__container
+    .user-checkin__logo
+    .user-checkin__form
+      h3.user-checkin__header Email/Name
+      .user-checkin__input.row.column
+        input.user-checkin__email.js-user-checkin__email(type="text")
+      .user-checkin__suggestion(style="display: none")
+        ul.user-checkin__emails
+          for user in users
+            li.user-checkin__emails--suggestion.row
+              .user-checkin__emails--name.small-12.column #{user.firstName} #{user.lastName}
+              .user-checkin__emails--email.small-12.large-8.column #{user.email}
+              .small-12.large-4.column
+                input.user-checkin__emails--button.button(type="button", value="Check In")
