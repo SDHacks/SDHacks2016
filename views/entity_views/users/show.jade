@@ -60,6 +60,8 @@ block content
             if user.status == "Waitlisted"
               .user-show__answer.user-show__answer--not-editable#status You are currently on the wait list for SD Hacks 2016. 
                 |  We will let you know if a spot opens up. Thanks for your patience!
+            if user.status == "Late"
+              .user-show__answer.user-show__answer--not-editable#status We did not hear back from you about your acceptance in time so you will not be attending SD Hacks. We hope to see you next year!   
 
           if user.status == "Unconfirmed"
             .small-12.large-4.columns

@@ -5,6 +5,10 @@ extends ../../layouts/simple
 block left-content
   h2.user-admin__header Users
   p Total Users: #{users.length}
+  p Statuses
+  each count, status in statusCounts
+    | Total #{status}: #{count}
+    br
 
 block right-content
   table
