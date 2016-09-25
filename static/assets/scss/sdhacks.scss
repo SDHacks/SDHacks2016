@@ -288,6 +288,13 @@ footer {
       margin-bottom: 0;
     }
   }
+  a#logo-ga img {
+    height: 42px;
+
+    @media #{$medium-up} {
+      height: 48px;
+    }
+  }
 
   .t-shirts {
     p {
