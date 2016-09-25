@@ -249,7 +249,8 @@ footer {
       height: 40px;
     }
   }
-  a#logo-jsoe img {
+  a#logo-jsoe img,
+  a#logo-oic img {
     height: 50px;
 
     @media #{$medium-up} {
