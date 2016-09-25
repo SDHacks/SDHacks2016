@@ -104,7 +104,7 @@ UsersSchema = new Schema({
     type: Boolean, 
     default: false
   },
-  #Rejected, Unconfirmed, Confirmed, Declined, and Waitlisted
+  #Rejected, Unconfirmed, Confirmed, Declined, Late, and Waitlisted
   status: {
     type: String, 
     trim: true, 

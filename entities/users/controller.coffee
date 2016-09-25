@@ -19,11 +19,20 @@ module.exports = (app, config, referTeammates) ->
   # Admin
   app.get "/users/admin", auth, (req, res, next) ->
     User.find({deleted: {$ne: true}}).sort({createdAt: -1}).exec (err, users) ->
-      res.render("entity_views/users/admin.jade", {users: users})
+      statuses = {};
+      (if statuses[user.status]
+        statuses[user.status]++
+      else
+        statuses[user.status] = 1) for user in users
+      res.render("entity_views/users/admin.jade", {users: users, statusCounts: statuses})
 
   app.get "/users/admin/waitlist", auth, (req, res, next) ->
     User.find({deleted: {$ne: true}, status: "Waitlisted"}).sort({createdAt: 1}).exec (err, users) ->
       res.render("entity_views/users/waitlist.jade", {users: users})
+
+  app.get "/users/admin/checkin", auth, (req, res, next) ->
+    User.find({deleted: {$ne: true}, status: "Confirmed"}).exec (err, users) ->
+      res.render("entity_views/users/checkin.jade", {users: users})
 
   # Show
   app.get '/users/:id', (req, res) ->
