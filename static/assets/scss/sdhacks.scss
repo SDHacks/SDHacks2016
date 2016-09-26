@@ -183,46 +183,18 @@ footer {
     margin: 0;
   }
 
-  a {
-    color: inherit;
-    border-bottom: 2px solid #fceaca;
-    padding: 0 0 0 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-
-  }
-
-  .tesc {
-    max-width: 100px;
-  }
-
   &--bg {
     position: absolute;
     width: 100%;
     height: 30px;
-    background-color: #026F88;
     z-index: -5;
 
     &.bg-top {
       top: -15px;
-
-      &.footer-bg {
-        background-color: #313131;
-      }
     }
 
     &.bg-bottom {
       bottom: -15px;
-    }
-  }
-
-  @media #{$medium-up} {
-    .faq-left {
-      padding-right: 20px;
-    }
-    .faq-right {
-      padding-left: 20px;
     }
   }
 }
