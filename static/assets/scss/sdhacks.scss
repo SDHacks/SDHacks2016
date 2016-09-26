@@ -179,13 +179,16 @@ footer {
   text-align: center;
 
   img {
-    padding: 0 12px;
+    padding: 0 12px 0 12px;
     margin-bottom: 40px;
     display: inline-block;
     max-width: 100%;
   }
   .platinum img {
     height: 75px;
+    margin-left:20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 
     @media #{$medium-up} {
       height: 95px;
@@ -197,6 +200,8 @@ footer {
   }
   .gold img {
     height: 60px;
+    margin-left:15px;
+    margin-right: 15px;
 
     @media #{$medium-up} {
       height: 80px;
@@ -244,7 +249,8 @@ footer {
       height: 40px;
     }
   }
-  a#logo-jsoe img {
+  a#logo-jsoe img,
+  a#logo-oic img {
     height: 50px;
 
     @media #{$medium-up} {
@@ -263,6 +269,53 @@ footer {
 
     @media #{$medium-up} {
       height: 78px;
+    }
+  }
+  a#logo-gigabyte img {
+    height: 70px;
+
+    @media #{$medium-up} {
+      height: 80px;
+    }
+  }
+  a#logo-spawar img {
+    height: 120px;
+
+    @media #{$medium-up} {
+      height: 200px;
+
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+  }
+  a#logo-ga img {
+    height: 42px;
+
+    @media #{$medium-up} {
+      height: 48px;
+    }
+  }
+  a#logo-pickupstix img {
+    height: 42px;
+
+    @media #{$medium-up} {
+      height: 46px;
+    }
+  }
+
+  .t-shirts {
+    p {
+      text-align: center;
+    }
+    img {
+      padding: 0;
+      padding-left:15px;
+      padding-right: 15px;
+      height: 60px;
+
+      @media #{$medium-up} {
+        height: 70px;
+      }
     }
   }
 }

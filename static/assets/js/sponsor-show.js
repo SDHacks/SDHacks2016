@@ -190,10 +190,14 @@ $(document).ready(function() {
         return false;
       }
 
-      if(!_.some(user.categories, function(major) {
-        return _.contains(filters.majors, major.toLowerCase());
-      }))
-        return false;
+      var cont = true;
+      if(_.some(user.categories, function(major) {
+        if(!_.contains(filters.majors, major.toLowerCase())) {
+          // To force a return
+          cont = false;
+        }
+      }));
+      if (!cont) return false;
 
       if(!_.contains(filters.graduatingYears, user.year.toString())) {
         return false;
