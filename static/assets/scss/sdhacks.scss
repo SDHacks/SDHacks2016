@@ -295,6 +295,13 @@ footer {
       height: 48px;
     }
   }
+  a#logo-pickupstix img {
+    height: 42px;
+
+    @media #{$medium-up} {
+      height: 46px;
+    }
+  }
 
   .t-shirts {
     p {
@@ -302,6 +309,8 @@ footer {
     }
     img {
       padding: 0;
+      padding-left:15px;
+      padding-right: 15px;
       height: 60px;
 
       @media #{$medium-up} {
