@@ -103,8 +103,9 @@ footer {
   background-clip: padding-box;
   color: $white;
   padding-top: 50px;
-  margin: 50px 0 75px;
+  margin-bottom: 75px;
   position: relative;
+  top: -100px;
 
   h2 {
     margin-bottom: 35px;
@@ -133,7 +134,69 @@ footer {
   .tesc {
     max-width: 100px;
   }
-  
+
+  &--bg {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #026F88;
+    z-index: -5;
+
+    &.bg-top {
+      top: -15px;
+
+      &.footer-bg {
+        background-color: #313131;
+      }
+    }
+
+    &.bg-bottom {
+      bottom: -15px;
+    }
+  }
+
+  @media #{$medium-up} {
+    .faq-left {
+      padding-right: 20px;
+    }
+    .faq-right {
+      padding-left: 20px;
+    }
+  }
+}
+
+.bordered-grey {
+  border-image: url(/assets/img/hexagon_border-light.svg) 250 0 215 repeat;
+  border-style: solid;
+  background-color: #EEEEEE;
+  background-clip: padding-box;
+  padding-top: 50px;
+  margin-top: 50px;
+  position: relative;
+
+  h2 {
+    margin-bottom: 35px;
+  }
+
+  .schedule-event {
+    color: $faq_bgcolor;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    border-bottom: 2px solid #fceaca;
+    padding: 0 0 0 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+  }
+
+  .tesc {
+    max-width: 100px;
+  }
+
   &--bg {
     position: absolute;
     width: 100%;
@@ -222,18 +285,18 @@ footer {
     }
   }
 
-  // Custom 
-  a#logo-iboss {    
-   margin-left: 20px;    
-   margin-right: 20px;   
-   
-   img {   
-     height: 42px;   
-     
-     @media #{$medium-up} {    
-       height: 45px;   
-     }   
-   }   
+  // Custom
+  a#logo-iboss {
+   margin-left: 20px;
+   margin-right: 20px;
+
+   img {
+     height: 42px;
+
+     @media #{$medium-up} {
+       height: 45px;
+     }
+   }
   }
   a#logo-1517 img {
     height: 40px;
@@ -359,7 +422,7 @@ input:-webkit-autofill {
   width: 6px;
   display: inline-block;
   margin-right: 1px;
-  
+
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
@@ -385,15 +448,15 @@ input:-webkit-autofill {
 }
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
   20% { -webkit-transform: scaleY(1.0) }
 }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
+  0%, 40%, 100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
+  }  20% {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
@@ -496,8 +559,6 @@ input:-webkit-autofill {
 
     .about-column-text-wrap {
       display: flex;
-      flex-direction: column;
-      justify-content: space-around;
       margin-bottom: 25px;
     }
     .about-column-text {
