@@ -13,6 +13,17 @@ module.exports = (app, config, referTeammates) ->
     return unauthorized res if (!user || !user.name || !user.pass)
     return next() if (user.name == config.ADMIN_USER && user.pass == config.ADMIN_PASS)
     return unauthorized res
+
+  checkinAuth = (req, res, next) ->
+    unauthorized = (res) ->
+      res.set 'WWW-Authenticate', 'Basic realm=Checkin Authorization Required'
+      return res.sendStatus 401
+
+    user = require('basic-auth')(req)
+
+    return unauthorized res if (!user || !user.name || !user.pass)
+    return next() if (user.name == config.CHECKIN_USER && user.pass == config.CHECKIN_PASS)
+    return unauthorized res    
     
   # Index
 
@@ -30,11 +41,11 @@ module.exports = (app, config, referTeammates) ->
     User.find({deleted: {$ne: true}, status: "Waitlisted"}).sort({createdAt: 1}).exec (err, users) ->
       res.render("entity_views/users/waitlist.jade", {users: users})
 
-  app.get "/users/admin/checkin", auth, (req, res, next) ->
+  app.get "/users/admin/checkin", checkinAuth, (req, res, next) ->
     User.find({deleted: {$ne: true}, status: "Confirmed", checkedIn: {$ne: true}}).exec (err, users) ->
       res.render("entity_views/users/checkin.jade", {users: users})
 
-  app.post "/users/admin/checkin", auth, (req, res, next) ->
+  app.post "/users/admin/checkin", checkinAuth, (req, res, next) ->
     User.update({email: req.body.email}, {$set: {"checkedIn": true}}).exec (err) ->
       return res.json({"error": true}) if err
       res.json {"success": true}
