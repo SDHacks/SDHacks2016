@@ -186,6 +186,11 @@ footer {
   .schedule-event {
     color: $faq_bgcolor;
     margin: 0;
+    font-size: 1.1em;
+  }
+
+  .schedule-link {
+    color: $primary-color;
   }
 
   &--bg {
