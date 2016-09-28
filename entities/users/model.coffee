@@ -108,6 +108,10 @@ UsersSchema = new Schema({
   status: {
     type: String, 
     trim: true, 
+  },
+  checkedIn: {
+    type: Boolean,
+    default: false
   }
 })
 
