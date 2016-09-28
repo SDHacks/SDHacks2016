@@ -3,6 +3,8 @@
 extends ../../layout
 
 block content
+  include ../../mixins/modals/users-checkin-accept
+
   .user-checkin__background
   .user-checkin__container
     .user-checkin__logo
@@ -17,4 +19,4 @@ block content
               .user-checkin__emails--name.small-12.column #{user.firstName} #{user.lastName}
               .user-checkin__emails--email.small-12.large-8.column #{user.email}
               .small-12.large-4.column
-                input.user-checkin__emails--button.button(type="button", value="Check In")
+                input.user-checkin__emails--button.js-user-checkin.button(type="button", value="Check In", data-email=user.email, data-name="#{user.firstName} #{user.lastName}")

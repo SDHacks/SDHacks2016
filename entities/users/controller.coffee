@@ -31,8 +31,13 @@ module.exports = (app, config, referTeammates) ->
       res.render("entity_views/users/waitlist.jade", {users: users})
 
   app.get "/users/admin/checkin", auth, (req, res, next) ->
-    User.find({deleted: {$ne: true}, status: "Confirmed"}).exec (err, users) ->
+    User.find({deleted: {$ne: true}, status: "Confirmed", checkedIn: {$ne: true}}).exec (err, users) ->
       res.render("entity_views/users/checkin.jade", {users: users})
+
+  app.post "/users/admin/checkin", auth, (req, res, next) ->
+    User.update({email: req.body.email}, {$set: {"checkedIn": true}}).exec (err) ->
+      return res.json({"error": true}) if err
+      res.json {"success": true}
 
   # Show
   app.get '/users/:id', (req, res) ->
