@@ -26,19 +26,10 @@ block content
       .live-header__live
     .top-bar-right
       ul.live-header__list.menu(data-responsive-menu='drilldown medium-dropdown')
-        li
-          a.live-header__link.live-header__link--active(href='#') Updates
-        li
-          a.live-header__link(href='#') APIs
-        li
-          a.live-header__link(href='//hardware.mlh.io/') Hardware
-        li
-          a.live-header__link(href='#') Prizes
-        li
-          a.live-header__link(href='#') Schedule
-        li
-          a.live-header__link(href='#') Slack
-        li
-          a.live-header__link(href='#') Devpost
+        each val, key in menu
+          li
+            a.live-header__link(href=val.url, 
+              class=page === key ? "live-header__link--active" : undefined, 
+              target=typeof val.target === "undefined" ? undefined : val.target) #{val.name}
   .live-background
     block main-content

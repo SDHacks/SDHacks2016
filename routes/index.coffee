@@ -24,10 +24,46 @@ module.exports = (app, config) ->
       res.redirect('/users/' + req.params.id) 
     )
 
+  loadLivePage = (req, res) ->
+    menu = { 
+      'index': {
+        'name': 'Updates', 
+        'url': '/live'
+      },
+      'api': {
+        'name': 'APIs',
+        'url': '/live/api'
+      },
+      'hardware': {
+        'name': 'Hardware',
+        'url': '//hardware.mlh.io/',
+        'target': '_blank'
+      },
+      'prizes': {
+        'name': 'Prizes',
+        'url': '/live/prizes'
+      },
+      'schedule': {
+        'name': 'Schedule',
+        'url': '/live/schedule'
+      },
+      'slack': {
+        'name': 'Slack',
+        'url': '//slack.sdhacks.io',
+        'target': '_blank'
+      },
+      'devpost': {
+        'name': 'Devpost',
+        'url': '#',
+        'target': '_blank'
+      }
+    }
+    res.render 'live/' + req.params.page + '.jade', {page: req.params.page, menu: menu}
+
   # Live site (index)
   app.get '/live', (req, res) ->
-    res.render 'live/index.jade'
+    req.params.page = 'index'
+    loadLivePage req, res
 
   # Live site (other pages)
-  app.get '/live/:page', (req, res) ->
-    res.render 'live/' + req.params.page + '.jade'
+  app.get '/live/:page', loadLivePage

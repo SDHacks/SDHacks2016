@@ -8,6 +8,7 @@ $background-color: #106F87;
   background-color: $background-color;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   padding-bottom: 0.3em;
+  z-index: 100;
 
   &__list {
     background-color: $background-color !important;
