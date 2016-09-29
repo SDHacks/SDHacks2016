@@ -2,6 +2,9 @@
 
 extends ../layout
 
+block bodyVars
+  - var bodyClass = 'live-background'
+
 block content
   .title-bar.live-header__mobile-menu(data-responsive-toggle='main-menu', data-hide-for='medium')
     button.menu-icon(type='button', data-toggle='')
@@ -31,5 +34,4 @@ block content
             a.live-header__link(href=val.url, 
               class=page === key ? "live-header__link--active" : undefined, 
               target=typeof val.target === "undefined" ? undefined : val.target) #{val.name}
-  .live-background
-    block main-content
+  block main-content
