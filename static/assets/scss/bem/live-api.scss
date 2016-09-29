@@ -22,7 +22,6 @@
       color: $primary-color;
       margin-right: 1.3rem;
       transition: color 0.3s ease;
-      text-transform: uppercase;
       text-decoration: none;
     }
 
@@ -35,6 +34,7 @@
     &--content {
       padding: 1.3rem;
       font-weight: 300;
+      font-size: 0.9em;
       border-radius: 0 0 2px 2px;
     }
 
