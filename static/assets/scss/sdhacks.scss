@@ -3,7 +3,7 @@
 
 //Include Foundation
 @import 'foundation-sites/foundation.scss';
-@include foundation-everything(true);
+@include foundation-everything(false);
 
 @import 'bem.scss';
 
@@ -570,4 +570,10 @@ input:-webkit-autofill {
   .centered {
 
   }
+}
+
+.live-background {
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 100%;
 }

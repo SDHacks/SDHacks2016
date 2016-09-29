@@ -1,0 +1,44 @@
+//- Fancy live header and colour changes
+
+extends ../layout
+
+block content
+  .title-bar.live-header__mobile-menu(data-responsive-toggle='main-menu', data-hide-for='medium')
+    button.menu-icon(type='button', data-toggle='')
+    .live-header__logo
+      a(href='/')
+        img(src='/assets/img/logo-small.png')
+    a.live-header__title Live
+    .live-header__live
+  #main-menu.top-bar.live-header
+    .title-bar.live-header__mobile-menu(data-responsive-toggle='main-menu', data-hide-for='medium')
+      button.menu-icon(type='button', data-toggle='')
+      .live-header__logo
+        a(href='/')
+          img(src='/assets/img/logo-small.png')
+      a.live-header__title Live
+      .live-header__live
+    .top-bar-left.hide-for-small-only
+      .live-header__logo
+        a(href='/')
+          img(src='/assets/img/logo-small.png')
+      a.live-header__title Live
+      .live-header__live
+    .top-bar-right
+      ul.live-header__list.menu(data-responsive-menu='drilldown medium-dropdown')
+        li
+          a.live-header__link.live-header__link--active(href='#') Updates
+        li
+          a.live-header__link(href='#') APIs
+        li
+          a.live-header__link(href='//hardware.mlh.io/') Hardware
+        li
+          a.live-header__link(href='#') Prizes
+        li
+          a.live-header__link(href='#') Schedule
+        li
+          a.live-header__link(href='#') Slack
+        li
+          a.live-header__link(href='#') Devpost
+  .live-background
+    block main-content

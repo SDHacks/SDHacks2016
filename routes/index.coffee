@@ -23,3 +23,11 @@ module.exports = (app, config) ->
       # Redirect to the profile
       res.redirect('/users/' + req.params.id) 
     )
+
+  # Live site (index)
+  app.get '/live', (req, res) ->
+    res.render 'live/index.jade'
+
+  # Live site (other pages)
+  app.get '/live/:page', (req, res) ->
+    res.render 'live/' + req.params.page + '.jade'

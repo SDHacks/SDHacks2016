@@ -1,0 +1,17 @@
+.live-index {
+  &__row {
+    @media #{$medium-up} {
+      padding-top: 50px;
+    }
+  }
+
+  &__full-height {
+    height: 100%;
+  }
+
+  &__grid {
+    .twitter-grid {
+      height: 100% !important;
+    }
+  }
+}

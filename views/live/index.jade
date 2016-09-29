@@ -1,0 +1,14 @@
+//- Main index page of the live site
+extends ../layouts/live
+
+block main-content
+  .row.expanded.large-collapse.live-index__row.live-index__full-height
+    .small-12.large-3.columns.live-index__full-height
+      a.twitter-timeline.live-index__twitter(data-height="99%", data-width="100%", href='https://twitter.com/search?q=from%3ASDHacks', data-widget-id='781407551535460352', data-chrome="nofooter noborders noscrollbar")
+        | Tweets about sdhacks
+      script.
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    .show-for-medium.medium-9.columns.live-index__grid.live-index__full-height
+      a.twitter-grid(data-partner='tweetdeck', href='https://twitter.com/SDHacks/timelines/779853452696354820', data-chrome="nofooter noborders")
+        | Grid Pics
+      script(async='', src='//platform.twitter.com/widgets.js', charset='utf-8')
