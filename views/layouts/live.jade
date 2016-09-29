@@ -33,5 +33,8 @@ block content
           li
             a.live-header__link(href=val.url, 
               class=page === key ? "live-header__link--active" : undefined, 
-              target=typeof val.target === "undefined" ? undefined : val.target) #{val.name}
+              target=typeof val.target === "undefined" ? undefined : val.target) #{val.name} 
+              if val.target === "_blank"
+                i.fa.fa-external-link(aria-hidden='true')
+
   block main-content
