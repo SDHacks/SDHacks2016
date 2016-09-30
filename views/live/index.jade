@@ -1,6 +1,7 @@
 //- Main index page for the live site
 include ../mixins/footer-live
 extends ../layouts/live
+script(src='/assets/js/dist/vendor.js')
 
 block title
   title SD Hacks Live
@@ -14,11 +15,11 @@ block main-content
           h2.live-content--place Countdown
 
           .countdown-hexes
-            .hex 14
+            .hex#hex-hr 
               p Hours
-            .hex 34
+            .hex#hex-min 
               p Minutes
-            .hex 17
+            .hex#hex-sec 
               p Seconds 
     .row.live-schedule.live-schedule--home#schedule
       .small-12.columns
