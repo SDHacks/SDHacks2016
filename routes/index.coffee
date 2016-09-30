@@ -30,10 +30,6 @@ module.exports = (app, config) ->
         'name': 'Updates',
         'url': '/live/updates'
       },
-      'api': {
-        'name': 'APIs',
-        'url': '/live/api'
-      },
       'prizes': {
         'name': 'Prizes',
         'url': '/live/prizes'
