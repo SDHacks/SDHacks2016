@@ -1,7 +1,7 @@
 # App Routes
 module.exports = (app, config) ->
   User = require('../entities/users/model')
-  
+
   auth = require('express-jwt') {secret: config.USER_SECRET, userProperty: 'payload'}
 
   # Basic
@@ -21,23 +21,18 @@ module.exports = (app, config) ->
         return res.render 'error.jade', {error: 'User does not exist'}
 
       # Redirect to the profile
-      res.redirect('/users/' + req.params.id) 
+      res.redirect('/users/' + req.params.id)
     )
 
   loadLivePage = (req, res) ->
-    menu = { 
+    menu = {
       'index': {
-        'name': 'Updates', 
+        'name': 'Updates',
         'url': '/live'
       },
       'api': {
         'name': 'APIs',
         'url': '/live/api'
-      },
-      'hardware': {
-        'name': 'Hardware',
-        'url': '//hardware.mlh.io/',
-        'target': '_blank'
       },
       'prizes': {
         'name': 'Prizes',
@@ -47,6 +42,11 @@ module.exports = (app, config) ->
         'name': 'Schedule',
         'url': '/live/schedule'
       },
+      'hardware': {
+        'name': 'Hardware',
+        'url': '//hardware.mlh.io/',
+        'target': '_blank'
+      },
       'slack': {
         'name': 'Slack',
         'url': '//slack.sdhacks.io',
@@ -54,7 +54,7 @@ module.exports = (app, config) ->
       },
       'devpost': {
         'name': 'Devpost',
-        'url': '#',
+        'url': '//sdhacks2016.devpost.com',
         'target': '_blank'
       }
     }

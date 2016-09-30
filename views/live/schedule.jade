@@ -1,4 +1,5 @@
 //- Schedule page for the live site
+include ../mixins/footer-live
 extends ../layouts/live
 
 block title
@@ -135,3 +136,7 @@ block main-content
         .small-8.medium-7.columns
           .live-schedule__event--info Closing Ceremony
           .live-schedule__event--location @ Main Stage
+          
+      .live-schedule__event.row
+          
+  +footer-live

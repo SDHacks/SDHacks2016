@@ -1,4 +1,5 @@
 //- Main index page for the live site
+include ../mixins/footer-live
 extends ../layouts/live
 
 block title
@@ -11,7 +12,9 @@ block main-content
         | Tweets about sdhacks
       script.
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    .show-for-medium.medium-9.columns.live-index__grid.live-index__full-height
+    .show-for-large.medium-9.columns.live-index__grid.live-index__full-height
       a.twitter-grid(data-partner='tweetdeck', href='https://twitter.com/SDHacks/timelines/779853452696354820', data-chrome="nofooter noborders")
         | Grid Pics
       script(async='', src='//platform.twitter.com/widgets.js', charset='utf-8')
+      
+  +footer-live

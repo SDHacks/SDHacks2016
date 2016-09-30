@@ -71,6 +71,13 @@ footer {
   }
 }
 
+.footer-live {
+  border-image: none;
+  @media #{$medium-up} {
+    height: 125px;
+  }
+}
+
 .tesc {
   max-width: 150px;
 }
