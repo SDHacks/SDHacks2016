@@ -5,6 +5,8 @@
 @import 'foundation-sites/foundation.scss';
 @include foundation-everything(false);
 
+$sdhacks-alternate-blue: #106F87;
+
 @import 'bem.scss';
 
 $faq_bgcolor: #026F88;
