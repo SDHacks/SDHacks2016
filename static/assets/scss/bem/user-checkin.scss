@@ -92,6 +92,10 @@ $border-radius: 3px;
       border-bottom: 1px solid rgba($white, 0.5);
     }
 
+    &--info {
+      padding-bottom: 5px;
+    }
+
     &--name {
       font-size: 0.9em;
       line-height: 1.0em;
@@ -105,6 +109,11 @@ $border-radius: 3px;
 
     &--birthday {
       line-height: 1.1em;
+      font-size: 0.8em;
+    }
+
+    &--university {
+      line-height: 1.3em;
       font-size: 0.8em;
     }
 
