@@ -1,5 +1,5 @@
 //- Main index page for the live site
-include ../mixins/footer-live
+include ../mixins/footer
 extends ../layouts/live
 
 block title
@@ -17,4 +17,4 @@ block main-content
         | Grid Pics
       script(async='', src='//platform.twitter.com/widgets.js', charset='utf-8')
       
-  +footer-live
+  +footer.fixed-border-width

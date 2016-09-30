@@ -1,7 +1,7 @@
 $(document).ready(function() {
   if($(".countdown-hexes").length < 1) return;
   
-  var end = new Date('10/02/2016 10:00 AM');
+  var end = new Date('Sun, 02 Oct 2016 10:00:00 GMT-0700');
   var _second = 1000;
   var _minute = _second * 60;
   var _hour = _minute * 60;
