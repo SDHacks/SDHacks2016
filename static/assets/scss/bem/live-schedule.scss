@@ -5,9 +5,12 @@ $sdhacks-alternate-blue: #106F87;
   padding-bottom: 95px;
 
   @media #{$medium-up} {
-    padding-top: 95px;
+    padding-top: 45px;
   }
-
+  &__date {
+    text-align: right;
+  }
+  &__date,
   &__title {
     font-size: 2.5rem;
     color: $sdhacks-alternate-blue;
