@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  if($(".countdown-hexes").length < 1) return;
+  
   var end = new Date('10/02/2016 10:00 AM');
   var _second = 1000;
   var _minute = _second * 60;

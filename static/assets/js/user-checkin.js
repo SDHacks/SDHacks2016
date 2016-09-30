@@ -1,8 +1,6 @@
 $(document).ready(function() {
   if($(".user-checkin__emails").length === 0) return;
   var currentCheckin = null, checkinParent = null;
-
-  var acceptModal = new Foundation.Reveal($("#user-checkin-accept-modal"), {});
   
   $(".user-checkin__emails--suggestion").hide();
   $(".user-checkin__suggestion").show();
