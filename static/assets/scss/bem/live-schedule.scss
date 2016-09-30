@@ -1,20 +1,31 @@
 $sdhacks-alternate-blue: #106F87;
 
 .live-schedule {
+  font-size: 1.2rem;
+  padding-bottom: 95px;
+
   @media #{$medium-up} {
     padding-top: 95px;
   }
 
   &__title {
     font-size: 2.5rem;
-    text-decoration: underline;
     color: $sdhacks-alternate-blue;
+    line-height: 4rem;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
   }
 
   &__event {
-    margin-bottom: 0.3em;
+    margin-bottom: 0.8rem;
+
+    &--time {
+      line-height: 2rem;
+    }
 
     &--info {
+      font-size: 1.4rem;
+      line-height: 2rem;
       font-weight: bold;
     }
 
