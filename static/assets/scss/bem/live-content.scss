@@ -1,0 +1,27 @@
+.live-content {
+  &__date {
+    color: $white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 
+    0 -1px 5px rgba(0, 0, 0, 0.7),
+    0 5px 10px rgba(0, 0, 0, 0.5);
+
+    @media #{$small-only} {
+      font-size: 28px;
+    }
+  }
+
+  &__place {
+    @media #{$small-only} {
+      font-size: 24px;
+      padding-bottom: 5%;
+    }
+    color: $warning-color;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 
+    0 -1px 3px rgba(0, 0, 0, 0.7), 
+    0 2px 7px rgba(0, 0, 0, 0.5);
+  }
+}

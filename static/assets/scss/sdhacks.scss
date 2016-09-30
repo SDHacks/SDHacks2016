@@ -601,3 +601,34 @@ input:-webkit-autofill {
 .live-background {
   background-color: #f2f2f2;
 }
+.countdown-hexes {
+  .hex {
+    background: url("/assets/img/hex2.svg");
+    width: 155px;
+    height: 165px;
+    margin: 1rem;
+    background-size: cover;
+    display: inline-block;
+    color: white;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 64px;
+    line-height: 64px;
+    font-weight: light;
+    padding-top: 10px;
+
+    p {
+      font-size: 20px;
+    }
+    @media #{$small-only} {
+      font-size: 24px;
+      width: 78px;
+      height: 83px;
+      line-height: 30px;
+    }
+  }
+}
+.footer-live {
+  border: none;
+}
