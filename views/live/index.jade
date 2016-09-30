@@ -1,5 +1,5 @@
 //- Main index page for the live site
-include ../mixins/footer-live
+include ../mixins/footer
 
 extends ../layouts/live
 
@@ -7,21 +7,21 @@ block title
   title SD Hacks Live
 
 block main-content
-  .live-index-wrapper
-    .row.expanded
-      .live-home__header
-        .live-content
-          h1.live-content__date Welcome to SD Hacks
-          h2.live-content__place Countdown
+  .row.expanded
+    .live-content__header
+      .live-content
+        h1.live-content__main Welcome to SD Hacks
+        h2.live-content__sub Countdown
 
-          .countdown-hexes
-            .hex#hex-hr 
-              p Hours
-            .hex#hex-min 
-              p Minutes
-            .hex#hex-sec 
-              p Seconds 
-    .row.live-schedule.live-schedule--home#schedule
+        .countdown-hexes
+          .hex#hex-hr
+            p Hours
+          .hex#hex-min
+            p Minutes
+          .hex#hex-sec
+            p Seconds
+  .live-schedule.live-schedule--home.bordered-live.fixed-border-width#schedule
+    .row
       .small-12.columns
         .live-schedule__date.small-4.medium-5.end.columns 9.30
         .live-schedule__title.small-5.medium-5.end.columns Friday
@@ -155,6 +155,4 @@ block main-content
             .live-schedule__event--info Closing Ceremony
             .live-schedule__event--location @ Main Stage
             
-        .live-schedule__event.row
-            
-  +footer-live
+  +footer.fixed-border-width
