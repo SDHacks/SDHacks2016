@@ -1,0 +1,25 @@
+$sdhacks-alternate-blue: #106F87;
+
+.live-schedule {
+  @media #{$medium-up} {
+    padding-top: 95px;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    text-decoration: underline;
+    color: $sdhacks-alternate-blue;
+  }
+
+  &__event {
+    margin-bottom: 0.3em;
+
+    &--info {
+      font-weight: bold;
+    }
+
+    &--location {
+      color: transparentize($black, 0.5);
+    }
+  }
+}

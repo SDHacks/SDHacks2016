@@ -1,0 +1,43 @@
+//- Fancy live header and colour changes
+
+extends ../layout
+
+block theme-color
+  meta(name="theme-color", content="#106F87")
+
+block bodyVars
+  - var bodyClass = 'live-background'
+
+block content
+  .title-bar.live-header__mobile-menu(data-responsive-toggle='main-menu', data-hide-for='medium')
+    button.menu-icon(type='button', data-toggle='')
+    .live-header__logo
+      a(href='/')
+        img(src='/assets/img/logo-small.png')
+    a.live-header__title Live
+    .live-header__live
+  #main-menu.top-bar.live-header
+    .title-bar.live-header__mobile-menu(data-responsive-toggle='main-menu', data-hide-for='medium')
+      button.menu-icon(type='button', data-toggle='')
+      .live-header__logo
+        a(href='/')
+          img(src='/assets/img/logo-small.png')
+      a.live-header__title Live
+      .live-header__live
+    .top-bar-left.hide-for-small-only
+      .live-header__logo
+        a(href='/')
+          img(src='/assets/img/logo-small.png')
+      a.live-header__title Live
+      .live-header__live
+    .top-bar-right
+      ul.live-header__list.menu(data-responsive-menu='drilldown medium-dropdown')
+        each val, key in menu
+          li
+            a.live-header__link(href=val.url, 
+              class=page === key ? "live-header__link--active" : undefined, 
+              target=typeof val.target === "undefined" ? undefined : val.target) #{val.name} 
+              if val.target === "_blank"
+                i.fa.fa-external-link(aria-hidden='true')
+
+  block main-content
