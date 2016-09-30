@@ -28,7 +28,7 @@ module.exports = (app, config) ->
     menu = {
       'updates': {
         'name': 'Updates',
-        'url': '/live/updates'
+        'url': '/live'
       },
       'prizes': {
         'name': 'Prizes',

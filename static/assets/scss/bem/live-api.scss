@@ -1,6 +1,7 @@
 .live-api {
   &__content {
     padding-top: 10px;
+    padding-bottom: 50px;
 
     h2 {
       text-transform: none;
@@ -29,7 +30,7 @@
     &--title {
       line-height: 3rem;
       font-size: 1.5rem;
-      font-weight: 300;
+      font-weight: 600;
     }
     &--content {
       padding: 1.3rem;

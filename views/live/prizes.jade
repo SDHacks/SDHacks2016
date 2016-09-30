@@ -13,92 +13,180 @@ block main-content
         .live-content
           h1.live-content__main Prizes
 
-  .bordered-live.fixed-border-width.show-for-large
-    .row
-      .columns
-        h2 General Prizes
-      .columns.large-4.medium-6.small-12
-        .live-prizes__item
-          .live-prizes__item--content
-            span.live-prizes__item--title Best Overall Hack 1
-            p.live-prizes__item--paragraph
-              | I shall be telling this with a sigh . Somewhere ages and ages hence
-          .live-prizes__item--action
-            a.live-prizes__item--link(href='#') Learn More
-
-        .live-prizes__item
-          .live-prizes__item--image
-            img(src='http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg')
-            span.live-prizes__item--image-title Most Technically Impressive 4
-          .live-prizes__item--content
-            p.live-prizes__item--paragraph
-              | I shall be telling this with a sigh . Somewhere ages and ages hence:   Two roads diverged in a wood, and I —   I took the one less traveled by.  And that has made all the difference.
-          .live-prizes__item--action
-            a.live-prizes__item--link(href='#') Learn More
-
-      .columns.large-4.medium-6.small-12
-        .live-prizes__item
-          .live-prizes__item--image
-            img(src='http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg')
-            span.live-prizes__item--image-title Best Designed Hack 2
-          .live-prizes__item--content
-            p.live-prizes__item--paragraph
-              | I shall be telling this with a sigh . Somewhere ages and ages hence:   Two roads diverged in a wood, and I —   I took the one less traveled by.  And that has made all the difference.
-          .live-prizes__item--action
-            a.live-prizes__item--link(href='#') Learn More
-
-      .columns.large-4.medium-6.small-12
-        .live-prizes__item
-          .live-prizes__item--image
-            img(src='http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg')
-            span.live-prizes__item--image-title Best Dressed 3
-          .live-prizes__item--content
-            p.live-prizes__item--paragraph
-              | I shall be telling this with a sigh . Somewhere ages and ages hence:   Two roads diverged in a wood, and I —   I took the one less traveled by.  And that has made all the difference.
-          .live-prizes__item--action
-            a.live-prizes__item--link(href='#') Learn More
-
-    .live-api
-      .row.live-api__content
+    .bordered-live.fixed-border-width
+      .row
         .columns
-          h2 APIs
-        .columns.large-4.medium-6.small-12
-          .live-api__item
-            .live-api__item--image
-              img(src='http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg')
-              span.live-api__item--image-title Amazon Alexa 1
-            .live-api__item--content
-              p.live-api__item--paragraph
-                | I shall be telling this with a sigh . Somewhere ages and ages hence
-            .live-api__item--action
-              a.live-api__item--link(href='#') Learn More
+          h2 General Prizes
+          // layout for large screens
+        .show-for-large
+          .columns.large-4.medium-6.small-12
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best in Show
+                p.live-prizes__item--paragraph
+                  | Awarded to the overall best hack. Bust out your best hacking skills to win it all!
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Beginner Hack
+                p.live-prizes__item--paragraph
+                  | Is this your first hackathon? Then this prize is for you! Try your best and learn a lot, and you might just walk home with the Best Beginner Hack prize!
 
-          .live-api__item
-            .live-api__item--content
-              span.live-api__item--title Amazon Alexa 2
-              p.live-api__item--paragraph
-                | I shall be telling this with a sigh . Somewhere ages and ages hence:   Two roads diverged in a wood, and I —   I took the one less traveled by.  And that has made all the difference.
-            .live-api__item--action
-              a.live-api__item--link(href='#') Learn More
+          .columns.large-4.medium-6.small-12
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Most Technically Impressive
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack that is the most technically impressive
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Hardware Hack
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack with the best use of hardware. 
 
-        .columns.large-4.medium-6.small-12
-          .live-api__item
-            .live-api__item--image
-              img(src='http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg')
-              span.live-api__item--image-title Amazon Alexa 3
-            .live-api__item--content
-              p.live-api__item--paragraph
-                | I shall be telling this with a sigh . Somewhere ages and ages hence:   Two roads diverged in a wood, and I —   I took the one less traveled by.  And that has made all the difference.
-            .live-api__item--action
-              a.live-api__item--link(href='#') Learn More
+          .columns.large-4.medium-6.small-12
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Designed
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack with the best overall sense of design. 
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Use of VR/AR
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack that uses VR the best. 
 
-        .columns.large-4.medium-6.small-12
-          .live-api__item
-            .live-api__item--content
-              span.live-api__item--title Amazon Alexa 4
-              p.live-api__item--paragraph
-                | I shall be telling this with a sigh . Somewhere ages and ages hence:   Two roads diverged in a wood, and I —   I took the one less traveled by.  And that has made all the difference.
-            .live-api__item--action
-              a.live-api__item--link(href='#') Learn More
+          // layout for medium screens
+        .show-for-medium-only
+          .columns.large-4.medium-6.small-12
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best in Show
+                p.live-prizes__item--paragraph
+                  | Awarded to the overall best hack. Bust out your best hacking skills to win it all!
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Designed
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack with the best overall sense of design. 
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Beginner Hack
+                p.live-prizes__item--paragraph
+                  | Is this your first hackathon? Then this prize is for you! Try your best and learn a lot, and you might just walk home with the Best Beginner Hack prize!
 
+          .columns.large-4.medium-6.small-12
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Most Technically Impressive
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack that is the most technically impressive
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Hardware Hack
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack with the best use of hardware.
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Use of VR/AR
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack that uses VR the best. 
+          
+        // layout for small creens
+        .show-for-small-only
+          .columns.large-4.medium-6.small-12
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best in Show
+                p.live-prizes__item--paragraph
+                  | Awarded to the overall best hack. Bust out your best hacking skills to win it all!
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Most Technically Impressive
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack that is the most technically impressive
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Designed
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack with the best overall sense of design. 
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Beginner Hack
+                p.live-prizes__item--paragraph
+                  | Is this your first hackathon? Then this prize is for you! Try your best and learn a lot, and you might just walk home with the Best Beginner Hack prize!
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Hardware Hack
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack with the best use of hardware. 
+            .live-prizes__item
+              .live-prizes__item--content
+                span.live-prizes__item--title Best Use of VR/AR
+                p.live-prizes__item--paragraph
+                  | Awarded to the hack that uses VR the best.         
+            
+  hr
+  .live-api
+    .row.live-api__content
+      .columns
+        h2 Sponsored Prizes
+      .columns.large-4.medium-6.small-12
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title Best IOT Hack
+            p.live-api__item--paragraph
+              | Best Internet of Things hack, presented by the Qualcomm Institute
+          .live-api__item--action
+            a Learn More
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title Best Use of DragonBoard
+            p.live-api__item--paragraph
+              | Use the dragonboard, presented by Qualcomm again
+          .live-api__item--action
+            a Learn More
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title Docusign
+            p.live-api__item--paragraph
+              | Docusign info here
+          .live-api__item--action
+            a Learn More
+      .columns.large-4.medium-6.small-12
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title Twitch Moderation Challenge
+            p.live-api__item--paragraph
+              | Something with the Twitch API
+          .live-api__item--action
+            a Learn More
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title Perkins Coie
+            p.live-api__item--paragraph
+              | Some kind of award presented by Perkins Coie
+          .live-api__item--action
+            a Learn More
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title General Atomics
+            p.live-api__item--paragraph
+              | Some kind of hack involving General Atomics
+          .live-api__item--action
+            a Learn More
+      .columns.large-4.medium-6.small-12
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title Hack that Best Connects Us
+            p.live-api__item--paragraph
+              | Awarded to the hack that best connects us, presented by Viasat
+          .live-api__item--action
+            a Learn More
+        .live-api__item
+          .live-api__item--content
+            span.live-api__item--title SPAWAR
+            p.live-api__item--paragraph
+              | SPAWAR info here
+          .live-api__item--action
+            a Learn More
   +footer.fixed-border-width
