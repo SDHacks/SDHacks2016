@@ -33,6 +33,8 @@ block right-content
         span.selected
       a.button.inactive#js-show-gender Gender
         span.selected
+      a.button.inactive#js-show-status Status
+        span.selected
       p#errors
  
   .row.resume-browser.resume-browser--content
@@ -56,20 +58,23 @@ block right-content
         h5 Sort by:
           br
           a.button.inactive#js-major-most-common Most Common
-          a.button.inactive#js-major-alphabetical Alphabetical        
+          a.button.inactive#js-major-alphabetical Alphabetical
         h5 Search:
           input#js-major-search(type="text" placeholder="Major")
       #js-filter-major
     .small-12.medium-3.columns
-
       div#graduation-wrapper
         h3(name="graduation") Graduation
         a.button.inactive#js-year-select-all Select All
         a.button.inactive#js-year-select-none Select None
         #js-filter-year
       div#gender-wrapper
-
-        h3(name="gender") Gender      
+        h3(name="gender") Gender
         a.button.inactive#js-gender-select-all Select All
         a.button.inactive#js-gender-select-none Select None
         #js-filter-gender
+      div#status-wrapper
+        h3(name="status") Status
+        a.button.inactive#js-status-select-all Select All
+        a.button.inactive#js-status-select-none Select None
+        #js-filter-status
