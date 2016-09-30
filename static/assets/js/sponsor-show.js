@@ -9,14 +9,16 @@ $(document).ready(function() {
     universities: [],
     graduatingYears: [],
     majors: [],
-    genders: []
+    genders: [],
+    statuses: []
   };
 
   var filters = {
     universities: [],
     graduatingYears: [],
     majors: [],
-    genders: []
+    genders: [],
+    statuses: []
   };
 
   var occurrences;
@@ -30,6 +32,7 @@ $(document).ready(function() {
   var yearFilter = $("#js-filter-year");
   var majorFilter = $("#js-filter-major");
   var genderFilter = $("#js-filter-gender");
+  var statusFilter = $("#js-filter-status");
 
   var getApplicants = function() {
     $.getJSON('/sponsors/applicants', function(data) {
@@ -62,11 +65,18 @@ $(document).ready(function() {
       });
       total.genders = _.sortBy(total.genders);
 
+      total.statuses = _.uniq(totalApplicants, 'status')
+      .map(function(user) {
+        return user.status;
+      });
+      total.statuses = _.sortBy(total.statuses);
+
       all = {
         universities: total.universities,
         majors: total.majors,
         graduatingYears: total.graduatingYears,
-        genders: total.genders
+        genders: total.genders,
+        statuses: total.statuses
       };
 
       //Generate state holders
@@ -95,6 +105,7 @@ $(document).ready(function() {
       $("#major-wrapper").css("display", "none");
       $("#graduation-wrapper").css("display", "none");
       $("#gender-wrapper").css("display", "none");
+      $("#status-wrapper").css("display", "none");
     });
   };
 
@@ -183,6 +194,9 @@ $(document).ready(function() {
     filters.genders = _.map($("input:checked", genderFilter), function(input) {
       return $(input).val();
     });
+    filters.statuses = _.map($("input:checked", statusFilter), function(input) {
+      return $(input).val();
+    });
 
     //Filter applicants
     filteredApplicants = _.filter(totalApplicants, function(user) {
@@ -204,6 +218,11 @@ $(document).ready(function() {
       }
 
       if(!_.contains(filters.genders, user.gender.toLowerCase())) {
+        return false;
+      }
+
+      if(typeof user.status === "undefined") return false;
+      if(!_.contains(filters.statuses, user.status.toLowerCase())) {
         return false;
       }
 
@@ -243,7 +262,7 @@ $(document).ready(function() {
   //Possible: "university", "year", "major", "gender". Accepts lists or
   // individual strings
   var createFilterUI = function(option) {
-    if (!option) option = ["university", "year", "major", "gender"];
+    if (!option) option = ["university", "year", "major", "gender", "status"];
     else if (typeof option === String) option = [option];
     
     if (option.indexOf("university") !== -1) {
@@ -255,7 +274,6 @@ $(document).ready(function() {
       });
     }
 
-    check_ctr = 0;
     if (option.indexOf("year") !== -1) {
       _.each(total.graduatingYears, function(year) {
         if(typeof year === "undefined") return;
@@ -265,7 +283,6 @@ $(document).ready(function() {
       });
     }
 
-    check_ctr = 0;
     if (option.indexOf("major") !== -1) {
       _.each(total.majors, function(major) {
         if(typeof major === "undefined") return;
@@ -275,13 +292,21 @@ $(document).ready(function() {
       });
     }
 
-    check_ctr = 0;
     if (option.indexOf("gender") !== -1) {
       _.each(total.genders, function(gender) {
         if(typeof gender === "undefined") return;
 
         var element = createFilterElement(gender.toLowerCase(), gender, true);
         genderFilter.append(element);
+      });
+    }
+
+    if (option.indexOf("status") !== -1) {
+      _.each(total.statuses, function(status) {
+        if(typeof status === "undefined") return;
+
+        var element = createFilterElement(status.toLowerCase(), status, true);
+        statusFilter.append(element);
       });
     }
     $(".sponsor-show__filter-option > :input").change(function() {
@@ -336,6 +361,7 @@ $(document).ready(function() {
     if (option.indexOf("year") !== -1) yearFilter.html("");
     if (option.indexOf("gender") !== -1) genderFilter.html("");
     if (option.indexOf("major") !== -1) majorFilter.html("");
+    if (option.indexOf("status") !== -1) statusFilter.html("");
     
     createFilterUI(option);
     addClickListeners();
@@ -416,6 +442,14 @@ $(document).ready(function() {
     $("#js-filter-gender input").prop("checked", false);
   });
 
+  $("#js-status-select-all").click(function() {
+    $("#js-filter-status input").prop("checked", true);
+  });
+
+  $("#js-status-select-none").click(function() {
+    $("#js-filter-status input").prop("checked", false);
+  });
+
   $("a.button").click(function() {
     updateFilters();
     updateChecked(UNIVERSITY);
@@ -448,6 +482,12 @@ $(document).ready(function() {
     $("#gender-wrapper").css("display", display);
     checkFilters();
   });
+  $("#js-show-status").click(function() {
+    $(this).toggleClass("inactive");
+    var display = ($("#status-wrapper").css("display") === "block") ? "none" : "block";
+    $("#status-wrapper").css("display", display);
+    checkFilters();
+  });
 
   //Double checks and displays the number of elements in each filter selected
   //ie - you have 1 university selected
@@ -456,6 +496,7 @@ $(document).ready(function() {
     $("#js-show-major .selected").text(" (" + filters.majors.length.toString() + ")");
     $("#js-show-year .selected").text(" (" + filters.graduatingYears.length.toString() + ")");
     $("#js-show-gender .selected").text(" (" + filters.genders.length.toString() + ")");
+    $("#js-show-status .selected").text(" (" + filters.statuses.length.toString() + ")");
 
     if (filters.universities.length === 0) $("#js-show-university").addClass("error");
     else $("#js-show-university").removeClass("error");
@@ -465,6 +506,8 @@ $(document).ready(function() {
     else $("#js-show-year").removeClass("error");
     if (filters.genders.length === 0) $("#js-show-gender").addClass("error");
     else $("#js-show-gender").removeClass("error");
+    if (filters.statuses.length === 0) $("#js-show-status").addClass("error");
+    else $("#js-show-status").removeClass("error");
   };
 
   var updateChecked = function(type) {

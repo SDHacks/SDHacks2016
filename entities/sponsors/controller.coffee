@@ -39,6 +39,7 @@ module.exports = (app, config) ->
       graduationYear: user.year,
       university: user.university,
       gender: user.gender,
+      status: user.status,
       website: user.website,
       github: user.github,
       resumeFile: user.resume.name,
@@ -142,7 +143,7 @@ module.exports = (app, config) ->
         resume: {$exists: true}, 
         'resume.size': {$gt: 0}, 
         createdAt: {$lte: sanitizedDate}
-      }, 'university categories year gender').exec (err, users) ->
+      }, 'university categories year gender status').exec (err, users) ->
       if err or !users?
         res.status 401
         return res.json {'error': true}
