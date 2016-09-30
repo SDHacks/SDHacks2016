@@ -15,36 +15,32 @@
     color: #272727;
     border-radius: 2px;
     margin-bottom: 1.2em;
+    background-color: #f9f9f9;
 
     &--paragraph {
       margin: 0;
     }
-
     &--link {
       color: $primary-color;
       margin-right: 1.3rem;
       transition: color 0.3s ease;
       text-decoration: none;
     }
-
     &--title {
       line-height: 3rem;
       font-size: 1.5rem;
       font-weight: 300;
     }
-
     &--content {
       padding: 1.3rem;
       font-weight: 300;
       font-size: 0.9em;
       border-radius: 0 0 2px 2px;
     }
-
     &--action {
       border-top: 1px solid rgba(160, 160, 160, 0.2);
       padding: 1.3rem;
     }
-
     &--image {
       position: relative;
 
@@ -53,7 +49,6 @@
         width: 100%;
       }
     }
-
     &--image-title {
       position: absolute;
       bottom: 0;
