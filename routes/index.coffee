@@ -26,9 +26,9 @@ module.exports = (app, config) ->
 
   loadLivePage = (req, res) ->
     menu = {
-      'index': {
+      'updates': {
         'name': 'Updates',
-        'url': '/live'
+        'url': '/live/updates'
       },
       'api': {
         'name': 'APIs',
@@ -40,7 +40,7 @@ module.exports = (app, config) ->
       },
       'schedule': {
         'name': 'Schedule',
-        'url': '/live/schedule'
+        'url': '/live#schedule'
       },
       'hardware': {
         'name': 'Hardware',
