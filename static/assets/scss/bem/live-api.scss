@@ -1,9 +1,12 @@
 .live-api {
   &__content {
-    @media #{$medium-up} {
-      padding-top: 75px;
-    }
     padding-top: 10px;
+
+    h2 {
+      text-transform: none;
+      text-align: left;
+      padding-bottom: 15px;
+    }
   }
 
   &__item {
@@ -47,6 +50,7 @@
 
       img {
         border-radius: 2px 2px 0 0;
+        width: 100%;
       }
     }
 

@@ -25,6 +25,15 @@ h2 {
   color: $primary-color;
 }
 
+
+hr {
+  margin: 20px;
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
 p {
   font-size: 1.1em;
 }
@@ -68,13 +77,24 @@ footer {
 
   .aligned {
     margin-top: 37px;
+
   }
 }
 
 .footer-live {
   border-image: none;
+  width: 100%;
+  border: 0px;
   @media #{$medium-up} {
     height: 125px;
+  }
+
+  .tesc-left {
+    text-align: left;
+  }
+
+  .social-media-right {
+    text-align: right;
   }
 }
 
