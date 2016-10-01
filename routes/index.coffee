@@ -30,10 +30,12 @@ module.exports = (app, config) ->
         'name': 'Updates',
         'url': '/live'
       },
+      ###
       'prizes': {
         'name': 'Prizes',
         'url': '/live/prizes'
       },
+      ###
       'schedule': {
         'name': 'Schedule',
         'url': '/live#schedule'
@@ -43,11 +45,13 @@ module.exports = (app, config) ->
         'url': '//hardware.mlh.io/',
         'target': '_blank'
       },
+      ###
       'slack': {
         'name': 'Slack',
         'url': '//slack.sdhacks.io',
         'target': '_blank'
       },
+      ###
       'devpost': {
         'name': 'Devpost',
         'url': '//sdhacks2016.devpost.com',
