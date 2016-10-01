@@ -38,6 +38,10 @@
     &--title {
       font-size: 1.5rem;
       font-weight: 600;
+
+      a {
+        color: #272727;
+      }
     }
     &--content {
       padding: 1.3rem;
