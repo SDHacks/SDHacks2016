@@ -28,5 +28,7 @@ mixin hero
     .hero__content
       h1.hero__content--date We're Hacking
       h2.hero__content--place Rimac Arena, UC San Diego
-      a.button.large(href="/live") Live!
-      a.button.success.large(data-open="live-index-map-modal") Map
+      a.button.large(href="/live")
+        .hero__content--live Live!
+        .hero__content--live-dot
+      a.button.large.hero__content--map(data-open="live-index-map-modal") Map
