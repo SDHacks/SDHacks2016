@@ -43,13 +43,11 @@ module.exports = (app, config) ->
         'url': '//hardware.mlh.io/',
         'target': '_blank'
       },
-      ###
-      'slack': {
-        'name': 'Slack',
-        'url': '//slack.sdhacks.io',
+      'helpq': {
+        'name': 'HelpQ',
+        'url': '//mentor.sdhacks.io',
         'target': '_blank'
       },
-      ###
       'devpost': {
         'name': 'Devpost',
         'url': '//sdhacks2016.devpost.com',
