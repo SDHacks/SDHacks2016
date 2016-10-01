@@ -49,61 +49,140 @@ block content
     .bordered-grey--bg.bg-top
     .row
       .small-12.large-8.large-offset-2.end.columns
-        h2 Schedule
-        .row.about-columns
-          .small-12.medium-4.columns.about-column
-            .row
-              .small-7.medium-12.columns.about-column-text-wrap
-                .about-column-text
-                  h3 Fri 9.30
-                  p.schedule-event Check-In
-                  p 7:00 PM
-                  p.schedule-event Team Mixer
-                  p 7:30 PM
-                  p.schedule-event Dinner
-                  p 8:00 PM
-                  p.schedule-event Opening Ceremony
-                  p 9:00 PM
-                  p.schedule-event Hacking Begins
-                  p 10:00 PM
-                  p.schedule-event DragonBoard Workshop
-                  p 10:30 PM - 12:30 AM
-                  p.schedule-event Node Workshop
-                  p 11:30 PM - 1:00 AM
-                  p.schedule-event Unity VR Workshop
-                  p 11:30 PM - 2:30 AM
-          .small-12.medium-4.columns.about-column
-            .row
-              .small-7.medium-12.columns.about-column-text-wrap.schedule
-                .about-column-text
-                  h3 Sat 10.1
-                  a.schedule-event.schedule-link(href="http://www.autodesk.com/products/fusion-360") CAD and 3D printing
-                  p 1:00 AM - 3:00 AM
-                  p.schedule-event iOS Workshop
-                  p 1:30 AM - 6:00 AM
-                  p.schedule-event Breakfast
-                  p 8:00 AM
-                  p.schedule-event Lunch
-                  p 1:00 PM
-                  p.schedule-event Dinner
-                  p 7:00 PM
-          .small-12.medium-4.columns.about-column
-            .row
-              .small-7.medium-12.columns.about-column-text-wrap.schedule
-                .about-column-text
-                  h3 Sun 10.2
-                  p.schedule-event Origami Workshop
-                  p 12:00 AM
-                  p.schedule-event Breakfast
-                  p 7:00 AM
-                  p.schedule-event Hacks Due
-                  p 10:00 AM
-                  p.schedule-event Early Lunch
-                  p 10:00 AM
-                  p.schedule-event Exhibition
-                  p 11:00 AM
-                  p.schedule-event Closing Ceremony
-                  p 1:00 PM
+        .live-schedule.live-schedule--home#schedule
+          .row
+            .small-12.columns
+              .live-schedule__date.small-4.medium-5.end.columns 9.30
+              .live-schedule__title.small-5.medium-5.end.columns Friday
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 4:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Sponsor Registration
+                  .live-schedule__event--location @ Outside 1st Floor Lobby
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 7:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Hacker Registration
+                  .live-schedule__event--location @ Main Stage
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 8:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Dinner
+                  .live-schedule__event--location @ Lobby
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 9:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Opening Ceremony
+                  .live-schedule__event--location @ Main Stage
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 10:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Hacking Begins
+                  .live-schedule__event--location @ First Floor, Rimac Arena
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 10:30 PM - 12:30 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info DragonBoard Workshop
+                  .live-schedule__event--location @ Green Room
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 11:30 PM - 1:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Node Workshop
+                  .live-schedule__event--location @ CSB 115
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 11:30 PM - 2:30 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info VR Workshop
+                  .live-schedule__event--location @ VR Space
+
+              .live-schedule__date.small-4.medium-5.end.columns 10.1
+              .live-schedule__title.small-5.medium-5.end.columns Saturday
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 1:30 AM - 6:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info iOS Workshop
+                  .live-schedule__event--location @ Green Room
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 8:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Breakfast
+                  .live-schedule__event--location @ Lobby
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 1:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Lunch
+                  .live-schedule__event--location @ Lobby
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 7:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Dinner
+                  .live-schedule__event--location @ Lobby
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 8:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Ice Cream Party
+                  .live-schedule__event--location @ Outside
+
+              .live-schedule__date.small-4.medium-5.end.columns 10.2
+              .live-schedule__title.small-5.medium-5.end.columns Sunday
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 12:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Origami Workshop
+                  .live-schedule__event--location @ Green Room
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 4:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info MLH Activities
+                  .live-schedule__event--location @ Green Room
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 7:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info MLH Activities
+                  .live-schedule__event--location @ Green Room
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 7:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Breakfast
+                  .live-schedule__event--location @ Lobby
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 10:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Hacks Due
+                  .live-schedule__event--location @ First Floor, Rimac Arena
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 10:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Early Lunch
+                  .live-schedule__event--location @ Outside
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 11:00 AM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Initial Demoes
+                  .live-schedule__event--location @ First Floor, Rimac Arena
+
+              .live-schedule__event.row
+                .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 1:00 PM
+                .small-8.medium-7.columns
+                  .live-schedule__event--info Closing Ceremony
+                  .live-schedule__event--location @ Main Stage
     .bordered-grey--bg.bg-bottom
   .bordered.js-bordered
     .bordered--bg.bg-top
@@ -196,6 +275,8 @@ block content
             img.logo-cse(src="/assets/img/sponsors/ucsd_cse_logo.png")
           a#logo-qi(target="_blank" href="http://qi.ucsd.edu/")
             img.logo-qi(src="/assets/img/sponsors/qi.png")
+          a#logo-qi(target="_blank" href="https://www.twitch.tv")
+            img.logo-qi(src="/assets/img/sponsors/twitch.png")
         .silver
           a#logo-ucsdalum(target="_blank" href="http://www.alumni.ucsd.edu/")
             img.ucsdalum(src="assets/img/sponsors/ucsd_alumni_logo.png")

@@ -24,6 +24,14 @@
     margin-bottom: 1.2em;
     background-color: #f9f9f9;
 
+    &--prize {
+      color: $primary-color;
+      margin: 0;
+      padding-bottom: 5px;
+      font-weight: 400;
+      font-size: 1.1em;
+    }
+
     &--paragraph {
       margin: 0;
     }
@@ -36,7 +44,6 @@
     }
 
     &--title {
-      line-height: 3rem;
       font-size: 1.5rem;
       font-weight: 600;
     }
