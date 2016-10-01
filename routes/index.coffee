@@ -54,6 +54,11 @@ module.exports = (app, config) ->
         'name': 'Devpost',
         'url': '//sdhacks2016.devpost.com',
         'target': '_blank'
+      },
+      'discord': {
+        'name': 'Discord',
+        'url': '//discord.gg/zHC3Jpz',
+        'target': '_blank'
       }
     }
     res.render 'live/' + req.params.page + '.jade', {page: req.params.page, menu: menu}
