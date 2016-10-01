@@ -117,6 +117,10 @@ $border-radius: 3px;
       font-size: 0.8em;
     }
 
+    &--checked-in {
+      line-height: 5.0em;
+    }
+
     &--button {
       @media #{$medium-up} {
         margin: 15px 0;
