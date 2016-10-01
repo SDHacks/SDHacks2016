@@ -1,6 +1,6 @@
 $(document).ready(function() {
   if($(".countdown-hexes").length < 1) return;
-  
+
   var end = new Date('Sun, 02 Oct 2016 10:00:00 GMT-0700');
   var _second = 1000;
   var _minute = _second * 60;
@@ -16,9 +16,9 @@ $(document).ready(function() {
       var minutes = Math.floor((distance % _hour) / _minute);
       var seconds = Math.floor((distance % _minute) / _second);
 
-      document.getElementById('hex-hr').innerHTML = hours + '<p>Hours';
-      document.getElementById('hex-min').innerHTML = minutes + '<p>Minutes';
-      document.getElementById('hex-sec').innerHTML = seconds + '<p>Seconds';
+      document.getElementById('hex-hr').innerHTML = hours + '<p>Hours</p>';
+      document.getElementById('hex-min').innerHTML = minutes + '<p>Minutes</p>';
+      document.getElementById('hex-sec').innerHTML = seconds + '<p>Seconds</p>';
   }
 
   timer = setInterval(showRemaining, 1000);
