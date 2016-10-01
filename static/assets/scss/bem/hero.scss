@@ -148,6 +148,24 @@ $empty-hex-colour: lighten($hero-background, 10);
         0 2px 7px rgba(0, 0, 0, 0.5);
     }
 
+    &--live {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    &--live-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ff0000;
+      display: inline-block;
+      animation: live-header__blink 1.5s infinite;
+    }
+
+    &--map {
+      background: $dark-gray;
+    }
+
     a {
       pointer-events: auto;
       line-height: 10px;
@@ -165,11 +183,6 @@ $empty-hex-colour: lighten($hero-background, 10);
 
       &:nth-of-type(2) {
         margin-right: 15px;
-        background-color: #646464;
-
-        &:hover {
-          background-color: scale-color(#646464, $lightness: -15%);
-        }
       }
 
       &:nth-of-type(3) {
