@@ -26,8 +26,9 @@ mixin hero
     svg.js-background-mesh.hero__background-mesh(height="150px")
       rect(class="hero__hexagon--border", width="100%", height="97px")
     .hero__content
-      h1.hero__content--date SEPT 30 - OCT 2, 2016
+      h1.hero__content--date We're Hacking
       h2.hero__content--place Rimac Arena, UC San Diego
-      //- a.js-apply-form__open(class="button large") Apply (UCSD)
-      a(href="mailto:sponsor@sdhacks.io", class="button large") Sponsor
-      a(href="/volunteer", class="button large") Volunteer
+      a.button.large(href="/live")
+        .hero__content--live Live!
+        .hero__content--live-dot
+      a.button.large.hero__content--map(data-open="live-index-map-modal") Map
