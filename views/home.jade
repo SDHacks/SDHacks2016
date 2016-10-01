@@ -51,7 +51,6 @@ block content
       .small-12.large-8.large-offset-2.end.columns
         .live-schedule.live-schedule--home#schedule
           .row
-            .small-12.columns
             .live-schedule__date.small-4.medium-5.end.columns 9.30
             .live-schedule__title.small-5.medium-5.end.columns Friday
             .live-schedule__event.row
@@ -67,16 +66,16 @@ block content
                 .live-schedule__event--location @ Main Stage
 
             .live-schedule__event.row
-              .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 8:30 PM
-              .small-8.medium-7.columns
-                .live-schedule__event--info Mixer
-                .live-schedule__event--location @ RIMAC Field
-
-            .live-schedule__event.row
               .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 8:00 PM
               .small-8.medium-7.columns
                 .live-schedule__event--info Dinner
                 .live-schedule__event--location @ Lobby
+
+            .live-schedule__event.row
+              .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 8:30 PM
+              .small-8.medium-7.columns
+                .live-schedule__event--info Mixer
+                .live-schedule__event--location @ RIMAC Field
 
             .live-schedule__event.row
               .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 9:00 PM
@@ -115,9 +114,10 @@ block content
               .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 1:30 AM - 6:00 AM
               .small-8.medium-7.columns
                 .live-schedule__event--info iOS Workshop
+                .live-schedule__event--link 
+                  a(href="/assets/iOS Setup Guide.pdf") Pre-workshop Installation Instructions
                 .live-schedule__event--location @ Green Room
 
-                
             .live-schedule__event.row
               .live-schedule__event--time.text-right.small-3.small-offset-1.medium-2.medium-offset-3.columns 2:00 AM - 3:30 AM
               .small-8.medium-7.columns

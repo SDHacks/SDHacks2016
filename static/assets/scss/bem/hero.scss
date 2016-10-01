@@ -67,7 +67,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       &-filled {
         fill: $primary-color;
       }
-    }   
+    }
 
     &--featured {
       fill: url(/#logo) !important;
@@ -120,7 +120,7 @@ $empty-hex-colour: lighten($hero-background, 10);
     pointer-events: none;
 
     @media #{$medium-up} {
-      height: 325px;  
+      height: 325px;
     }
 
     &--date {
@@ -131,7 +131,7 @@ $empty-hex-colour: lighten($hero-background, 10);
       color: $white;
       font-weight: bold;
       text-transform: uppercase;
-      text-shadow: 
+      text-shadow:
         0 -1px 5px rgba(0, 0, 0, 0.7),
         0 5px 10px rgba(0, 0, 0, 0.5);
     }
@@ -143,8 +143,8 @@ $empty-hex-colour: lighten($hero-background, 10);
       }
 
       color: $warning-color;
-      text-shadow: 
-        0 -1px 3px rgba(0, 0, 0, 0.7), 
+      text-shadow:
+        0 -1px 3px rgba(0, 0, 0, 0.7),
         0 2px 7px rgba(0, 0, 0, 0.5);
     }
 
@@ -163,6 +163,10 @@ $empty-hex-colour: lighten($hero-background, 10);
     }
 
     &--map {
+      background: $dark-gray;
+    }
+
+    &--helpq {
       background: $dark-gray;
     }
 
