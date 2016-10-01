@@ -23,4 +23,7 @@ block content
                 .user-checkin__emails--birthday #{moment(user.birthdate).format("YYYY/MM/DD")}
 
               .small-12.large-4.column
-                input.user-checkin__emails--button.js-user-checkin.button(type="button", value="Check In", data-email=user.email, data-name="#{user.firstName} #{user.lastName}")
+                if !user.checkedIn
+                  input.user-checkin__emails--button.js-user-checkin.button(type="button", value="Check In", data-email=user.email, data-name="#{user.firstName} #{user.lastName}")
+                else
+                  .user-checkin__emails--checked-in Checked In!

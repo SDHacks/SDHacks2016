@@ -26,16 +26,17 @@ $(document).ready(function() {
 
   $(".js-user-checkin").click(function() {
     currentCheckin = $(this).attr('data-email');
-    checkinParent = $(this).parent().parent(); //Double parent to escape column
+    buttonParent = $(this).parent();
     $("#user-checkin-accept-modal__name").text($(this).attr('data-name'));
     $("#user-checkin-accept-modal").foundation('open');
   });
 
   $("#js-user-accept").click(function() {
     $.post("/users/admin/checkin", {email: currentCheckin}, function(data) {
-      checkinParent.hide('fast', function() {
-        checkinParent.remove();
-      });
+      var checkedIn = $("<div></div>").text("Checked In!");
+      checkedIn.addClass("user-checkin__emails--checked-in");
+      buttonParent.empty();
+      buttonParent.append(checkedIn);
     }, 'json');
   });
 });
