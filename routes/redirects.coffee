@@ -6,8 +6,8 @@ module.exports = (app) ->
   expoRedirect = (req, res) ->
     res.redirect 'http://expo.sdhacks.io'
 
-  expoRedirect = (req, res) ->
-    res.redirect 'http://tables.sdhacks.io'
+  tablesRedirect = (req, res) ->
+    res.redirect 'http://expo.sdhacks.io'
 
   app.get '/volunteer', mentorRedirect
   app.get '/mentor', mentorRedirect
