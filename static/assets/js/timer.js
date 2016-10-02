@@ -16,9 +16,9 @@ $(document).ready(function() {
       var minutes = Math.floor((distance % _hour) / _minute);
       var seconds = Math.floor((distance % _minute) / _second);
 
-      document.getElementById('hex-hr').innerHTML = hours + '<p>Hours</p>';
-      document.getElementById('hex-min').innerHTML = minutes + '<p>Minutes</p>';
-      document.getElementById('hex-sec').innerHTML = seconds + '<p>Seconds</p>';
+      document.getElementById('hex-hr').innerHTML = 0 + '<p>Hours</p>';
+      document.getElementById('hex-min').innerHTML = 0 + '<p>Minutes</p>';
+      document.getElementById('hex-sec').innerHTML = 0 + '<p>Seconds</p>';
   }
 
   timer = setInterval(showRemaining, 1000);
