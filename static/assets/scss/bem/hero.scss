@@ -178,7 +178,9 @@ $empty-hex-colour: lighten($hero-background, 10);
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
 
       @media #{$medium-up} {
-        width: 200px;
+        &:not(.hero__content--wide) {
+          width: 200px;
+        }
       }
 
       &:first-of-type {

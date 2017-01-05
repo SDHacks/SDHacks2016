@@ -142,7 +142,8 @@ module.exports = (app, config) ->
         categories: {$exists: true},
         resume: {$exists: true}, 
         'resume.size': {$gt: 0}, 
-        createdAt: {$lte: sanitizedDate}
+        createdAt: {$lte: sanitizedDate},
+        checkedIn: true
       }, 'university categories year gender status').exec (err, users) ->
       if err or !users?
         res.status 401
