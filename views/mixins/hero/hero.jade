@@ -28,4 +28,9 @@ mixin hero
     .hero__content
       h1.hero__content--date Thank You, Hackers!
       h2.hero__content--place Still itching to hack?
-      a.hero__content--wide(href="http://hackday.sdhacks.io", class="button large") Check out Hack Day 2017!
+      //- a.hero__content--wide(href="http://hackday.sdhacks.io", class="button large") Check out Hack Day 2017!
+      form(id="#update_signup" action="https://sdhacks.us9.list-manage.com/subscribe/post?u=2b76757d9b200f72632d7330a&amp;id=d90c0e8b05" method="post" target="_blank" novalidate="novalidate" class="subscribe")
+        div(style="position: absolute; left: -5000px;" aria-hidden="true")
+          input(type="text" name="b_2b76757d9b200f72632d7330a_c99e3caa24" tabindex="-1" value="")
+        input(id="sdhx-email" type="email" value="" name="EMAIL" placeholder="email@sdhacks.io" required="required" class="subscribe--email")
+        input(id="sdhx-subscribe" type="submit" name="subscribe" value="Get Updates!" class="subscribe--button")
