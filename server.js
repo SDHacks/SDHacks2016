@@ -22,7 +22,6 @@
   var flash = require('connect-flash');
   var device = require('express-device');
   var mailer = require('nodemailer');
-  var sslRedirect = require('heroku-ssl-redirect');
 
   require('dotenv').config({silent: process.env.NODE_ENV !== 'development'});
 
@@ -40,7 +39,6 @@
     var server = app.listen(port);
 
     require('./routes/redirects')(app);
-    app.use(sslRedirect());
     app.use(helmet());
 
     // Extras
